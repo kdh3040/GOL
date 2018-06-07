@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterData : MonoBehaviour {
+public class PlayerCharData : MonoBehaviour {
 
     public string Image;
 }
