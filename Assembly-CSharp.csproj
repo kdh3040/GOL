@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Common\CommonData.cs" />
     <Compile Include="Assets\Script\Data\DoorData.cs" />
     <Compile Include="Assets\Script\Data\NoteData.cs" />
     <Compile Include="Assets\Script\Data\PlayerCharData.cs" />

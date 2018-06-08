@@ -19,10 +19,16 @@ public class GManager : MonoBehaviour
 
     public PlayerChar GameCharacter;
 
+    void Start()
+    {
+        NoteManager.Instance.Initialize();
+
+        GameStart();
+    }
+
     void Update()
     {
-        // 노트 진행
-        NoteManager.Instance.NoteUpdate();
+        NoteManager.Instance.NoteUpdate(Time.deltaTime);
     }
 
     public void GameStart()

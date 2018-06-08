@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public SpriteRenderer DoorSprite;
+    public BoxCollider2D Collider;
     public int DoorIndex = 0;
 
     void Update()
