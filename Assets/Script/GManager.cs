@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GManager : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class GManager : MonoBehaviour
         }
     }
 
+    public List<Door> GameDoorList = new List<Door>();
     public PlayerChar GameCharacter;
+    public GameUIPage GameUIPage;
 
     void Start()
     {
@@ -28,32 +31,38 @@ public class GManager : MonoBehaviour
 
     void Update()
     {
-        NoteManager.Instance.NoteUpdate(Time.deltaTime);
+        var time = Time.deltaTime;
+        NoteManager.Instance.NoteUpdate(time);
+        GameUIPage.PageUpdate(time);
     }
 
     public void GameStart()
     {
         GameCharacter = new PlayerChar();
+        GameUIPage.PageReset();
+
+        for (int i = 1; i <= GameDoorList.Count; i++)
+        {
+            if ((CommonData.NOTE_POS_TYPE)i >= CommonData.NOTE_POS_TYPE.MAX)
+                break;
+
+            GameDoorList[i].SetDoorNoteType((CommonData.NOTE_POS_TYPE)i);
+        }
     }
 
     public void OnClickDoor(Door door)
     {
-        // 문을 선택 하였다.
-        // 문닫는 모션
         GameCharacter.ActionDoorClose();
-        // 붙어 있는 노트가 있는가?
-        // 있으면 제거 되면서 점수 계산
         NoteManager.Instance.CheckNote(door);
     }
 
-
-    public void CreateNote(Note note)
+    public void PlusScore(int score)
     {
-        // 노트 생성
-    }
-    public void DeleteNote(Note note)
-    {
-        // 노트 제거
+        GameUIPage.PlusScore(score);
     }
 
+    public void PlusCombo()
+    {
+        GameUIPage.PlusCombo();
+    }
 }

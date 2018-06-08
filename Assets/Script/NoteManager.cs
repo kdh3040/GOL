@@ -26,7 +26,7 @@ public class NoteManager : MonoBehaviour {
     public Transform NoteEndPos_3;
 
     private Dictionary<CommonData.NOTE_POS_TYPE, Transform[]> NotePosDic = new Dictionary<CommonData.NOTE_POS_TYPE, Transform[]>();
-    private List<Note> GameNoteList = new List<Note>(); // NOTE WOONG : 오브젝트 풀 만들어보자
+    private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> GameNoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
     private float SaveTime;
 
     public NoteManager()
@@ -56,32 +56,38 @@ public class NoteManager : MonoBehaviour {
         {
             SaveTime = 0;
 
-            var obj = Instantiate(Resources.Load("Prefab/Note")) as GameObject;
-            var note = obj.GetComponent<Note>();
-            int typeIndex = Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
-            var ttt = (CommonData.NOTE_POS_TYPE)typeIndex;
-            var posArr = NotePosDic[ttt];
-            note.SetNoteData((CommonData.NOTE_POS_TYPE)typeIndex, posArr[0], posArr[1]);
-            GameNoteList.Add(note);
+            CreateNote((CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX));
         }
 
-        for (int index = 0; index < GameNoteList.Count; ++index)
+        var enumerator = GameNoteList.GetEnumerator();
+        while(enumerator.MoveNext())
         {
-            GameNoteList[index].NoteUpdate(time);
-        }
-
-        for (int index = GameNoteList.Count - 1; index >= 0; --index)
-        {
-            if (GameNoteList[index].DestroyReady)
+            for (int index = 0; index < enumerator.Current.Value.Count; ++index)
             {
-                DestroyImmediate(GameNoteList[index].gameObject);
-                GameNoteList.RemoveAt(index);
+                enumerator.Current.Value[index].NoteUpdate(time);
+            }
+        }
+
+        // 임시
+        var enumerator_2 = GameNoteList.GetEnumerator();
+        while (enumerator_2.MoveNext())
+        {
+            for (int index = 0; index < enumerator_2.Current.Value.Count; ++index)
+            {
+                if(enumerator_2.Current.Value[index].DestroyReady)
+                {
+                    DeleteNote(enumerator_2.Current.Value[index]);
+                    break;
+                }
             }
         }
     }
 
     public void CheckNote(Door door)
     {
+
+
+
         //var doorRect = new Rect(door.gameObject.transform.position.x, door.gameObject.transform.position.y, door.Collider.size.x, door.Collider.size.y);
         //// 선택한 문이랑 가까운 노트를 찾는다
         //Rect.
@@ -89,5 +95,35 @@ public class NoteManager : MonoBehaviour {
         //{
         //    GameNoteList[index].NoteUpdate(time);
         //}
+    }
+
+    public void DeleteNote(Note note)
+    {
+        var type = note.NotePosType;
+        if (GameNoteList.ContainsKey(type))
+        {
+            var list = GameNoteList[type];
+            for (int index = list.Count - 1; index >= 0; --index)
+            {
+                if (list[index].DestroyReady)
+                {
+                    DestroyImmediate(note.gameObject);
+                    list.RemoveAt(index);
+                    GManager.Instance.PlusScore(1);
+                    GManager.Instance.PlusCombo();
+                }
+            }
+        }
+    }
+
+    public void CreateNote(CommonData.NOTE_POS_TYPE type)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/Note")) as GameObject;
+        var note = obj.GetComponent<Note>();
+        note.SetNoteData(type, NotePosDic[type][0], NotePosDic[type][1]);
+        if (GameNoteList.ContainsKey(type) == false)
+            GameNoteList.Add(type, new List<Note>());
+
+        GameNoteList[type].Add(note);
     }
 }

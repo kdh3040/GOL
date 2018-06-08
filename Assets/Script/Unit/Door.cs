@@ -5,8 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public SpriteRenderer DoorSprite;
-    public BoxCollider2D Collider;
-    public int DoorIndex = 0;
+    public CommonData.NOTE_POS_TYPE NoteType;
+
+    public void SetDoorNoteType(CommonData.NOTE_POS_TYPE type)
+    {
+        NoteType = type;
+    }
 
     void Update()
     {

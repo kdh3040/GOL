@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\Data\PlayerCharData.cs" />
     <Compile Include="Assets\Script\GManager.cs" />
     <Compile Include="Assets\Script\NoteManager.cs" />
+    <Compile Include="Assets\Script\Scene\GameUIPage.cs" />
     <Compile Include="Assets\Script\SceneManager.cs" />
     <Compile Include="Assets\Script\Unit\Door.cs" />
     <Compile Include="Assets\Script\Unit\Note.cs" />
