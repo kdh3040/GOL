@@ -21,6 +21,7 @@ public class GManager : MonoBehaviour
     public List<Door> GameDoorList = new List<Door>();
     public PlayerChar GameCharacter;
     public GameUIPage GameUIPage;
+    private Dictionary<string, Door> GameDoorDic = new Dictionary<string, Door>();
 
     void Start()
     {
@@ -41,12 +42,13 @@ public class GManager : MonoBehaviour
         GameCharacter = new PlayerChar();
         GameUIPage.PageReset();
 
-        for (int i = 1; i <= GameDoorList.Count; i++)
+        for (int i = 0; i < GameDoorList.Count; i++)
         {
-            if ((CommonData.NOTE_POS_TYPE)i >= CommonData.NOTE_POS_TYPE.MAX)
+            if ((CommonData.NOTE_POS_TYPE)(i + 1) >= CommonData.NOTE_POS_TYPE.MAX)
                 break;
 
-            GameDoorList[i].SetDoorNoteType((CommonData.NOTE_POS_TYPE)i);
+            GameDoorList[i].SetDoorNoteType((CommonData.NOTE_POS_TYPE)(i + 1));
+            GameDoorDic[GameDoorList[i].name] = GameDoorList[i];
         }
     }
 

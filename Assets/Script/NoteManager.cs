@@ -52,7 +52,7 @@ public class NoteManager : MonoBehaviour {
     {
         SaveTime += time;
 
-        if (SaveTime > Random.Range(0.1f, 0.3f))
+        if (SaveTime > Random.Range(1.1f, 1.3f))
         {
             SaveTime = 0;
 
@@ -68,15 +68,17 @@ public class NoteManager : MonoBehaviour {
             }
         }
 
+
         // 임시
         var enumerator_2 = GameNoteList.GetEnumerator();
         while (enumerator_2.MoveNext())
         {
             for (int index = 0; index < enumerator_2.Current.Value.Count; ++index)
             {
-                if(enumerator_2.Current.Value[index].DestroyReady)
+                if (enumerator_2.Current.Value[index].DestroyReady)
                 {
-                    DeleteNote(enumerator_2.Current.Value[index]);
+                    // TODO 환웅 : 게임 오버
+                    DeleteNote(enumerator_2.Current.Value[index], false);
                     break;
                 }
             }
@@ -85,33 +87,36 @@ public class NoteManager : MonoBehaviour {
 
     public void CheckNote(Door door)
     {
+        if (GameNoteList.ContainsKey(door.NoteType) == false)
+            return;
 
+        var list = GameNoteList[door.NoteType];
+        for (int index = 0; index < list.Count; ++index)
+        {
+            var target = list[index].gameObject;
+            var distance = Vector3.Distance(target.transform.position, door.gameObject.transform.position);
 
-
-        //var doorRect = new Rect(door.gameObject.transform.position.x, door.gameObject.transform.position.y, door.Collider.size.x, door.Collider.size.y);
-        //// 선택한 문이랑 가까운 노트를 찾는다
-        //Rect.
-        //for (int index = 0; index < GameNoteList.Count; ++index)
-        //{
-        //    GameNoteList[index].NoteUpdate(time);
-        //}
+            // TODO 환웅 : 거리에 따른 점수 계산이 달라져야 할듯
+            if (distance < 1.0f)
+            {
+                DeleteNote(list[index]);
+                break;
+            }
+        }
     }
 
-    public void DeleteNote(Note note)
+    public void DeleteNote(Note note, bool realDelete = true)
     {
         var type = note.NotePosType;
         if (GameNoteList.ContainsKey(type))
         {
             var list = GameNoteList[type];
-            for (int index = list.Count - 1; index >= 0; --index)
+            list.Remove(note);
+            DestroyImmediate(note.gameObject);
+            if(realDelete)
             {
-                if (list[index].DestroyReady)
-                {
-                    DestroyImmediate(note.gameObject);
-                    list.RemoveAt(index);
-                    GManager.Instance.PlusScore(1);
-                    GManager.Instance.PlusCombo();
-                }
+                GManager.Instance.PlusScore(1);
+                GManager.Instance.PlusCombo();
             }
         }
     }

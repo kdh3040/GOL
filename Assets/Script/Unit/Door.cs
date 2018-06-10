@@ -46,23 +46,4 @@ public class Door : MonoBehaviour
             }
         }*/
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag.Equals("Note"))
-        {
-            Debug.Log("Target   " + other.gameObject.tag);
-            Debug.Log("This  " + this.gameObject.tag);
-
-            var target = other.gameObject;
-          
-            var distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
-            Debug.Log("distance  " + distance);
-
-          //  hit.collider.enabled = false;
-
-          //  this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-
-        }
-    }
 }
