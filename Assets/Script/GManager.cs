@@ -35,6 +35,24 @@ public class GManager : MonoBehaviour
         var time = Time.deltaTime;
         NoteManager.Instance.NoteUpdate(time);
         GameUIPage.PageUpdate(time);
+
+        // 임시
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray2D ray = new Ray2D(wp, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+            if (hit.collider != null)
+            {
+                // 문을 선택 했다.
+                OnClickDoor(GameDoorDic[hit.transform.name]);
+                Debug.Log("Complete" + hit.collider.name);
+
+                //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                // Destroy(hit.collider.gameObject);
+            }
+        }
     }
 
     public void GameStart()
