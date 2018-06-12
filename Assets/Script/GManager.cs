@@ -18,24 +18,49 @@ public class GManager : MonoBehaviour
         }
     }
 
-    public List<Door> GameDoorList = new List<Door>();
-    public PlayerChar GameCharacter;
+    // 게임의 큰틀을 담당하는 매니저
+    public int Score
+    {
+        get;
+        private set;
+    }
+    public int Combo
+    {
+        get;
+        private set;
+    }
+    private float ComboKeepTime = 0f;
+    private PlayerChar MainChar = null;
+    private bool GameEnable = false;
+
+    // TODO 환웅 : Page 매니저를 추가하여 게임이 시작 할때 페이지를 붙이는 형식으로 진행하자
     public GameUIPage GameUIPage;
-    private Dictionary<string, Door> GameDoorDic = new Dictionary<string, Door>();
 
     void Start()
     {
         NoteManager.Instance.Initialize();
 
+        // TODO 환웅 : 메인화면에서 게임화면으로 넘어 올때 호출 해야함
         GameStart();
     }
 
     void Update()
     {
+        if (GameEnable == false)
+            return;
+
         var time = Time.deltaTime;
         NoteManager.Instance.NoteUpdate(time);
-        GameUIPage.PageUpdate(time);
 
+        ComboKeepTime -= time;
+        if(ComboKeepTime <= 0f)
+        {
+            ComboKeepTime = 0f;
+            RemoveCombo();
+        }
+
+
+        /*
         // 임시
         if (Input.GetMouseButtonDown(0))
         {
@@ -52,37 +77,57 @@ public class GManager : MonoBehaviour
                 //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 // Destroy(hit.collider.gameObject);
             }
-        }
+        }*/
+    }
+
+    public void ResetGame()
+    {
+        Score = 0;
+        Combo = 0;
+        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        GameEnable = true;
+        NoteManager.Instance.ResetNote();
+        GameUIPage.PageReset();
     }
 
     public void GameStart()
     {
-        GameCharacter = new PlayerChar();
-        GameUIPage.PageReset();
+        ResetGame();
 
-        for (int i = 0; i < GameDoorList.Count; i++)
-        {
-            if ((CommonData.NOTE_POS_TYPE)(i + 1) >= CommonData.NOTE_POS_TYPE.MAX)
-                break;
-
-            GameDoorList[i].SetDoorNoteType((CommonData.NOTE_POS_TYPE)(i + 1));
-            GameDoorDic[GameDoorList[i].name] = GameDoorList[i];
-        }
+        if (MainChar == null)
+            MainChar = new PlayerChar();
+        else
+            MainChar.Initialize();
     }
 
-    public void OnClickDoor(Door door)
+    public void PlusScore(int index)
     {
-        GameCharacter.ActionDoorClose();
-        NoteManager.Instance.CheckNote(door);
+        // TODO 환웅 : 노트에 맞는 점수를 추가 해야함 (index는 note 데이터의 인덱스값)
+        Score += 1;
+        GameUIPage.RefreshUI();
+        if (ComboKeepTime > 0f)
+            PlusCombo(index);
     }
 
-    public void PlusScore(int score)
+    public void PlusCombo(int index)
     {
-        GameUIPage.PlusScore(score);
+        // TODO 환웅 : 노트에 맞는 콤보를 추가 해야함 (index는 note 데이터의 인덱스값)
+        Combo += 1;
+        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        GameUIPage.RefreshCombo(true);
     }
 
-    public void PlusCombo()
+    public void RemoveCombo()
     {
-        GameUIPage.PlusCombo();
+        // TODO 환웅 : 게임 UI의 콤보를 제거 해야함
+        Combo = 0;
+        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        GameUIPage.RefreshCombo(false);
+    }
+
+    public void GameOver()
+    {
+        // TODO 환웅 : 게임오버체크를 하고 게임이 오버 되었을때 처리를 해야함
+        NoteManager.Instance.ResetNote();
     }
 }

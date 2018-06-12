@@ -15,4 +15,9 @@ public class PlayerChar : MonoBehaviour
     {
         // 캐릭터가 문닫는 애니메이션
     }
+
+    public void Initialize()
+    {
+        // 캐릭터 초기화
+    }
 }

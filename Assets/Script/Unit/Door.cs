@@ -7,11 +7,6 @@ public class Door : MonoBehaviour
     public SpriteRenderer DoorSprite;
     public CommonData.NOTE_POS_TYPE NoteType;
 
-    public void SetDoorNoteType(CommonData.NOTE_POS_TYPE type)
-    {
-        NoteType = type;
-    }
-
     void Update()
     {
         // PC 에디터용
@@ -24,11 +19,9 @@ public class Door : MonoBehaviour
             if (hit.collider != null)
             {
                 // 문을 선택 했다.
-                GManager.Instance.OnClickDoor(this);
+                if(hit.transform.name == this.name)
+                    NoteManager.Instance.DeleteCheckNote(this);
                 Debug.Log("Complete" + hit.collider.name);
-
-                //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
-                // Destroy(hit.collider.gameObject);
             }
         }
 

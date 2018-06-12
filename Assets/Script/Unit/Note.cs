@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Note : MonoBehaviour {
 
+    [System.NonSerialized]
     public CommonData.NOTE_POS_TYPE NotePosType = CommonData.NOTE_POS_TYPE.NONE;
-    public Transform StartPos;
-    public Transform EndPos;
-    private float Speed = 1.0f;
+    private int Id = 0;
+    private NoteData data = null;
+    private Transform StartPos;
+    private Transform EndPos;
+    private float Speed = 1.0f; // TODO 환웅 : 노트 생성시 속도를 정할 수 있게 추가
     private float SaveTime = 0;
-    public bool DestroyReady = false;
 
-    public void SetNoteData(CommonData.NOTE_POS_TYPE notePosType, Transform startPos, Transform endPos)
+    public void SetNoteData(CommonData.NOTE_POS_TYPE type, int id)
     {
-        NotePosType = notePosType;
-        StartPos = startPos;
-        EndPos = endPos;
+        NotePosType = type;
+        Id = id;
+        data = null; // TODO 환웅 노트 데이터 추가
+        var pos = NoteManager.Instance.GetNoteTypeStartEndPos(NotePosType);
+        StartPos = pos[0];
+        EndPos = pos[1];
         gameObject.transform.position = StartPos.position;
-        DestroyReady = false;
     }
 
     public void NoteUpdate(float time)
@@ -29,6 +33,10 @@ public class Note : MonoBehaviour {
         gameObject.transform.position = pos;
 
         if ((SaveTime / Speed) >= 1f)
-            DestroyReady = true;
+        {
+            NoteManager.Instance.AddDeleteReadyNote(this);
+            GManager.Instance.GameOver();
+        }
+            
     }
 }

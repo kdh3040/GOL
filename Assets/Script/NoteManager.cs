@@ -16,6 +16,8 @@ public class NoteManager : MonoBehaviour {
             return _instance;
         }
     }
+    
+    // NOTE 환웅 : 노트와 관련된 기능들만 사용하는 매니저
 
 
     public Transform NoteStartPos_1;
@@ -26,7 +28,8 @@ public class NoteManager : MonoBehaviour {
     public Transform NoteEndPos_3;
 
     private Dictionary<CommonData.NOTE_POS_TYPE, Transform[]> NotePosDic = new Dictionary<CommonData.NOTE_POS_TYPE, Transform[]>();
-    private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> GameNoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
+    private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
+    private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
 
     public NoteManager()
@@ -48,10 +51,27 @@ public class NoteManager : MonoBehaviour {
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][1] = NoteEndPos_3;
     }
 
+    public void ResetNote()
+    {
+        var enumerator = NoteList.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            for (int index = enumerator.Current.Value.Count - 1; index >= 0 ; --index)
+            {
+                DeleteNote(enumerator.Current.Value[index], false);
+            }
+
+            enumerator.Current.Value.Clear();
+        }
+
+        DeleteReadyNoteList.Clear();
+    }
+
     public void NoteUpdate(float time)
     {
         SaveTime += time;
 
+        // TODO 환웅 : 노트 생성의 시스템화가 필요
         if (SaveTime > Random.Range(1.1f, 1.3f))
         {
             SaveTime = 0;
@@ -59,7 +79,7 @@ public class NoteManager : MonoBehaviour {
             CreateNote((CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX));
         }
 
-        var enumerator = GameNoteList.GetEnumerator();
+        var enumerator = NoteList.GetEnumerator();
         while(enumerator.MoveNext())
         {
             for (int index = 0; index < enumerator.Current.Value.Count; ++index)
@@ -68,67 +88,64 @@ public class NoteManager : MonoBehaviour {
             }
         }
 
-
-        // 임시
-        var enumerator_2 = GameNoteList.GetEnumerator();
-        while (enumerator_2.MoveNext())
+        for (int i = 0; i < DeleteReadyNoteList.Count; i++)
         {
-            for (int index = 0; index < enumerator_2.Current.Value.Count; ++index)
-            {
-                if (enumerator_2.Current.Value[index].DestroyReady)
-                {
-                    // TODO 환웅 : 게임 오버
-                    DeleteNote(enumerator_2.Current.Value[index], false);
-                    break;
-                }
-            }
+            DeleteNote(DeleteReadyNoteList[i], false);
         }
+        DeleteReadyNoteList.Clear();
     }
 
-    public void CheckNote(Door door)
+    public void DeleteCheckNote(Door door)
     {
-        if (GameNoteList.ContainsKey(door.NoteType) == false)
+        if (NoteList.ContainsKey(door.NoteType) == false)
             return;
 
-        var list = GameNoteList[door.NoteType];
-        for (int index = 0; index < list.Count; ++index)
+        var list = NoteList[door.NoteType];
+        for (int index = list.Count - 1; index >= 0; --index)
         {
             var target = list[index].gameObject;
             var distance = Vector3.Distance(target.transform.position, door.gameObject.transform.position);
 
-            // TODO 환웅 : 거리에 따른 점수 계산이 달라져야 할듯
+            // TODO 환웅 : 노트의 충돌처리에 대한 시스템화가 필요
             if (distance < 1.0f)
             {
                 DeleteNote(list[index]);
-                break;
             }
         }
     }
 
-    public void DeleteNote(Note note, bool realDelete = true)
+    public void AddDeleteReadyNote(Note note)
+    {
+        DeleteReadyNoteList.Add(note);
+    }
+
+    public void DeleteNote(Note note, bool score = true)
     {
         var type = note.NotePosType;
-        if (GameNoteList.ContainsKey(type))
+        if (NoteList.ContainsKey(type))
         {
-            var list = GameNoteList[type];
+            var list = NoteList[type];
             list.Remove(note);
             DestroyImmediate(note.gameObject);
-            if(realDelete)
-            {
-                GManager.Instance.PlusScore(1);
-                GManager.Instance.PlusCombo();
-            }
+            if(score)
+                GManager.Instance.PlusScore(1); // TODO 환웅 : 점수 계산
         }
     }
 
     public void CreateNote(CommonData.NOTE_POS_TYPE type)
     {
+        // TODO 환웅 : 오브젝트 풀 추가 예정
         var obj = Instantiate(Resources.Load("Prefab/Note")) as GameObject;
         var note = obj.GetComponent<Note>();
-        note.SetNoteData(type, NotePosDic[type][0], NotePosDic[type][1]);
-        if (GameNoteList.ContainsKey(type) == false)
-            GameNoteList.Add(type, new List<Note>());
+        note.SetNoteData(type, 1);
+        if (NoteList.ContainsKey(type) == false)
+            NoteList.Add(type, new List<Note>());
 
-        GameNoteList[type].Add(note);
+        NoteList[type].Add(note);
+    }
+
+    public Transform[] GetNoteTypeStartEndPos(CommonData.NOTE_POS_TYPE type)
+    {
+        return NotePosDic[type];
     }
 }

@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorSprite: {fileID: 957149202}
-  NoteType: 0
+  NoteType: 1
 --- !u!61 &957149201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -551,11 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: {fileID: 266935055}
-  ScoreCount: 0
   Combo: {fileID: 1099553642}
-  ComboCount: 0
-  ComboKeepTime: 0
-  ComboKeepEnable: 0
 --- !u!4 &1031279020
 Transform:
   m_ObjectHideFlags: 0
@@ -718,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorSprite: {fileID: 1262412178}
-  NoteType: 0
+  NoteType: 3
 --- !u!61 &1262412177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1013,11 +1009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fe95ca7ab795b4eb1c7c25562ffff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameDoorList:
-  - {fileID: 957149200}
-  - {fileID: 2059952382}
-  - {fileID: 1262412176}
-  GameCharacter: {fileID: 0}
   GameUIPage: {fileID: 1031279019}
 --- !u!4 &1507491655
 Transform:
@@ -1212,7 +1203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorSprite: {fileID: 2059952384}
-  NoteType: 0
+  NoteType: 2
 --- !u!61 &2059952383
 BoxCollider2D:
   m_ObjectHideFlags: 0
