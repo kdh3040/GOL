@@ -128,7 +128,7 @@ public class NoteManager : MonoBehaviour {
             list.Remove(note);
             DestroyImmediate(note.gameObject);
             if(score)
-                GManager.Instance.PlusScore(1); // TODO 환웅 : 점수 계산
+                GManager.Instance.PlusScore(note.Id);
         }
     }
 
@@ -137,7 +137,7 @@ public class NoteManager : MonoBehaviour {
         // TODO 환웅 : 오브젝트 풀 추가 예정
         var obj = Instantiate(Resources.Load("Prefab/Note")) as GameObject;
         var note = obj.GetComponent<Note>();
-        note.SetNoteData(type, 1);
+        note.SetNoteData(type, Random.Range(1, DataManager.Instance.NoteDataList.Count));
         if (NoteList.ContainsKey(type) == false)
             NoteList.Add(type, new List<Note>());
 

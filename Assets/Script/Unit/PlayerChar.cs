@@ -8,7 +8,7 @@ public class PlayerChar : MonoBehaviour
 
     public PlayerChar()
     {
-        mData = new PlayerCharData();
+        //mData = new PlayerCharData();
     }
 
     public void ActionDoorClose()

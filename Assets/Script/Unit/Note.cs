@@ -6,7 +6,8 @@ public class Note : MonoBehaviour {
 
     [System.NonSerialized]
     public CommonData.NOTE_POS_TYPE NotePosType = CommonData.NOTE_POS_TYPE.NONE;
-    private int Id = 0;
+    [System.NonSerialized]
+    public int Id = 0;
     private NoteData data = null;
     private Transform StartPos;
     private Transform EndPos;
@@ -17,7 +18,7 @@ public class Note : MonoBehaviour {
     {
         NotePosType = type;
         Id = id;
-        data = null; // TODO 환웅 노트 데이터 추가
+        data = DataManager.Instance.NoteDataList[id];
         var pos = NoteManager.Instance.GetNoteTypeStartEndPos(NotePosType);
         StartPos = pos[0];
         EndPos = pos[1];

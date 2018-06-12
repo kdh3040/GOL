@@ -32,12 +32,14 @@ public class GManager : MonoBehaviour
     private float ComboKeepTime = 0f;
     private PlayerChar MainChar = null;
     private bool GameEnable = false;
+    public List<Door> DoorList = new List<Door>();
 
     // TODO 환웅 : Page 매니저를 추가하여 게임이 시작 할때 페이지를 붙이는 형식으로 진행하자
     public GameUIPage GameUIPage;
 
     void Start()
     {
+        DataManager.Instance.Initialize();
         NoteManager.Instance.Initialize();
 
         // TODO 환웅 : 메인화면에서 게임화면으로 넘어 올때 호출 해야함
@@ -58,26 +60,6 @@ public class GManager : MonoBehaviour
             ComboKeepTime = 0f;
             RemoveCombo();
         }
-
-
-        /*
-        // 임시
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Ray2D ray = new Ray2D(wp, Vector2.zero);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-            if (hit.collider != null)
-            {
-                // 문을 선택 했다.
-                OnClickDoor(GameDoorDic[hit.transform.name]);
-                Debug.Log("Complete" + hit.collider.name);
-
-                //this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
-                // Destroy(hit.collider.gameObject);
-            }
-        }*/
     }
 
     public void ResetGame()
@@ -88,30 +70,35 @@ public class GManager : MonoBehaviour
         GameEnable = true;
         NoteManager.Instance.ResetNote();
         GameUIPage.PageReset();
+
+        for (int i = 0; i < DoorList.Count ; ++i)
+        {
+            DoorList[i].SetData(i + 1); // NOTE 환웅 : 데이터 세팅(임시)
+        }
     }
 
     public void GameStart()
     {
         ResetGame();
 
+        /*
         if (MainChar == null)
             MainChar = new PlayerChar();
         else
             MainChar.Initialize();
+            */
     }
 
-    public void PlusScore(int index)
+    public void PlusScore(int id)
     {
-        // TODO 환웅 : 노트에 맞는 점수를 추가 해야함 (index는 note 데이터의 인덱스값)
-        Score += 1;
+        Score += DataManager.Instance.NoteDataList[id].Score;
         GameUIPage.RefreshUI();
         if (ComboKeepTime > 0f)
-            PlusCombo(index);
+            PlusCombo();
     }
 
-    public void PlusCombo(int index)
+    public void PlusCombo()
     {
-        // TODO 환웅 : 노트에 맞는 콤보를 추가 해야함 (index는 note 데이터의 인덱스값)
         Combo += 1;
         ComboKeepTime = CommonData.COMBO_KEEP_TIME;
         GameUIPage.RefreshCombo(true);

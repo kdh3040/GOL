@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public DoorData Data;
     public SpriteRenderer DoorSprite;
     public CommonData.NOTE_POS_TYPE NoteType;
+
+    public void SetData(int id)
+    {
+        Data = DataManager.Instance.DoorDataList[id];
+    }
 
     void Update()
     {
         // PC 에디터용
         if (Input.GetMouseButtonDown(0))
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
