@@ -982,6 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fe95ca7ab795b4eb1c7c25562ffff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DoorList: []
   GameUIPage: {fileID: 1031279019}
 --- !u!4 &1507491655
 Transform:
@@ -1299,6 +1300,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2090858488}
   - component: {fileID: 2090858489}
+  - component: {fileID: 2090858490}
+  - component: {fileID: 2090858491}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1364,6 +1367,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &2090858490
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2090858487}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e91f4898221ee004d9711ade6594a08b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2090858491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2090858487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca6a09fa542dee438f77ce05f1bc5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchChk: 0
+  PlayerAnim: {fileID: 2090858490}
 --- !u!1 &2144795614
 GameObject:
   m_ObjectHideFlags: 0
