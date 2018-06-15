@@ -51,7 +51,7 @@ public class NoteManager : MonoBehaviour {
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_2][1] = NoteEndPos_2;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][0] = NoteStartPos_3;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][1] = NoteEndPos_3;
-        Speed = 1.5f;
+        
     }
 
     public void ResetNote()
@@ -68,6 +68,8 @@ public class NoteManager : MonoBehaviour {
         }
 
         DeleteReadyNoteList.Clear();
+
+        Speed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
     }
 
     public void NoteUpdate(float time)

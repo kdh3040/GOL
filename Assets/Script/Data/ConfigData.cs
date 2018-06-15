@@ -19,6 +19,7 @@ public class ConfigData {
     }
 
     public float COMBO_KEEP_TIME;
+    public float DEFAULT_NOTE_SPEED;
 
     public void Initialize(XmlNodeList list)
     {
@@ -28,6 +29,9 @@ public class ConfigData {
 
             if (key.Equals("COMBO_KEEP_TIME"))
                 COMBO_KEEP_TIME = GetFloatValue(node);
+            else if (key.Equals("DEFAULT_NOTE_SPEED"))
+                DEFAULT_NOTE_SPEED = GetFloatValue(node);
+
         }
     }
 

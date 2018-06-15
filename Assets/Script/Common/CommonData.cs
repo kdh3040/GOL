@@ -11,7 +11,4 @@ public class CommonData : MonoBehaviour {
         INDEX_3,
         MAX
     }
-
-    public static string STRING_COMBO_COUNT = "COMBO : {0}";
-    public static string STRING_SCORE_COUNT = "점수 : {0}";
 }

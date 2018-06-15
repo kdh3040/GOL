@@ -52,6 +52,13 @@ public class DataManager {
         {
             ConfigData.Instance.Initialize(node.ChildNodes);
         }
+
+        list = GetXmlNodeList("Localize", "Datas");
+
+        foreach (XmlNode node in list)
+        {
+            LocalizeData.Instance.Initialize(node.ChildNodes);
+        }
     }
 
     public XmlNodeList GetXmlNodeList(string fileName, string key)
