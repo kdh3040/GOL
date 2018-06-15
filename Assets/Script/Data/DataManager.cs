@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
+using UnityEngine.UI;
 
 public class DataManager {
 
@@ -21,44 +22,66 @@ public class DataManager {
     public Dictionary<int, DoorData> DoorDataList = new Dictionary<int, DoorData>();
     public Dictionary<int, NoteData> NoteDataList = new Dictionary<int, NoteData>();
 
-    public void Initialize()
+    private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
+
+
+    public IEnumerator LoadingData(Text loadingCount)
     {
-        // NOTE 환웅 : 모든 데이터 파싱
-        XmlNodeList list = GetXmlNodeList("Door", "Doors");
-
-        foreach (XmlNode node in list)
+        if(LoadingDataXmlList.Count <= 0)
         {
-            foreach (XmlNode child in node.ChildNodes)
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Door", "Doors"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Note", "Notes"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("CommonData", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Localize", "Datas"));
+        }
+
+        for (int i = 0; i < LoadingDataXmlList.Count; i++)
+        {
+            string xmlName = LoadingDataXmlList[i].Key;
+            XmlNodeList list = GetXmlNodeList(LoadingDataXmlList[i].Key, LoadingDataXmlList[i].Value);
+
+
+            if(xmlName == "Door")
             {
-                var data = new DoorData(child);
-                DoorDataList.Add(data.id, data);
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new DoorData(child);
+                        DoorDataList.Add(data.id, data);
+                    }
+                }
             }
-        }
-
-        list = GetXmlNodeList("Note", "Notes");
-
-        foreach (XmlNode node in list)
-        {
-            foreach (XmlNode child in node.ChildNodes)
+            else if (xmlName == "Note")
             {
-                var data = new NoteData(child);
-                NoteDataList.Add(data.id, data);
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new NoteData(child);
+                        NoteDataList.Add(data.id, data);
+                    }
+                }
             }
+            else if (xmlName == "CommonData")
+            {
+                foreach (XmlNode node in list)
+                {
+                    ConfigData.Instance.Initialize(node.ChildNodes);
+                }
+            }
+            else if (xmlName == "Localize")
+            {
+                foreach (XmlNode node in list)
+                {
+                    LocalizeData.Instance.Initialize(node.ChildNodes);
+                }
+            }
+            loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);
+            yield return null;
         }
 
-        list = GetXmlNodeList("CommonData", "Datas");
-
-        foreach (XmlNode node in list)
-        {
-            ConfigData.Instance.Initialize(node.ChildNodes);
-        }
-
-        list = GetXmlNodeList("Localize", "Datas");
-
-        foreach (XmlNode node in list)
-        {
-            LocalizeData.Instance.Initialize(node.ChildNodes);
-        }
+        yield return null;
     }
 
     public XmlNodeList GetXmlNodeList(string fileName, string key)

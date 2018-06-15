@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameUIPage : MonoBehaviour {
+public class PageGameUI : MonoBehaviour {
     public Text Score;
     public Text Combo;
+
+    void Start()
+    {
+        GManager.Instance.GameUIPage = this;
+        GManager.Instance.GameStart();
+    }
 
     public void PageReset()
     {
