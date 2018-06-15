@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 
-public class DataManager : MonoBehaviour {
+public class DataManager {
 
     public static DataManager _instance = null;
     public static DataManager Instance
@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour {
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<DataManager>() as DataManager;
+                _instance = new DataManager();
             }
             return _instance;
         }
@@ -44,6 +44,13 @@ public class DataManager : MonoBehaviour {
                 var data = new NoteData(child);
                 NoteDataList.Add(data.id, data);
             }
+        }
+
+        list = GetXmlNodeList("CommonData", "Datas");
+
+        foreach (XmlNode node in list)
+        {
+            ConfigData.Instance.Initialize(node.ChildNodes);
         }
     }
 

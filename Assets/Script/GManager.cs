@@ -66,7 +66,7 @@ public class GManager : MonoBehaviour
     {
         Score = 0;
         Combo = 0;
-        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         GameEnable = true;
         NoteManager.Instance.ResetNote();
         GameUIPage.PageReset();
@@ -100,7 +100,7 @@ public class GManager : MonoBehaviour
     public void PlusCombo()
     {
         Combo += 1;
-        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         GameUIPage.RefreshCombo(true);
     }
 
@@ -108,13 +108,13 @@ public class GManager : MonoBehaviour
     {
         // TODO 환웅 : 게임 UI의 콤보를 제거 해야함
         Combo = 0;
-        ComboKeepTime = CommonData.COMBO_KEEP_TIME;
+        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         GameUIPage.RefreshCombo(false);
     }
 
     public void GameOver()
     {
         // TODO 환웅 : 게임오버체크를 하고 게임이 오버 되었을때 처리를 해야함
-        NoteManager.Instance.ResetNote();
+        // NoteManager.Instance.ResetNote();
     }
 }

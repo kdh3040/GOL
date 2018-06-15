@@ -30,6 +30,8 @@ public class NoteManager : MonoBehaviour {
     private Dictionary<CommonData.NOTE_POS_TYPE, Transform[]> NotePosDic = new Dictionary<CommonData.NOTE_POS_TYPE, Transform[]>();
     private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
     private List<Note> DeleteReadyNoteList = new List<Note>();
+    [System.NonSerialized]
+    public float Speed = 0f;
     private float SaveTime;
 
     public NoteManager()
@@ -49,6 +51,7 @@ public class NoteManager : MonoBehaviour {
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_2][1] = NoteEndPos_2;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][0] = NoteStartPos_3;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][1] = NoteEndPos_3;
+        Speed = 1.5f;
     }
 
     public void ResetNote()
@@ -72,7 +75,7 @@ public class NoteManager : MonoBehaviour {
         SaveTime += time;
 
         // TODO 환웅 : 노트 생성의 시스템화가 필요
-        if (SaveTime > Random.Range(1.1f, 1.3f))
+        if (SaveTime > Random.Range(0.1f, 0.3f))
         {
             SaveTime = 0;
 

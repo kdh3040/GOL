@@ -11,7 +11,6 @@ public class Note : MonoBehaviour {
     private NoteData data = null;
     private Transform StartPos;
     private Transform EndPos;
-    private float Speed = 1.0f; // TODO 환웅 : 노트 생성시 속도를 정할 수 있게 추가
     private float SaveTime = 0;
 
     public void SetNoteData(CommonData.NOTE_POS_TYPE type, int id)
@@ -30,10 +29,10 @@ public class Note : MonoBehaviour {
         SaveTime += time;
 
         var pos = StartPos.position;
-        pos.y = Mathf.Lerp(StartPos.position.y, EndPos.position.y, SaveTime / Speed);
+        pos.y = Mathf.Lerp(StartPos.position.y, EndPos.position.y, SaveTime / NoteManager.Instance.Speed);
         gameObject.transform.position = pos;
 
-        if ((SaveTime / Speed) >= 1f)
+        if ((SaveTime / NoteManager.Instance.Speed) >= 1f)
         {
             NoteManager.Instance.AddDeleteReadyNote(this);
             GManager.Instance.GameOver();

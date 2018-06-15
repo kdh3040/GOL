@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Localize id="COMBO_COUNT" kr="COMBO : {0}" jp="COMBO : {0}" en="COMBO : {0}"/>
+	<Localize id="SCORE_COUNT" kr="점수 : {0}" jp="점수 : {0}" en="점수 : {0}"/>
+</Datas>

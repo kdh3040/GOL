@@ -9,13 +9,13 @@ public class GameUIPage : MonoBehaviour {
 
     public void PageReset()
     {
-        Score.text = string.Format(CommonData.STRING_SCORE_COUNT, 0);
+        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), 0);
         Combo.text = "";
     }
 
     public void RefreshUI()
     {
-        Score.text = string.Format(CommonData.STRING_SCORE_COUNT, GManager.Instance.Score);
+        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), GManager.Instance.Score);
     }
 
     public void RefreshCombo(bool plus)
@@ -25,6 +25,6 @@ public class GameUIPage : MonoBehaviour {
         if (GManager.Instance.Combo <= 0)
             Combo.text = "";
         else
-            Combo.text = string.Format(CommonData.STRING_COMBO_COUNT, GManager.Instance.Combo);
+            Combo.text = string.Format(LocalizeData.Instance.GetLocalizeString("COMBO_COUNT"), GManager.Instance.Combo);
     }
 }

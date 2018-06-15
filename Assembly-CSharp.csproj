@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Common\CommonData.cs" />
+    <Compile Include="Assets\Script\Data\ConfigData.cs" />
     <Compile Include="Assets\Script\Data\DataManager.cs" />
     <Compile Include="Assets\Script\Data\DoorData.cs" />
+    <Compile Include="Assets\Script\Data\LocalizeData.cs" />
     <Compile Include="Assets\Script\Data\NoteData.cs" />
     <Compile Include="Assets\Script\Data\PlayerCharData.cs" />
     <Compile Include="Assets\Script\GManager.cs" />
@@ -71,8 +73,10 @@
     <Compile Include="Assets\Script\Unit\Door.cs" />
     <Compile Include="Assets\Script\Unit\Note.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
+    <None Include="Assets\Resources\xml\Localize.xml" />
     <None Include="Assets\Resources\xml\Note.xml" />
     <None Include="Assets\Resources\xml\Door.xml" />
+    <None Include="Assets\Resources\xml\CommonData.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/Project/dohosoft/GOL/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

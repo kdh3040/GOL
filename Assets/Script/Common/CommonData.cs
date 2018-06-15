@@ -12,8 +12,6 @@ public class CommonData : MonoBehaviour {
         MAX
     }
 
-    public static float COMBO_KEEP_TIME = 2f;
-
     public static string STRING_COMBO_COUNT = "COMBO : {0}";
     public static string STRING_SCORE_COUNT = "점수 : {0}";
 }
