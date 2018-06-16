@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PageGameUI : MonoBehaviour {
+public class PageGameUI : MonoBehaviour
+{
     public Text Score;
     public Text Combo;
+    public Button PauseButton;
+
+    void Awake()
+    {
+        PauseButton.onClick.AddListener(OnClickPause);
+    }
 
     public void ResetUI()
     {
@@ -26,5 +33,11 @@ public class PageGameUI : MonoBehaviour {
             Combo.text = "";
         else
             Combo.text = string.Format(LocalizeData.Instance.GetLocalizeString("COMBO_COUNT"), GamePlayManager.Instance.Combo);
+    }
+
+    public void OnClickPause()
+    {
+        GamePlayManager.Instance.GamePause = true;
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
     }
 }

@@ -26,10 +26,15 @@ public class NoteSystem
 
     public void ResetNote()
     {
+        AllDelete();
+    }
+
+    public void AllDelete()
+    {
         var enumerator = NoteList.GetEnumerator();
         while (enumerator.MoveNext())
         {
-            for (int index = enumerator.Current.Value.Count - 1; index >= 0 ; --index)
+            for (int index = enumerator.Current.Value.Count - 1; index >= 0; --index)
             {
                 DeleteNote(enumerator.Current.Value[index], false);
             }

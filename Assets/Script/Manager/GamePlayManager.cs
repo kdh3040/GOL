@@ -33,6 +33,11 @@ public class GamePlayManager : MonoBehaviour
         get;
         private set;
     }
+    public bool GamePause
+    {
+        get;
+        set;
+    }
     private float ComboKeepTime = 0f;
     private PlayerChar MainChar = null;
     private bool GameEnable = false;
@@ -56,18 +61,26 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
+        StopAllCoroutines();
         Score = 0;
         Combo = 0;
         ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         GameEnable = true;
+        GamePause = false;
         mNoteSystem.ResetNote();
         mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
         NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
     }
 
-    public void GameStart()
+    public void GameExit()
     {
+        mNoteSystem.AllDelete();
+        mDoorSystem.AllDelete();
+    }
+
+    public void GameStart()
+    { 
         ResetGame();
         StartCoroutine(UpdateGamePlay());
     }
@@ -84,6 +97,12 @@ public class GamePlayManager : MonoBehaviour
 
         while(GameEnable)
         {
+            if (GamePause)
+            {
+                yield return null;
+                continue;
+            }
+
             var time = Time.deltaTime;
             mNoteSystem.NoteUpdate(time);
 
@@ -128,6 +147,11 @@ public class GamePlayManager : MonoBehaviour
         var door = obj.GetComponent<Door>();
 
         return door;
+    }
+
+    public void DeleteDoor(Door door)
+    {
+        DestroyImmediate(door.gameObject);
     }
 
     public void ClickDoor(Door door)
