@@ -68,8 +68,12 @@
     <Compile Include="Assets\Script\Data\PlayerCharData.cs" />
     <Compile Include="Assets\Script\GManager.cs" />
     <Compile Include="Assets\Script\NoteManager.cs" />
-    <Compile Include="Assets\Script\Scene\GameUIPage.cs" />
-    <Compile Include="Assets\Script\SceneManager.cs" />
+    <Compile Include="Assets\Script\PopupManager.cs" />
+    <Compile Include="Assets\Script\Scene\Page\PageGameUI.cs" />
+    <Compile Include="Assets\Script\Scene\Page\PageLoadingUI.cs" />
+    <Compile Include="Assets\Script\Scene\Page\PageMainUI.cs" />
+    <Compile Include="Assets\Script\Scene\Popup\PopupGameEnd.cs" />
+    <Compile Include="Assets\Script\Scene\Popup\PopupUI.cs" />
     <Compile Include="Assets\Script\Unit\Door.cs" />
     <Compile Include="Assets\Script\Unit\Note.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
