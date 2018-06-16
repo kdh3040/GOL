@@ -8,6 +8,12 @@ public class NoteSystem
     private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
     private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
+    private int AccumulateCreateNoteCount = 0;
+    public float NoteSpeed
+    {
+        get;
+        private set;
+    }
 
     public void Initialize(PlayScene scene)
     {
@@ -26,6 +32,8 @@ public class NoteSystem
 
     public void ResetNote()
     {
+        AccumulateCreateNoteCount = 0;
+        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
         AllDelete();
     }
 
@@ -50,11 +58,37 @@ public class NoteSystem
         SaveTime += time;
 
         // TODO 환웅 : 노트 생성의 시스템화가 필요
-        if (SaveTime > Random.Range(0.1f, 0.3f))
+        if (SaveTime > ConfigData.Instance.NOTE_CREATE_INTERVAL)
         {
             SaveTime = 0;
+            int createCount = Random.Range(1, ConfigData.Instance.NOTE_CREATE_SAMETIME_MAX_COUNT + 1);
+            List<CommonData.NOTE_POS_TYPE> createTypeList = new List<CommonData.NOTE_POS_TYPE>();
 
-            CreateNote((CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX));
+            for (int i = 0; i < createCount; i++)
+            {
+                var createType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
+                bool createEnable = true;
+
+                while(createEnable)
+                {
+                    // TODO 환웅 : 잘못하면 무한 뻉뺑이임..
+                    for (int index = 0; index < createTypeList.Count; index++)
+                    {
+                        if (createTypeList[index] == createType)
+                        {
+                            createEnable = false;
+                            break;
+                        }
+                    }
+
+                    if (createEnable)
+                        break;
+                }
+ 
+                createTypeList.Add(createType);
+                CreateNote(createType);
+                
+            }
         }
 
         var enumerator = NoteList.GetEnumerator();
@@ -117,10 +151,20 @@ public class NoteSystem
             NoteList.Add(type, new List<Note>());
 
         NoteList[type].Add(note);
+        AccumulateCreateNoteCount++;
+        UpdateNoteSpeed();
     }
 
     public Transform[] GetNoteTypeStartEndPos(CommonData.NOTE_POS_TYPE type)
     {
         return NotePosDic[type];
+    }
+
+    public void UpdateNoteSpeed()
+    {
+        if ((AccumulateCreateNoteCount % 10) == 0)
+        {
+            NoteSpeed -= 0.1f;
+        }
     }
 }

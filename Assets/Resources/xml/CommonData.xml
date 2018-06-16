@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
 	<CommonData id="COMBO_KEEP_TIME" value="2.0"/>
-	<CommonData id="DEFAULT_NOTE_SPEED" value="2.0"/>
+	<CommonData id="DEFAULT_NOTE_SPEED" value="1.0"/>
+	<CommonData id="NOTE_CREATE_INTERVAL" value="0.3"/>
+	<CommonData id="NOTE_CREATE_SAMETIME_MAX_COUNT" value="2"/>
 </Datas>

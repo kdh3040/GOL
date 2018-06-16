@@ -20,6 +20,8 @@ public class ConfigData {
 
     public float COMBO_KEEP_TIME;
     public float DEFAULT_NOTE_SPEED;
+    public float NOTE_CREATE_INTERVAL;
+    public int NOTE_CREATE_SAMETIME_MAX_COUNT;
 
     public void Initialize(XmlNodeList list)
     {
@@ -31,7 +33,11 @@ public class ConfigData {
                 COMBO_KEEP_TIME = GetFloatValue(node);
             else if (key.Equals("DEFAULT_NOTE_SPEED"))
                 DEFAULT_NOTE_SPEED = GetFloatValue(node);
-
+            else if (key.Equals("NOTE_CREATE_INTERVAL"))
+                NOTE_CREATE_INTERVAL = GetFloatValue(node);
+            else if (key.Equals("NOTE_CREATE_SAMETIME_MAX_COUNT"))
+                NOTE_CREATE_SAMETIME_MAX_COUNT = GetIntValue(node);
+            
         }
     }
 

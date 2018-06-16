@@ -28,11 +28,6 @@ public class GamePlayManager : MonoBehaviour
         get;
         private set;
     }
-    public float NoteSpeed
-    {
-        get;
-        private set;
-    }
     public bool GamePause
     {
         get;
@@ -45,6 +40,13 @@ public class GamePlayManager : MonoBehaviour
     private DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
+    public float NoteSpeed
+    {
+        get
+        {
+            return mNoteSystem.NoteSpeed;
+        }
+    }
 
     void Start()
     {
@@ -70,7 +72,7 @@ public class GamePlayManager : MonoBehaviour
         mNoteSystem.ResetNote();
         mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
-        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
+        
     }
 
     public void GameExit()
