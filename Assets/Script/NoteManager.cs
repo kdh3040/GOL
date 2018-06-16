@@ -34,13 +34,10 @@ public class NoteManager : MonoBehaviour {
     public float Speed = 0f;
     private float SaveTime;
 
-    public NoteManager()
+    void Start()
     {
-        
-    }
+        DontDestroyOnLoad(this);
 
-    public void Initialize()
-    {
         NotePosDic.Clear();
         NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_1, new Transform[2]);
         NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_2, new Transform[2]);
@@ -51,7 +48,6 @@ public class NoteManager : MonoBehaviour {
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_2][1] = NoteEndPos_2;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][0] = NoteStartPos_3;
         NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][1] = NoteEndPos_3;
-        
     }
 
     public void ResetNote()

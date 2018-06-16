@@ -35,15 +35,16 @@ public class GManager : MonoBehaviour
     public List<Door> DoorList = new List<Door>();
 
     // TODO 환웅 : Page 매니저를 추가하여 게임이 시작 할때 페이지를 붙이는 형식으로 진행하자
-    public GameUIPage GameUIPage;
+    public PageGameUI GameUIPage;
 
     void Start()
     {
-        DataManager.Instance.Initialize();
-        NoteManager.Instance.Initialize();
+        DontDestroyOnLoad(this);
+
+        //DataManager.Instance.Initialize();
 
         // TODO 환웅 : 메인화면에서 게임화면으로 넘어 올때 호출 해야함
-        GameStart();
+        //GameStart();
     }
 
     void Update()
