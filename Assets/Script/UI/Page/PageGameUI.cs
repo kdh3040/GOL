@@ -7,13 +7,7 @@ public class PageGameUI : MonoBehaviour {
     public Text Score;
     public Text Combo;
 
-    void Start()
-    {
-        GManager.Instance.GameUIPage = this;
-        GManager.Instance.GameStart();
-    }
-
-    public void PageReset()
+    public void ResetUI()
     {
         Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), 0);
         Combo.text = "";
@@ -21,16 +15,16 @@ public class PageGameUI : MonoBehaviour {
 
     public void RefreshUI()
     {
-        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), GManager.Instance.Score);
+        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), GamePlayManager.Instance.Score);
     }
 
     public void RefreshCombo(bool plus)
     {
         // TODO 환웅 : 콤보가 추가 되면 효과?
 
-        if (GManager.Instance.Combo <= 0)
+        if (GamePlayManager.Instance.Combo <= 0)
             Combo.text = "";
         else
-            Combo.text = string.Format(LocalizeData.Instance.GetLocalizeString("COMBO_COUNT"), GManager.Instance.Combo);
+            Combo.text = string.Format(LocalizeData.Instance.GetLocalizeString("COMBO_COUNT"), GamePlayManager.Instance.Combo);
     }
 }

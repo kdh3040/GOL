@@ -13,12 +13,11 @@ public class Note : MonoBehaviour {
     private Transform EndPos;
     private float SaveTime = 0;
 
-    public void SetNoteData(CommonData.NOTE_POS_TYPE type, int id)
+    public void SetNoteData(CommonData.NOTE_POS_TYPE type, Transform[] pos, int id)
     {
         NotePosType = type;
         Id = id;
         data = DataManager.Instance.NoteDataList[id];
-        var pos = NoteManager.Instance.GetNoteTypeStartEndPos(NotePosType);
         StartPos = pos[0];
         EndPos = pos[1];
         gameObject.transform.position = StartPos.position;
@@ -28,14 +27,14 @@ public class Note : MonoBehaviour {
     {
         SaveTime += time;
 
+        var speed = GamePlayManager.Instance.NoteSpeed;
         var pos = StartPos.position;
-        pos.y = Mathf.Lerp(StartPos.position.y, EndPos.position.y, SaveTime / NoteManager.Instance.Speed);
+        pos.y = Mathf.Lerp(StartPos.position.y, EndPos.position.y, SaveTime / speed);
         gameObject.transform.position = pos;
 
-        if ((SaveTime / NoteManager.Instance.Speed) >= 1f)
+        if ((SaveTime / speed) >= 1f)
         {
-            NoteManager.Instance.AddDeleteReadyNote(this);
-            GManager.Instance.GameOver();
+            GamePlayManager.Instance.AddDeleteReadyNote(this);
         }
             
     }

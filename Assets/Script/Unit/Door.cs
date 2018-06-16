@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     public void SetData(int id)
     {
         Data = DataManager.Instance.DoorDataList[id];
+        DoorSprite.sprite = (Sprite)Resources.Load(Data.Img, typeof(Sprite));
     }
 
     void Update()
@@ -23,7 +24,7 @@ public class Door : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.name == this.name)
-                    NoteManager.Instance.DeleteCheckNote(this);
+                    GamePlayManager.Instance.ClickDoor(this);
                 Debug.Log("Complete" + hit.collider.name);
             }
             else
