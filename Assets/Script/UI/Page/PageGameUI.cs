@@ -8,6 +8,7 @@ public class PageGameUI : MonoBehaviour
     public Text Score;
     public Text Combo;
     public Button PauseButton;
+    public Text Info;
 
     void Awake()
     {
@@ -39,5 +40,10 @@ public class PageGameUI : MonoBehaviour
     {
         GamePlayManager.Instance.GamePause = true;
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+    }
+
+    void Update()
+    {
+        Info.text = string.Format("노트속도 : {0}\n누적노트 : {1}", GamePlayManager.Instance.NoteSpeed, GamePlayManager.Instance.AccumulateCreateNoteCount);
     }
 }

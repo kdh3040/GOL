@@ -8,7 +8,11 @@ public class NoteSystem
     private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
     private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
-    private int AccumulateCreateNoteCount = 0;
+    public float AccumulateCreateNoteCount
+    {
+        get;
+        private set;
+    }
     public float NoteSpeed
     {
         get;
@@ -162,9 +166,9 @@ public class NoteSystem
 
     public void UpdateNoteSpeed()
     {
-        if ((AccumulateCreateNoteCount % 10) == 0)
+        if ((AccumulateCreateNoteCount % 3) == 0)
         {
-            NoteSpeed -= 0.1f;
+            NoteSpeed += 0.01f;
         }
     }
 }
