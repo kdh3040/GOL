@@ -18,8 +18,5 @@ public class PageLoadingUI : MonoBehaviour
         yield return DataManager.Instance.LoadingData(LoadingText);
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         SceneManager.LoadScene("PopupUIScene", LoadSceneMode.Additive);
-
-        // TODO 환웅 : 메인씬으로 이동
-        SceneManager.UnloadSceneAsync("LodingScene");
     }
 }

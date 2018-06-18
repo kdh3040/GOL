@@ -36,8 +36,9 @@ public class GamePlayManager : MonoBehaviour
     private float ComboKeepTime = 0f;
     private PlayerChar MainChar = null;
     private bool GameEnable = false;
-    public NoteSystem mNoteSystem = new NoteSystem();
+    private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
+    private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
     public float NoteSpeed
