@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Doors>
-	<Door id = "1"/>
+	<Door id = "1" Img="501door"/>
+	<Door id = "2" Img="502door"/>
+	<Door id = "3" Img="503door"/>
 </Doors>

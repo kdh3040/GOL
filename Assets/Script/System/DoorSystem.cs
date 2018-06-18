@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorSystem
+{
+    public List<Transform> mDoorPosList = new List<Transform>();
+    public List<Door> mDoorList = new List<Door>();
+
+    public void Initialize(PlayScene scene)
+    {
+        mDoorPosList.Clear();
+        mDoorPosList = scene.mDoorPosList; 
+    }
+
+    public void ResetDoor()
+    {
+        AllDelete();
+        for (int i = 0; i < mDoorPosList.Count; i++)
+        {
+            var door = GamePlayManager.Instance.CreateDoor(mDoorPosList[i]);
+            var type = (CommonData.NOTE_POS_TYPE)(i + 1);
+            door.SetData(GManager.Instance.mPlayerData.DoorIndexId[type]);
+            mDoorList.Add(door);
+        }
+    }
+
+    public void AllDelete()
+    {
+        for (int i = 0; i < mDoorList.Count; i++)
+        {
+            GamePlayManager.Instance.DeleteDoor(mDoorList[i]);
+        }
+
+        mDoorList.Clear();
+    }
+}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PopupGameEnd : PopupUI {
 
-    public override PopupManager.POPUP_TYPE GetPageType()
+    public override PopupManager.POPUP_TYPE GetPopupType()
     {
         return PopupManager.POPUP_TYPE.GAME_END;
     }
