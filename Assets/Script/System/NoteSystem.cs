@@ -168,7 +168,7 @@ public class NoteSystem
     {
         if ((AccumulateCreateNoteCount % 3) == 0)
         {
-            NoteSpeed += 0.01f;
+            NoteSpeed += 0.1f;
         }
     }
 }

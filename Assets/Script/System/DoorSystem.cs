@@ -20,7 +20,7 @@ public class DoorSystem
         {
             var door = GamePlayManager.Instance.CreateDoor(mDoorPosList[i]);
             var type = (CommonData.NOTE_POS_TYPE)(i + 1);
-            door.SetData(GManager.Instance.mPlayerData.DoorIndexId[type]);
+            door.SetData(GManager.Instance.mPlayerData.DoorIndexId[type], type);
             mDoorList.Add(door);
         }
     }
