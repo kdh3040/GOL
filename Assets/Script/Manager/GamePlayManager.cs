@@ -28,19 +28,17 @@ public class GamePlayManager : MonoBehaviour
         get;
         private set;
     }
-    public bool GamePause
-    {
-        get;
-        set;
-    }
     private float ComboKeepTime = 0f;
     private PlayerChar MainChar = null;
     private bool GameEnable = false;
+    private bool Pause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
+    public int[] mPlayItemArr = new int[2];
+
     public float NoteSpeed
     {
         get
@@ -70,16 +68,22 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
+        mPlayItemArr[0] = GManager.Instance.mPlayerData.GameItemArr[0];
+        mPlayItemArr[1] = GManager.Instance.mPlayerData.GameItemArr[1];
+
+        GManager.Instance.mPlayerData.GameItemArr[0] = 0;
+        GManager.Instance.mPlayerData.GameItemArr[1] = 0;
+
         StopAllCoroutines();
         Score = 0;
         Combo = 0;
         ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         GameEnable = true;
-        GamePause = false;
+        Pause = false;
         mNoteSystem.ResetNote();
         mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
-        
+        SkillManager.Instance.ResetGame();
     }
 
     public void GameExit()
@@ -94,9 +98,44 @@ public class GamePlayManager : MonoBehaviour
         StartCoroutine(UpdateGamePlay());
     }
 
+    public void GameRestart()
+    {
+        ResetGame();
+        StartCoroutine(UpdateGamePlay());
+    }
+
+    public void GamePause()
+    {
+        Pause = true;
+    }
+
+    public void GameContinue()
+    {
+        Pause = false;
+    }
+
     public void GameEnd()
     {
         StopAllCoroutines();
+    }
+
+    public void GameOver()
+    {
+        // TODO 환웅 게임오버
+        if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD,SkillManager.SKILL_CHECK_TYPE.TIME) != null)
+            return;
+        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT) != null)
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT) as GameSkill_Shield;
+
+            if (skill.CharShield())
+                return;
+            // TODO 환웅 : 캐릭티 맞음
+        }
+            
+
+        mGameUIPage.GameOver();
+        Pause = true;
     }
 
     IEnumerator UpdateGamePlay()
@@ -106,7 +145,7 @@ public class GamePlayManager : MonoBehaviour
 
         while(GameEnable)
         {
-            if (GamePause)
+            if (Pause)
             {
                 yield return null;
                 continue;
@@ -114,6 +153,7 @@ public class GamePlayManager : MonoBehaviour
 
             var time = Time.deltaTime;
             mNoteSystem.NoteUpdate(time);
+            SkillManager.Instance.UpdateSkill(time);
 
             ComboKeepTime -= time;
             if (ComboKeepTime <= 0f)
@@ -170,7 +210,18 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlusScore(int id)
     {
-        Score += DataManager.Instance.NoteDataList[id].Score;
+        int defaultScore = DataManager.Instance.NoteDataList[id].Score;
+        if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SCORE_UP))
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_ScoreUP;
+            if (skill != null)
+            {
+                Score += skill.ConvertNoteScore(id);
+            }
+        }
+        else
+            Score += defaultScore;
+
         mGameUIPage.RefreshUI();
         if (ComboKeepTime > 0f)
             PlusCombo();
@@ -190,10 +241,8 @@ public class GamePlayManager : MonoBehaviour
         ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         mGameUIPage.RefreshCombo(false);
     }
-
-    public void GameOver()
+    public void UseGameItem(int index)
     {
-        // TODO 환웅 : 게임오버체크를 하고 게임이 오버 되었을때 처리를 해야함
-        // NoteManager.Instance.ResetNote();
+        mPlayItemArr[index] = 0;
     }
 }

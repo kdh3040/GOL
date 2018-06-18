@@ -30,12 +30,12 @@ public class Note : MonoBehaviour {
         var speed = GamePlayManager.Instance.NoteSpeed;
         var pos = StartPos.position;
         pos.y = StartPos.position.y - speed * SaveTime;
-            //Mathf.Lerp(StartPos.position.y, EndPos.position.y, SaveTime / speed);
         gameObject.transform.position = pos;
 
         if (pos.y <= EndPos.position.y)
         {
             GamePlayManager.Instance.AddDeleteReadyNote(this);
+            GamePlayManager.Instance.GameOver();
         }
             
     }

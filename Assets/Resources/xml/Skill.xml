@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Skill id = "1" name="INVINCIBILITY_SKILL" desc="INVINCIBILITY_SKILL_DESC" skilltype="DAMAGE_SHIELD" checktype="TIME" value1="10" value2="0" value3="0"/>
+	<Skill id = "2" name="SHIELD_SKILL" desc="SHIELD_SKILL_DESC" skilltype="DAMAGE_SHIELD" checktype="COUNT" value1="1" value2="0" value3="0"/>
+	<Skill id = "3" name="SCORE_UP_SKILL_DOUBLE" desc="SCORE_DOUBLE_SKILL_DESC" skilltype="SCORE_UP" checktype="TIME" value1="10" value2="2" value3="0"/>
+</Datas>

@@ -10,12 +10,7 @@ public class DoorSystem
     public void Initialize(PlayScene scene)
     {
         mDoorPosList.Clear();
-        mDoorPosList = scene.mDoorPosList; 
-    }
-
-    public void ResetDoor()
-    {
-        AllDelete();
+        mDoorPosList = scene.mDoorPosList;
         for (int i = 0; i < mDoorPosList.Count; i++)
         {
             var door = GamePlayManager.Instance.CreateDoor(mDoorPosList[i]);
@@ -23,6 +18,11 @@ public class DoorSystem
             door.SetData(GManager.Instance.mPlayerData.DoorIndexId[type], type);
             mDoorList.Add(door);
         }
+    }
+
+    public void ResetDoor()
+    {
+        //AllDelete();
     }
 
     public void AllDelete()

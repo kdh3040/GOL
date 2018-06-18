@@ -2,4 +2,7 @@
 <Datas>
 	<Localize id="COMBO_COUNT" kr="COMBO : {0}" jp="COMBO : {0}" en="COMBO : {0}"/>
 	<Localize id="SCORE_COUNT" kr="점수 : {0}" jp="점수 : {0}" en="점수 : {0}"/>
+	<Localize id="INVINCIBILITY_ITEM" kr="10초 무적" jp="10초 무적" en="10초 무적"/>
+	<Localize id="SHIELD_ITEM" kr="쉴드" jp="쉴드" en="쉴드"/>
+	<Localize id="SCORE_DOUBLE_ITEM" kr="점수 2배" jp="점수 2배" en="점수 2배"/>
 </Datas>

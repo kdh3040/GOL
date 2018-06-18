@@ -21,6 +21,7 @@ public class NoteSystem
 
     public void Initialize(PlayScene scene)
     {
+        ResetNote();
         NotePosDic.Clear();
         NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_1, new Transform[2]);
         NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_2, new Transform[2]);

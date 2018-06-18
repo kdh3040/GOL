@@ -24,7 +24,7 @@ public class PopupGamePause : PopupUI
 
     public void OnClickRestart()
     {
-        GamePlayManager.Instance.GameStart();
+        GamePlayManager.Instance.GameRestart();
         PopupManager.Instance.DismissPopup();
     }
 
@@ -38,6 +38,6 @@ public class PopupGamePause : PopupUI
     public void OnClickCancel()
     {
         PopupManager.Instance.DismissPopup();
-        GamePlayManager.Instance.GamePause = false;
+        GamePlayManager.Instance.GameContinue();
     }
 }

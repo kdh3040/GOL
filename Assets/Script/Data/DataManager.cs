@@ -21,6 +21,7 @@ public class DataManager {
 
     public Dictionary<int, DoorData> DoorDataList = new Dictionary<int, DoorData>();
     public Dictionary<int, NoteData> NoteDataList = new Dictionary<int, NoteData>();
+    public Dictionary<int, ItemData> ItemDataList = new Dictionary<int, ItemData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -33,6 +34,8 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Note", "Notes"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("CommonData", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Localize", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Item", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Skill", "Datas"));
         }
 
         for (int i = 0; i < LoadingDataXmlList.Count; i++)
@@ -75,6 +78,24 @@ public class DataManager {
                 foreach (XmlNode node in list)
                 {
                     LocalizeData.Instance.Initialize(node.ChildNodes);
+                }
+            }
+            else if (xmlName == "Item")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new ItemData(child);
+                        ItemDataList.Add(data.id, data);
+                    }
+                }
+            }
+            else if (xmlName == "Skill")
+            {
+                foreach (XmlNode node in list)
+                {
+                    SkillManager.Instance.Initialize(node.ChildNodes);
                 }
             }
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);

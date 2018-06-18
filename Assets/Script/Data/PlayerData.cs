@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData
 {
     public Dictionary<CommonData.NOTE_POS_TYPE, int> DoorIndexId = new Dictionary<CommonData.NOTE_POS_TYPE, int>();
+    public int[] GameItemArr = { 1, 2 };
 
     public void Initialize()
     {
