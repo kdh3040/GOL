@@ -89,6 +89,8 @@
     <Compile Include="Assets\Script\UI\Popup\PopupUI.cs" />
     <Compile Include="Assets\Script\Unit\Door.cs" />
     <Compile Include="Assets\Script\Unit\Note.cs" />
+    <Compile Include="Assets\Script\Unit\NoteItem.cs" />
+    <Compile Include="Assets\Script\Unit\NoteNormal.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
     <None Include="Assets\Resources\xml\Item.xml" />
     <None Include="Assets\Resources\xml\Localize.xml" />

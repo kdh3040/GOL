@@ -10,6 +10,7 @@ public class ItemData
     public string skill;
     public string icon;
     public int cost;
+    public int create_probability;
 
     public ItemData(XmlNode node)
     {
@@ -18,5 +19,6 @@ public class ItemData
         skill = node.Attributes.GetNamedItem("skill").Value;
         icon = node.Attributes.GetNamedItem("icon").Value;
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
+        create_probability = int.Parse(node.Attributes.GetNamedItem("create_probability").Value);
     }
 }

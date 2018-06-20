@@ -11,4 +11,10 @@ public class CommonData : MonoBehaviour {
         INDEX_3,
         MAX
     }
+
+    public enum NOTE_TYPE
+    {
+        NORMAL,
+        ITEM
+    }
 }

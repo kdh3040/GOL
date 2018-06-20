@@ -10,7 +10,7 @@ public class Door : MonoBehaviour
 
     public void SetData(int id, CommonData.NOTE_POS_TYPE type)
     {
-        Data = DataManager.Instance.DoorDataList[id];
+        Data = DataManager.Instance.DoorDataDic[id];
         DoorSprite.sprite = (Sprite)Resources.Load(Data.Img, typeof(Sprite));
         NoteType = type;
     }

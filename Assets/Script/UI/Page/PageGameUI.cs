@@ -39,7 +39,7 @@ public class PageGameUI : MonoBehaviour
         if (GamePlayManager.Instance.mPlayItemArr[0] != 0)
         {
             int itemId = GamePlayManager.Instance.mPlayItemArr[0];
-            var itemData = DataManager.Instance.ItemDataList[itemId];
+            var itemData = DataManager.Instance.ItemDataDic[itemId];
             ItemImg_1.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
         }
         else
@@ -48,7 +48,7 @@ public class PageGameUI : MonoBehaviour
         if (GamePlayManager.Instance.mPlayItemArr[1] != 0)
         {
             int itemId = GamePlayManager.Instance.mPlayItemArr[1];
-            var itemData = DataManager.Instance.ItemDataList[itemId];
+            var itemData = DataManager.Instance.ItemDataDic[itemId];
             ItemImg_2.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
         }
         else
@@ -86,7 +86,7 @@ public class PageGameUI : MonoBehaviour
             return;
 
         GamePlayManager.Instance.UseGameItem(index);
-        var itemData = DataManager.Instance.ItemDataList[itemId];
+        var itemData = DataManager.Instance.ItemDataDic[itemId];
         SkillManager.Instance.AddUseSkill(itemData.skill);
         RefreshItemUI();
     }
@@ -121,7 +121,7 @@ public class PageGameUI : MonoBehaviour
         skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP, SkillManager.SKILL_CHECK_TYPE.TIME);
         if (skillData != null)
         { 
-            text.AppendFormat("점수두배스킬 남은시간 {0:f2} {1}배", skillData.mSkillData.name, skillData.mValue1, skillData.mValue2);
+            text.AppendFormat("점수두배스킬 남은시간 {0:f2} {1}배", skillData.mValue1, skillData.mValue2);
             text.AppendLine();
         }
 

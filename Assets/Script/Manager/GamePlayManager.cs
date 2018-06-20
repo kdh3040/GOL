@@ -166,10 +166,10 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    public Note CreateNote()
+    public Note CreateNote(string prefab)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
-        var obj = Instantiate(Resources.Load("Prefab/Note"), mNoteParentPos) as GameObject;
+        var obj = Instantiate(Resources.Load(prefab), mNoteParentPos) as GameObject;
         var note = obj.GetComponent<Note>();
 
         return note;
@@ -179,7 +179,17 @@ public class GamePlayManager : MonoBehaviour
     {
         if (score)
         {
-            PlusScore(note.Id);
+            if(note.NoteType == CommonData.NOTE_TYPE.NORMAL)
+            {
+                var noteNormal = note as NoteNormal;
+                int defaultScore = DataManager.Instance.NoteDataDic[noteNormal.Id].Score;
+                PlusScore(defaultScore);
+            }
+            else
+            {
+                var noteItem = note as NoteItem;
+                PlusItem(noteItem.Id);
+            }  
         }
 
         DestroyImmediate(note.gameObject);
@@ -208,19 +218,18 @@ public class GamePlayManager : MonoBehaviour
         mNoteSystem.DeleteCheckNote(door);
     }
 
-    public void PlusScore(int id)
+    public void PlusScore(int score)
     {
-        int defaultScore = DataManager.Instance.NoteDataList[id].Score;
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SCORE_UP))
         {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_ScoreUP;
             if (skill != null)
             {
-                Score += skill.ConvertNoteScore(id);
+                Score += skill.ConvertNoteScore(score);
             }
         }
         else
-            Score += defaultScore;
+            Score += score;
 
         mGameUIPage.RefreshUI();
         if (ComboKeepTime > 0f)
@@ -240,6 +249,27 @@ public class GamePlayManager : MonoBehaviour
         Combo = 0;
         ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
         mGameUIPage.RefreshCombo(false);
+    }
+
+    public void PlusItem(int id)
+    {
+        bool itemAdd = false;
+        for (int i = 0; i < GamePlayManager.Instance.mPlayItemArr.Length; i++)
+        {
+            if (mPlayItemArr[i] == 0)
+            {
+                mPlayItemArr[i] = id;
+                itemAdd = true;
+                break;
+            }
+        }
+
+        if(itemAdd == false)
+        {
+            PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+        }
+        else
+            mGameUIPage.RefreshItemUI();
     }
     public void UseGameItem(int index)
     {

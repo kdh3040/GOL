@@ -71,15 +71,15 @@ public class NoteSystem
 
             for (int i = 0; i < createCount; i++)
             {
-                var createType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
-                bool createEnable = true;
+                var createNotePosType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
+                bool createEnable = false;
 
-                while(createEnable)
+                while(createEnable == false)
                 {
-                    // TODO 환웅 : 잘못하면 무한 뻉뺑이임..
+                    createEnable = true;
                     for (int index = 0; index < createTypeList.Count; index++)
                     {
-                        if (createTypeList[index] == createType)
+                        if (createTypeList[index] == createNotePosType)
                         {
                             createEnable = false;
                             break;
@@ -88,11 +88,21 @@ public class NoteSystem
 
                     if (createEnable)
                         break;
+                    else
+                        createNotePosType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
                 }
- 
-                createTypeList.Add(createType);
-                CreateNote(createType);
-                
+
+                var craeteItemNoteId = PickItemNoteId();
+                if (Random.Range(0f, 100.0f) < ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT && craeteItemNoteId != 0)
+                {
+                    CreateItemNote(createNotePosType, craeteItemNoteId);
+                }
+                else
+                {
+                    CreateNormalNote(createNotePosType);
+                }
+
+                createTypeList.Add(createNotePosType);
             }
         }
 
@@ -146,12 +156,24 @@ public class NoteSystem
             GamePlayManager.Instance.DeleteNote(note, score);
         }
     }
-
-    public void CreateNote(CommonData.NOTE_POS_TYPE type)
+    public void CreateNormalNote(CommonData.NOTE_POS_TYPE type)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
-        var note = GamePlayManager.Instance.CreateNote();
-        note.SetNoteData(type, NotePosDic[type],  Random.Range(1, DataManager.Instance.NoteDataList.Count));
+        var note = GamePlayManager.Instance.CreateNote("Prefab/NoteNormal") as NoteNormal;
+        note.SetNoteNormalData(type, NotePosDic[type],  Random.Range(1, DataManager.Instance.NoteDataDic.Count));
+        if (NoteList.ContainsKey(type) == false)
+            NoteList.Add(type, new List<Note>());
+
+        NoteList[type].Add(note);
+        AccumulateCreateNoteCount++;
+        UpdateNoteSpeed();
+    }
+
+    public void CreateItemNote(CommonData.NOTE_POS_TYPE type, int itemId)
+    {
+        // TODO 환웅 : 오브젝트 풀 추가 예정
+        var note = GamePlayManager.Instance.CreateNote("Prefab/NoteItem") as NoteItem;
+        note.SetNoteItemData(type, NotePosDic[type], itemId);
         if (NoteList.ContainsKey(type) == false)
             NoteList.Add(type, new List<Note>());
 
@@ -171,5 +193,23 @@ public class NoteSystem
         {
             NoteSpeed += 0.1f;
         }
+    }
+
+    public int PickItemNoteId()
+    {
+        var list = DataManager.Instance.ItemDataList_CreateProbability;
+        int value = Random.Range(0, DataManager.Instance.ItemAllCreateProbability);
+        int returnValueId = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if ((i == 0 && value <= list[i].create_probability) ||
+                (i > 0 && value > list[i - 1].create_probability && value <= list[i].create_probability))
+            {
+                returnValueId = list[i].id;
+                break;
+            }
+        }
+
+        return returnValueId;
     }
 }

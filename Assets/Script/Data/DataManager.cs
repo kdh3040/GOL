@@ -19,9 +19,11 @@ public class DataManager {
         }
     }
 
-    public Dictionary<int, DoorData> DoorDataList = new Dictionary<int, DoorData>();
-    public Dictionary<int, NoteData> NoteDataList = new Dictionary<int, NoteData>();
-    public Dictionary<int, ItemData> ItemDataList = new Dictionary<int, ItemData>();
+    public Dictionary<int, DoorData> DoorDataDic = new Dictionary<int, DoorData>();
+    public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
+    public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
+    public List<ItemData> ItemDataList_CreateProbability = new List<ItemData>();
+    public int ItemAllCreateProbability = 0;
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -51,7 +53,7 @@ public class DataManager {
                     foreach (XmlNode child in node.ChildNodes)
                     {
                         var data = new DoorData(child);
-                        DoorDataList.Add(data.id, data);
+                        DoorDataDic.Add(data.id, data);
                     }
                 }
             }
@@ -62,7 +64,7 @@ public class DataManager {
                     foreach (XmlNode child in node.ChildNodes)
                     {
                         var data = new NoteData(child);
-                        NoteDataList.Add(data.id, data);
+                        NoteDataDic.Add(data.id, data);
                     }
                 }
             }
@@ -87,9 +89,20 @@ public class DataManager {
                     foreach (XmlNode child in node.ChildNodes)
                     {
                         var data = new ItemData(child);
-                        ItemDataList.Add(data.id, data);
+                        ItemDataDic.Add(data.id, data);
+                        ItemDataList_CreateProbability.Add(data);
+                        ItemAllCreateProbability += data.create_probability;
+                        data.create_probability = ItemAllCreateProbability;
                     }
                 }
+
+                ItemDataList_CreateProbability.Sort(delegate (ItemData A, ItemData B)
+                {
+                    if (A.id < B.id)
+                        return -1;
+                    else
+                        return 1;
+                });
             }
             else if (xmlName == "Skill")
             {

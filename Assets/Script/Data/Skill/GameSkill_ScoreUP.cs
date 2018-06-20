@@ -24,12 +24,11 @@ public class GameSkill_ScoreUP : GameSkill
         mValue2 *= mSkillData.value2;
     }
 
-    public int ConvertNoteScore(int noteDataId)
+    public int ConvertNoteScore(int score)
     {
-        var data = DataManager.Instance.NoteDataList[noteDataId];
         if (mEnable == false && mValue1 <= 0)
-            return data.Score;
+            return score;
 
-        return data.Score * (int)mValue2;
+        return score * (int)mValue2;
     }
 }
