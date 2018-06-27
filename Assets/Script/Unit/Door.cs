@@ -6,13 +6,13 @@ public class Door : MonoBehaviour
 {
     public DoorData Data;
     public SpriteRenderer DoorSprite;
-    public CommonData.NOTE_POS_TYPE NoteType;
+    public CommonData.NOTE_LINE NoteLineType;
 
-    public void SetData(int id, CommonData.NOTE_POS_TYPE type)
+    public void SetData(int id, CommonData.NOTE_LINE type)
     {
         Data = DataManager.Instance.DoorDataDic[id];
         DoorSprite.sprite = (Sprite)Resources.Load(Data.Img, typeof(Sprite));
-        NoteType = type;
+        NoteLineType = type;
     }
 
     void Update()

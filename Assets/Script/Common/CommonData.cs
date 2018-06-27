@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CommonData : MonoBehaviour {
-    public enum NOTE_POS_TYPE
+    public enum NOTE_LINE
     {
         NONE,
         INDEX_1,

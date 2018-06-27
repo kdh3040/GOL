@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NoteSystem
 {
-    private Dictionary<CommonData.NOTE_POS_TYPE, Transform[]> NotePosDic = new Dictionary<CommonData.NOTE_POS_TYPE, Transform[]>();
-    private Dictionary<CommonData.NOTE_POS_TYPE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_POS_TYPE, List<Note>>();
+    private Dictionary<CommonData.NOTE_LINE, Transform[]> NoteLineDic = new Dictionary<CommonData.NOTE_LINE, Transform[]>();
+    private Dictionary<CommonData.NOTE_LINE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_LINE, List<Note>>();
     private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
     public float AccumulateCreateNoteCount
@@ -22,16 +22,16 @@ public class NoteSystem
     public void Initialize(PlayScene scene)
     {
         ResetNote();
-        NotePosDic.Clear();
-        NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_1, new Transform[2]);
-        NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_2, new Transform[2]);
-        NotePosDic.Add(CommonData.NOTE_POS_TYPE.INDEX_3, new Transform[2]);
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_1][0] = scene.NoteStartPos_1;
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_1][1] = scene.NoteEndPos_1;
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_2][0] = scene.NoteStartPos_2;
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_2][1] = scene.NoteEndPos_2;
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][0] = scene.NoteStartPos_3;
-        NotePosDic[CommonData.NOTE_POS_TYPE.INDEX_3][1] = scene.NoteEndPos_3;
+        NoteLineDic.Clear();
+        NoteLineDic.Add(CommonData.NOTE_LINE.INDEX_1, new Transform[2]);
+        NoteLineDic.Add(CommonData.NOTE_LINE.INDEX_2, new Transform[2]);
+        NoteLineDic.Add(CommonData.NOTE_LINE.INDEX_3, new Transform[2]);
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_1][0] = scene.NoteStartPos_1;
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_1][1] = scene.NoteEndPos_1;
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_2][0] = scene.NoteStartPos_2;
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_2][1] = scene.NoteEndPos_2;
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_3][0] = scene.NoteStartPos_3;
+        NoteLineDic[CommonData.NOTE_LINE.INDEX_3][1] = scene.NoteEndPos_3;
     }
 
 
@@ -67,11 +67,11 @@ public class NoteSystem
         {
             SaveTime = 0;
             int createCount = Random.Range(1, ConfigData.Instance.NOTE_CREATE_SAMETIME_MAX_COUNT + 1);
-            List<CommonData.NOTE_POS_TYPE> createTypeList = new List<CommonData.NOTE_POS_TYPE>();
+            List<CommonData.NOTE_LINE> createTypeList = new List<CommonData.NOTE_LINE>();
 
             for (int i = 0; i < createCount; i++)
             {
-                var createNotePosType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
+                var createNotePosType = (CommonData.NOTE_LINE)Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.MAX);
                 bool createEnable = false;
 
                 while(createEnable == false)
@@ -89,7 +89,7 @@ public class NoteSystem
                     if (createEnable)
                         break;
                     else
-                        createNotePosType = (CommonData.NOTE_POS_TYPE)Random.Range((int)CommonData.NOTE_POS_TYPE.INDEX_1, (int)CommonData.NOTE_POS_TYPE.MAX);
+                        createNotePosType = (CommonData.NOTE_LINE)Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.MAX);
                 }
 
                 var craeteItemNoteId = PickItemNoteId();
@@ -124,10 +124,10 @@ public class NoteSystem
 
     public void DeleteCheckNote(Door door)
     {
-        if (NoteList.ContainsKey(door.NoteType) == false)
+        if (NoteList.ContainsKey(door.NoteLineType) == false)
             return;
 
-        var list = NoteList[door.NoteType];
+        var list = NoteList[door.NoteLineType];
         for (int index = list.Count - 1; index >= 0; --index)
         {
             var target = list[index].gameObject;
@@ -148,7 +148,7 @@ public class NoteSystem
 
     public void DeleteNote(Note note, bool score = true)
     {
-        var type = note.NotePosType;
+        var type = note.NoteLineType;
         if (NoteList.ContainsKey(type))
         {
             var list = NoteList[type];
@@ -156,11 +156,11 @@ public class NoteSystem
             GamePlayManager.Instance.DeleteNote(note, score);
         }
     }
-    public void CreateNormalNote(CommonData.NOTE_POS_TYPE type)
+    public void CreateNormalNote(CommonData.NOTE_LINE type)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
         var note = GamePlayManager.Instance.CreateNote("Prefab/NoteNormal") as NoteNormal;
-        note.SetNoteNormalData(type, NotePosDic[type],  Random.Range(1, DataManager.Instance.NoteDataDic.Count));
+        note.SetNoteNormalData(type, NoteLineDic[type],  Random.Range(1, DataManager.Instance.NoteDataDic.Count));
         if (NoteList.ContainsKey(type) == false)
             NoteList.Add(type, new List<Note>());
 
@@ -169,11 +169,11 @@ public class NoteSystem
         UpdateNoteSpeed();
     }
 
-    public void CreateItemNote(CommonData.NOTE_POS_TYPE type, int itemId)
+    public void CreateItemNote(CommonData.NOTE_LINE type, int itemId)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
         var note = GamePlayManager.Instance.CreateNote("Prefab/NoteItem") as NoteItem;
-        note.SetNoteItemData(type, NotePosDic[type], itemId);
+        note.SetNoteItemData(type, NoteLineDic[type], itemId);
         if (NoteList.ContainsKey(type) == false)
             NoteList.Add(type, new List<Note>());
 
@@ -182,9 +182,9 @@ public class NoteSystem
         UpdateNoteSpeed();
     }
 
-    public Transform[] GetNoteTypeStartEndPos(CommonData.NOTE_POS_TYPE type)
+    public Transform[] GetNoteTypeStartEndPos(CommonData.NOTE_LINE type)
     {
-        return NotePosDic[type];
+        return NoteLineDic[type];
     }
 
     public void UpdateNoteSpeed()

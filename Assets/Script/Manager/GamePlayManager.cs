@@ -17,21 +17,13 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    // 게임 플레이 관련 매니저
     public int Score
     {
         get;
         private set;
     }
-    public int Combo
-    {
-        get;
-        private set;
-    }
-    private float ComboKeepTime = 0f;
     private PlayerChar MainChar = null;
-    private bool GameEnable = false;
-    private bool Pause = false;
+    private bool mIsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private ItemSystem mItemSystem = new ItemSystem();
@@ -68,30 +60,21 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
-        mPlayItemArr[0] = GManager.Instance.mPlayerData.GameItemArr[0];
-        mPlayItemArr[1] = GManager.Instance.mPlayerData.GameItemArr[1];
-
-        GManager.Instance.mPlayerData.GameItemArr[0] = 0;
-        GManager.Instance.mPlayerData.GameItemArr[1] = 0;
+        mPlayItemArr[0] = GManager.Instance.mPlayerData.mPlayItemArr[0];
+        mPlayItemArr[1] = GManager.Instance.mPlayerData.mPlayItemArr[1];
 
         StopAllCoroutines();
         Score = 0;
-        Combo = 0;
-        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
-        GameEnable = true;
-        Pause = false;
+        mIsGamePause = false;
         mNoteSystem.ResetNote();
         mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
     }
-
     public void GameExit()
     {
-        mNoteSystem.AllDelete();
-        mDoorSystem.AllDelete();
+        ResetGame();
     }
-
     public void GameStart()
     { 
         ResetGame();
@@ -106,22 +89,16 @@ public class GamePlayManager : MonoBehaviour
 
     public void GamePause()
     {
-        Pause = true;
+        mIsGamePause = true;
     }
 
     public void GameContinue()
     {
-        Pause = false;
-    }
-
-    public void GameEnd()
-    {
-        StopAllCoroutines();
+        mIsGamePause = false;
     }
 
     public void GameOver()
     {
-        // TODO 환웅 게임오버
         if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD,SkillManager.SKILL_CHECK_TYPE.TIME) != null)
             return;
         else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT) != null)
@@ -132,20 +109,16 @@ public class GamePlayManager : MonoBehaviour
                 return;
             // TODO 환웅 : 캐릭티 맞음
         }
-            
 
         mGameUIPage.GameOver();
-        Pause = true;
+        mIsGamePause = true;
     }
 
     IEnumerator UpdateGamePlay()
     {
-        if (GameEnable == false)
-            yield break;
-
-        while(GameEnable)
+        while(true)
         {
-            if (Pause)
+            if (mIsGamePause)
             {
                 yield return null;
                 continue;
@@ -154,14 +127,6 @@ public class GamePlayManager : MonoBehaviour
             var time = Time.deltaTime;
             mNoteSystem.NoteUpdate(time);
             SkillManager.Instance.UpdateSkill(time);
-
-            ComboKeepTime -= time;
-            if (ComboKeepTime <= 0f)
-            {
-                ComboKeepTime = 0f;
-                RemoveCombo();
-            }
-
             yield return null;
         }
     }
@@ -232,29 +197,12 @@ public class GamePlayManager : MonoBehaviour
             Score += score;
 
         mGameUIPage.RefreshUI();
-        if (ComboKeepTime > 0f)
-            PlusCombo();
-    }
-
-    public void PlusCombo()
-    {
-        Combo += 1;
-        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
-        mGameUIPage.RefreshCombo(true);
-    }
-
-    public void RemoveCombo()
-    {
-        // TODO 환웅 : 게임 UI의 콤보를 제거 해야함
-        Combo = 0;
-        ComboKeepTime = ConfigData.Instance.COMBO_KEEP_TIME;
-        mGameUIPage.RefreshCombo(false);
     }
 
     public void PlusItem(int id)
     {
         bool itemAdd = false;
-        for (int i = 0; i < GamePlayManager.Instance.mPlayItemArr.Length; i++)
+        for (int i = 0; i < mPlayItemArr.Length; i++)
         {
             if (mPlayItemArr[i] == 0)
             {

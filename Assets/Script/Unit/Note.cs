@@ -5,7 +5,7 @@ using UnityEngine;
 public class Note : MonoBehaviour {
 
     [System.NonSerialized]
-    public CommonData.NOTE_POS_TYPE NotePosType = CommonData.NOTE_POS_TYPE.NONE;
+    public CommonData.NOTE_LINE NoteLineType = CommonData.NOTE_LINE.NONE;
     [System.NonSerialized]
     public CommonData.NOTE_TYPE NoteType = CommonData.NOTE_TYPE.NORMAL;
     protected Transform StartPos;
