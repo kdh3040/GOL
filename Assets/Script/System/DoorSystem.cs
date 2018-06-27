@@ -14,7 +14,7 @@ public class DoorSystem
         for (int i = 0; i < mDoorPosList.Count; i++)
         {
             var door = GamePlayManager.Instance.CreateDoor(mDoorPosList[i]);
-            var type = (CommonData.NOTE_POS_TYPE)(i + 1);
+            var type = (CommonData.NOTE_LINE)(i + 1);
             door.SetData(GManager.Instance.mPlayerData.DoorIndexId[type], type);
             mDoorList.Add(door);
         }

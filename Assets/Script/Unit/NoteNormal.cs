@@ -9,9 +9,9 @@ public class NoteNormal : Note
     public int Id = 0;
     private NoteData data = null;
 
-    public void SetNoteNormalData(CommonData.NOTE_POS_TYPE type, Transform[] pos, int id)
+    public void SetNoteNormalData(CommonData.NOTE_LINE type, Transform[] pos, int id)
     {
-        NotePosType = type;
+        NoteLineType = type;
         NoteType = CommonData.NOTE_TYPE.NORMAL;
         Id = id;
         data = DataManager.Instance.NoteDataDic[id];

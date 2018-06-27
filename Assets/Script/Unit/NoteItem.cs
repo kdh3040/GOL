@@ -9,9 +9,9 @@ public class NoteItem : Note
     public int Id = 0;
     private ItemData data = null;
 
-    public void SetNoteItemData(CommonData.NOTE_POS_TYPE type, Transform[] pos, int id)
+    public void SetNoteItemData(CommonData.NOTE_LINE type, Transform[] pos, int id)
     {
-        NotePosType = type;
+        NoteLineType = type;
         NoteType = CommonData.NOTE_TYPE.ITEM;
         Id = id;
         data = DataManager.Instance.ItemDataDic[id];

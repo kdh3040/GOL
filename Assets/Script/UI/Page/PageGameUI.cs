@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PageGameUI : MonoBehaviour
 {
     public Text Score;
-    public Text Combo;
     public Button PauseButton;
     public Text Info;
     public Button Item_1;
@@ -26,7 +25,6 @@ public class PageGameUI : MonoBehaviour
     {
         RefreshItemUI();
         Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), 0);
-        Combo.text = "";
     }
 
     public void RefreshUI()
@@ -53,16 +51,6 @@ public class PageGameUI : MonoBehaviour
         }
         else
             ItemImg_2.sprite = null;
-    }
-
-    public void RefreshCombo(bool plus)
-    {
-        // TODO 환웅 : 콤보가 추가 되면 효과?
-
-        if (GamePlayManager.Instance.Combo <= 0)
-            Combo.text = "";
-        else
-            Combo.text = string.Format(LocalizeData.Instance.GetLocalizeString("COMBO_COUNT"), GamePlayManager.Instance.Combo);
     }
 
     public void OnClickPause()
