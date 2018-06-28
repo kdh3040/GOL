@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Item id = "1" name="INVINCIBILITY_ITEM" skill="INVINCIBILITY_SKILL" icon="item_1" cost="10" create_probability="1000"/>
-	<Item id = "2" name="SHIELD_ITEM" skill="SHIELD_SKILL" icon="item_2" cost="20" create_probability="1000"/>
-	<Item id = "3" name="SCORE_DOUBLE_ITEM" skill="SCORE_UP_SKILL_DOUBLE" icon="item_3" cost="30" create_probability="1000"/>
+	<Item id = "1" name="INVINCIBILITY_ITEM" skill="INVINCIBILITY_SKILL" icon="10autoplay" cost="10" create_probability="1000" slot_type="normal"/>
+	<Item id = "2" name="SHIELD_ITEM" skill="SHIELD_SKILL" icon="shield" cost="20" create_probability="1000" slot_type="shield"/>
+	<Item id = "3" name="SCORE_DOUBLE_ITEM" skill="SCORE_UP_SKILL_DOUBLE" icon="2x_point" cost="30" create_probability="1000" slot_type="normal"/>
 </Datas>

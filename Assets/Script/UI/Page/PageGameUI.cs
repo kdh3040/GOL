@@ -6,76 +6,70 @@ using UnityEngine.UI;
 
 public class PageGameUI : MonoBehaviour
 {
-    public Text Score;
-    public Button PauseButton;
+    public UICountImgFont Score;
     public Text Info;
-    public Button Item_1;
-    public Image ItemImg_1;
-    public Button Item_2;
-    public Image ItemImg_2;
+    public Button mItemRightButton;
+    public Image mItemRightImg;
+    public Button mItemLeftButton;
+    public Image mItemLeftImg;
 
     void Awake()
     {
-        PauseButton.onClick.AddListener(OnClickPause);
-        Item_1.onClick.AddListener(OnClickItem_1);
-        Item_2.onClick.AddListener(OnClickItem_2);
+        mItemRightButton.onClick.AddListener(OnClickItemLeft);
+        mItemLeftButton.onClick.AddListener(OnClickItemRight);
     }
 
     public void ResetUI()
     {
         RefreshItemUI();
-        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), 0);
+        Score.SetValue(0);
     }
 
     public void RefreshUI()
     {
-        Score.text = string.Format(LocalizeData.Instance.GetLocalizeString("SCORE_COUNT"), GamePlayManager.Instance.Score);
+        Score.SetValue(GamePlayManager.Instance.Score);
     }
 
     public void RefreshItemUI()
     {
-        if (GamePlayManager.Instance.mPlayItemArr[0] != 0)
+        if (GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT] != 0)
         {
-            int itemId = GamePlayManager.Instance.mPlayItemArr[0];
+            int itemId = GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-            ItemImg_1.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemRightImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemRightImg.color = new Color(1, 1, 1, 1);
         }
         else
-            ItemImg_1.sprite = null;
-
-        if (GamePlayManager.Instance.mPlayItemArr[1] != 0)
         {
-            int itemId = GamePlayManager.Instance.mPlayItemArr[1];
+            mItemRightImg.color = new Color(1, 1, 1, 0);
+            mItemRightImg.sprite = null;
+        }
+
+        if (GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
+        {
+            int itemId = GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-            ItemImg_2.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemLeftImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemLeftImg.color = new Color(1, 1, 1, 1);
         }
         else
-            ItemImg_2.sprite = null;
+        {
+            mItemLeftImg.color = new Color(1, 1, 1, 0);
+            mItemLeftImg.sprite = null;
+        }
     }
 
-    public void OnClickPause()
+    public void OnClickItemLeft()
     {
-        GamePlayManager.Instance.GamePause();
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+        UseItem(CommonData.ITEM_SLOT_INDEX.LEFT);
     }
-
-    public void OnClickItem_1()
+    public void OnClickItemRight()
     {
-        UseItem(0);
+        UseItem(CommonData.ITEM_SLOT_INDEX.RIGHT);
     }
-    public void OnClickItem_2()
+    private void UseItem(CommonData.ITEM_SLOT_INDEX index)
     {
-        UseItem(1);
-    }
-    private void UseItem(int index)
-    {
-        int itemId = GamePlayManager.Instance.mPlayItemArr[index];
-        if (itemId == 0)
-            return;
-
         GamePlayManager.Instance.UseGameItem(index);
-        var itemData = DataManager.Instance.ItemDataDic[itemId];
-        SkillManager.Instance.AddUseSkill(itemData.skill);
         RefreshItemUI();
     }
     public void GameOver()

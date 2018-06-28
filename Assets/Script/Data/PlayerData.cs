@@ -14,4 +14,9 @@ public class PlayerData
         DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_2, 2);
         DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_3, 3);
     }
+
+    public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
+    {
+        return mPlayItemArr[(int)index];
+    }
 }

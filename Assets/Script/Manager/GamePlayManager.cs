@@ -60,8 +60,8 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
-        mPlayItemArr[0] = GManager.Instance.mPlayerData.mPlayItemArr[0];
-        mPlayItemArr[1] = GManager.Instance.mPlayerData.mPlayItemArr[1];
+        SetGameItemId(CommonData.ITEM_SLOT_INDEX.LEFT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
+        SetGameItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
 
         StopAllCoroutines();
         Score = 0;
@@ -219,8 +219,20 @@ public class GamePlayManager : MonoBehaviour
         else
             mGameUIPage.RefreshItemUI();
     }
-    public void UseGameItem(int index)
+    public void UseGameItem(CommonData.ITEM_SLOT_INDEX index)
     {
-        mPlayItemArr[index] = 0;
+        int itemId = mPlayItemArr[(int)index];
+        if (itemId == 0)
+            return;
+
+        SetGameItemId(index, 0);
+        // TODO 환웅
+        var itemData = DataManager.Instance.ItemDataDic[itemId];
+        SkillManager.Instance.AddUseSkill(itemData.skill);
+    }
+
+    private void SetGameItemId(CommonData.ITEM_SLOT_INDEX index, int id)
+    {
+        mPlayItemArr[(int)index] = id;
     }
 }

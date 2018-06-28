@@ -17,4 +17,16 @@ public class CommonData : MonoBehaviour {
         NORMAL,
         ITEM
     }
+
+    public enum ITEM_SLOT_TYPE
+    {
+        NORMAL,
+        SHIELD,
+    }
+
+    public enum ITEM_SLOT_INDEX
+    {
+        LEFT = 0,
+        RIGHT = 1
+    }
 }
