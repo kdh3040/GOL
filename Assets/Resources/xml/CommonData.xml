@@ -6,4 +6,5 @@
 	<CommonData id="NOTE_CREATE_SAMETIME_MAX_COUNT" value="2"/>
 	<CommonData id="NOTE_ITEM_CREATE_PERCENT" value="1.0"/>
 	<CommonData id="NOTE_ITEM_SCORE" value="100"/>
+	<CommonData id="MAX_USE_SHIELD_ITEM" value="2"/>
 </Datas>

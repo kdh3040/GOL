@@ -24,6 +24,7 @@ public class ConfigData {
     public int NOTE_CREATE_SAMETIME_MAX_COUNT;
     public float NOTE_ITEM_CREATE_PERCENT;
     public int NOTE_ITEM_SCORE;
+    public int MAX_USE_SHIELD_ITEM;
 
     public void Initialize(XmlNodeList list)
     {
@@ -43,6 +44,8 @@ public class ConfigData {
                 NOTE_ITEM_CREATE_PERCENT = GetFloatValue(node);
             else if (key.Equals("NOTE_ITEM_SCORE"))
                 NOTE_ITEM_SCORE = GetIntValue(node);
+            else if (key.Equals("MAX_USE_SHIELD_ITEM"))
+                MAX_USE_SHIELD_ITEM = GetIntValue(node);
 
         }
     }

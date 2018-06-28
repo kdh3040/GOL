@@ -54,7 +54,7 @@ public class UICountImgFont : MonoBehaviour
                 }
                 else
                 {
-                    var 
+                    //var 
                 }
                 
             }

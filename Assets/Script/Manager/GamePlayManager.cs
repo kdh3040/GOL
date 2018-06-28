@@ -29,7 +29,8 @@ public class GamePlayManager : MonoBehaviour
     private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
-    public int[] mPlayItemArr = new int[2];
+    public int[] mNormalitemArr = new int[2];
+    public int mShielditem = 0;
 
     public float NoteSpeed
     {
@@ -60,8 +61,9 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
-        SetGameItemId(CommonData.ITEM_SLOT_INDEX.LEFT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
-        SetGameItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
+        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
+        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
+        mShielditem = GManager.Instance.mPlayerData.mShielditem;
 
         StopAllCoroutines();
         Score = 0;
@@ -78,6 +80,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameStart()
     { 
         ResetGame();
+        UseGameShieldItem();
         StartCoroutine(UpdateGamePlay());
     }
 
@@ -201,14 +204,28 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlusItem(int id)
     {
+        var data = DataManager.Instance.ItemDataDic[id];
         bool itemAdd = false;
-        for (int i = 0; i < mPlayItemArr.Length; i++)
+        if (data.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
-            if (mPlayItemArr[i] == 0)
+            for (int i = 0; i < mNormalitemArr.Length; i++)
             {
-                mPlayItemArr[i] = id;
+                if (mNormalitemArr[i] == 0)
+                {
+                    mNormalitemArr[i] = id;
+                    itemAdd = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            var shieldCount = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT).mValue1;
+            if(shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
+            {
+                mShielditem = id;
+                UseGameShieldItem();
                 itemAdd = true;
-                break;
             }
         }
 
@@ -219,20 +236,30 @@ public class GamePlayManager : MonoBehaviour
         else
             mGameUIPage.RefreshItemUI();
     }
-    public void UseGameItem(CommonData.ITEM_SLOT_INDEX index)
+    public void UseGameNormalItem(CommonData.ITEM_SLOT_INDEX index)
     {
-        int itemId = mPlayItemArr[(int)index];
+        int itemId = mNormalitemArr[(int)index];
         if (itemId == 0)
             return;
 
-        SetGameItemId(index, 0);
+        SetGameNormalItemId(index, 0);
         // TODO 환웅
         var itemData = DataManager.Instance.ItemDataDic[itemId];
         SkillManager.Instance.AddUseSkill(itemData.skill);
     }
 
-    private void SetGameItemId(CommonData.ITEM_SLOT_INDEX index, int id)
+    public void UseGameShieldItem()
     {
-        mPlayItemArr[(int)index] = id;
+        if (mShielditem == 0)
+            return;
+
+        var itemData = DataManager.Instance.ItemDataDic[mShielditem];
+        SkillManager.Instance.AddUseSkill(itemData.skill);
+        mShielditem = 0;
+    }
+
+    private void SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX index, int id)
+    {
+        mNormalitemArr[(int)index] = id;
     }
 }

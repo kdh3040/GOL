@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerData
 {
     public Dictionary<CommonData.NOTE_LINE, int> DoorIndexId = new Dictionary<CommonData.NOTE_LINE, int>();
-    public int[] mPlayItemArr = { 1, 2 };
+    public int[] mNormalitemArr = { 1, 3 };
+    public int mShielditem = CommonData.SHIELD_ITEM_ID;
+
 
     public void Initialize()
     {
@@ -17,6 +19,6 @@ public class PlayerData
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
     {
-        return mPlayItemArr[(int)index];
+        return mNormalitemArr[(int)index];
     }
 }

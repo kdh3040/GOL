@@ -29,4 +29,6 @@ public class CommonData : MonoBehaviour {
         LEFT = 0,
         RIGHT = 1
     }
+
+    public static int SHIELD_ITEM_ID = 2;
 }

@@ -22,19 +22,19 @@ public class PageGameUI : MonoBehaviour
     public void ResetUI()
     {
         RefreshItemUI();
-        Score.SetValue(0);
+        Score.SetValue(0, UICountImgFont.IMG_RANGE.CENTER);
     }
 
     public void RefreshUI()
     {
-        Score.SetValue(GamePlayManager.Instance.Score);
+        Score.SetValue(GamePlayManager.Instance.Score, UICountImgFont.IMG_RANGE.CENTER);
     }
 
     public void RefreshItemUI()
     {
-        if (GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT] != 0)
+        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT] != 0)
         {
-            int itemId = GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
+            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
             var itemData = DataManager.Instance.ItemDataDic[itemId];
             mItemRightImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
             mItemRightImg.color = new Color(1, 1, 1, 1);
@@ -45,9 +45,9 @@ public class PageGameUI : MonoBehaviour
             mItemRightImg.sprite = null;
         }
 
-        if (GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
+        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
         {
-            int itemId = GamePlayManager.Instance.mPlayItemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
+            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
             var itemData = DataManager.Instance.ItemDataDic[itemId];
             mItemLeftImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
             mItemLeftImg.color = new Color(1, 1, 1, 1);
@@ -69,7 +69,7 @@ public class PageGameUI : MonoBehaviour
     }
     private void UseItem(CommonData.ITEM_SLOT_INDEX index)
     {
-        GamePlayManager.Instance.UseGameItem(index);
+        GamePlayManager.Instance.UseGameNormalItem(index);
         RefreshItemUI();
     }
     public void GameOver()
