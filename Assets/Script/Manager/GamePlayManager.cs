@@ -81,7 +81,7 @@ public class GamePlayManager : MonoBehaviour
     { 
         ResetGame();
         UseGameShieldItem();
-        StartCoroutine(UpdateGamePlay());
+        StartCoroutine(UpdateGamePlay());  
     }
 
     public void GameRestart()
@@ -217,24 +217,32 @@ public class GamePlayManager : MonoBehaviour
                     break;
                 }
             }
-        }
-        else
-        {
-            var shieldCount = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT).mValue1;
-            if(shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
-            {
-                mShielditem = id;
-                UseGameShieldItem();
-                itemAdd = true;
-            }
-        }
 
-        if(itemAdd == false)
-        {
-            PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+            if (itemAdd == false)
+            {
+                PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+            }
+            else
+                mGameUIPage.RefreshItemUI();
         }
         else
-            mGameUIPage.RefreshItemUI();
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT);
+            if(skill != null)
+            {
+                var shieldCount = skill.mValue1;
+                if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
+                {
+                    mShielditem = id;
+                    UseGameShieldItem();
+                    itemAdd = true;
+                }
+            }
+            
+
+            if (itemAdd == false)
+                PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+        }
     }
     public void UseGameNormalItem(CommonData.ITEM_SLOT_INDEX index)
     {
@@ -256,6 +264,7 @@ public class GamePlayManager : MonoBehaviour
         var itemData = DataManager.Instance.ItemDataDic[mShielditem];
         SkillManager.Instance.AddUseSkill(itemData.skill);
         mShielditem = 0;
+        mGameUIPage.RefreshShieldItemUI();
     }
 
     private void SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX index, int id)

@@ -12,6 +12,7 @@ public class PageGameUI : MonoBehaviour
     public Image mItemRightImg;
     public Button mItemLeftButton;
     public Image mItemLeftImg;
+    public List<Image> mShieldIconList = new List<Image>();
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class PageGameUI : MonoBehaviour
     public void ResetUI()
     {
         RefreshItemUI();
+        RefreshShieldItemUI();
         Score.SetValue(0, UICountImgFont.IMG_RANGE.CENTER);
     }
 
@@ -56,6 +58,22 @@ public class PageGameUI : MonoBehaviour
         {
             mItemLeftImg.color = new Color(1, 1, 1, 0);
             mItemLeftImg.sprite = null;
+        }
+    }
+
+    public void RefreshShieldItemUI()
+    {
+        var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT);
+        for (int i = 0; i < mShieldIconList.Count; i++)
+        {
+            if (skill != null && skill.mValue1 >= i + 1)
+            {
+                mShieldIconList[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                mShieldIconList[i].gameObject.SetActive(false);
+            }
         }
     }
 
