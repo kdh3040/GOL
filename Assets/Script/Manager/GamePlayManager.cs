@@ -130,6 +130,7 @@ public class GamePlayManager : MonoBehaviour
             var time = Time.deltaTime;
             mNoteSystem.NoteUpdate(time);
             SkillManager.Instance.UpdateSkill(time);
+            mGameUIPage.RefreshItemSkillUI();
             yield return null;
         }
     }
@@ -253,7 +254,9 @@ public class GamePlayManager : MonoBehaviour
         SetGameNormalItemId(index, 0);
         // TODO 환웅
         var itemData = DataManager.Instance.ItemDataDic[itemId];
-        SkillManager.Instance.AddUseSkill(itemData.skill);
+        var skill = SkillManager.Instance.AddUseSkill(itemData.skill);
+
+        mGameUIPage.UseItemSkill(itemId, skill);
     }
 
     public void UseGameShieldItem()

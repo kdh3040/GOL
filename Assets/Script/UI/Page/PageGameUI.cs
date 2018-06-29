@@ -13,6 +13,9 @@ public class PageGameUI : MonoBehaviour
     public Button mItemLeftButton;
     public Image mItemLeftImg;
     public List<Image> mShieldIconList = new List<Image>();
+    public Transform mSkillProgressStartPos;
+
+    private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
     void Awake()
     {
@@ -77,6 +80,20 @@ public class PageGameUI : MonoBehaviour
         }
     }
 
+    public void RefreshItemSkillUI()
+    {
+        for (int i = mSkillProgressBarList.Count - 1; i >= 0 ; --i)
+        {
+            if(mSkillProgressBarList[i].GetUISkillData() == null)
+            {
+                DestroyImmediate(mSkillProgressBarList[i].gameObject);
+                mSkillProgressBarList.RemoveAt(i);
+            }
+            else
+                mSkillProgressBarList[i].UpdateSkillProgress();
+        }
+    }
+
     public void OnClickItemLeft()
     {
         UseItem(CommonData.ITEM_SLOT_INDEX.LEFT);
@@ -89,6 +106,20 @@ public class PageGameUI : MonoBehaviour
     {
         GamePlayManager.Instance.UseGameNormalItem(index);
         RefreshItemUI();
+    }
+    public void UseItemSkill(int itemId, GameSkill skill)
+    {
+        for (int i = 0; i < mSkillProgressBarList.Count; i++)
+        {
+            if (mSkillProgressBarList[i].mItemId == itemId)
+                return;
+        }
+
+        var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), mSkillProgressStartPos) as GameObject;
+        var progressBar = obj.GetComponent<UISkillProgressBar>();
+        progressBar.SetItemSkill(itemId, skill.mSkillType);
+        progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
+        mSkillProgressBarList.Add(progressBar);
     }
     public void GameOver()
     {

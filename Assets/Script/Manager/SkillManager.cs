@@ -48,7 +48,7 @@ public class SkillManager
     {
         mUseSkillList.Clear();
     }
-    public void AddUseSkill(string skillName)
+    public GameSkill AddUseSkill(string skillName)
     {
         SkillData skillData = SkillDataList[skillName];
         SKILL_TYPE skillType = ConvertSkillType(skillData.skilltype);
@@ -72,6 +72,8 @@ public class SkillManager
         {
             AddUseSkill(data);
         }
+
+        return data;
     }
 
     private void AddUseSkill(GameSkill data)
@@ -102,7 +104,7 @@ public class SkillManager
                 else
                     return -1;
             });
-        }  
+        }
     }
 
     public void UpdateSkill(float time)

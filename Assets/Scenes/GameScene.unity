@@ -1081,6 +1081,7 @@ MonoBehaviour:
   mShieldIconList:
   - {fileID: 453171464}
   - {fileID: 1147167362}
+  mSkillProgressStartPos: {fileID: 1420197955}
 --- !u!1 &1420197954
 GameObject:
   m_ObjectHideFlags: 0
