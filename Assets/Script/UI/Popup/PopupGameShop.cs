@@ -18,10 +18,9 @@ public class PopupGameShop : PopupUI
     public Button MyCoinButton;
 
 
-    public Transform ItemPos_1;
-    public Transform ItemPos_2;
-    public Transform ItemPos_3;
+    public Transform[] ItemPos = new Transform[3];
 
+    private int nItemCount = DataManager.Instance.ItemDataIndexList.Count;
 
     void Awake()
     {
@@ -31,8 +30,23 @@ public class PopupGameShop : PopupUI
         MyDongButton.onClick.AddListener(OnClickMyDong);
         MyCoinButton.onClick.AddListener(OnClickMyCoin);
 
+        for (int i = 0; i < nItemCount; i++)
+        {
+            CreateItem(ItemPos[i], DataManager.Instance.ItemDataIndexList[i]);
+        }
+            
     }
-    
+
+
+    public void CreateItem(Transform ItemPos, int ItemType)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/Item"), ItemPos) as GameObject;
+        var Item = obj.GetComponent<ShopItem>();
+
+        Item.SetItemData(ItemPos, ItemType);
+
+    }
+
 
     public void OnClickRestart()
     {

@@ -22,6 +22,8 @@ public class DataManager {
     public Dictionary<int, DoorData> DoorDataDic = new Dictionary<int, DoorData>();
     public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
+    public List<int> ItemDataIndexList = new List<int>();
+
     public List<ItemData> ItemDataList_CreateProbability = new List<ItemData>();
     public int ItemAllCreateProbability = 0;
 
@@ -90,6 +92,7 @@ public class DataManager {
                     {
                         var data = new ItemData(child);
                         ItemDataDic.Add(data.id, data);
+                        ItemDataIndexList.Add(data.id);
                         ItemDataList_CreateProbability.Add(data);
                         ItemAllCreateProbability += data.create_probability;
                         data.create_probability = ItemAllCreateProbability;
