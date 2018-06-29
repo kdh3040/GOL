@@ -21,6 +21,7 @@ public class UICountImgFont : MonoBehaviour
         string countSrt = count.ToString();
         int countLength = countSrt.Length;
         Image prevImg = null;
+        int allWidthSize = 0;
 
         for (int i = 0; i < countLength; i++)
         {
@@ -40,27 +41,47 @@ public class UICountImgFont : MonoBehaviour
             RectTransform rt = countImg.GetComponent<RectTransform>();
             rt.sizeDelta = imgSprite.rect.size;
             countImg.sprite = imgSprite;
-            if (prevImg == null)
-                countImg.gameObject.transform.localPosition = Vector3.zero;
+            allWidthSize += (int)imgSprite.rect.size.x;
+        }
+
+        for (int i = 0; i < countLength; i++)
+        {
+            Image currImg = ImgFontList[i];
+            Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
+            Vector3 prevImgLocalPosition = prevImg == null ? Vector3.zero : prevImg.gameObject.transform.localPosition;
+            Vector2 currimgSize = currImg.sprite.rect.size;
+            Vector2 previmgSize = prevImg == null ? Vector2.zero : prevImg.sprite.rect.size;
+
+            if (range == IMG_RANGE.LEFT)
+            {
+                currImgLocalPosition = new Vector3(prevImgLocalPosition.x + previmgSize.x / 2 + currimgSize.x / 2, 0);
+            }
+            else if (range == IMG_RANGE.RIGHT)
+            {
+                currImgLocalPosition = new Vector3(prevImgLocalPosition.x - previmgSize.x / 2 - currimgSize.x / 2, 0);
+            }
             else
             {
-                if(range == IMG_RANGE.LEFT)
-                {
-                    countImg.gameObject.transform.localPosition = new Vector3(prevImg.gameObject.transform.localPosition.x + prevImg.sprite.rect.size.x / 2 + imgSprite.rect.size.x / 2, 0);
-                }
-                else if(range == IMG_RANGE.RIGHT)
-                {
-                    countImg.gameObject.transform.localPosition = new Vector3(prevImg.gameObject.transform.localPosition.x - prevImg.sprite.rect.size.x / 2 - imgSprite.rect.size.x / 2, 0);
-                }
-                else
-                {
-                    //var 
-                }
-                
+
+                currImgLocalPosition = new Vector3(prevImgLocalPosition.x + previmgSize.x / 2 + currimgSize.x / 2, 0);
             }
 
-            prevImg = countImg;
-        } 
+            currImg.gameObject.transform.localPosition = currImgLocalPosition;
+
+            prevImg = currImg;
+        }
+
+        if(range == IMG_RANGE.CENTER)
+        {
+            for (int i = 0; i < countLength; i++)
+            {
+                Image currImg = ImgFontList[i];
+                Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
+
+                currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
+                currImg.gameObject.transform.localPosition = currImgLocalPosition;
+            }
+        }
     }
 
 }

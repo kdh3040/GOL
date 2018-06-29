@@ -12,6 +12,7 @@ public abstract class GameSkill
     public float mValue3 { get; protected set; }
     public SkillManager.SKILL_TYPE mSkillType = SkillManager.SKILL_TYPE.NONE;
     public SkillManager.SKILL_CHECK_TYPE mSkillCheckType = SkillManager.SKILL_CHECK_TYPE.NONE;
+    public float mMaxValue1 { get; protected set; }
 
     public GameSkill(string name)
     {
@@ -19,6 +20,7 @@ public abstract class GameSkill
         mValue1 = mSkillData.value1;
         mValue2 = mSkillData.value2;
         mValue3 = mSkillData.value3;
+        mMaxValue1 = mSkillData.value1;
         mEnable = false;
         mSkillRemoveReady = false;
         mSkillType = SkillManager.Instance.ConvertSkillType(mSkillData.skilltype);
@@ -41,6 +43,7 @@ public abstract class GameSkill
         mValue1 += mSkillData.value1;
         mValue2 += mSkillData.value2;
         mValue3 += mSkillData.value3;
+        mMaxValue1 += mSkillData.value1;
     }
     public abstract void SkillUpdate(float time);
 }

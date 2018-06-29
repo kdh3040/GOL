@@ -23,7 +23,6 @@ public class DataManager {
     public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
     public List<int> ItemDataIndexList = new List<int>();
-
     public List<ItemData> ItemDataList_CreateProbability = new List<ItemData>();
     public int ItemAllCreateProbability = 0;
 

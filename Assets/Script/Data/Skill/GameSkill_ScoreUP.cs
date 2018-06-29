@@ -18,11 +18,6 @@ public class GameSkill_ScoreUP : GameSkill
             EndSkill();
     }
 
-    public override void PlusSameSkill()
-    {
-        mValue1 += mSkillData.value1;
-        mValue2 *= mSkillData.value2;
-    }
 
     public int ConvertNoteScore(int score)
     {
