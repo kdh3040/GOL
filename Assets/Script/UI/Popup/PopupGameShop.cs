@@ -11,6 +11,15 @@ public class PopupGameShop : PopupUI
         return PopupManager.POPUP_TYPE.GAME_SHOP;
     }
 
+    public class PopupData : PopupUIData
+    {
+        public bool GameStartReady;
+        public PopupData(bool ready)
+        {
+            GameStartReady = ready;
+        }
+    }
+
     public Button RestartButton;
     public Button ExitButton;
 

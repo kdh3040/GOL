@@ -25,5 +25,17 @@ public class GManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         mPlayerData.Initialize();
+
+        StartCoroutine(UpdateGame());
+    }
+
+    IEnumerator UpdateGame()
+    {
+        while (true)
+        {
+            var time = Time.deltaTime;
+            mPlayerData.UpdatePlayerData(time);
+            yield return null;
+        }
     }
 }

@@ -22,6 +22,7 @@ public class PopupManager : MonoBehaviour {
         GAME_END,
         GAME_PAUSE,
         GAME_SHOP,
+        MSG_POPUP,
     }
 
     private Dictionary<POPUP_TYPE, PopupUI> mPopupUIList = new Dictionary<POPUP_TYPE, PopupUI>();
@@ -40,11 +41,11 @@ public class PopupManager : MonoBehaviour {
         page.gameObject.SetActive(false);
     }
 
-    public void ShowPopup(POPUP_TYPE type)
+    public void ShowPopup(POPUP_TYPE type, PopupUIData data = null)
     {
         var popup = mPopupUIList[type];
         popup.gameObject.SetActive(true);
-        popup.ShowPopup();
+        popup.ShowPopup(data);
         mShowPopup = popup;
     }
 
