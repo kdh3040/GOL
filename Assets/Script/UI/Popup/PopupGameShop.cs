@@ -20,69 +20,89 @@ public class PopupGameShop : PopupUI
         }
     }
 
-    public Button RestartButton;
-    public Button ExitButton;
-
-    public Button MyDongButton;
-    public Button MyCoinButton;
-
-
-    public Transform[] ItemPos = new Transform[3];
-
-    private int nItemCount = DataManager.Instance.ItemDataIndexList.Count;
+    public Button GameStart;
 
     void Awake()
     {
-        RestartButton.onClick.AddListener(OnClickRestart);
-        ExitButton.onClick.AddListener(OnClickExit);
-
-        MyDongButton.onClick.AddListener(OnClickMyDong);
-        MyCoinButton.onClick.AddListener(OnClickMyCoin);
-
-        for (int i = 0; i < nItemCount; i++)
-        {
-            CreateItem(ItemPos[i], DataManager.Instance.ItemDataIndexList[i]);
-        }
-            
+        GameStart.onClick.AddListener(OnClickGameStart);
     }
 
-
-    public void CreateItem(Transform ItemPos, int ItemType)
+    public override void ShowPopup(PopupUIData data)
     {
-        var obj = Instantiate(Resources.Load("Prefab/Item"), ItemPos) as GameObject;
-        var Item = obj.GetComponent<ShopItem>();
+        var popupData = data as PopupData;
 
-        Item.SetItemData(ItemPos, ItemType);
-
+        GameStart.gameObject.SetActive(popupData.GameStartReady);
     }
 
-
-    public void OnClickRestart()
-    {
-        GamePlayManager.Instance.GameRestart();
-        PopupManager.Instance.DismissPopup();
-    }
-
-    public void OnClickExit()
-    {
-        GamePlayManager.Instance.GameExit();
-        PopupManager.Instance.DismissPopup();
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
-    }
-
-    public void OnClickCancel()
+    public void OnClickGameStart()
     {
         PopupManager.Instance.DismissPopup();
-        GamePlayManager.Instance.GameContinue();
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
-    public void OnClickMyDong()
-    {
-        // 똥 사는 팝업
-    }
+    //public Button RestartButton;
+    //public Button ExitButton;
 
-    public void OnClickMyCoin()
-    {
-        // 코인 사는 팝업
-    }
+    //public Button MyDongButton;
+    //public Button MyCoinButton;
+
+
+    //public Transform[] ItemPos = new Transform[3];
+
+    //private int nItemCount = DataManager.Instance.ItemDataIndexList.Count;
+
+    //void Awake()
+    //{
+    //    RestartButton.onClick.AddListener(OnClickRestart);
+    //    ExitButton.onClick.AddListener(OnClickExit);
+
+    //    MyDongButton.onClick.AddListener(OnClickMyDong);
+    //    MyCoinButton.onClick.AddListener(OnClickMyCoin);
+
+    //    for (int i = 0; i < nItemCount; i++)
+    //    {
+    //        CreateItem(ItemPos[i], DataManager.Instance.ItemDataIndexList[i]);
+    //    }
+
+    //}
+
+
+    //public void CreateItem(Transform ItemPos, int ItemType)
+    //{
+    //    var obj = Instantiate(Resources.Load("Prefab/Item"), ItemPos) as GameObject;
+    //    var Item = obj.GetComponent<ShopItem>();
+
+    //    Item.SetItemData(ItemPos, ItemType);
+
+    //}
+
+
+    //public void OnClickRestart()
+    //{
+    //    GamePlayManager.Instance.GameRestart();
+    //    PopupManager.Instance.DismissPopup();
+    //}
+
+    //public void OnClickExit()
+    //{
+    //    GamePlayManager.Instance.GameExit();
+    //    PopupManager.Instance.DismissPopup();
+    //    SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+    //}
+
+    //public void OnClickCancel()
+    //{
+    //    PopupManager.Instance.DismissPopup();
+    //    GamePlayManager.Instance.GameContinue();
+    //}
+
+    //public void OnClickMyDong()
+    //{
+    //    // 똥 사는 팝업
+    //}
+
+    //public void OnClickMyCoin()
+    //{
+    //    // 코인 사는 팝업
+    //}
 }

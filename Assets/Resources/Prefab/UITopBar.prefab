@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5f0caa0ac335843891c4baf681d0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackButton: {fileID: 0}
-  DdongPoint: {fileID: 0}
-  CoinPoint: {fileID: 0}
+  BackButton: {fileID: 114849144848277410}
+  DdongPoint: {fileID: 114813229647546844}
+  CoinPoint: {fileID: 114445954660241776}
 --- !u!114 &114105435464554798
 MonoBehaviour:
   m_ObjectHideFlags: 1
