@@ -39,8 +39,6 @@ public class PageMainUI : MonoBehaviour
         {
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
         }
-            
-        // SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
     public void OnClickGameShop()
