@@ -4,24 +4,61 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PageMainUI : MonoBehaviour {
-    public Button Start;
-    public Button Shop;
+public class PageMainUI : MonoBehaviour
+{
+    public UITopBar TopBar;
+
+    public Button GamePlay;
+    public Button GameShop;
+    public Button GameBook;
+    public Button GameRank;
+    public Button GameSetting;
 
     void Awake()
     {
-        Start.onClick.AddListener(OnClick);
-        Shop.onClick.AddListener(OnClickShopBtn);
+        GamePlay.onClick.AddListener(OnClickGamePlay);
+        GameShop.onClick.AddListener(OnClickGameShop);
+        GameBook.onClick.AddListener(OnClickGameBook);
+        GameRank.onClick.AddListener(OnClickGameRank);
+        GameSetting.onClick.AddListener(OnClickGameSetting);
     }
 
-    public void OnClick()
+    void Start()
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        TopBar.Initialize(false);
     }
 
-    public void OnClickShopBtn()
+    public void OnClickGamePlay()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
+        if (GManager.Instance.mPlayerData.Ddong <= 0)
+        {
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));
+            return;
+        }
+        else
+        {
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
+        }
+            
+        // SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+    }
+
+    public void OnClickGameShop()
+    {
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(false));
+    }
+
+    public void OnClickGameBook()
+    {
+        
+    }
+    public void OnClickGameRank()
+    {
+        
+    }
+    public void OnClickGameSetting()
+    {
+        
     }
 
 }

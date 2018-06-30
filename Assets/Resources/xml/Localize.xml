@@ -6,4 +6,5 @@
 	<Localize id="SHIELD_ITEM" kr="쉴드" jp="쉴드" en="쉴드"/>
 	<Localize id="SCORE_DOUBLE_ITEM" kr="점수 2배" jp="점수 2배" en="점수 2배"/>
 	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초" jp="{0:f2}초" en="{0:f2}초"/>
+	<Localize id="GAME_PLAY_LACK_DDONG" kr="똥이 부족합니다." jp="똥이 부족합니다." en="똥이 부족합니다."/>
 </Datas>

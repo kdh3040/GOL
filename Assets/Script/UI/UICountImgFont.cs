@@ -37,11 +37,8 @@ public class UICountImgFont : MonoBehaviour
             }
 
             Image countImg = ImgFontList[i];
-            var imgSprite = (Sprite)Resources.Load(imgfileName, typeof(Sprite));
-            RectTransform rt = countImg.GetComponent<RectTransform>();
-            rt.sizeDelta = imgSprite.rect.size;
-            countImg.sprite = imgSprite;
-            allWidthSize += (int)imgSprite.rect.size.x;
+            CommonFunc.SetImageFile(imgfileName, ref countImg);
+            allWidthSize += (int)countImg.sprite.rect.size.x;
         }
 
         for (int i = 0; i < countLength; i++)
