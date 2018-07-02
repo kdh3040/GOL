@@ -12,7 +12,7 @@ public class PlayerData
     public int Ddong { get; private set; }
     public void Initialize()
     {
-        Coin = 1000000;
+        Coin = 10;
         Ddong = 100;
         DoorIndexId.Clear();
         DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_1, 1);
