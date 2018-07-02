@@ -17,6 +17,11 @@ public class UIPoint : MonoBehaviour {
     [System.NonSerialized]
     public POINT_TYPE mPointType;
 
+    void Awake()
+    {
+        ChargeButton.onClick.AddListener(OnClickCharge);
+    }
+
     public void Initialize(POINT_TYPE type)
     {
         mPointType = type;
@@ -34,6 +39,19 @@ public class UIPoint : MonoBehaviour {
     public void SetPoint(int count)
     {
         PointText.text = CommonFunc.ConvertNumber(count);
+    }
+
+    public void OnClickCharge()
+    {
+        switch (mPointType)
+        {
+            case POINT_TYPE.DDONG:
+                GManager.Instance.mPlayerData.AddDdong(1);
+                break;
+            case POINT_TYPE.COIN:
+                GManager.Instance.mPlayerData.AddCoin(100);
+                break;
+        }
     }
 
 

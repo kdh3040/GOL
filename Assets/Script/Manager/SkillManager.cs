@@ -188,4 +188,10 @@ public class SkillManager
 
         return type;
     }
+
+    public string GetSkillDesc(string skillName)
+    {
+        SkillData skillData = SkillDataList[skillName];
+        return LocalizeData.Instance.GetLocalizeString(skillData.desc);
+    }
 }

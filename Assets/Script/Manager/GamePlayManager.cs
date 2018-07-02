@@ -22,13 +22,14 @@ public class GamePlayManager : MonoBehaviour
         get;
         private set;
     }
-    private PlayerChar MainChar = null;
+    private PlayerChar mPlayerChar = new PlayerChar();
     private bool mIsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
+
     public int[] mNormalitemArr = new int[2];
     public int mShielditem = 0;
 
@@ -92,7 +93,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void GamePause()
     {
-        mIsGamePause = true;
+       // mIsGamePause = true;
     }
 
     public void GameContinue()
@@ -114,7 +115,7 @@ public class GamePlayManager : MonoBehaviour
         }
 
         mGameUIPage.GameOver();
-        mIsGamePause = true;
+        //mIsGamePause = true;
     }
 
     IEnumerator UpdateGamePlay()
@@ -131,6 +132,59 @@ public class GamePlayManager : MonoBehaviour
             mNoteSystem.NoteUpdate(time);
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
+                    GamePlayManager.Instance.ClickDoor(mClickDoor);
+                    Debug.Log("Complete" + hit.collider.name);
+                }
+                else
+                {
+                    Debug.Log("null");
+                }
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            }
+
+            else if (Input.GetKey(KeyCode.Z))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+            }
+            else if (Input.GetKey(KeyCode.X))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            }
+            else if (Input.GetKey(KeyCode.C))
+            {
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            }
+
+#if UNITY_ANDROID
+
+#elif UNITY_EDITOR
+
+#endif
+
+
             yield return null;
         }
     }
@@ -185,8 +239,10 @@ public class GamePlayManager : MonoBehaviour
     public void ClickDoor(Door door)
     {
         mNoteSystem.DeleteCheckNote(door);
+        // 라인타입
+        PlayerChar.Instance.ActionDoorClose(door);
     }
-
+    
     public void PlusScore(int score)
     {
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SCORE_UP))

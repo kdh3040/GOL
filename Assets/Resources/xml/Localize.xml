@@ -7,4 +7,10 @@
 	<Localize id="SCORE_DOUBLE_ITEM" kr="점수 2배" jp="점수 2배" en="점수 2배"/>
 	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초" jp="{0:f2}초" en="{0:f2}초"/>
 	<Localize id="GAME_PLAY_LACK_DDONG" kr="똥이 부족합니다." jp="똥이 부족합니다." en="똥이 부족합니다."/>
+	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다." jp="코인이 부족합니다." en="코인이 부족합니다."/>
+	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?" jp="아이템을 구매하시겠습니까?" en="아이템을 구매하시겠습니까?"/>
+	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉찼습니다." jp="장착 슬롯이 꽉찼습니다." en="장착 슬롯이 꽉찼습니다."/>
+	<Localize id="INVINCIBILITY_SKILL_DESC" kr="10초간 무적" jp="10초간 무적" en="10초간 무적"/>
+	<Localize id="SHIELD_SKILL_DESC" kr="한번 막아줌" jp="한번 막아줌" en="한번 막아줌"/>
+	<Localize id="SCORE_DOUBLE_SKILL_DESC" kr="점수가 2배" jp="점수가 2배" en="점수가 2배"/>
 </Datas>
