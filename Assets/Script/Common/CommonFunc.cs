@@ -17,4 +17,20 @@ public class CommonFunc
         rt.sizeDelta = imgSprite.rect.size;
         img.sprite = imgSprite;
     }
+
+    static public bool IsEnoughCoin(int coin, bool showPopup = false)
+    {
+        var myCoin = GManager.Instance.mPlayerData.Coin;
+
+        if (myCoin < coin)
+        {
+            if(showPopup)
+            {
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_COIN")));
+            }
+            return false;
+        }
+        else
+            return true;
+    }
 }
