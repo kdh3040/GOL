@@ -118,6 +118,8 @@ public class GamePlayManager : MonoBehaviour
         //mIsGamePause = true;
     }
 
+
+
     IEnumerator UpdateGamePlay()
     {
         while(true)
@@ -133,56 +135,7 @@ public class GamePlayManager : MonoBehaviour
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
-                    GamePlayManager.Instance.ClickDoor(mClickDoor);
-                    Debug.Log("Complete" + hit.collider.name);
-                }
-                else
-                {
-                    Debug.Log("null");
-                }
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
-            }
-
-            else if (Input.GetKey(KeyCode.Z))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
-            }
-            else if (Input.GetKey(KeyCode.X))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
-            }
-            else if (Input.GetKey(KeyCode.C))
-            {
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
-                GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
-            }
-
-#if UNITY_ANDROID
-
-#elif UNITY_EDITOR
-
-#endif
+            GetUserTouchEvent();
 
 
             yield return null;
@@ -329,5 +282,76 @@ public class GamePlayManager : MonoBehaviour
     private void SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX index, int id)
     {
         mNormalitemArr[(int)index] = id;
+    }
+
+
+    private void GetUserTouchEvent()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
+                GamePlayManager.Instance.ClickDoor(mClickDoor);
+                Debug.Log("Complete" + hit.collider.name);
+            }
+            else
+            {
+                Debug.Log("null");
+            }
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+        }
+
+        else if (Input.GetKey(KeyCode.Z))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+        }
+        else if (Input.GetKey(KeyCode.X))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+        }
+        else if (Input.GetKey(KeyCode.C))
+        {
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+        }
+
+#if UNITY_ANDROID
+        if(Input.touchCount >= 1)
+        {
+            for(int i = 0; i<Input.touchCount; i++)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
+                    GamePlayManager.Instance.ClickDoor(mClickDoor);
+                    Debug.Log("Complete" + hit.collider.name);
+                }                
+            }
+        }
+
+#elif UNITY_EDITOR
+
+#endif
+
+
     }
 }
