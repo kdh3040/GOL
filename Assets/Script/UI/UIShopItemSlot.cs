@@ -12,8 +12,6 @@ public class UIShopItemSlot : MonoBehaviour {
 
     [System.NonSerialized]
     public ItemData mItemData;
-    [System.NonSerialized]
-    public bool mSelected;
 
     public void SetItem(int itemId)
     {

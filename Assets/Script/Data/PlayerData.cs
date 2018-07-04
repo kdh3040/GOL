@@ -6,10 +6,13 @@ public class PlayerData
 {
     public Dictionary<CommonData.NOTE_LINE, int> DoorIndexId = new Dictionary<CommonData.NOTE_LINE, int>();
     public Dictionary<int, int> HaveItemDic = new Dictionary<int, int>();
+    public Dictionary<int, bool> HaveCharDic = new Dictionary<int, bool>();
     public int[] mNormalitemArr = { 0,0 };
     public int mShielditem = 0;
     public int Coin { get; private set; }
     public int Ddong { get; private set; }
+    public int UseCharId { get; private set; }
+
     public void Initialize()
     {
         Coin = 10;
@@ -67,5 +70,23 @@ public class PlayerData
     public void SubCoin(int value)
     {
         Coin -= value;
+    }
+
+    public void AddChar(int id)
+    {
+        if (HaveCharDic.ContainsKey(id) == false)
+            HaveCharDic.Add(id, true);
+    }
+    public bool IsHasChar(int id)
+    {
+        if (HaveCharDic.ContainsKey(id) == false)
+            return false;
+
+        return true;
+    }
+
+    public void SetUseCharId(int id)
+    {
+        UseCharId = id;
     }
 }

@@ -39,7 +39,22 @@ public class PopupGameShopItem : MonoBehaviour {
     {
         if (ItemList.Count <= 0)
         {
-            var itemIndexList = DataManager.Instance.ItemDataIndexList;
+            var itemIndexList = new List<int>();
+            var itemDataDicEnumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
+
+            while(itemDataDicEnumerator.MoveNext())
+            {
+                itemIndexList.Add(itemDataDicEnumerator.Current.Key);
+            }
+
+            itemIndexList.Sort(delegate (int A, int B)
+            {
+                if (A < B)
+                    return 1;
+                else
+                    return -1;
+            });
+
             for (int i = 0; i < itemIndexList.Count; i++)
             {
                 var obj = Instantiate(Resources.Load("Prefab/UIShopItemSlot"), ItemSlotListStartPos) as GameObject;
