@@ -22,12 +22,16 @@ public class PlayerData
         mNormalitemArr[1] = 0;
         mShielditem = 0;
 
-        HaveItemDic.Add(1, 3);
+        HaveItemDic.Add(1, 1);
     }
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
     {
         return mNormalitemArr[(int)index];
+    }
+    public void SetItemSlotId(CommonData.ITEM_SLOT_INDEX index, int id)
+    {
+        mNormalitemArr[(int)index] = id;
     }
 
     public void UpdatePlayerData(float time)
@@ -41,6 +45,13 @@ public class PlayerData
         else
             HaveItemDic[id] += 1;
     }
+    public int GetHaveItem(int id)
+    {
+        if (HaveItemDic.ContainsKey(id) == false)
+            return 0;
+        else
+            return HaveItemDic[id];
+    }
     public void RemoveItem(int id)
     {
         HaveItemDic[id] -= 1;
@@ -52,5 +63,9 @@ public class PlayerData
     public void AddCoin(int value)
     {
         Coin += value;
+    }
+    public void SubCoin(int value)
+    {
+        Coin -= value;
     }
 }

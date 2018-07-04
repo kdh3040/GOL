@@ -33,4 +33,15 @@ public class CommonFunc
         else
             return true;
     }
+
+    static public bool UseCoin(int coin)
+    {
+        if (IsEnoughCoin(coin, true))
+        {
+            GManager.Instance.mPlayerData.SubCoin(coin);
+            return true;
+        }
+
+        return false;
+    }
 }
