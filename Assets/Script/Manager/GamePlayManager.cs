@@ -131,7 +131,22 @@ public class GamePlayManager : MonoBehaviour
             }
 
             var time = Time.deltaTime;
-            mNoteSystem.NoteUpdate(time);
+
+            if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
+            {
+                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_SpeedDown;
+                if (skill != null)
+                {
+                    mNoteSystem.NoteUpdate(skill.ConvertSpeed(time));
+                }
+            }
+            else
+            {
+                mNoteSystem.NoteUpdate(time);
+            }
+
+
+            
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
 

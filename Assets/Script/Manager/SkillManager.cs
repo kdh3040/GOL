@@ -22,7 +22,8 @@ public class SkillManager
     {
         NONE,
         DAMAGE_SHIELD,
-        SCORE_UP
+        SCORE_UP,
+        SPEED_DOWN,
     }
 
     public enum SKILL_CHECK_TYPE
@@ -67,8 +68,13 @@ public class SkillManager
             if (skillCheckType == SKILL_CHECK_TYPE.TIME)
                 data = new GameSkill_ScoreUP(skillName);
         }
+        else if (skillType == SKILL_TYPE.SPEED_DOWN)
+        {
+            if (skillCheckType == SKILL_CHECK_TYPE.TIME)
+                data = new GameSkill_SpeedDown(skillName);
+        }
 
-        if(data != null)
+        if (data != null)
         {
             AddUseSkill(data);
         }
@@ -162,6 +168,9 @@ public class SkillManager
                 break;
             case "SCORE_UP":
                 type = SKILL_TYPE.SCORE_UP;
+                break;
+            case "SPEED_DOWN":
+                type = SKILL_TYPE.SPEED_DOWN;
                 break;
             default:
                 type = SKILL_TYPE.NONE;

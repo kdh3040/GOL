@@ -75,6 +75,7 @@
     <Compile Include="Assets\Script\Data\Skill\GameSkill_Invincibility.cs" />
     <Compile Include="Assets\Script\Data\Skill\GameSkill_ScoreUP.cs" />
     <Compile Include="Assets\Script\Data\Skill\GameSkill_Shield.cs" />
+    <Compile Include="Assets\Script\Data\Skill\GameSkill_SpeedDown.cs" />
     <Compile Include="Assets\Script\Data\SkillData.cs" />
     <Compile Include="Assets\Script\Data\SkinData.cs" />
     <Compile Include="Assets\Script\Manager\GamePlayManager.cs" />
