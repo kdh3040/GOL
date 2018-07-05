@@ -23,6 +23,11 @@ public class UICountImgFont : MonoBehaviour
         Image prevImg = null;
         int allWidthSize = 0;
 
+        for (int i = 0; i < ImgFontList.Count; i++)
+        {
+            ImgFontList[i].gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < countLength; i++)
         {
             string imgfileName = string.Format("n{0}", countSrt[i]);
@@ -37,6 +42,7 @@ public class UICountImgFont : MonoBehaviour
             }
 
             Image countImg = ImgFontList[i];
+            countImg.gameObject.SetActive(true);
             CommonFunc.SetImageFile(imgfileName, ref countImg);
             allWidthSize += (int)countImg.sprite.rect.size.x;
         }

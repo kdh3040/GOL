@@ -1143,8 +1143,6 @@ RectTransform:
   m_Children:
   - {fileID: 1030256301}
   - {fileID: 1495793149}
-  - {fileID: 1591008052}
-  - {fileID: 352400464}
   m_Father: {fileID: 1537260460}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1632,39 +1630,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &352400463
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 352400464}
-  m_Layer: 5
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &352400464
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 352400463}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000125, y: 1.0000125, z: 1.0000125}
-  m_Children: []
-  m_Father: {fileID: 211899304}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1002, y: 1332}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &353006450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopBar: {fileID: 1372715897}
   ItemUI: {fileID: 1030256302}
-  CharUI: {fileID: 1495793150}
+  SkinUI: {fileID: 1495793150}
   ItamTab: {fileID: 189813728}
   CharTab: {fileID: 35510404}
   DoorTab: {fileID: 51645601}
@@ -3913,12 +3878,12 @@ GameObject:
   - component: {fileID: 1495793149}
   - component: {fileID: 1495793150}
   m_Layer: 5
-  m_Name: Char
+  m_Name: Skin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1495793149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3951,11 +3916,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a679fb0582db042899a3e78ecd8fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectCharThumbnail: {fileID: 860110111}
-  SelectCharDesc: {fileID: 1252903648}
-  CharGrid: {fileID: 1867061742}
-  BuyButton: {fileID: 1444426373}
-  EquipButton: {fileID: 523163674}
+  SelectIcon: {fileID: 860110111}
+  SelectDesc: {fileID: 1252903648}
+  SkinShopGrid: {fileID: 1867061742}
+  SkinBuyButton: {fileID: 1444426373}
+  SkinEquipButton: {fileID: 523163674}
 --- !u!1 &1504755792
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,39 +4140,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548976888}
---- !u!1 &1591008051
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1591008052}
-  m_Layer: 5
-  m_Name: Door
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1591008052
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1591008051}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000125, y: 1.0000125, z: 1.0000125}
-  m_Children: []
-  m_Father: {fileID: 211899304}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1002, y: 1332}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1610516236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4858,7 +4790,7 @@ GameObject:
   - component: {fileID: 1867061741}
   - component: {fileID: 1867061742}
   m_Layer: 5
-  m_Name: CharSlotGrid
+  m_Name: SkinSlotGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

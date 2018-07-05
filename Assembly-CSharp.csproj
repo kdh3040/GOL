@@ -59,9 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PopupGameShopChar.cs" />
     <Compile Include="Assets\Script\Common\CommonData.cs" />
     <Compile Include="Assets\Script\Common\CommonFunc.cs" />
+    <Compile Include="Assets\Script\Data\BackgroundData.cs" />
     <Compile Include="Assets\Script\Data\CharData.cs" />
     <Compile Include="Assets\Script\Data\ConfigData.cs" />
     <Compile Include="Assets\Script\Data\DataManager.cs" />
@@ -76,6 +76,7 @@
     <Compile Include="Assets\Script\Data\Skill\GameSkill_ScoreUP.cs" />
     <Compile Include="Assets\Script\Data\Skill\GameSkill_Shield.cs" />
     <Compile Include="Assets\Script\Data\SkillData.cs" />
+    <Compile Include="Assets\Script\Data\SkinData.cs" />
     <Compile Include="Assets\Script\Manager\GamePlayManager.cs" />
     <Compile Include="Assets\Script\Manager\GManager.cs" />
     <Compile Include="Assets\Script\Manager\PopupManager.cs" />
@@ -90,12 +91,14 @@
     <Compile Include="Assets\Script\UI\Popup\PopupGameEnd.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShop.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShopItem.cs" />
+    <Compile Include="Assets\Script\UI\Popup\PopupGameShopSkin.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupMsg.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupUI.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupUIData.cs" />
     <Compile Include="Assets\Script\UI\UICountImgFont.cs" />
     <Compile Include="Assets\Script\UI\UIPoint.cs" />
     <Compile Include="Assets\Script\UI\UIShopItemSlot.cs" />
+    <Compile Include="Assets\Script\UI\UIShopSkinSlot.cs" />
     <Compile Include="Assets\Script\UI\UISkillProgressBar.cs" />
     <Compile Include="Assets\Script\UI\UITabButton.cs" />
     <Compile Include="Assets\Script\UI\UITopBar.cs" />
@@ -104,7 +107,6 @@
     <Compile Include="Assets\Script\Unit\NoteItem.cs" />
     <Compile Include="Assets\Script\Unit\NoteNormal.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
-    <Compile Include="Assets\UIShopCharSlot.cs" />
     <None Include="Assets\Resources\xml\Character.xml" />
     <None Include="Assets\Resources\xml\Item.xml" />
     <None Include="Assets\Resources\xml\Localize.xml" />
@@ -112,6 +114,7 @@
     <None Include="Assets\Resources\xml\Skill.xml" />
     <None Include="Assets\Resources\xml\Door.xml" />
     <None Include="Assets\Resources\xml\CommonData.xml" />
+    <None Include="Assets\Resources\xml\Background.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/Project/dohosoft/GOL/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

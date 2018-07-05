@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114789011357437116}
   - component: {fileID: 114056097482213974}
   m_Layer: 5
-  m_Name: UIShopCharSlot
+  m_Name: UIShopSkinSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

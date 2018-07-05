@@ -32,7 +32,7 @@ public class PopupGameShop : PopupUI
 
     public UITopBar TopBar;
     public PopupGameShopItem ItemUI;
-    public PopupGameShopChar CharUI;
+    public PopupGameShopSkin SkinUI;
     public UITabButton ItamTab;
     public UITabButton CharTab;
     public UITabButton DoorTab;
@@ -72,7 +72,7 @@ public class PopupGameShop : PopupUI
         BGTab.SetSelect(TabType == TAB_TYPE.BG);
 
         ItemUI.gameObject.SetActive(false);
-        CharUI.gameObject.SetActive(false);
+        SkinUI.gameObject.SetActive(false);
         switch (TabType)
         {
             case TAB_TYPE.ITEM:
@@ -80,8 +80,10 @@ public class PopupGameShop : PopupUI
                 ItemUI.ShowUI();
                 break;
             case TAB_TYPE.CHAR:
-                CharUI.gameObject.SetActive(true);
-                CharUI.ShowUI();
+            case TAB_TYPE.DOOR:
+            case TAB_TYPE.BG:
+                SkinUI.gameObject.SetActive(true);
+                SkinUI.ShowUI(TabType);
                 break;
         }
     }

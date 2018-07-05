@@ -49,7 +49,7 @@ public class PopupGameShopItem : MonoBehaviour {
 
             itemIndexList.Sort(delegate (int A, int B)
             {
-                if (A < B)
+                if (A > B)
                     return 1;
                 else
                     return -1;
