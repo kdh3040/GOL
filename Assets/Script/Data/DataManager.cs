@@ -21,8 +21,9 @@ public class DataManager {
 
     public Dictionary<int, DoorData> DoorDataDic = new Dictionary<int, DoorData>();
     public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
+    public Dictionary<int, CharData> CharDataDic = new Dictionary<int, CharData>();
+    public Dictionary<int, BackgroundData> BackGroundDataDic = new Dictionary<int, BackgroundData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
-    public List<int> ItemDataIndexList = new List<int>();
     public List<ItemData> ItemDataList_CreateProbability = new List<ItemData>();
     public int ItemAllCreateProbability = 0;
 
@@ -39,6 +40,9 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Localize", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Item", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Skill", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Character", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
+            
         }
 
         for (int i = 0; i < LoadingDataXmlList.Count; i++)
@@ -91,7 +95,6 @@ public class DataManager {
                     {
                         var data = new ItemData(child);
                         ItemDataDic.Add(data.id, data);
-                        ItemDataIndexList.Add(data.id);
                         ItemDataList_CreateProbability.Add(data);
                         ItemAllCreateProbability += data.create_probability;
                         data.create_probability = ItemAllCreateProbability;
@@ -113,6 +116,32 @@ public class DataManager {
                     SkillManager.Instance.Initialize(node.ChildNodes);
                 }
             }
+
+            else if (xmlName == "Character")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new CharData(child);
+                        CharDataDic.Add(data.id, data);
+                    }
+                }
+            }
+            else if (xmlName == "Background")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new BackgroundData(child);
+                        BackGroundDataDic.Add(data.id, data);
+                    }
+                }
+            }
+
+            
+
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);
             yield return null;
         }

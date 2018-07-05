@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Char id = "1" name="CHAR_NAME_1" desc="CHAR_DESC_1" cost="10" icon="character_a_selected" skill=""/>
+	<Char id = "2" name="CHAR_NAME_2" desc="CHAR_DESC_2" cost="102" icon="character_b_selected" skill=""/>
+	<Char id = "3" name="CHAR_NAME_3" desc="CHAR_DESC_3" cost="130" icon="character_c_selected" skill=""/>
+	<Char id = "4" name="CHAR_NAME_4" desc="CHAR_DESC_4" cost="230" icon="character_d_selected" skill=""/>
+</Datas>

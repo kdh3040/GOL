@@ -21,11 +21,13 @@ public class PopupMsg : PopupUI
         public PopupData(string msg)
         {
             Msg = msg;
+            MsgPopupType = MSG_POPUP_TYPE.OK;
         }
 
         public PopupData(string msg, UnityAction yesAction, UnityAction noAction)
         {
             Msg = msg;
+            MsgPopupType = MSG_POPUP_TYPE.YES_NO;
             YesAction = yesAction;
             NoAction = noAction;
         }
@@ -43,30 +45,41 @@ public class PopupMsg : PopupUI
 
     public Text Msg;
     public Button OkButton;
+    public Button BackgroundButton;
+
+    private PopupData mPopupData;
 
     void Awake()
     {
         OkButton.onClick.AddListener(OnClickOk);
+        BackgroundButton.onClick.AddListener(()=> { PopupManager.Instance.DismissPopup(); });
+        YesButton.onClick.AddListener(OnClickYes);
+        NoButton.onClick.AddListener(OnClickNo);
     }
 
     public override void ShowPopup(PopupUIData data)
     {
-        var popupData = data as PopupData;
-        Msg.text = popupData.Msg;
+        mPopupData = data as PopupData;
+        Msg.text = mPopupData.Msg;
 
-        OkButton.gameObject.SetActive(popupData.MsgPopupType == MSG_POPUP_TYPE.OK);
-        YesButton.gameObject.SetActive(popupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
-        NoButton.gameObject.SetActive(popupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
-
-        if(popupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO)
-        {
-            YesButton.onClick.AddListener(popupData.YesAction);
-            NoButton.onClick.AddListener(popupData.NoAction);
-        }
+        OkButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.OK);
+        YesButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
+        NoButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
     }
 
     private void OnClickOk()
     {
         PopupManager.Instance.DismissPopup();
+    }
+
+    private void OnClickYes()
+    {
+        if (mPopupData.YesAction != null)
+            mPopupData.YesAction();
+    }
+    private void OnClickNo()
+    {
+        if (mPopupData.NoAction != null)
+            mPopupData.NoAction();
     }
 }

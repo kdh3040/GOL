@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Doors>
-	<Door id = "1" Img="501door"/>
-	<Door id = "2" Img="502door"/>
-	<Door id = "3" Img="503door"/>
+	<Door id = "1" name="DOOR_NAME_1" desc="DOOR_DESC_1" cost="10" icon="door_a" img="501door"/>
+	<Door id = "2" name="DOOR_NAME_2" desc="DOOR_DESC_2" cost="30" icon="door_b" img="502door"/>
+	<Door id = "3" name="DOOR_NAME_3" desc="DOOR_DESC_3" cost="40" icon="door_c" img="503door"/>
 </Doors>

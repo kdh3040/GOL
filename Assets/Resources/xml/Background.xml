@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Background id = "1" name="BG_NAME_1" desc="BG_DESC_1" cost="10" icon="bg_a_selected"/>
+	<Background id = "2" name="BG_NAME_2" desc="BG_DESC_2" cost="30" icon="bg_b_selected"/>
+	<Background id = "3" name="BG_NAME_3" desc="BG_DESC_3" cost="40" icon="bg_c_selected"/>
+	<Background id = "4" name="BG_NAME_4" desc="BG_DESC_4" cost="40" icon="bg_d_selected"/>
+</Datas>
