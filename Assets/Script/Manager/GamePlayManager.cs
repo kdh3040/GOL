@@ -130,7 +130,7 @@ public class GamePlayManager : MonoBehaviour
                 continue;
             }
 
-            var time = Time.deltaTime;
+            var time = Time.fixedDeltaTime;
 
             if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
             {
