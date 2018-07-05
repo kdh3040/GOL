@@ -19,8 +19,8 @@ public class PageGameUI : MonoBehaviour
 
     void Awake()
     {
-        mItemRightButton.onClick.AddListener(OnClickItemLeft);
-        mItemLeftButton.onClick.AddListener(OnClickItemRight);
+        mItemRightButton.onClick.AddListener(OnClickItemRight);
+        mItemLeftButton.onClick.AddListener(OnClickItemLeft);
     }
 
     public void ResetUI()
@@ -41,19 +41,6 @@ public class PageGameUI : MonoBehaviour
         {
             int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-            mItemRightImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
-            mItemRightImg.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            mItemRightImg.color = new Color(1, 1, 1, 0);
-            mItemRightImg.sprite = null;
-        }
-
-        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
-        {
-            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
-            var itemData = DataManager.Instance.ItemDataDic[itemId];
             mItemLeftImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
             mItemLeftImg.color = new Color(1, 1, 1, 1);
         }
@@ -61,6 +48,19 @@ public class PageGameUI : MonoBehaviour
         {
             mItemLeftImg.color = new Color(1, 1, 1, 0);
             mItemLeftImg.sprite = null;
+        }
+
+        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
+        {
+            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
+            var itemData = DataManager.Instance.ItemDataDic[itemId];
+            mItemRightImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemRightImg.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            mItemRightImg.color = new Color(1, 1, 1, 0);
+            mItemRightImg.sprite = null;
         }
     }
 
