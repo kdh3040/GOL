@@ -23,12 +23,10 @@ public class DataManager {
     public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
     public Dictionary<int, CharData> CharDataDic = new Dictionary<int, CharData>();
     public Dictionary<int, BackgroundData> BackGroundDataDic = new Dictionary<int, BackgroundData>();
+    public List<NoteCreateData> NoteCreateDataList = new List<NoteCreateData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
-    public List<ItemData> ItemDataList_CreateProbability = new List<ItemData>();
-    public int ItemAllCreateProbability = 0;
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
-
 
     public IEnumerator LoadingData(Text loadingCount)
     {
@@ -42,7 +40,8 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Skill", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Character", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
-            
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("NoteCreate", "Datas"));
+
         }
 
         for (int i = 0; i < LoadingDataXmlList.Count; i++)
@@ -95,19 +94,8 @@ public class DataManager {
                     {
                         var data = new ItemData(child);
                         ItemDataDic.Add(data.id, data);
-                        ItemDataList_CreateProbability.Add(data);
-                        ItemAllCreateProbability += data.create_probability;
-                        data.create_probability = ItemAllCreateProbability;
                     }
                 }
-
-                ItemDataList_CreateProbability.Sort(delegate (ItemData A, ItemData B)
-                {
-                    if (A.id < B.id)
-                        return -1;
-                    else
-                        return 1;
-                });
             }
             else if (xmlName == "Skill")
             {
@@ -139,8 +127,25 @@ public class DataManager {
                     }
                 }
             }
+            else if (xmlName == "NoteCreate")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new NoteCreateData(child);
+                        NoteCreateDataList.Add(data);
+                    }
+                }
 
-            
+                NoteCreateDataList.Sort(delegate (NoteCreateData A, NoteCreateData B)
+                {
+                    if (A.time < B.time)
+                        return -1;
+                    else
+                        return 1;
+                });
+            }
 
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);
             yield return null;

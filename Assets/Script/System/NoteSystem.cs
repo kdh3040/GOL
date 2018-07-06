@@ -6,8 +6,15 @@ public class NoteSystem
 {
     private Dictionary<CommonData.NOTE_LINE, Transform[]> NoteLineDic = new Dictionary<CommonData.NOTE_LINE, Transform[]>();
     private Dictionary<CommonData.NOTE_LINE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_LINE, List<Note>>();
+    private List<KeyValuePair<int, int>> NoteCreatePercentList = new List<KeyValuePair<int, int>>();
+    private List<KeyValuePair<int, int>> NoteItemCreatePercentList = new List<KeyValuePair<int, int>>();
+    private float NoteCreateTime = 0;
+    private int NoteCreateDataIndex = 0;
+    private int AllNoteCreatePercent = 0;
+    private int AllNoteItemCreatePercent = 0;
     private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
+    private float AllPlayTime = 0;
     public float AccumulateCreateNoteCount
     {
         get;
@@ -20,8 +27,7 @@ public class NoteSystem
     }
 
     public void Initialize(PlayScene scene)
-    {
-        ResetNote();
+    { 
         NoteLineDic.Clear();
         NoteLineDic.Add(CommonData.NOTE_LINE.INDEX_1, new Transform[2]);
         NoteLineDic.Add(CommonData.NOTE_LINE.INDEX_2, new Transform[2]);
@@ -34,33 +40,56 @@ public class NoteSystem
         NoteLineDic[CommonData.NOTE_LINE.INDEX_3][1] = scene.NoteEndPos_3;
     }
 
-
-    public void ResetNote()
+    private void ResetSystem()
     {
+        NoteAllDelete();
         AccumulateCreateNoteCount = 0;
         NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
-        AllDelete();
+        AllPlayTime = 0;
+        AllNoteCreatePercent = 0;
+        NoteCreateTime = 0;
+        NoteCreateDataIndex = 0;
+        NoteCreatePercentList.Clear();
     }
 
-    public void AllDelete()
+    public void GameStart()
     {
-        var enumerator = NoteList.GetEnumerator();
-        while (enumerator.MoveNext())
+        ResetSystem();
+
+        if (NoteItemCreatePercentList.Count <= 0)
         {
-            for (int index = enumerator.Current.Value.Count - 1; index >= 0; --index)
+            var itemEnumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
+            while (itemEnumerator.MoveNext())
             {
-                DeleteNote(enumerator.Current.Value[index], false);
+                var data = itemEnumerator.Current;
+                AllNoteItemCreatePercent += data.Value.create_probability;
+                NoteItemCreatePercentList.Add(new KeyValuePair<int, int>(data.Key, AllNoteItemCreatePercent));
             }
 
-            enumerator.Current.Value.Clear();
+            NoteItemCreatePercentList.Sort(delegate (KeyValuePair<int, int> A, KeyValuePair<int, int> B)
+            {
+                if (A.Value > B.Value)
+                    return 1;
+                else
+                    return -1;
+            });
         }
+    }
 
-        DeleteReadyNoteList.Clear();
+    public void GameRestart()
+    {
+        ResetSystem();
+    }
+
+    public void GameExit()
+    {
+        ResetSystem();
     }
 
     public void NoteUpdate(float time)
     {
         SaveTime += time;
+        AllPlayTime += time;
 
         // TODO 환웅 : 노트 생성의 시스템화가 필요
         if (SaveTime > ConfigData.Instance.NOTE_CREATE_INTERVAL)
@@ -117,16 +146,33 @@ public class NoteSystem
 
         for (int i = 0; i < DeleteReadyNoteList.Count; i++)
         {
-            DeleteNote(DeleteReadyNoteList[i], false);
+            NoteDelete(DeleteReadyNoteList[i], false);
         }
         DeleteReadyNoteList.Clear();
     }
 
-    public void DeleteCheckNote(Door door)
+    private void NoteAllDelete()
+    {
+        var enumerator = NoteList.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            for (int index = enumerator.Current.Value.Count - 1; index >= 0; --index)
+            {
+                NoteDelete(enumerator.Current.Value[index], false);
+            }
+
+            enumerator.Current.Value.Clear();
+        }
+
+        DeleteReadyNoteList.Clear();
+    }
+
+    public bool NoteDeleteCheck(Door door)
     {
         if (NoteList.ContainsKey(door.NoteLineType) == false)
-            return;
+            return false;
 
+        bool deleteEnable = false;
         var list = NoteList[door.NoteLineType];
         for (int index = list.Count - 1; index >= 0; --index)
         {
@@ -136,17 +182,21 @@ public class NoteSystem
             // TODO 환웅 : 노트의 충돌처리에 대한 시스템화가 필요
             if (distance < 1.0f)
             {
-                DeleteNote(list[index]);
+                var note = list[index];
+                NoteDelete(note);
+                deleteEnable = true;
             }
         }
+
+        return deleteEnable;
     }
 
-    public void AddDeleteReadyNote(Note note)
+    public void NoteDeleteReady(Note note)
     {
         DeleteReadyNoteList.Add(note);
     }
 
-    public void DeleteNote(Note note, bool score = true)
+    private void NoteDelete(Note note, bool score = true)
     {
         var type = note.NoteLineType;
         if (NoteList.ContainsKey(type))
@@ -156,11 +206,11 @@ public class NoteSystem
             GamePlayManager.Instance.DeleteNote(note, score);
         }
     }
-    public void CreateNormalNote(CommonData.NOTE_LINE type)
+    private void CreateNormalNote(CommonData.NOTE_LINE type)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
         var note = GamePlayManager.Instance.CreateNote("Prefab/NoteNormal") as NoteNormal;
-        note.SetNoteNormalData(type, NoteLineDic[type],  Random.Range(1, DataManager.Instance.NoteDataDic.Count));
+        note.SetNoteNormalData(type, NoteLineDic[type], PickItemNoteId());
         if (NoteList.ContainsKey(type) == false)
             NoteList.Add(type, new List<Note>());
 
@@ -169,7 +219,7 @@ public class NoteSystem
         UpdateNoteSpeed();
     }
 
-    public void CreateItemNote(CommonData.NOTE_LINE type, int itemId)
+    private void CreateItemNote(CommonData.NOTE_LINE type, int itemId)
     {
         // TODO 환웅 : 오브젝트 풀 추가 예정
         var note = GamePlayManager.Instance.CreateNote("Prefab/NoteItem") as NoteItem;
@@ -182,12 +232,7 @@ public class NoteSystem
         UpdateNoteSpeed();
     }
 
-    public Transform[] GetNoteTypeStartEndPos(CommonData.NOTE_LINE type)
-    {
-        return NoteLineDic[type];
-    }
-
-    public void UpdateNoteSpeed()
+    private void UpdateNoteSpeed()
     {
         if ((AccumulateCreateNoteCount % 3) == 0)
         {
@@ -195,21 +240,48 @@ public class NoteSystem
         }
     }
 
-    public int PickItemNoteId()
+    private int PickNoteId()
     {
-        var list = DataManager.Instance.ItemDataList_CreateProbability;
-        int value = Random.Range(0, DataManager.Instance.ItemAllCreateProbability);
-        int returnValueId = 0;
-        for (int i = 0; i < list.Count; i++)
+        if (NoteCreateTime < AllPlayTime && DataManager.Instance.NoteCreateDataList.Count - 1 >= NoteCreateDataIndex)
         {
-            if ((i == 0 && value <= list[i].create_probability) ||
-                (i > 0 && value > list[i - 1].create_probability && value <= list[i].create_probability))
+            var data = DataManager.Instance.NoteCreateDataList[NoteCreateDataIndex];
+            NoteCreateTime = data.time;
+            for (int i = 0; i < data.noteCreateList.Count; i++)
             {
-                returnValueId = list[i].id;
-                break;
+                AllNoteCreatePercent += data.noteCreateList[i].Value;
+                NoteCreatePercentList.Add(new KeyValuePair<int, int>(data.noteCreateList[i].Key, AllNoteCreatePercent));
             }
+            NoteCreateDataIndex += 1;
+            NoteCreatePercentList.Sort(delegate (KeyValuePair<int, int> A, KeyValuePair<int, int> B)
+            {
+                if (A.Value < B.Value)
+                    return -1;
+                else
+                    return 1;
+            });
         }
 
-        return returnValueId;
+        var list = NoteCreatePercentList;
+        int value = Random.Range(0, AllNoteCreatePercent);
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (value < list[i].Value)
+                return list[i].Key;
+        }
+
+        return 0;
+    }
+
+    private int PickItemNoteId()
+    {
+        var list = NoteItemCreatePercentList;
+        int value = Random.Range(0, AllNoteItemCreatePercent);
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (value < list[i].Value)
+                return list[i].Key;
+        }
+
+        return 0;
     }
 }
