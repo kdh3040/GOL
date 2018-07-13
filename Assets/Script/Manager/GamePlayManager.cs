@@ -69,7 +69,6 @@ public class GamePlayManager : MonoBehaviour
         StopAllCoroutines();
         Score = 0;
         mIsGamePause = false;
-        mNoteSystem.ResetNote();
         mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
@@ -77,10 +76,12 @@ public class GamePlayManager : MonoBehaviour
     public void GameExit()
     {
         ResetGame();
+        mNoteSystem.GameExit();
     }
     public void GameStart()
-    { 
+    {
         ResetGame();
+        mNoteSystem.GameStart();
         UseGameShieldItem();
         StartCoroutine(UpdateGamePlay());  
     }
@@ -88,6 +89,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRestart()
     {
         ResetGame();
+        mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
     }
 
@@ -130,8 +132,23 @@ public class GamePlayManager : MonoBehaviour
                 continue;
             }
 
-            var time = Time.deltaTime;
-            mNoteSystem.NoteUpdate(time);
+            var time = Time.fixedDeltaTime;
+
+            if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
+            {
+                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_SpeedDown;
+                if (skill != null)
+                {
+                    mNoteSystem.NoteUpdate(skill.ConvertSpeed(time));
+                }
+            }
+            else
+            {
+                mNoteSystem.NoteUpdate(time);
+            }
+
+
+            
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
 
@@ -153,9 +170,9 @@ public class GamePlayManager : MonoBehaviour
 
     public void DeleteNote(Note note, bool score = true)
     {
-        if (score)
+        if(score)
         {
-            if(note.NoteType == CommonData.NOTE_TYPE.NORMAL)
+            if (note.NoteType == CommonData.NOTE_TYPE.NORMAL)
             {
                 var noteNormal = note as NoteNormal;
                 int defaultScore = DataManager.Instance.NoteDataDic[noteNormal.Id].Score;
@@ -165,15 +182,16 @@ public class GamePlayManager : MonoBehaviour
             {
                 var noteItem = note as NoteItem;
                 PlusItem(noteItem.Id);
-            }  
+            }
         }
+        
 
         DestroyImmediate(note.gameObject);
     }
 
     public void AddDeleteReadyNote(Note note)
     {
-        mNoteSystem.AddDeleteReadyNote(note);
+        mNoteSystem.NoteDeleteReady(note);
     }
 
     public Door CreateDoor(Transform pos)
@@ -191,7 +209,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void ClickDoor(Door door)
     {
-        mNoteSystem.DeleteCheckNote(door);
+        mNoteSystem.NoteDeleteCheck(door);
         // 라인타입
         PlayerChar.Instance.ActionDoorClose(door);
     }

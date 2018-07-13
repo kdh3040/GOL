@@ -27,6 +27,7 @@ public class PopupManager : MonoBehaviour {
 
     private Dictionary<POPUP_TYPE, PopupUI> mPopupUIList = new Dictionary<POPUP_TYPE, PopupUI>();
     private PopupUI mShowPopup = null;
+    private List<PopupUI> mShowPopupList = new List<PopupUI>();
     public GameObject PopupRoot;
 
     private void Start()
@@ -47,14 +48,21 @@ public class PopupManager : MonoBehaviour {
         popup.gameObject.SetActive(true);
         popup.ShowPopup(data);
         mShowPopup = popup;
+        mShowPopupList.Add(popup);
     }
 
     public void DismissPopup()
     {
         if(mShowPopup != null)
         {
+            mShowPopupList.Remove(mShowPopup);
+
             mShowPopup.gameObject.SetActive(false);
             mShowPopup.DismissPopup();
+            if (mShowPopupList.Count > 0)
+                mShowPopup = mShowPopupList[mShowPopupList.Count - 1];
+            else
+                mShowPopup = null;
         }
     }
 }

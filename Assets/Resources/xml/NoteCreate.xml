@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<NoteCreate id="1" time="10" note_1="1" note_1_percent="1000" note_2="2" note_2_percent="1000" note_3="3" note_3_percent="1000" note_4="0" note_4_percent="0" note_5="0" note_5_percent="0"/>
+	<NoteCreate id="2" time="20" note_1="4" note_1_percent="1000" note_2="0" note_2_percent="0" note_3="0" note_3_percent="0" note_4="0" note_4_percent="0" note_5="0" note_5_percent="0"/>
+	<NoteCreate id="3" time="30" note_1="5" note_1_percent="1000" note_2="6" note_2_percent="1000" note_3="7" note_3_percent="1000" note_4="8" note_4_percent="1000" note_5="9" note_5_percent="1000"/>
+</Datas>
