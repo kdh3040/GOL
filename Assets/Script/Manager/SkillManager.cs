@@ -33,25 +33,15 @@ public class SkillManager
         COUNT
     }
 
-
-    public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     private Dictionary<SKILL_TYPE, List<GameSkill>> mUseSkillList = new Dictionary<SKILL_TYPE, List<GameSkill>>();
 
-    public void Initialize(XmlNodeList list)
-    {
-        foreach (XmlNode node in list)
-        {
-            var data = new SkillData(node);
-            SkillDataList.Add(data.name, data);
-        }
-    }
     public void ResetGame()
     {
         mUseSkillList.Clear();
     }
     public GameSkill AddUseSkill(string skillName)
     {
-        SkillData skillData = SkillDataList[skillName];
+        SkillData skillData = DataManager.Instance.SkillDataList[skillName];
         SKILL_TYPE skillType = ConvertSkillType(skillData.skilltype);
         SKILL_CHECK_TYPE skillCheckType = ConvertSkillCheckType(skillData.checktype);
         GameSkill data = null;
@@ -200,7 +190,12 @@ public class SkillManager
 
     public string GetSkillDesc(string skillName)
     {
-        SkillData skillData = SkillDataList[skillName];
+        SkillData skillData = DataManager.Instance.SkillDataList[skillName];
         return LocalizeData.Instance.GetLocalizeString(skillData.desc);
+    }
+
+    public SkillData GetSkillData(string skillName)
+    {
+        return DataManager.Instance.SkillDataList[skillName];
     }
 }

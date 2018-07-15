@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class PlayerData
 {
+    public static PlayerData _instance = null;
+    public static PlayerData Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new PlayerData();
+            }
+            return _instance;
+        }
+    }
+
     public Dictionary<CommonData.NOTE_LINE, int> DoorIndexId = new Dictionary<CommonData.NOTE_LINE, int>();
     public Dictionary<int, int> HaveItemDic = new Dictionary<int, int>();
+    public Dictionary<int, int> HaveItemLevelDic = new Dictionary<int, int>();
     public Dictionary<int, bool> HaveCharDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveDoorDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveBGDic = new Dictionary<int, bool>();

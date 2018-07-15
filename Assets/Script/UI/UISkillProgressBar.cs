@@ -17,8 +17,7 @@ public class UISkillProgressBar : MonoBehaviour {
     {
         mItemId = itemId;
         mSkillType = skillType;
-        var itemData = DataManager.Instance.ItemDataDic[itemId];
-        Icon.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+        Icon.sprite = ItemManager.Instance.GetItemIcon(itemId);
     }
 
     public void UpdateSkillProgress()

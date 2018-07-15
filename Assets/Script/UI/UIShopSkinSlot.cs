@@ -93,11 +93,11 @@ public class UIShopSkinSlot : MonoBehaviour
         switch (mSkinType)
         {
             case PopupGameShop.TAB_TYPE.CHAR:
-                return mSkinData.id == GManager.Instance.mPlayerData.UseCharId;
+                return mSkinData.id == PlayerData.Instance.UseCharId;
             case PopupGameShop.TAB_TYPE.DOOR:
-                return mSkinData.id == GManager.Instance.mPlayerData.UseDoorId;
+                return mSkinData.id == PlayerData.Instance.UseDoorId;
             case PopupGameShop.TAB_TYPE.BG:
-                return mSkinData.id == GManager.Instance.mPlayerData.UseBGId;
+                return mSkinData.id == PlayerData.Instance.UseBGId;
             default:
                 break;
         }
@@ -110,11 +110,11 @@ public class UIShopSkinSlot : MonoBehaviour
         switch (mSkinType)
         {
             case PopupGameShop.TAB_TYPE.CHAR:
-                return GManager.Instance.mPlayerData.IsHasChar(mSkinData.id);
+                return PlayerData.Instance.IsHasChar(mSkinData.id);
             case PopupGameShop.TAB_TYPE.DOOR:
-                return GManager.Instance.mPlayerData.IsHasDoor(mSkinData.id);
+                return PlayerData.Instance.IsHasDoor(mSkinData.id);
             case PopupGameShop.TAB_TYPE.BG:
-                return GManager.Instance.mPlayerData.IsHasBG(mSkinData.id);
+                return PlayerData.Instance.IsHasBG(mSkinData.id);
                 break;
             default:
                 break;

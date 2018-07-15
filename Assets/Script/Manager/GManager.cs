@@ -24,8 +24,7 @@ public class GManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        mPlayerData.Initialize();
-
+        PlayerData.Instance.Initialize();
         StartCoroutine(UpdateGame());
     }
 
@@ -34,7 +33,7 @@ public class GManager : MonoBehaviour
         while (true)
         {
             var time = Time.deltaTime;
-            mPlayerData.UpdatePlayerData(time);
+            PlayerData.Instance.UpdatePlayerData(time);
             yield return null;
         }
     }

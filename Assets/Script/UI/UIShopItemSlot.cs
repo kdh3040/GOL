@@ -15,14 +15,14 @@ public class UIShopItemSlot : MonoBehaviour {
 
     public void SetItem(int itemId)
     {
-        mItemData = DataManager.Instance.ItemDataDic[itemId];
-        ItemIcon.sprite = (Sprite)Resources.Load(mItemData.icon, typeof(Sprite));
+        mItemData = ItemManager.Instance.GetItemData(itemId);
+        ItemIcon.sprite = ItemManager.Instance.GetItemIcon(itemId);
         RefreshUI();
     }
 
     public void RefreshUI()
     {
-        Count.text = CommonFunc.ConvertNumber(GManager.Instance.mPlayerData.GetHaveItem(mItemData.id));
+        Count.text = CommonFunc.ConvertNumber(PlayerData.Instance.GetHaveItem(mItemData.id));
     }
 
     public void SetSelect(bool enable)

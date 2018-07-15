@@ -25,6 +25,7 @@ public class DataManager {
     public Dictionary<int, BackgroundData> BackGroundDataDic = new Dictionary<int, BackgroundData>();
     public List<NoteCreateData> NoteCreateDataList = new List<NoteCreateData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
+    public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -101,7 +102,11 @@ public class DataManager {
             {
                 foreach (XmlNode node in list)
                 {
-                    SkillManager.Instance.Initialize(node.ChildNodes);
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new SkillData(child);
+                        SkillDataList.Add(data.name, data);
+                    }
                 }
             }
 

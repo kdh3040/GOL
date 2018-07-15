@@ -40,8 +40,7 @@ public class PageGameUI : MonoBehaviour
         if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT] != 0)
         {
             int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
-            var itemData = DataManager.Instance.ItemDataDic[itemId];
-            mItemLeftImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemLeftImg.sprite = ItemManager.Instance.GetItemIcon(itemId);
             mItemLeftImg.color = new Color(1, 1, 1, 1);
         }
         else
@@ -53,8 +52,7 @@ public class PageGameUI : MonoBehaviour
         if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
         {
             int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
-            var itemData = DataManager.Instance.ItemDataDic[itemId];
-            mItemRightImg.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            mItemRightImg.sprite = ItemManager.Instance.GetItemIcon(itemId);
             mItemRightImg.color = new Color(1, 1, 1, 1);
         }
         else

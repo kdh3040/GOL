@@ -14,7 +14,7 @@ public class NoteItem : Note
         NoteLineType = type;
         NoteType = CommonData.NOTE_TYPE.ITEM;
         Id = id;
-        data = DataManager.Instance.ItemDataDic[id];
+        data = ItemManager.Instance.GetItemData(id);
         StartPos = pos[0];
         EndPos = pos[1];
         gameObject.transform.position = StartPos.position;
