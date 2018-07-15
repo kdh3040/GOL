@@ -198,4 +198,9 @@ public class SkillManager
     {
         return DataManager.Instance.SkillDataList[skillName];
     }
+    
+    public bool IsSkillData(string skillName)
+    {
+        return DataManager.Instance.SkillDataList.ContainsKey(skillName);
+    }
 }

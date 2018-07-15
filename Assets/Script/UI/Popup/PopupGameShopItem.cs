@@ -69,6 +69,8 @@ public class PopupGameShopItem : MonoBehaviour {
 
         OnClickItemSlot(ItemList[0].mItemData.id);
         MyItemSlotUI();
+        RefreshItemSlot();
+        RefreshBottomButton();
     }
 
     public void MyItemSlotUI()
@@ -114,6 +116,14 @@ public class PopupGameShopItem : MonoBehaviour {
         }
     }
 
+    public void RefreshBottomButton()
+    {
+        if(ItemManager.Instance.IsItemLevelUp(SelectItemId))
+            ItemUpgrade.gameObject.SetActive(true);
+        else
+            ItemUpgrade.gameObject.SetActive(false);
+    }
+
     public void OnClickItemSlot(int itemId)
     {
         for (int i = 0; i < ItemList.Count; i++)
@@ -127,6 +137,7 @@ public class PopupGameShopItem : MonoBehaviour {
         SelectItemId = itemId;
         var skillName = ItemManager.Instance.GetItemSkill(SelectItemId);
         ItemDesc.text = SkillManager.Instance.GetSkillDesc(skillName);
+        RefreshBottomButton();
     }
     public void OnClickMyItemSlot(int index)
     {
@@ -204,7 +215,22 @@ public class PopupGameShopItem : MonoBehaviour {
     }
     public void OnClickItemUpgrade()
     {
-        var msgPopupData = new PopupMsg.PopupData("임시 강화 버튼 입니다.");
+        var itemData = ItemManager.Instance.GetItemData(SelectItemId);
+        UnityAction yesAction = () =>
+        {
+            PopupManager.Instance.DismissPopup();
+            if (CommonFunc.UseCoin(itemData.levelup_cost))
+            {
+                ItemManager.Instance.ItemLevelUp(SelectItemId);
+                RefreshItemSlot();
+                RefreshBottomButton();
+            }
+        };
+        UnityAction noAction = () =>
+        {
+            PopupManager.Instance.DismissPopup();
+        };
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("LEVELUP_ITEM"), yesAction, noAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 }

@@ -9,6 +9,7 @@ public class UIShopItemSlot : MonoBehaviour {
     public GameObject SelectImg;
     public Image ItemIcon;
     public Text Count;
+    public Text Level;
 
     [System.NonSerialized]
     public ItemData mItemData;
@@ -23,6 +24,7 @@ public class UIShopItemSlot : MonoBehaviour {
     public void RefreshUI()
     {
         Count.text = CommonFunc.ConvertNumber(PlayerData.Instance.GetHaveItem(mItemData.id));
+        Level.text = string.Format("{0}", PlayerData.Instance.ItemLevelDic[mItemData.id]);
     }
 
     public void SetSelect(bool enable)
