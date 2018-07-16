@@ -7,4 +7,6 @@
 	<CommonData id="NOTE_ITEM_CREATE_PERCENT" value="10.0"/>
 	<CommonData id="NOTE_ITEM_SCORE" value="100"/>
 	<CommonData id="MAX_USE_SHIELD_ITEM" value="2"/>
+	<CommonData id="MAX_DDONG_COUNT" value="5"/>
+	<CommonData id="DDONG_REFIL_TIME" value="300"/>
 </Datas>

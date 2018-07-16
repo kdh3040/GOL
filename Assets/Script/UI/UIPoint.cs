@@ -16,6 +16,8 @@ public class UIPoint : MonoBehaviour {
     public Image PointIcon;
     [System.NonSerialized]
     public POINT_TYPE mPointType;
+    [System.NonSerialized]
+    public int mTempSaveValue = 0;
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class UIPoint : MonoBehaviour {
 
     public void Initialize(POINT_TYPE type)
     {
+        mTempSaveValue = -1;
         mPointType = type;
 
         switch(mPointType)
@@ -35,10 +38,38 @@ public class UIPoint : MonoBehaviour {
                 CommonFunc.SetImageFile("market_gold", ref PointIcon);
                 break;
         }
+
+        UpdatePoint();
     }
-    public void SetPoint(int count)
+
+    public void UpdatePoint()
     {
-        PointText.text = CommonFunc.ConvertNumber(count);
+        switch (mPointType)
+        {
+            case POINT_TYPE.DDONG:
+                if (mTempSaveValue == PlayerData.Instance.Ddong)
+                    break;
+
+                if (PlayerData.Instance.Ddong > 0)
+                {
+                    mTempSaveValue = PlayerData.Instance.Ddong;
+                    PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.Ddong), CommonFunc.ConvertNumber(ConfigData.Instance.MAX_DDONG_COUNT));
+                }
+                else
+                {
+                    mTempSaveValue = -1;
+                    var time = PlayerData.Instance.DdongRefilTime - CommonFunc.GetCurrentTime();
+                    PointText.text = string.Format("{0}:{1}", time.Minutes, time.Seconds);
+                }
+                break;
+            case POINT_TYPE.COIN:
+                if (mTempSaveValue == PlayerData.Instance.Coin)
+                    break;
+
+                mTempSaveValue = PlayerData.Instance.Coin;
+                PointText.text = CommonFunc.ConvertNumber(PlayerData.Instance.Coin);
+                break;
+        }
     }
 
     public void OnClickCharge()

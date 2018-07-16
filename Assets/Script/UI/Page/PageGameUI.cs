@@ -121,7 +121,7 @@ public class PageGameUI : MonoBehaviour
     }
     public void GameOver()
     {
-        //PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END);
     }
 
     void Update()
