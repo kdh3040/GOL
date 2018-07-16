@@ -16,7 +16,7 @@ public abstract class GameSkill
 
     public GameSkill(string name)
     {
-        mSkillData = SkillManager.Instance.SkillDataList[name];
+        mSkillData = SkillManager.Instance.GetSkillData(name);
         mValue1 = mSkillData.value1;
         mValue2 = mSkillData.value2;
         mValue3 = mSkillData.value3;

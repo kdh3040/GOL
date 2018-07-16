@@ -69,30 +69,32 @@ public class PopupGameShopItem : MonoBehaviour {
 
         OnClickItemSlot(ItemList[0].mItemData.id);
         MyItemSlotUI();
+        RefreshItemSlot();
+        RefreshBottomButton();
     }
 
     public void MyItemSlotUI()
     {
-        var normalItemArr = GManager.Instance.mPlayerData.mNormalitemArr;
+        var normalItemArr = PlayerData.Instance.mNormalitemArr;
         for (int i = 0; i < normalItemArr.Length; i++)
         {
             if (normalItemArr[i] == 0 ||
-                GManager.Instance.mPlayerData.GetHaveItem(normalItemArr[i]) <= 0)
+                PlayerData.Instance.GetHaveItem(normalItemArr[i]) <= 0)
             {
-                GManager.Instance.mPlayerData.SetItemSlotId((CommonData.ITEM_SLOT_INDEX)i, 0);
+                PlayerData.Instance.SetItemSlotId((CommonData.ITEM_SLOT_INDEX)i, 0);
                 MyItemSlotBGLIst[i].sprite = (Sprite)Resources.Load("item_empty", typeof(Sprite));
                 MyItemSlotIconLIst[i].gameObject.SetActive(false);
             }
             else
             {
-                var itemData = DataManager.Instance.ItemDataDic[normalItemArr[i]];
+                var itemData = ItemManager.Instance.GetItemData(normalItemArr[i]);
                 MyItemSlotIconLIst[i].gameObject.SetActive(true);
                 MyItemSlotIconLIst[i].sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
                 MyItemSlotBGLIst[i].sprite = (Sprite)Resources.Load("item_slot", typeof(Sprite));
             }
         }
 
-        var shieldItmeId = GManager.Instance.mPlayerData.mShielditem;
+        var shieldItmeId = PlayerData.Instance.mShielditem;
         if (shieldItmeId == 0)
         {
             MyShieldItemSlotIcon.gameObject.SetActive(false);
@@ -101,9 +103,8 @@ public class PopupGameShopItem : MonoBehaviour {
         else
         {
             MyShieldItemSlotBG.sprite = (Sprite)Resources.Load("shield_slot", typeof(Sprite));
-            var itemData = DataManager.Instance.ItemDataDic[shieldItmeId];
             MyShieldItemSlotIcon.gameObject.SetActive(true);
-            MyShieldItemSlotIcon.sprite = (Sprite)Resources.Load(itemData.icon, typeof(Sprite));
+            MyShieldItemSlotIcon.sprite = ItemManager.Instance.GetItemIcon(shieldItmeId);
         }
     }
 
@@ -113,6 +114,14 @@ public class PopupGameShopItem : MonoBehaviour {
         {
             ItemList[i].RefreshUI();
         }
+    }
+
+    public void RefreshBottomButton()
+    {
+        if(ItemManager.Instance.IsItemLevelUp(SelectItemId))
+            ItemUpgrade.gameObject.SetActive(true);
+        else
+            ItemUpgrade.gameObject.SetActive(false);
     }
 
     public void OnClickItemSlot(int itemId)
@@ -126,31 +135,32 @@ public class PopupGameShopItem : MonoBehaviour {
         }
 
         SelectItemId = itemId;
-        var itemData = DataManager.Instance.ItemDataDic[SelectItemId];
-        ItemDesc.text = SkillManager.Instance.GetSkillDesc(itemData.skill);
+        var skillName = ItemManager.Instance.GetItemSkill(SelectItemId);
+        ItemDesc.text = SkillManager.Instance.GetSkillDesc(skillName);
+        RefreshBottomButton();
     }
     public void OnClickMyItemSlot(int index)
     {
-        if (GManager.Instance.mPlayerData.mNormalitemArr[index] != 0)
+        if (PlayerData.Instance.mNormalitemArr[index] != 0)
         {
-            GManager.Instance.mPlayerData.SetItemSlotId((CommonData.ITEM_SLOT_INDEX)index, 0);
+            PlayerData.Instance.SetItemSlotId((CommonData.ITEM_SLOT_INDEX)index, 0);
             MyItemSlotUI();
         }
     }
     public void OnClickMyShieldItemSlot()
     {
-        GManager.Instance.mPlayerData.mShielditem = 0;
+        PlayerData.Instance.mShielditem = 0;
         MyItemSlotUI();
     }
     public void OnClickItemBuy()
     {
-        var itemData = DataManager.Instance.ItemDataDic[SelectItemId];
+        var itemData = ItemManager.Instance.GetItemData(SelectItemId);
         UnityAction yesAction = () =>
         {
             PopupManager.Instance.DismissPopup();
             if (CommonFunc.UseCoin(itemData.cost))
             {
-                GManager.Instance.mPlayerData.AddItem(SelectItemId);
+                PlayerData.Instance.AddItem(SelectItemId);
                 RefreshItemSlot();
             }
         };
@@ -165,12 +175,12 @@ public class PopupGameShopItem : MonoBehaviour {
     public void OnClickItemEquip()
     {
         bool equipEnable = false;
-        var itemData = DataManager.Instance.ItemDataDic[SelectItemId];
-        if(GManager.Instance.mPlayerData.GetHaveItem(SelectItemId) > 0)
+        var itemData = ItemManager.Instance.GetItemData(SelectItemId);
+        if(PlayerData.Instance.GetHaveItem(SelectItemId) > 0)
         {
             if (itemData.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
             {
-                var normalItemArr = GManager.Instance.mPlayerData.mNormalitemArr;
+                var normalItemArr = PlayerData.Instance.mNormalitemArr;
                 for (int i = 0; i < normalItemArr.Length; i++)
                 {
                     if (normalItemArr[i] == 0)
@@ -183,10 +193,10 @@ public class PopupGameShopItem : MonoBehaviour {
             }
             else
             {
-                if (GManager.Instance.mPlayerData.mShielditem == 0)
+                if (PlayerData.Instance.mShielditem == 0)
                 {
                     equipEnable = true;
-                    GManager.Instance.mPlayerData.mShielditem = SelectItemId;
+                    PlayerData.Instance.mShielditem = SelectItemId;
                 }
             }
             if (equipEnable)
@@ -205,7 +215,22 @@ public class PopupGameShopItem : MonoBehaviour {
     }
     public void OnClickItemUpgrade()
     {
-        var msgPopupData = new PopupMsg.PopupData("임시 강화 버튼 입니다.");
+        var itemData = ItemManager.Instance.GetItemData(SelectItemId);
+        UnityAction yesAction = () =>
+        {
+            PopupManager.Instance.DismissPopup();
+            if (CommonFunc.UseCoin(itemData.levelup_cost))
+            {
+                ItemManager.Instance.ItemLevelUp(SelectItemId);
+                RefreshItemSlot();
+                RefreshBottomButton();
+            }
+        };
+        UnityAction noAction = () =>
+        {
+            PopupManager.Instance.DismissPopup();
+        };
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("LEVELUP_ITEM"), yesAction, noAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 }

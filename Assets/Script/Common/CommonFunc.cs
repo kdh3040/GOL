@@ -13,6 +13,9 @@ public class CommonFunc
     static public void SetImageFile(string fileName, ref Image img)
     {
         var imgSprite = (Sprite)Resources.Load(fileName, typeof(Sprite));
+        if (imgSprite == null)
+            return;
+
         RectTransform rt = img.GetComponent<RectTransform>();
         rt.sizeDelta = imgSprite.rect.size;
         img.sprite = imgSprite;
@@ -20,7 +23,7 @@ public class CommonFunc
 
     static public bool IsEnoughCoin(int coin, bool showPopup = false)
     {
-        var myCoin = GManager.Instance.mPlayerData.Coin;
+        var myCoin = PlayerData.Instance.Coin;
 
         if (myCoin < coin)
         {
@@ -38,7 +41,7 @@ public class CommonFunc
     {
         if (IsEnoughCoin(coin, true))
         {
-            GManager.Instance.mPlayerData.SubCoin(coin);
+            PlayerData.Instance.SubCoin(coin);
             return true;
         }
 

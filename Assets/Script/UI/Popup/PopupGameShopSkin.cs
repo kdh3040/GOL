@@ -195,13 +195,13 @@ public class PopupGameShopSkin : MonoBehaviour {
                 switch (mSkinType)
                 {
                     case PopupGameShop.TAB_TYPE.CHAR:
-                        GManager.Instance.mPlayerData.AddChar(mSelectSkinId);
+                        PlayerData.Instance.AddChar(mSelectSkinId);
                         break;
                     case PopupGameShop.TAB_TYPE.DOOR:
-                        GManager.Instance.mPlayerData.AddDoor(mSelectSkinId);
+                        PlayerData.Instance.AddDoor(mSelectSkinId);
                         break;
                     case PopupGameShop.TAB_TYPE.BG:
-                        GManager.Instance.mPlayerData.AddBG(mSelectSkinId);
+                        PlayerData.Instance.AddBG(mSelectSkinId);
                         break;
                     default:
                         break;
@@ -223,13 +223,13 @@ public class PopupGameShopSkin : MonoBehaviour {
         switch (mSkinType)
         {
             case PopupGameShop.TAB_TYPE.CHAR:
-                GManager.Instance.mPlayerData.SetUseCharId(mSelectSkinId);
+                PlayerData.Instance.SetUseCharId(mSelectSkinId);
                 break;
             case PopupGameShop.TAB_TYPE.DOOR:
-                GManager.Instance.mPlayerData.SetUseDoorId(mSelectSkinId);
+                PlayerData.Instance.SetUseDoorId(mSelectSkinId);
                 break;
             case PopupGameShop.TAB_TYPE.BG:
-                GManager.Instance.mPlayerData.SetUseBGId(mSelectSkinId);
+                PlayerData.Instance.SetUseBGId(mSelectSkinId);
                 break;
             default:
                 break;

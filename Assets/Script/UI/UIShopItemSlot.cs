@@ -9,20 +9,22 @@ public class UIShopItemSlot : MonoBehaviour {
     public GameObject SelectImg;
     public Image ItemIcon;
     public Text Count;
+    public Text Level;
 
     [System.NonSerialized]
     public ItemData mItemData;
 
     public void SetItem(int itemId)
     {
-        mItemData = DataManager.Instance.ItemDataDic[itemId];
-        ItemIcon.sprite = (Sprite)Resources.Load(mItemData.icon, typeof(Sprite));
+        mItemData = ItemManager.Instance.GetItemData(itemId);
+        ItemIcon.sprite = ItemManager.Instance.GetItemIcon(itemId);
         RefreshUI();
     }
 
     public void RefreshUI()
     {
-        Count.text = CommonFunc.ConvertNumber(GManager.Instance.mPlayerData.GetHaveItem(mItemData.id));
+        Count.text = CommonFunc.ConvertNumber(PlayerData.Instance.GetHaveItem(mItemData.id));
+        Level.text = string.Format("{0}", PlayerData.Instance.ItemLevelDic[mItemData.id]);
     }
 
     public void SetSelect(bool enable)

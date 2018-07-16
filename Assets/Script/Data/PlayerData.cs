@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class PlayerData
 {
+    public static PlayerData _instance = null;
+    public static PlayerData Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new PlayerData();
+            }
+            return _instance;
+        }
+    }
+
     public Dictionary<CommonData.NOTE_LINE, int> DoorIndexId = new Dictionary<CommonData.NOTE_LINE, int>();
     public Dictionary<int, int> HaveItemDic = new Dictionary<int, int>();
+    public Dictionary<int, int> ItemLevelDic = new Dictionary<int, int>();
     public Dictionary<int, bool> HaveCharDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveDoorDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveBGDic = new Dictionary<int, bool>();
@@ -33,6 +47,11 @@ public class PlayerData
         HaveCharDic.Add(1, true);
         HaveDoorDic.Add(1, true);
         HaveBGDic.Add(1, true);
+
+        ItemLevelDic.Add(1, 1);
+        ItemLevelDic.Add(2, 1);
+        ItemLevelDic.Add(3, 1);
+        ItemLevelDic.Add(4, 1);
     }
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
@@ -65,6 +84,20 @@ public class PlayerData
     public void RemoveItem(int id)
     {
         HaveItemDic[id] -= 1;
+    }
+    public int GetItemLevel(int id)
+    {
+        if (ItemLevelDic.ContainsKey(id) == false)
+            return 1;
+        else
+            return ItemLevelDic[id];
+    }
+    public void ItemLevelUp(int id)
+    {
+        if (ItemLevelDic.ContainsKey(id) == false)
+            ItemLevelDic.Add(id, 1);
+        else
+            ItemLevelDic[id]++;
     }
     public void AddDdong(int value)
     {

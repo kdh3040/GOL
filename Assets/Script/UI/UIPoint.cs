@@ -46,10 +46,10 @@ public class UIPoint : MonoBehaviour {
         switch (mPointType)
         {
             case POINT_TYPE.DDONG:
-                GManager.Instance.mPlayerData.AddDdong(1);
+                PlayerData.Instance.AddDdong(1);
                 break;
             case POINT_TYPE.COIN:
-                GManager.Instance.mPlayerData.AddCoin(100);
+                PlayerData.Instance.AddCoin(100);
                 break;
         }
     }

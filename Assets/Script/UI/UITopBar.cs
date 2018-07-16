@@ -30,8 +30,8 @@ public class UITopBar : MonoBehaviour
 
         DdongPoint.Initialize(UIPoint.POINT_TYPE.DDONG);
         CoinPoint.Initialize(UIPoint.POINT_TYPE.COIN);
-        DdongPoint.SetPoint(GManager.Instance.mPlayerData.Ddong);
-        CoinPoint.SetPoint(GManager.Instance.mPlayerData.Coin);
+        DdongPoint.SetPoint(PlayerData.Instance.Ddong);
+        CoinPoint.SetPoint(PlayerData.Instance.Coin);
 
         StartCoroutine(UpdateTopBar());
     }
@@ -45,8 +45,8 @@ public class UITopBar : MonoBehaviour
     {
         while (true)
         {
-            CoinPoint.SetPoint(GManager.Instance.mPlayerData.Coin);
-            DdongPoint.SetPoint(GManager.Instance.mPlayerData.Ddong);
+            CoinPoint.SetPoint(PlayerData.Instance.Coin);
+            DdongPoint.SetPoint(PlayerData.Instance.Ddong);
             yield return null;
         }
     }

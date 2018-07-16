@@ -62,9 +62,9 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
-        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
-        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, GManager.Instance.mPlayerData.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
-        mShielditem = GManager.Instance.mPlayerData.mShielditem;
+        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
+        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
+        mShielditem = PlayerData.Instance.mShielditem;
 
         StopAllCoroutines();
         Score = 0;
@@ -232,7 +232,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlusItem(int id)
     {
-        var data = DataManager.Instance.ItemDataDic[id];
+        var data = ItemManager.Instance.GetItemData(id);
         bool itemAdd = false;
         if (data.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
@@ -280,8 +280,8 @@ public class GamePlayManager : MonoBehaviour
 
         SetGameNormalItemId(index, 0);
         // TODO 환웅
-        var itemData = DataManager.Instance.ItemDataDic[itemId];
-        var skill = SkillManager.Instance.AddUseSkill(itemData.skill);
+        var skillName = ItemManager.Instance.GetItemSkill(itemId);
+        var skill = SkillManager.Instance.AddUseSkill(skillName);
 
         mGameUIPage.UseItemSkill(itemId, skill);
     }
@@ -291,8 +291,8 @@ public class GamePlayManager : MonoBehaviour
         if (mShielditem == 0)
             return;
 
-        var itemData = DataManager.Instance.ItemDataDic[mShielditem];
-        SkillManager.Instance.AddUseSkill(itemData.skill);
+        var skillName = ItemManager.Instance.GetItemSkill(mShielditem);
+        SkillManager.Instance.AddUseSkill(skillName);
         mShielditem = 0;
         mGameUIPage.RefreshShieldItemUI();
     }
