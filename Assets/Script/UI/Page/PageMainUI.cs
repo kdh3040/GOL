@@ -48,7 +48,7 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGameBook()
     {
-        
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
     public void OnClickGameRank()
     {

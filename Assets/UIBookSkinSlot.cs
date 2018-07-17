@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIShopSkinSlot : MonoBehaviour
+public class UIBookSkinSlot : MonoBehaviour
 {
     public Button SlotButton;
     public GameObject SelectImg;
     public Image Icon;
-    public UICountImgFont Cost;
-    public GameObject UseIcon;
-    public GameObject HaveIcon;
-    public GameObject QuestionMark;
+    public GameObject NotHaveIcon;
 
     [System.NonSerialized]
     public CommonData.SKIN_TYPE mSkinType;
@@ -24,7 +21,7 @@ public class UIShopSkinSlot : MonoBehaviour
         mSkinType = type;
         mSkinData = null;
 
-        if(id != 0)
+        if (id != 0)
         {
             switch (mSkinType)
             {
@@ -34,75 +31,29 @@ public class UIShopSkinSlot : MonoBehaviour
                 case CommonData.SKIN_TYPE.DOOR:
                     mSkinData = DataManager.Instance.DoorDataDic[id];
                     break;
+                case CommonData.SKIN_TYPE.ENDING:
+                    break;
                 case CommonData.SKIN_TYPE.BACKGROUND:
                     mSkinData = DataManager.Instance.BackGroundDataDic[id];
                     break;
                 default:
                     break;
-            }
+            } 
         }
-        
 
         Initialize();
     }
 
     public void Initialize()
     {
-        if (mSkinData == null)
-        {
-            Icon.gameObject.SetActive(false);
-            SetSelect(false);
-            RefreshUI();
-        }
-        else
-        {
-            Icon.gameObject.SetActive(true);
-            Icon.sprite = (Sprite)Resources.Load(mSkinData.icon, typeof(Sprite));
-            RefreshUI();
-        }
+        CommonFunc.SetImageFile(mSkinData.icon, ref Icon);
+        SetSelect(false);
+        RefreshUI();
     }
 
     public void RefreshUI()
     {
-        UseIcon.SetActive(false);
-        HaveIcon.SetActive(false);
-        Cost.gameObject.SetActive(false);
-        QuestionMark.gameObject.SetActive(false);
-
-        if(mSkinData == null)
-        {
-            QuestionMark.gameObject.SetActive(true);
-        }
-        else if (IsSkinUse())
-        {
-            UseIcon.SetActive(true);
-        }
-        else if (IsSkinHave())
-        {
-            HaveIcon.SetActive(true);
-        }
-        else
-        {
-            Cost.gameObject.SetActive(true);
-            Cost.SetValue(mSkinData.cost, UICountImgFont.IMG_RANGE.CENTER);
-        }
-    }
-
-    private bool IsSkinUse()
-    {
-        switch (mSkinType)
-        {
-            case CommonData.SKIN_TYPE.CHAR:
-                return mSkinData.id == PlayerData.Instance.UseCharId;
-            case CommonData.SKIN_TYPE.DOOR:
-                return mSkinData.id == PlayerData.Instance.UseDoorId;
-            case CommonData.SKIN_TYPE.BACKGROUND:
-                return mSkinData.id == PlayerData.Instance.UseBGId;
-            default:
-                break;
-        }
-
-        return false;
+        NotHaveIcon.SetActive(!IsSkinHave());
     }
 
     private bool IsSkinHave()
@@ -113,6 +64,8 @@ public class UIShopSkinSlot : MonoBehaviour
                 return PlayerData.Instance.IsHasChar(mSkinData.id);
             case CommonData.SKIN_TYPE.DOOR:
                 return PlayerData.Instance.IsHasDoor(mSkinData.id);
+            case CommonData.SKIN_TYPE.ENDING:
+                break;
             case CommonData.SKIN_TYPE.BACKGROUND:
                 return PlayerData.Instance.IsHasBG(mSkinData.id);
             default:

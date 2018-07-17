@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PopupGameBook.cs" />
     <Compile Include="Assets\Script\Common\CommonData.cs" />
     <Compile Include="Assets\Script\Common\CommonFunc.cs" />
     <Compile Include="Assets\Script\Data\BackgroundData.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Assets\Script\Unit\NoteItem.cs" />
     <Compile Include="Assets\Script\Unit\NoteNormal.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
+    <Compile Include="Assets\UIBookSkinSlot.cs" />
     <None Include="Assets\Resources\xml\Character.xml" />
     <None Include="Assets\Resources\xml\Item.xml" />
     <None Include="Assets\Resources\xml\Localize.xml" />

@@ -4,4 +4,12 @@
 	<Char id = "2" name="CHAR_NAME_2" desc="CHAR_DESC_2" cost="102" icon="character_b_selected" skill=""/>
 	<Char id = "3" name="CHAR_NAME_3" desc="CHAR_DESC_3" cost="130" icon="character_c_selected" skill=""/>
 	<Char id = "4" name="CHAR_NAME_4" desc="CHAR_DESC_4" cost="230" icon="character_d_selected" skill=""/>
+	<Char id = "5" name="CHAR_NAME_5" desc="CHAR_DESC_1" cost="10" icon="character_a_selected" skill=""/>
+	<Char id = "6" name="CHAR_NAME_6" desc="CHAR_DESC_2" cost="102" icon="character_b_selected" skill=""/>
+	<Char id = "7" name="CHAR_NAME_7" desc="CHAR_DESC_3" cost="130" icon="character_c_selected" skill=""/>
+	<Char id = "8" name="CHAR_NAME_8" desc="CHAR_DESC_4" cost="230" icon="character_d_selected" skill=""/>
+	<Char id = "9" name="CHAR_NAME_9" desc="CHAR_DESC_1" cost="10" icon="character_a_selected" skill=""/>
+	<Char id = "10" name="CHAR_NAME_10" desc="CHAR_DESC_2" cost="102" icon="character_b_selected" skill=""/>
+	<Char id = "11" name="CHAR_NAME_11" desc="CHAR_DESC_3" cost="130" icon="character_c_selected" skill=""/>
+	<Char id = "12" name="CHAR_NAME_12" desc="CHAR_DESC_4" cost="230" icon="character_d_selected" skill=""/>
 </Datas>

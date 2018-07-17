@@ -22,6 +22,7 @@ public class PopupManager : MonoBehaviour {
         GAME_END,
         GAME_PAUSE,
         GAME_SHOP,
+        GAME_BOOK,
         MSG_POPUP,
     }
 

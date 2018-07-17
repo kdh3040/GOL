@@ -13,10 +13,10 @@ public class PopupGameShopSkin : MonoBehaviour {
     public Button SkinBuyButton;
     public Button SkinEquipButton;
 
-    private PopupGameShop.TAB_TYPE mSkinType = PopupGameShop.TAB_TYPE.NONE;
+    private CommonData.SKIN_TYPE mSkinType = CommonData.SKIN_TYPE.NONE;
     private int mSelectSkinId = 0;
     private List<UIShopSkinSlot> mSkinSlotList = new List<UIShopSkinSlot>();
-    private Dictionary<PopupGameShop.TAB_TYPE, List<int>> mSkinIndexDic = new Dictionary<PopupGameShop.TAB_TYPE, List<int>>();
+    private Dictionary<CommonData.SKIN_TYPE, List<int>> mSkinIndexDic = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
 
     private int mDefaultSlotViewCount = 8;
 
@@ -26,12 +26,29 @@ public class PopupGameShopSkin : MonoBehaviour {
         SkinEquipButton.onClick.AddListener(OnClickEquip);
     }
 
+    public CommonData.SKIN_TYPE ConvertShopTab(PopupGameShop.TAB_TYPE type)
+    {
+        switch (type)
+        {
+            case PopupGameShop.TAB_TYPE.CHAR:
+                return CommonData.SKIN_TYPE.CHAR;
+            case PopupGameShop.TAB_TYPE.DOOR:
+                return CommonData.SKIN_TYPE.DOOR;
+            case PopupGameShop.TAB_TYPE.BG:
+                return CommonData.SKIN_TYPE.BACKGROUND;
+            default:
+                break;
+        }
+
+        return CommonData.SKIN_TYPE.NONE;
+    }
+
     public void ShowUI(PopupGameShop.TAB_TYPE type)
     {
-        if (mSkinType == type)
+        if (mSkinType == ConvertShopTab(type))
             return;
 
-        mSkinType = type;
+        mSkinType = ConvertShopTab(type);
         if (mSkinSlotList.Count <= 0)
         {
             for (int i = 0; i < mDefaultSlotViewCount; i++)
@@ -60,7 +77,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(PopupGameShop.TAB_TYPE.CHAR, tempCharIndexList);
+            mSkinIndexDic.Add(CommonData.SKIN_TYPE.CHAR, tempCharIndexList);
 
             var tempDoorIndexList = new List<int>();
             var doorDataDicEnumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
@@ -77,7 +94,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(PopupGameShop.TAB_TYPE.DOOR, tempDoorIndexList);
+            mSkinIndexDic.Add(CommonData.SKIN_TYPE.DOOR, tempDoorIndexList);
 
             var tempBGIndexList = new List<int>();
             var bgDataDicEnumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
@@ -94,7 +111,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(PopupGameShop.TAB_TYPE.BG, tempBGIndexList);
+            mSkinIndexDic.Add(CommonData.SKIN_TYPE.BACKGROUND, tempBGIndexList);
         }
 
         Initialize();
@@ -106,12 +123,7 @@ public class PopupGameShopSkin : MonoBehaviour {
     {
         var tempList = new List<int>();
 
-        if(mSkinType == PopupGameShop.TAB_TYPE.CHAR)
-            tempList = mSkinIndexDic[PopupGameShop.TAB_TYPE.CHAR];
-        else if (mSkinType == PopupGameShop.TAB_TYPE.DOOR)
-            tempList = mSkinIndexDic[PopupGameShop.TAB_TYPE.DOOR];
-        else if (mSkinType == PopupGameShop.TAB_TYPE.BG)
-            tempList = mSkinIndexDic[PopupGameShop.TAB_TYPE.BG];
+        tempList = mSkinIndexDic[mSkinType];
 
         for (int i = 0; i < mSkinSlotList.Count; i++)
         {
@@ -144,13 +156,13 @@ public class PopupGameShopSkin : MonoBehaviour {
         SkinData skinData = null;
         switch (mSkinType)
         {
-            case PopupGameShop.TAB_TYPE.CHAR:
+            case CommonData.SKIN_TYPE.CHAR:
                 skinData = DataManager.Instance.CharDataDic[mSelectSkinId];
                 break;
-            case PopupGameShop.TAB_TYPE.DOOR:
+            case CommonData.SKIN_TYPE.DOOR:
                 skinData = DataManager.Instance.DoorDataDic[mSelectSkinId];
                 break;
-            case PopupGameShop.TAB_TYPE.BG:
+            case CommonData.SKIN_TYPE.BACKGROUND:
                 skinData = DataManager.Instance.BackGroundDataDic[mSelectSkinId];
                 break;
             default:
@@ -177,13 +189,13 @@ public class PopupGameShopSkin : MonoBehaviour {
             SkinData skinData = null;
             switch (mSkinType)
             {
-                case PopupGameShop.TAB_TYPE.CHAR:
+                case CommonData.SKIN_TYPE.CHAR:
                     skinData = DataManager.Instance.CharDataDic[mSelectSkinId];
                     break;
-                case PopupGameShop.TAB_TYPE.DOOR:
+                case CommonData.SKIN_TYPE.DOOR:
                     skinData = DataManager.Instance.DoorDataDic[mSelectSkinId];
                     break;
-                case PopupGameShop.TAB_TYPE.BG:
+                case CommonData.SKIN_TYPE.BACKGROUND:
                     skinData = DataManager.Instance.BackGroundDataDic[mSelectSkinId];
                     break;
                 default:
@@ -194,13 +206,13 @@ public class PopupGameShopSkin : MonoBehaviour {
             {
                 switch (mSkinType)
                 {
-                    case PopupGameShop.TAB_TYPE.CHAR:
+                    case CommonData.SKIN_TYPE.CHAR:
                         PlayerData.Instance.AddChar(mSelectSkinId);
                         break;
-                    case PopupGameShop.TAB_TYPE.DOOR:
+                    case CommonData.SKIN_TYPE.DOOR:
                         PlayerData.Instance.AddDoor(mSelectSkinId);
                         break;
-                    case PopupGameShop.TAB_TYPE.BG:
+                    case CommonData.SKIN_TYPE.BACKGROUND:
                         PlayerData.Instance.AddBG(mSelectSkinId);
                         break;
                     default:
@@ -222,13 +234,13 @@ public class PopupGameShopSkin : MonoBehaviour {
     {
         switch (mSkinType)
         {
-            case PopupGameShop.TAB_TYPE.CHAR:
+            case CommonData.SKIN_TYPE.CHAR:
                 PlayerData.Instance.SetUseCharId(mSelectSkinId);
                 break;
-            case PopupGameShop.TAB_TYPE.DOOR:
+            case CommonData.SKIN_TYPE.DOOR:
                 PlayerData.Instance.SetUseDoorId(mSelectSkinId);
                 break;
-            case PopupGameShop.TAB_TYPE.BG:
+            case CommonData.SKIN_TYPE.BACKGROUND:
                 PlayerData.Instance.SetUseBGId(mSelectSkinId);
                 break;
             default:

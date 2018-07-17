@@ -9,6 +9,6 @@ public class SkinData
     public string name;
     public string desc;
     public string icon;
-    public int cost;
+    public int cost = 0;
     public string img;
 }

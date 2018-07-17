@@ -30,5 +30,14 @@ public class CommonData : MonoBehaviour {
         RIGHT = 1
     }
 
+    public enum SKIN_TYPE
+    {
+        NONE,
+        CHAR,
+        DOOR,
+        ENDING,
+        BACKGROUND,
+    }
+
     public static int SHIELD_ITEM_ID = 2;
 }
