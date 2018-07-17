@@ -117,7 +117,7 @@ public class GamePlayManager : MonoBehaviour
         }
 
         mGameUIPage.GameOver();
-        //mIsGamePause = true;
+        mIsGamePause = true;
     }
 
 

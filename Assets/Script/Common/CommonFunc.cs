@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,5 +47,10 @@ public class CommonFunc
         }
 
         return false;
+    }
+
+    static public DateTime GetCurrentTime()
+    {
+        return DateTime.Now;
     }
 }

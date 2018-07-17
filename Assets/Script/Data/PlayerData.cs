@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerData
 {
@@ -31,10 +32,12 @@ public class PlayerData
     public int UseDoorId { get; private set; }
     public int UseBGId { get; private set; }
 
+    public DateTime DdongRefilTime = DateTime.MaxValue;
+
     public void Initialize()
     {
         Coin = 10;
-        Ddong = 100;
+        Ddong = 1;
         DoorIndexId.Clear();
         DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_1, 1);
         DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_2, 2);
@@ -65,7 +68,15 @@ public class PlayerData
 
     public void UpdatePlayerData(float time)
     {
+        if(DdongRefilTime <= CommonFunc.GetCurrentTime())
+        {
+            var spanTime = DdongRefilTime - CommonFunc.GetCurrentTime();
+            var refileCount = (int)(spanTime.TotalSeconds / ConfigData.Instance.DDONG_REFIL_TIME);
 
+            AddDdong(refileCount);
+            if (Ddong >= ConfigData.Instance.MAX_DDONG_COUNT)
+                DdongRefilTime = DateTime.MaxValue;
+        }
     }
     public void AddItem(int id)
     {
@@ -102,6 +113,17 @@ public class PlayerData
     public void AddDdong(int value)
     {
         Ddong += value;
+    }
+    public void SubDdong(int value)
+    {
+        Ddong -= value;
+
+        if (Ddong <= 0)
+        {
+            DdongRefilTime = DateTime.Now;// new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            DdongRefilTime = DdongRefilTime.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+        }
+
     }
     public void AddCoin(int value)
     {
