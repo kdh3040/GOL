@@ -32,10 +32,10 @@ public class UIPoint : MonoBehaviour {
         switch(mPointType)
         {
             case POINT_TYPE.DDONG:
-                CommonFunc.SetImageFile("ddong", ref PointIcon);
+                CommonFunc.SetImageFile("Renewal/UI/icon_ddong", ref PointIcon);
                 break;
             case POINT_TYPE.COIN:
-                CommonFunc.SetImageFile("market_gold", ref PointIcon);
+                CommonFunc.SetImageFile("Renewal/UI/icon_gold", ref PointIcon);
                 break;
         }
 

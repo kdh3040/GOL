@@ -70,12 +70,14 @@ public class PlayerData
     {
         if(DdongRefilTime <= CommonFunc.GetCurrentTime())
         {
-            var spanTime = DdongRefilTime - CommonFunc.GetCurrentTime();
-            var refileCount = (int)(spanTime.TotalSeconds / ConfigData.Instance.DDONG_REFIL_TIME);
+            var spanTime = CommonFunc.GetCurrentTime() - DdongRefilTime;
+            var refileCount = 1 + (int)(spanTime.TotalSeconds / ConfigData.Instance.DDONG_REFIL_TIME);
 
             AddDdong(refileCount);
             if (Ddong >= ConfigData.Instance.MAX_DDONG_COUNT)
                 DdongRefilTime = DateTime.MaxValue;
+            else
+                DdongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
         }
     }
     public void AddItem(int id)
