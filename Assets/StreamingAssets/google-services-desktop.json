@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "580013002999",
+    "firebase_url": "https://dohosoft-gol.firebaseio.com",
+    "project_id": "dohosoft-gol",
+    "storage_bucket": "dohosoft-gol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580013002999:android:f5bb084029f27068",
+        "android_client_info": {
+          "package_name": "com.dohosoft.gol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580013002999-0nroulmq0hc7c5qejdqce6mqslr5rtrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_QvZ53MwY1Pfmdf-7FpiRP89m7LdHkZU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
