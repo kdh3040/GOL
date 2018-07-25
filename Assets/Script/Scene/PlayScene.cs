@@ -15,6 +15,9 @@ public class PlayScene : MonoBehaviour
     public PageGameUI UIPage;
     public Transform NotesParentPos;
 
+    public SpriteRenderer Background_Front;
+    public SpriteRenderer Background_Back;
+
     void Start()
     {
         // 데이터 할당

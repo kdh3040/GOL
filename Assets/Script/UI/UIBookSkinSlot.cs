@@ -32,6 +32,7 @@ public class UIBookSkinSlot : MonoBehaviour
                     mSkinData = DataManager.Instance.DoorDataDic[id];
                     break;
                 case CommonData.SKIN_TYPE.ENDING:
+                    mSkinData = DataManager.Instance.EndingDataList[id];
                     break;
                 case CommonData.SKIN_TYPE.BACKGROUND:
                     mSkinData = DataManager.Instance.BackGroundDataDic[id];
@@ -46,7 +47,7 @@ public class UIBookSkinSlot : MonoBehaviour
 
     public void Initialize()
     {
-        CommonFunc.SetImageFile(mSkinData.icon, ref Icon);
+        CommonFunc.SetImageFile(mSkinData.GetIcon(), ref Icon);
         SetSelect(false);
         RefreshUI();
     }
@@ -65,7 +66,7 @@ public class UIBookSkinSlot : MonoBehaviour
             case CommonData.SKIN_TYPE.DOOR:
                 return PlayerData.Instance.IsHasDoor(mSkinData.id);
             case CommonData.SKIN_TYPE.ENDING:
-                break;
+                return PlayerData.Instance.IsHasEnding(mSkinData.id);
             case CommonData.SKIN_TYPE.BACKGROUND:
                 return PlayerData.Instance.IsHasBG(mSkinData.id);
             default:

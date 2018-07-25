@@ -26,6 +26,7 @@ public class DataManager {
     public List<NoteCreateData> NoteCreateDataList = new List<NoteCreateData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
+    public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -42,6 +43,7 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Character", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("NoteCreate", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("Ending", "Datas"));
 
         }
 
@@ -150,6 +152,18 @@ public class DataManager {
                     else
                         return 1;
                 });
+            }
+
+            else if (xmlName == "Ending")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new EndingData(child);
+                        EndingDataList.Add(data.id, data);
+                    }
+                }
             }
 
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);

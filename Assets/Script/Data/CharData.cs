@@ -16,4 +16,9 @@ public class CharData : SkinData
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         skill = node.Attributes.GetNamedItem("skill").Value;
     }
+
+    public override string GetIcon()
+    {
+        return icon;
+    }
 }
