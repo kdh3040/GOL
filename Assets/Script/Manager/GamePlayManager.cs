@@ -69,7 +69,6 @@ public class GamePlayManager : MonoBehaviour
         StopAllCoroutines();
         Score = 0;
         mIsGamePause = false;
-        mDoorSystem.ResetDoor();
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
     }

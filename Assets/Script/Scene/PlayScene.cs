@@ -20,6 +20,10 @@ public class PlayScene : MonoBehaviour
 
     void Start()
     {
+        var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.UseBGId];
+        Background_Front.sprite = (Sprite)Resources.Load(backgroundData.img_front, typeof(Sprite));
+        Background_Back.sprite = (Sprite)Resources.Load(backgroundData.img_back, typeof(Sprite));
+
         // 데이터 할당
         GamePlayManager.Instance.Initialize(this);
         // 게임시작
