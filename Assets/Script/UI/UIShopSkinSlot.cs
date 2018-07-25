@@ -57,7 +57,7 @@ public class UIShopSkinSlot : MonoBehaviour
         else
         {
             Icon.gameObject.SetActive(true);
-            Icon.sprite = (Sprite)Resources.Load(mSkinData.icon, typeof(Sprite));
+            Icon.sprite = (Sprite)Resources.Load(mSkinData.GetIcon(), typeof(Sprite));
             RefreshUI();
         }
     }

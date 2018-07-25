@@ -51,60 +51,76 @@ public class PopupGameBook : PopupUI
     {
         if (mSkinIndexDic.Count <= 0)
         {
-            var tempCharIndexList = new List<int>();
-            var charDataDicEnumerator = DataManager.Instance.CharDataDic.GetEnumerator();
-            while (charDataDicEnumerator.MoveNext())
-            {
-                tempCharIndexList.Add(charDataDicEnumerator.Current.Key);
-            }
+            AddSkinIndexDic(CommonData.SKIN_TYPE.CHAR);
+            AddSkinIndexDic(CommonData.SKIN_TYPE.ENDING);
+            AddSkinIndexDic(CommonData.SKIN_TYPE.DOOR);
+            AddSkinIndexDic(CommonData.SKIN_TYPE.BACKGROUND);
 
-            tempCharIndexList.Sort(delegate (int A, int B)
-            {
-                if (A > B)
-                    return 1;
-                else
-                    return -1;
-            });
-
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.CHAR, tempCharIndexList);
-
-            var tempDoorIndexList = new List<int>();
-            var doorDataDicEnumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
-            while (doorDataDicEnumerator.MoveNext())
-            {
-                tempDoorIndexList.Add(doorDataDicEnumerator.Current.Key);
-            }
-
-            tempDoorIndexList.Sort(delegate (int A, int B)
-            {
-                if (A > B)
-                    return 1;
-                else
-                    return -1;
-            });
-
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.DOOR, tempDoorIndexList);
-
-            var tempBGIndexList = new List<int>();
-            var bgDataDicEnumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
-            while (bgDataDicEnumerator.MoveNext())
-            {
-                tempBGIndexList.Add(bgDataDicEnumerator.Current.Key);
-            }
-
-            tempBGIndexList.Sort(delegate (int A, int B)
-            {
-                if (A > B)
-                    return 1;
-                else
-                    return -1;
-            });
-
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.BACKGROUND, tempBGIndexList);
+            CharTab.SetTabTitle("POPUP_BOOK_TAB_CHAR");
+            EndingTab.SetTabTitle("POPUP_BOOK_TAB_ENDING");
+            DoorTab.SetTabTitle("POPUP_BOOK_TAB_DOOR");
+            BGTab.SetTabTitle("POPUP_BOOK_TAB_BACKGROUND");
         }
 
         TopBar.Initialize(true);
         OnClickTab(TAB_TYPE.CHAR);
+    }
+
+    private void AddSkinIndexDic(CommonData.SKIN_TYPE type)
+    {
+        var tempIndexList = new List<int>();
+
+        switch (type)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                {
+                    var enumerator = DataManager.Instance.CharDataDic.GetEnumerator();
+                    while (enumerator.MoveNext())
+                    {
+                        tempIndexList.Add(enumerator.Current.Key);
+                    }
+                }
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                {
+                    var enumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
+                    while (enumerator.MoveNext())
+                    {
+                        tempIndexList.Add(enumerator.Current.Key);
+                    }
+                }
+                break;
+            case CommonData.SKIN_TYPE.ENDING:
+                {
+                    var enumerator = DataManager.Instance.EndingDataList.GetEnumerator();
+                    while (enumerator.MoveNext())
+                    {
+                        tempIndexList.Add(enumerator.Current.Key);
+                    }
+                }
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                {
+                    var enumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
+                    while (enumerator.MoveNext())
+                    {
+                        tempIndexList.Add(enumerator.Current.Key);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        tempIndexList.Sort(delegate (int A, int B)
+        {
+            if (A > B)
+                return 1;
+            else
+                return -1;
+        });
+
+        mSkinIndexDic.Add(type, tempIndexList);
     }
 
     public void OnClickTab(TAB_TYPE type)
@@ -149,7 +165,12 @@ public class PopupGameBook : PopupUI
             });
         }
 
-        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, (mSkinSlotList.Count / 4) * 530);
+        int rowCount = 0;
+        if ((mSkinSlotList.Count % 4) == 0)
+            rowCount = (mSkinSlotList.Count / 4);
+        else
+            rowCount = (mSkinSlotList.Count / 4) + 1;
+        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, rowCount * 530);
     }
 
     public CommonData.SKIN_TYPE ConvertBookTab(TAB_TYPE type)
@@ -194,6 +215,9 @@ public class PopupGameBook : PopupUI
             case CommonData.SKIN_TYPE.CHAR:
                 skinData = DataManager.Instance.CharDataDic[mSelectSkinId];
                 break;
+            case CommonData.SKIN_TYPE.ENDING:
+                skinData = DataManager.Instance.EndingDataList[mSelectSkinId];
+                break;
             case CommonData.SKIN_TYPE.DOOR:
                 skinData = DataManager.Instance.DoorDataDic[mSelectSkinId];
                 break;
@@ -205,7 +229,7 @@ public class PopupGameBook : PopupUI
         }
         if (skinData != null)
         {
-            CommonFunc.SetImageFile(skinData.icon, ref SkinIcon);
+            CommonFunc.SetImageFile(skinData.GetIcon(), ref SkinIcon);
             SkinDesc.text = skinData.desc;
         }
     }

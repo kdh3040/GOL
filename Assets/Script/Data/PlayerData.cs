@@ -18,12 +18,12 @@ public class PlayerData
         }
     }
 
-    public Dictionary<CommonData.NOTE_LINE, int> DoorIndexId = new Dictionary<CommonData.NOTE_LINE, int>();
     public Dictionary<int, int> HaveItemDic = new Dictionary<int, int>();
     public Dictionary<int, int> ItemLevelDic = new Dictionary<int, int>();
     public Dictionary<int, bool> HaveCharDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveDoorDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveBGDic = new Dictionary<int, bool>();
+    public Dictionary<int, bool> HaveEndingDic = new Dictionary<int, bool>();
     public int[] mNormalitemArr = { 0,0 };
     public int mShielditem = 0;
     public int Coin { get; private set; }
@@ -38,10 +38,6 @@ public class PlayerData
     {
         Coin = 10;
         Ddong = 1;
-        DoorIndexId.Clear();
-        DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_1, 1);
-        DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_2, 2);
-        DoorIndexId.Add(CommonData.NOTE_LINE.INDEX_3, 3);
         mNormalitemArr[0] = 1;
         mNormalitemArr[1] = 0;
         mShielditem = 0;
@@ -55,6 +51,12 @@ public class PlayerData
         ItemLevelDic.Add(2, 1);
         ItemLevelDic.Add(3, 1);
         ItemLevelDic.Add(4, 1);
+
+        HaveEndingDic.Add(1, true);
+
+        UseCharId = 1;
+        UseDoorId = 1;
+        UseBGId = 1;
     }
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
@@ -188,5 +190,19 @@ public class PlayerData
     public void SetUseBGId(int id)
     {
         UseBGId = id;
+    }
+
+
+    public void AddEnding(int id)
+    {
+        if (HaveEndingDic.ContainsKey(id) == false)
+            HaveEndingDic.Add(id, true);
+    }
+    public bool IsHasEnding(int id)
+    {
+        if (HaveEndingDic.ContainsKey(id) == false)
+            return false;
+
+        return true;
     }
 }

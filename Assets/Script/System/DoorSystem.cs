@@ -15,23 +15,8 @@ public class DoorSystem
         {
             var door = GamePlayManager.Instance.CreateDoor(mDoorPosList[i]);
             var type = (CommonData.NOTE_LINE)(i + 1);
-            door.SetData(PlayerData.Instance.DoorIndexId[type], type);
+            door.SetData(type);
             mDoorList.Add(door);
         }
-    }
-
-    public void ResetDoor()
-    {
-        //AllDelete();
-    }
-
-    public void AllDelete()
-    {
-        for (int i = 0; i < mDoorList.Count; i++)
-        {
-            GamePlayManager.Instance.DeleteDoor(mDoorList[i]);
-        }
-
-        mDoorList.Clear();
     }
 }

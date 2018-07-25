@@ -21,4 +21,9 @@ public class UITabButton : MonoBehaviour
             TabTitle.color = new Color(1, 1, 1, 1);
     }
 
+    public void SetTabTitle(string title)
+    {
+        TabTitle.text = LocalizeData.Instance.GetLocalizeString(title);
+    }
+
 }

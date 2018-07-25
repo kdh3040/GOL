@@ -170,7 +170,7 @@ public class PopupGameShopSkin : MonoBehaviour {
         }
         if(skinData != null)
         {
-            SelectIcon.sprite = (Sprite)Resources.Load(skinData.icon, typeof(Sprite));
+            SelectIcon.sprite = (Sprite)Resources.Load(skinData.GetIcon(), typeof(Sprite));
             SelectDesc.text = skinData.desc;
         }
     }
