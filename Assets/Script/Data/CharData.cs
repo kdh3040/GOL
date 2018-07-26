@@ -6,6 +6,7 @@ using System.Xml;
 public class CharData : SkinData
 {
     public string skill;
+    public string img;
 
     public CharData(XmlNode node)
     {
@@ -15,6 +16,7 @@ public class CharData : SkinData
         icon = node.Attributes.GetNamedItem("icon").Value;
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         skill = node.Attributes.GetNamedItem("skill").Value;
+        img = node.Attributes.GetNamedItem("img").Value;
     }
 
     public override string GetIcon()
