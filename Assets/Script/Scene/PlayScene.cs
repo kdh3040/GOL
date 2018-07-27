@@ -14,6 +14,7 @@ public class PlayScene : MonoBehaviour
     public Transform NoteEndPos_3;
     public PageGameUI UIPage;
     public Transform NotesParentPos;
+    public Transform PlayerParentPos;
 
     public SpriteRenderer Background_Front;
     public SpriteRenderer Background_Back;

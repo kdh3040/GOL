@@ -22,13 +22,14 @@ public class GamePlayManager : MonoBehaviour
         get;
         private set;
     }
-    private PlayerChar mPlayerChar = new PlayerChar();
+    private PlayerChar mPlayerChar = null;
     private bool mIsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
+    private Transform mPlayerCharPos;
 
     public int[] mNormalitemArr = new int[2];
     public int mShielditem = 0;
@@ -58,6 +59,15 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.Initialize(scene);
         mGameUIPage = scene.UIPage;
         mNoteParentPos = scene.NotesParentPos;
+        mPlayerCharPos = scene.PlayerParentPos;
+
+        if (mPlayerChar == null)
+        {
+            var obj = Instantiate(Resources.Load("Prefab/PlayerChar"), mPlayerCharPos) as GameObject;
+            mPlayerChar = obj.GetComponent<PlayerChar>();
+        }
+
+        mPlayerChar.Initialize();
     }
 
     public void ResetGame()
@@ -115,8 +125,8 @@ public class GamePlayManager : MonoBehaviour
             // TODO 환웅 : 캐릭티 맞음
         }
 
-        mGameUIPage.GameOver();
-        mIsGamePause = true;
+        //mGameUIPage.GameOver();
+        //mIsGamePause = true;
     }
 
 
@@ -210,7 +220,7 @@ public class GamePlayManager : MonoBehaviour
     {
         mNoteSystem.NoteDeleteCheck(door);
         // 라인타입
-        PlayerChar.Instance.ActionDoorClose(door);
+        mPlayerChar.ActionDoorClose(door);
     }
     
     public void PlusScore(int score)

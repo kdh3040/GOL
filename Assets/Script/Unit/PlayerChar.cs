@@ -4,45 +4,30 @@ using UnityEngine;
 
 public class PlayerChar : MonoBehaviour
 {
-    private PlayerCharData mData = null;
     public bool touchChk = false;
     public Animator PlayerAnim;
     public SpriteRenderer PlayerImage;
-    public Transform PlayerPos;
+    public CharData Data;
 
-    public static PlayerChar _instance = null;
-    public static PlayerChar Instance
+    public void Initialize()
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<PlayerChar>() as PlayerChar;
-            }
-            return _instance;
-        }
+        Data = DataManager.Instance.CharDataDic[PlayerData.Instance.UseCharId];
+        PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_idle"), typeof(Sprite));
     }
 
-    public PlayerChar()
+    public string GetCharImg(string add)
     {
-        //mData = new PlayerCharData();
-
-    }
-
-    void Start()
-    {
-        PlayerImage.transform.position = PlayerPos.position;
-        PlayerImage.sprite = (Sprite)Resources.Load("dt_dft", typeof(Sprite));
+        return Data.img + add;
     }
 
     public void ActionDoorClose(Door doorType)
     {
         if(doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_1)
-            PlayerImage.sprite = (Sprite)Resources.Load("dt_501", typeof(Sprite));
+            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_1"), typeof(Sprite));
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_2)
-            PlayerImage.sprite = (Sprite)Resources.Load("dt_502", typeof(Sprite));
+            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_2"), typeof(Sprite));
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_3)
-            PlayerImage.sprite = (Sprite)Resources.Load("dt_503", typeof(Sprite));       
+            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_3"), typeof(Sprite));       
     }
 
     public void ActionDoorClose(string imgSrc)
@@ -55,11 +40,7 @@ public class PlayerChar : MonoBehaviour
         PlayerImage.sprite = (Sprite)Resources.Load(imgSrc, typeof(Sprite));
     }
 
-    public void Initialize()
-    {
-        // 캐릭터 초기화
-       
-    }
+    
 
     void Update()
     {

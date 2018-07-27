@@ -71,7 +71,6 @@
     <Compile Include="Assets\Script\Data\LocalizeData.cs" />
     <Compile Include="Assets\Script\Data\NoteCreateData.cs" />
     <Compile Include="Assets\Script\Data\NoteData.cs" />
-    <Compile Include="Assets\Script\Data\PlayerCharData.cs" />
     <Compile Include="Assets\Script\Data\PlayerData.cs" />
     <Compile Include="Assets\Script\Data\Skill\GameSkill.cs" />
     <Compile Include="Assets\Script\Data\Skill\GameSkill_Invincibility.cs" />
