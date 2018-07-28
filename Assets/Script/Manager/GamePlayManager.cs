@@ -26,7 +26,6 @@ public class GamePlayManager : MonoBehaviour
     private bool mIsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
-    private ItemSystem mItemSystem = new ItemSystem();
     private PageGameUI mGameUIPage;
     private Transform mNoteParentPos;
     private Transform mPlayerCharPos;
@@ -90,14 +89,18 @@ public class GamePlayManager : MonoBehaviour
     public void GameStart()
     {
         ResetGame();
-        mNoteSystem.GameStart();
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
         UseGameShieldItem();
-        StartCoroutine(UpdateGamePlay());  
+        mGameUIPage.RefreshShieldItemUI();
+        mNoteSystem.GameStart();
+        StartCoroutine(UpdateGamePlay());
     }
 
     public void GameRestart()
     {
         ResetGame();
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
     }
@@ -114,19 +117,28 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD,SkillManager.SKILL_CHECK_TYPE.TIME) != null)
+        if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME) != null)
             return;
-        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT) != null)
+        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) != null)
         {
-            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT) as GameSkill_Shield;
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) as GameSkill_DamageShieldCount;
 
             if (skill.CharShield())
                 return;
             // TODO 환웅 : 캐릭티 맞음
         }
+        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) != null)
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) as GameSkill_Resurrection;
 
-        //mGameUIPage.GameOver();
-        //mIsGamePause = true;
+            if (skill.IsResurrection())
+                return;
+
+            // TODO 환웅 : 캐릭터 부활
+        }
+
+        mGameUIPage.GameOver();
+        mIsGamePause = true;
     }
 
 
@@ -145,7 +157,7 @@ public class GamePlayManager : MonoBehaviour
 
             if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
             {
-                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_SpeedDown;
+                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN) as GameSkill_SpeedDown;
                 if (skill != null)
                 {
                     mNoteSystem.NoteUpdate(skill.ConvertSpeed(time));
@@ -227,7 +239,7 @@ public class GamePlayManager : MonoBehaviour
     {
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SCORE_UP))
         {
-            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP, SkillManager.SKILL_CHECK_TYPE.TIME) as GameSkill_ScoreUP;
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP) as GameSkill_ScoreUP;
             if (skill != null)
             {
                 Score += skill.ConvertNoteScore(score);
@@ -264,10 +276,10 @@ public class GamePlayManager : MonoBehaviour
         }
         else
         {
-            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT);
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
             if(skill != null)
             {
-                var shieldCount = skill.mValue1;
+                var shieldCount = skill.mCount;
                 if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
                 {
                     mShielditem = id;
@@ -288,10 +300,8 @@ public class GamePlayManager : MonoBehaviour
             return;
 
         SetGameNormalItemId(index, 0);
-        // TODO 환웅
-        var skillName = ItemManager.Instance.GetItemSkill(itemId);
-        var skill = SkillManager.Instance.AddUseSkill(skillName);
 
+        var skill = SkillManager.Instance.UseItemSkill(itemId);
         mGameUIPage.UseItemSkill(itemId, skill);
     }
 
@@ -300,8 +310,8 @@ public class GamePlayManager : MonoBehaviour
         if (mShielditem == 0)
             return;
 
-        var skillName = ItemManager.Instance.GetItemSkill(mShielditem);
-        SkillManager.Instance.AddUseSkill(skillName);
+        SkillManager.Instance.UseItemSkill(mShielditem);
+
         mShielditem = 0;
         mGameUIPage.RefreshShieldItemUI();
     }

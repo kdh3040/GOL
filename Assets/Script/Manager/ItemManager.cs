@@ -33,7 +33,7 @@ public class ItemManager
     {
         var data = GetItemData(id);
         // 아이템 레벨에 맞는 스킬 반환
-        string skillName = string.Format("{0}{1}", data.skill, PlayerData.Instance.GetItemLevel(id));
+        string skillName = string.Format("{0}_LV{1}", data.skill, PlayerData.Instance.GetItemLevel(id));
         return skillName;
     }
 
@@ -41,7 +41,7 @@ public class ItemManager
     {
         var data = GetItemData(id);
         // 아이템 레벨에 맞는 스킬 반환
-        string skillName = string.Format("{0}{1}", data.skill, PlayerData.Instance.GetItemLevel(id) + 1);
+        string skillName = string.Format("{0}_LV{1}", data.skill, PlayerData.Instance.GetItemLevel(id) + 1);
         return SkillManager.Instance.IsSkillData(skillName);
     }
 

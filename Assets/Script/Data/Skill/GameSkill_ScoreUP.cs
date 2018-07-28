@@ -12,18 +12,18 @@ public class GameSkill_ScoreUP : GameSkill
 
     public override void SkillUpdate(float time)
     {
-        mValue1 -= time;
+        mTime -= time;
 
-        if (mValue1 <= 0)
+        if (mTime <= 0)
             EndSkill();
     }
 
 
     public int ConvertNoteScore(int score)
     {
-        if (mEnable == false && mValue1 <= 0)
+        if (mEnable == false && mTime <= 0)
             return score;
 
-        return score * (int)mValue2;
+        return (int)(score * mPercent);
     }
 }

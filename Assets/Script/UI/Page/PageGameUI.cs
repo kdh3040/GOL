@@ -64,10 +64,10 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshShieldItemUI()
     {
-        var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT);
+        var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
         for (int i = 0; i < mShieldIconList.Count; i++)
         {
-            if (skill != null && skill.mValue1 >= i + 1)
+            if (skill != null && skill.mCount >= i + 1)
             {
                 mShieldIconList[i].gameObject.SetActive(true);
             }
@@ -133,24 +133,46 @@ public class PageGameUI : MonoBehaviour
         text.AppendLine();
 
         // 스킬
-        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.TIME);
+        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
         if(skillData != null)
         {
-            text.AppendFormat("무적스킬 남은시간 {0:f2}", skillData.mValue1);
+            text.AppendFormat("무적스킬 남은시간 {0:f2}", skillData.mTime);
             text.AppendLine();
         }
         skillData = null;
-        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD, SkillManager.SKILL_CHECK_TYPE.COUNT);
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
         if (skillData != null)
         { 
-            text.AppendFormat("쉴드스킬 남은갯수 {0}", skillData.mValue1);
+            text.AppendFormat("쉴드스킬 남은갯수 {0}", skillData.mCount);
             text.AppendLine();
         }
         skillData = null;
-        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP, SkillManager.SKILL_CHECK_TYPE.TIME);
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SCORE_UP);
         if (skillData != null)
         { 
-            text.AppendFormat("점수두배스킬 남은시간 {0:f2} {1}배", skillData.mValue1, skillData.mValue2);
+            text.AppendFormat("점수두배스킬 남은시간 {0:f2} {1:f2}배", skillData.mTime, skillData.mPercent);
+            text.AppendLine();
+        }
+
+        skillData = null;
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION);
+        if (skillData != null)
+        {
+            text.AppendFormat("부활스킬 발동중");
+            text.AppendLine();
+        }
+        skillData = null;
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS);
+        if (skillData != null)
+        {
+            text.AppendFormat("게임오버시 점수 상승 스킬 {0:f2}배", skillData.mPercent);
+            text.AppendLine();
+        }
+        skillData = null;
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.ITEM_CREATE);
+        if (skillData != null)
+        {
+            text.AppendFormat("아이템 노트 생성 스킬 {0:f2}퍼센트", skillData.mPercent * 100);
             text.AppendLine();
         }
 

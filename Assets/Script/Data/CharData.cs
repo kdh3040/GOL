@@ -23,4 +23,10 @@ public class CharData : SkinData
     {
         return icon;
     }
+
+    public string GetSkillName()
+    {
+        string skillName = string.Format("{0}_LV{1}", skill, 1);
+        return skillName;
+    }
 }

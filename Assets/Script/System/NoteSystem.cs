@@ -15,6 +15,7 @@ public class NoteSystem
     private List<Note> DeleteReadyNoteList = new List<Note>();
     private float SaveTime;
     private float AllPlayTime = 0;
+    private float NoteItemCreatePercentOffset = 0;
     public float AccumulateCreateNoteCount
     {
         get;
@@ -50,6 +51,7 @@ public class NoteSystem
         NoteCreateTime = 0;
         NoteCreateDataIndex = 0;
         NoteCreatePercentList.Clear();
+        NoteItemCreatePercentOffset = 0;
     }
 
     public void GameStart()
@@ -74,6 +76,12 @@ public class NoteSystem
                     return -1;
             });
         }
+
+        if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.ITEM_CREATE) != null)
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.ITEM_CREATE) as GameSkill_ItemCreate;
+            NoteItemCreatePercentOffset = skill.mPercent * 100;
+        } 
     }
 
     public void GameRestart()
@@ -122,7 +130,7 @@ public class NoteSystem
                 }
 
                 var craeteItemNoteId = PickItemNoteId();
-                if (Random.Range(0f, 100.0f) < ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT && craeteItemNoteId != 0)
+                if (Random.Range(0f, 100.0f) < (ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT + NoteItemCreatePercentOffset) && craeteItemNoteId != 0)
                 {
                     CreateItemNote(createNotePosType, craeteItemNoteId);
                 }

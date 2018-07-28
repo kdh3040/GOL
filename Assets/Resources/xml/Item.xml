@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Item id = "1" name="INVINCIBILITY_ITEM" skill="INVINCIBILITY_SKILL_LV" icon="10autoplay" cost="10" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
-	<Item id = "2" name="SHIELD_ITEM" skill="SHIELD_SKILL_LV" icon="shield" cost="20" levelup_cost="1000" create_probability="0" slot_type="shield"/>
-	<Item id = "3" name="SCORE_DOUBLE_ITEM" skill="SCORE_UP_SKILL_DOUBLE_LV" icon="2x_point" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
-	<Item id = "4" name="NOTE_SPEED_DOWN" skill="NOTE_SPEED_DOWN_SKILL_LV" icon="2x_slow" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
+	<Item id = "1" name="INVINCIBILITY_ITEM" skill="DAMAGE_SHIELD_TIME" icon="10autoplay" cost="10" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
+	<Item id = "2" name="SHIELD_ITEM" skill="DAMAGE_SHIELD_COUNT" icon="shield" cost="20" levelup_cost="1000" create_probability="0" slot_type="shield"/>
+	<Item id = "3" name="SCORE_DOUBLE_ITEM" skill="SCORE_UP" icon="2x_point" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
+	<Item id = "4" name="NOTE_SPEED_DOWN" skill="SPEED_DOWN" icon="2x_slow" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
 </Datas>

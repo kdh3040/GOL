@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSkill_Invincibility : GameSkill
+public class GameSkill_ItemCreate : GameSkill
 {
-    public GameSkill_Invincibility(string name)
+    public GameSkill_ItemCreate(string name)
         : base(name)
     {
 
@@ -12,9 +12,5 @@ public class GameSkill_Invincibility : GameSkill
 
     public override void SkillUpdate(float time)
     {
-        mValue1 -= time;
-
-        if (mValue1 <= 0)
-            EndSkill();
     }
 }

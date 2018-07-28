@@ -23,19 +23,16 @@ public class UISkillProgressBar : MonoBehaviour {
     public void UpdateSkillProgress()
     {
         var skill = GetUISkillData();
-        if(skill != null)
+        if(skill != null && skill.mTime > 0)
         {
-            ProgressBar.value = skill.mValue1 / skill.mMaxValue1;
-
-            if (skill.mSkillCheckType == SkillManager.SKILL_CHECK_TYPE.TIME)
-            {
-                Time.text = string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_CHECK_TYPE_TIME_REMAIN"), skill.mValue1);
-            }
+            // TODO 환웅 시간 관련 스킬인지 알아야함
+            ProgressBar.value = skill.mTime / skill.mMaxTime;
+            Time.text = string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_CHECK_TYPE_TIME_REMAIN"), skill.mTime);
         }
     }
 
     public GameSkill GetUISkillData()
     {
-        return SkillManager.Instance.GetGameSkill(mSkillType, SkillManager.SKILL_CHECK_TYPE.TIME);
+        return SkillManager.Instance.GetGameSkill(mSkillType);
     }
 }

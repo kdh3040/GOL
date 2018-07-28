@@ -7,24 +7,22 @@ public abstract class GameSkill
     public SkillData mSkillData;
     public bool mEnable = false;
     public bool mSkillRemoveReady = false;
-    public float mValue1 { get; protected set; }
-    public float mValue2 { get; protected set; }
-    public float mValue3 { get; protected set; }
+    public float mTime { get; protected set; }
+    public float mCount { get; protected set; }
+    public float mPercent { get; protected set; }
+    public float mMaxTime { get; protected set; }
     public SkillManager.SKILL_TYPE mSkillType = SkillManager.SKILL_TYPE.NONE;
-    public SkillManager.SKILL_CHECK_TYPE mSkillCheckType = SkillManager.SKILL_CHECK_TYPE.NONE;
-    public float mMaxValue1 { get; protected set; }
 
     public GameSkill(string name)
     {
         mSkillData = SkillManager.Instance.GetSkillData(name);
-        mValue1 = mSkillData.value1;
-        mValue2 = mSkillData.value2;
-        mValue3 = mSkillData.value3;
-        mMaxValue1 = mSkillData.value1;
         mEnable = false;
         mSkillRemoveReady = false;
         mSkillType = SkillManager.Instance.ConvertSkillType(mSkillData.skilltype);
-        mSkillCheckType = SkillManager.Instance.ConvertSkillCheckType(mSkillData.checktype);
+        mTime = mSkillData.time;
+        mCount = mSkillData.count;
+        mPercent = mSkillData.percent * 0.01f;
+        mMaxTime = mTime;
     }
 
     public virtual void StartSkill()
@@ -38,12 +36,12 @@ public abstract class GameSkill
         mSkillRemoveReady = true;
     }
 
-    public virtual void PlusSameSkill()
+    public virtual void PlusSameSkill(GameSkill data)
     {
-        mValue1 += mSkillData.value1;
-        mValue2 += mSkillData.value2;
-        mValue3 += mSkillData.value3;
-        mMaxValue1 += mSkillData.value1;
+        mTime += data.mTime;
+        mCount += data.mCount;
+        mPercent += data.mPercent;
+        mMaxTime += data.mTime;
     }
     public abstract void SkillUpdate(float time);
 }

@@ -64,4 +64,9 @@ public class PlayerChar : MonoBehaviour
             PlayerAnim.SetTrigger("Idle");
         }
     }
+
+    public void StartCharSkill()
+    {
+
+    }
 }

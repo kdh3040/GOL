@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSkill_Shield : GameSkill
+public class GameSkill_DamageShieldCount : GameSkill
 {
-    public GameSkill_Shield(string name)
+    public GameSkill_DamageShieldCount(string name)
         : base(name)
     {
 
@@ -16,13 +16,13 @@ public class GameSkill_Shield : GameSkill
 
     public bool CharShield()
     {
-        if(mValue1 > 0)
+        if(mCount > 0)
         {
-            mValue1 -= 1;
+            mCount -= 1;
             return true;
         }
 
-        if (mValue1 <= 0)
+        if (mCount <= 0)
             EndSkill();
 
         return false;

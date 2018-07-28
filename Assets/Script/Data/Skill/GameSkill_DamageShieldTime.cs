@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSkill_SpeedDown : GameSkill
+public class GameSkill_DamageShieldTime : GameSkill
 {
-    public GameSkill_SpeedDown(string name)
+    public GameSkill_DamageShieldTime(string name)
         : base(name)
     {
 
@@ -16,13 +16,5 @@ public class GameSkill_SpeedDown : GameSkill
 
         if (mTime <= 0)
             EndSkill();
-    }
-
-    public float ConvertSpeed(float time)
-    {
-        if (mEnable == false && mTime <= 0)
-            return time;
-
-        return time / mPercent;
     }
 }

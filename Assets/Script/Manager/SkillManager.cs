@@ -21,47 +21,67 @@ public class SkillManager
     public enum SKILL_TYPE
     {
         NONE,
-        DAMAGE_SHIELD,
+        DAMAGE_SHIELD_TIME,
+        DAMAGE_SHIELD_COUNT,
         SCORE_UP,
         SPEED_DOWN,
+        RESURRECTION,
+        GAME_OVER_SCORE_BONUS,
+        ITEM_CREATE,
     }
 
-    public enum SKILL_CHECK_TYPE
-    {
-        NONE,
-        TIME,
-        COUNT
-    }
-
-    private Dictionary<SKILL_TYPE, List<GameSkill>> mUseSkillList = new Dictionary<SKILL_TYPE, List<GameSkill>>();
+    private Dictionary<SKILL_TYPE, GameSkill> mUseSkillList = new Dictionary<SKILL_TYPE, GameSkill>();
 
     public void ResetGame()
     {
         mUseSkillList.Clear();
     }
+    public GameSkill UseCharSkill(int charId)
+    {
+        // TODO 환웅 캐릭터 강화 기능 추가 손볼필요가 있음
+        var charData = DataManager.Instance.CharDataDic[charId];
+        var skill = AddUseSkill(charData.GetSkillName());
+
+        return skill;
+    }
+    public GameSkill UseItemSkill(int itemId)
+    {
+        var skillName = ItemManager.Instance.GetItemSkill(itemId);
+        var skill = AddUseSkill(skillName);
+
+        return skill;
+    }
     public GameSkill AddUseSkill(string skillName)
     {
         SkillData skillData = DataManager.Instance.SkillDataList[skillName];
         SKILL_TYPE skillType = ConvertSkillType(skillData.skilltype);
-        SKILL_CHECK_TYPE skillCheckType = ConvertSkillCheckType(skillData.checktype);
         GameSkill data = null;
 
-        if(skillType == SKILL_TYPE.DAMAGE_SHIELD)
+        switch (skillType)
         {
-            if (skillCheckType == SKILL_CHECK_TYPE.COUNT)
-                data = new GameSkill_Shield(skillName);
-            else if (skillCheckType == SKILL_CHECK_TYPE.TIME)
-                data = new GameSkill_Invincibility(skillName);
-        }
-        else if (skillType == SKILL_TYPE.SCORE_UP)
-        {
-            if (skillCheckType == SKILL_CHECK_TYPE.TIME)
+            case SKILL_TYPE.DAMAGE_SHIELD_TIME:
+                data = new GameSkill_DamageShieldTime(skillName);
+                break;
+            case SKILL_TYPE.DAMAGE_SHIELD_COUNT:
+                data = new GameSkill_DamageShieldCount(skillName);
+                break;
+            case SKILL_TYPE.SCORE_UP:
                 data = new GameSkill_ScoreUP(skillName);
-        }
-        else if (skillType == SKILL_TYPE.SPEED_DOWN)
-        {
-            if (skillCheckType == SKILL_CHECK_TYPE.TIME)
+                break;
+            case SKILL_TYPE.SPEED_DOWN:
                 data = new GameSkill_SpeedDown(skillName);
+                break;
+            case SKILL_TYPE.RESURRECTION:
+                data = new GameSkill_Resurrection(skillName);
+                break;
+            case SKILL_TYPE.GAME_OVER_SCORE_BONUS:
+                data = new GameSkill_GameOverScoreBonus(skillName);
+                break;
+            case SKILL_TYPE.ITEM_CREATE:
+                data = new GameSkill_ItemCreate(skillName);
+                break;
+            default:
+                break;
         }
 
         if (data != null)
@@ -76,45 +96,28 @@ public class SkillManager
     {
         var skillType = data.mSkillType;
         if (mUseSkillList.ContainsKey(skillType) == false)
-            mUseSkillList.Add(skillType, new List<GameSkill>());
-
-        bool plusSameSkill = false;
-        for (int i = 0; i < mUseSkillList[skillType].Count; i++)
+            mUseSkillList.Add(skillType, data);
+        else
         {
-            if (mUseSkillList[skillType][i].mSkillCheckType == data.mSkillCheckType)
-            {
-                plusSameSkill = true;
-                mUseSkillList[skillType][i].PlusSameSkill();
-            }
-        }
-
-        if(plusSameSkill == false)
-        {
-            data.StartSkill();
-            mUseSkillList[skillType].Add(data);
-
-            mUseSkillList[skillType].Sort(delegate (GameSkill A, GameSkill B)
-            {
-                if (A.mSkillCheckType < B.mSkillCheckType)
-                    return 1;
-                else
-                    return -1;
-            });
+            mUseSkillList[skillType].PlusSameSkill(data);
         }
     }
 
     public void UpdateSkill(float time)
     {
+        var removeSkillList = new List<SKILL_TYPE>();
         var skillEnumerator = mUseSkillList.GetEnumerator();
         while (skillEnumerator.MoveNext())
         {
-            var list = skillEnumerator.Current.Value;
-            for (int i = list.Count - 1; i >= 0; --i)
-            {
-                list[i].SkillUpdate(time);
-                if (list[i].mSkillRemoveReady)
-                    list.RemoveAt(i);
-            }
+            var skill = skillEnumerator.Current.Value;
+            skill.SkillUpdate(time);
+            if (skill.mSkillRemoveReady)
+                removeSkillList.Add(skill.mSkillType);
+        }
+
+        for (int i = 0; i < removeSkillList.Count; i++)
+        {
+            mUseSkillList.Remove(removeSkillList[i]);
         }
     }
 
@@ -123,29 +126,15 @@ public class SkillManager
         if (mUseSkillList.ContainsKey(type) == false)
             return false;
 
-        var list = mUseSkillList[type];
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].mEnable)
-                return true;
-        }
-
-        return false;
+        return mUseSkillList[type].mEnable;
     }
 
-    public GameSkill GetGameSkill(SKILL_TYPE type, SKILL_CHECK_TYPE checkType)
+    public GameSkill GetGameSkill(SKILL_TYPE type)
     {
         if (mUseSkillList.ContainsKey(type) == false)
             return null;
 
-        var list = mUseSkillList[type];
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].mSkillCheckType == checkType)
-                return list[i];
-        }
-
-        return null;
+        return mUseSkillList[type];
     }
 
     public SKILL_TYPE ConvertSkillType(string str)
@@ -153,8 +142,11 @@ public class SkillManager
         SKILL_TYPE type = SKILL_TYPE.NONE;
         switch (str)
         {
-            case "DAMAGE_SHIELD":
-                type = SKILL_TYPE.DAMAGE_SHIELD;
+            case "DAMAGE_SHIELD_TIME":
+                type = SKILL_TYPE.DAMAGE_SHIELD_TIME;
+                break;
+            case "DAMAGE_SHIELD_COUNT":
+                type = SKILL_TYPE.DAMAGE_SHIELD_COUNT;
                 break;
             case "SCORE_UP":
                 type = SKILL_TYPE.SCORE_UP;
@@ -162,26 +154,16 @@ public class SkillManager
             case "SPEED_DOWN":
                 type = SKILL_TYPE.SPEED_DOWN;
                 break;
-            default:
-                type = SKILL_TYPE.NONE;
+            case "RESURRECTION":
+                type = SKILL_TYPE.RESURRECTION;
                 break;
-        }
-
-        return type;
-    }
-    public SKILL_CHECK_TYPE ConvertSkillCheckType(string str)
-    {
-        SKILL_CHECK_TYPE type = SKILL_CHECK_TYPE.NONE;
-        switch (str)
-        {
-            case "TIME":
-                type = SKILL_CHECK_TYPE.TIME;
+            case "GAME_OVER_SCORE_BONUS":
+                type = SKILL_TYPE.GAME_OVER_SCORE_BONUS;
                 break;
-            case "COUNT":
-                type = SKILL_CHECK_TYPE.COUNT;
+            case "ITEM_CREATE":
+                type = SKILL_TYPE.ITEM_CREATE;
                 break;
             default:
-                type = SKILL_CHECK_TYPE.NONE;
                 break;
         }
 
@@ -203,4 +185,6 @@ public class SkillManager
     {
         return DataManager.Instance.SkillDataList.ContainsKey(skillName);
     }
+
+    
 }
