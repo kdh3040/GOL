@@ -8,7 +8,6 @@ public class NoteCreateData
     public int id;
     public float time;
     public List<KeyValuePair<int, int>> noteCreateList = new List<KeyValuePair<int, int>>();
-    public int noteCreateAllPercent = 0;
 
     public NoteCreateData(XmlNode node)
     {
@@ -21,8 +20,6 @@ public class NoteCreateData
             if(noteId != 0)
             {
                 var noteCreatePercent = int.Parse(node.Attributes.GetNamedItem(string.Format("note_{0}_percent", i)).Value);
-                noteCreateAllPercent += noteCreatePercent;
-
                 KeyValuePair<int, int> data = new KeyValuePair<int, int>(noteId, noteCreatePercent);
                 noteCreateList.Add(data);
             }

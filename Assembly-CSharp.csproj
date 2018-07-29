@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\NoteGroup.cs" />
     <Compile Include="Assets\Script\Common\CommonData.cs" />
     <Compile Include="Assets\Script\Common\CommonFunc.cs" />
     <Compile Include="Assets\Script\Data\BackgroundData.cs" />
@@ -112,8 +113,6 @@
     <Compile Include="Assets\Script\UI\UITopBar.cs" />
     <Compile Include="Assets\Script\Unit\Door.cs" />
     <Compile Include="Assets\Script\Unit\Note.cs" />
-    <Compile Include="Assets\Script\Unit\NoteItem.cs" />
-    <Compile Include="Assets\Script\Unit\NoteNormal.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\Plugins\link.xml" />

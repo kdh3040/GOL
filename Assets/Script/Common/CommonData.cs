@@ -14,6 +14,7 @@ public class CommonData : MonoBehaviour {
 
     public enum NOTE_TYPE
     {
+        NONE,
         NORMAL,
         ITEM
     }
@@ -40,4 +41,5 @@ public class CommonData : MonoBehaviour {
     }
 
     public static int SHIELD_ITEM_ID = 2;
+    public static int NOTE_GROUP_NOTE_COUNT = 3;
 }
