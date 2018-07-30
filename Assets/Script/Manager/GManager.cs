@@ -30,7 +30,10 @@ public class GManager : MonoBehaviour
         {
             FirebaseManager.Instance.LogIn();
         }
-        
+
+        Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
+        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
+
         StartCoroutine(UpdateGame());
     }
 
