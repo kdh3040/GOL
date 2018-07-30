@@ -32,6 +32,12 @@ public class NoteSystem
         PlayTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
 
+        var endPos = NoteEndPos.localPosition;
+        for (int i = 0; i < NoteGroupList.Count; i++)
+        {
+            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * 3));
+        }
+
         if(NoteCreatePercentList.Count <= 0)
         {
             int percentValue = 0;
@@ -86,6 +92,28 @@ public class NoteSystem
 
     public void NoteUpdate(float time)
     {
+        for (int i = 0; i < NoteGroupList.Count; i++)
+        {
+            var pos = NoteGroupList[i].gameObject.transform.localPosition;
+            pos.y = pos.y - (NoteSpeed * time);
+            NoteGroupList[i].gameObject.transform.localPosition = pos;
+
+            if(NoteEndPos.localPosition.y > pos.y)
+            {
+                if(NoteGroupList[i].IsAliveNote())
+                {
+                    // 게임오버
+                }
+                else
+                {
+                    NoteGroupList[i].gameObject.transform.localPosition = NoteStartPos.localPosition;
+                    CreateNote(ref NoteGroupList[i]);
+                }
+            }
+        }
+
+
+
         SaveTime += time;
         AllPlayTime += time;
 
@@ -148,6 +176,12 @@ public class NoteSystem
         }
         DeleteReadyNoteList.Clear();
     }
+
+    private void AllocateNoteGroup(int index)
+    {
+        // 노트 생성
+    }
+
 
     /*private Dictionary<CommonData.NOTE_LINE, Transform[]> NoteLineDic = new Dictionary<CommonData.NOTE_LINE, Transform[]>();
     private Dictionary<CommonData.NOTE_LINE, List<Note>> NoteList = new Dictionary<CommonData.NOTE_LINE, List<Note>>();

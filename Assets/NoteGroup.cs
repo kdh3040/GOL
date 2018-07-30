@@ -13,6 +13,17 @@ public class NoteGroup : MonoBehaviour {
         }
     }
 
+    public bool IsAliveNote()
+    {
+        for (int i = 0; i < NoteList.Length; i++)
+        {
+            if (NoteList[i].NoteType != CommonData.NOTE_TYPE.NONE)
+                return true;
+        }
+
+        return false;
+    }
+
     public void TouchNote(CommonData.NOTE_LINE type)
     {
 

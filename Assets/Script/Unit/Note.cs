@@ -13,6 +13,7 @@ public class Note : MonoBehaviour
 
     private void ResetNote()
     {
+        NoteType = CommonData.NOTE_TYPE.NONE;
         NoteData = null;
         ItemData = null;
         NoteImage.sprite = null;
@@ -23,8 +24,6 @@ public class Note : MonoBehaviour
         ResetNote();
         switch (type)
         {
-            case CommonData.NOTE_TYPE.NONE:
-                break;
             case CommonData.NOTE_TYPE.NORMAL:
                 SetNormalNote(id);
                 break;
