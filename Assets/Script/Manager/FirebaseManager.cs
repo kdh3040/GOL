@@ -4,25 +4,49 @@ using UnityEngine;
 
 public class FirebaseManager : MonoBehaviour {
 
-    Firebase.Auth.FirebaseAuth auth;
 
-	// Use this for initialization
-	void Start () {
+    public static FirebaseManager _instance = null;
+    public static FirebaseManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new FirebaseManager();
+            }
+            return _instance;
+        }
+    }
+
+    Firebase.Auth.FirebaseAuth auth;
+    Firebase.Auth.FirebaseUser user;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
-
-    private void Awake()
-    {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;    
-    }
 
     // Update is called once per frame
     void Update () {
 		
 	}
 
-    public void SignUp()
+    public bool SingedInFirebase()
     {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        if (auth.CurrentUser != null)
+        {
+            user = auth.CurrentUser;
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void LogIn()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         auth.SignInAnonymouslyAsync().ContinueWith(Task =>
         {
             if (Task.IsCanceled)
@@ -34,10 +58,10 @@ public class FirebaseManager : MonoBehaviour {
                 return;
             }
 
-            Firebase.Auth.FirebaseUser newUser = Task.Result;
+            user = Task.Result;
 
             Debug.LogFormat("User signed in successfully: {0} ({1})",
-                    newUser.DisplayName, newUser.UserId);
+                    user.DisplayName, user.UserId);
         });
     }
 }
