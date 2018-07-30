@@ -25,6 +25,15 @@ public class GManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         PlayerData.Instance.Initialize();
+
+        if (!FirebaseManager.Instance.SingedInFirebase())
+        {
+            FirebaseManager.Instance.LogIn();
+        }
+
+        Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
+        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
+
         StartCoroutine(UpdateGame());
     }
 
