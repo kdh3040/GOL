@@ -12,7 +12,7 @@ public class DoorSystem
 
         for (int i = 0; i < DoorList.Count; i++)
         {
-            var type = (CommonData.NOTE_LINE)(i + 1);
+            var type = (CommonData.NOTE_LINE)i;
             DoorList[i].SetData(type);
         }
     }

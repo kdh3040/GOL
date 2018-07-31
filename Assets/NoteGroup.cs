@@ -17,7 +17,7 @@ public class NoteGroup : MonoBehaviour {
     {
         for (int i = 0; i < noteIdList.Count; i++)
         {
-            NoteList[i].SetNote(noteIdList[i].Key, noteIdList[i].Value);
+            NoteList[i].SetNote((CommonData.NOTE_LINE)i, noteIdList[i].Key, noteIdList[i].Value);
         }
     }
 
@@ -25,11 +25,22 @@ public class NoteGroup : MonoBehaviour {
     {
         for (int i = 0; i < NoteList.Length; i++)
         {
-            if (NoteList[i].NoteType != CommonData.NOTE_TYPE.NONE || NoteList[i].NoteType != CommonData.NOTE_TYPE.ITEM)
+            if (NoteList[i].NoteType == CommonData.NOTE_TYPE.NORMAL)
                 return true;
         }
 
         return false;
+    }
+
+    public CommonData.NOTE_LINE GetAliveNoteLine()
+    {
+        for (int i = 0; i < NoteList.Length; i++)
+        {
+            if (NoteList[i].NoteType == CommonData.NOTE_TYPE.NORMAL)
+                return NoteList[i].NoteLineType;
+        }
+
+        return CommonData.NOTE_LINE.INDEX_1;
     }
 
     public bool DeleteNote(CommonData.NOTE_LINE type)

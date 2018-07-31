@@ -5,6 +5,8 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     [System.NonSerialized]
+    public CommonData.NOTE_LINE NoteLineType = CommonData.NOTE_LINE.INDEX_1;
+    [System.NonSerialized]
     public CommonData.NOTE_TYPE NoteType = CommonData.NOTE_TYPE.NORMAL;
     [System.NonSerialized]
     public int NoteId = 0;
@@ -24,7 +26,7 @@ public class Note : MonoBehaviour
         NoteCollider.enabled = false;
     }
 
-    public void SetNote(CommonData.NOTE_TYPE type, int id)
+    public void SetNote(CommonData.NOTE_LINE lineType, CommonData.NOTE_TYPE type, int id)
     {
         ResetNote();
         switch (type)
@@ -38,6 +40,8 @@ public class Note : MonoBehaviour
             default:
                 break;
         }
+
+        NoteLineType = lineType;
     }
 
     private void SetNormalNote(int id)

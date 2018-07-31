@@ -139,7 +139,7 @@ public class NoteSystem
         int createCount = Random.Range(1, ConfigData.Instance.NOTE_CREATE_SAMETIME_MAX_COUNT + 1);
         List<KeyValuePair<CommonData.NOTE_TYPE, int>> createNoteList = new List<KeyValuePair<CommonData.NOTE_TYPE, int>>();
 
-        for (int i = 0; i < (int)CommonData.NOTE_LINE.MAX - 1; i++)
+        for (int i = (int)CommonData.NOTE_LINE.INDEX_1; i <= (int)CommonData.NOTE_LINE.INDEX_3; i++)
         {
             createNoteList.Add(new KeyValuePair<CommonData.NOTE_TYPE, int>(CommonData.NOTE_TYPE.NONE, 0));
         }
@@ -149,7 +149,7 @@ public class NoteSystem
             var createNoteLine = 1;
             while (true)
             {
-                createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.MAX);
+                createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3);
                 if(createNoteList[createNoteLine - 1].Key == CommonData.NOTE_TYPE.NONE)
                     break;
             }
