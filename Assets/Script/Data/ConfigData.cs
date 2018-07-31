@@ -27,6 +27,7 @@ public class ConfigData {
     public int MAX_USE_SHIELD_ITEM;
     public int MAX_DDONG_COUNT;
     public int DDONG_REFIL_TIME;
+    public int REVIVAL_COST;
 
     public void Initialize(XmlNodeList list)
     {
@@ -52,7 +53,8 @@ public class ConfigData {
                 MAX_DDONG_COUNT = GetIntValue(node);
             else if (key.Equals("DDONG_REFIL_TIME"))
                 DDONG_REFIL_TIME = GetIntValue(node);
-
+            else if (key.Equals("REVIVAL_COST"))
+                REVIVAL_COST = GetIntValue(node);
         }
     }
 

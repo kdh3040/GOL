@@ -110,7 +110,8 @@ public class NoteSystem
             {
                 if(NoteGroupList[i].IsAliveNote())
                 {
-                    // 게임오버
+                    GamePlayManager.Instance.GameOver();
+                    // 게임오
                     int posIndex = i - 1;
                     if (posIndex < 0)
                         posIndex = NoteGroupList.Count - 1;
@@ -149,7 +150,7 @@ public class NoteSystem
             var createNoteLine = 0;
             while (true)
             {
-                createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3);
+                createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3 + 1);
                 if(createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
                     break;
             }
@@ -185,7 +186,7 @@ public class NoteSystem
                 allPercentValue += NoteCreatePercentList[i].OriginalPercent;
         }
 
-        var percentValue = Random.Range(0, allPercentValue);
+        var percentValue = Random.Range(0, allPercentValue + 1);
 
         for (int i = 0; i < NoteCreatePercentList.Count; i++)
         {
@@ -198,7 +199,7 @@ public class NoteSystem
 
     private int PickItemNoteId()
     {
-        var percentValue = Random.Range(0, NoteItemAllPercentValue);
+        var percentValue = Random.Range(0, NoteItemAllPercentValue + 1);
 
         for (int i = 0; i < NoteItemCreatePercentList.Count; i++)
         {

@@ -64,7 +64,10 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
-        GamePlayManager.Instance.GameRestart();
-        PopupManager.Instance.DismissPopup();
+        if(CommonFunc.UseCoin(ConfigData.Instance.REVIVAL_COST))
+        {
+            GamePlayManager.Instance.GameRevival();
+            PopupManager.Instance.DismissPopup();
+        }
     }
 }

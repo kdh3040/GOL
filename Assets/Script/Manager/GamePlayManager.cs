@@ -88,6 +88,15 @@ public class GamePlayManager : MonoBehaviour
         StartCoroutine(UpdateGamePlay());
     }
 
+    public void GameRevival()
+    {
+        ResetGame();
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        mGameUIPage.RefreshShieldItemUI();
+        mNoteSystem.GameRestart();
+        StartCoroutine(UpdateGamePlay());
+    }
+
     public void GamePause()
     {
        // mIsGamePause = true;
