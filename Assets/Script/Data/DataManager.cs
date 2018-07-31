@@ -27,6 +27,7 @@ public class DataManager {
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
+    public Dictionary<string, EndingData> EndingDataList_NAME = new Dictionary<string, EndingData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -162,6 +163,7 @@ public class DataManager {
                     {
                         var data = new EndingData(child);
                         EndingDataList.Add(data.id, data);
+                        EndingDataList_NAME.Add(data.name, data);
                     }
                 }
             }

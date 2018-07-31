@@ -46,7 +46,7 @@ public class Door : MonoBehaviour
                 break;
         }
 
-        if (Data.img_twist[(int)NoteLineType - 1])
+        if (Data.img_twist[(int)NoteLineType])
             DoorSprite.flipX = true;
         else
             DoorSprite.flipX = false;

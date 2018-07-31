@@ -146,11 +146,11 @@ public class NoteSystem
 
         for (int i = 0; i < createCount; i++)
         {
-            var createNoteLine = 1;
+            var createNoteLine = 0;
             while (true)
             {
                 createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3);
-                if(createNoteList[createNoteLine - 1].Key == CommonData.NOTE_TYPE.NONE)
+                if(createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
                     break;
             }
             
@@ -169,7 +169,7 @@ public class NoteSystem
             if (createNoteType == CommonData.NOTE_TYPE.NORMAL)
                 createNoteId = PickNormalNoteId();
 
-            createNoteList[createNoteLine - 1] = new KeyValuePair<CommonData.NOTE_TYPE, int>(createNoteType, createNoteId);
+            createNoteList[createNoteLine] = new KeyValuePair<CommonData.NOTE_TYPE, int>(createNoteType, createNoteId);
         }
 
         NoteGroupList[index].SetNoteData(createNoteList);

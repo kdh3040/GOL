@@ -30,15 +30,8 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGamePlay()
     {
-        if (PlayerData.Instance.Ddong <= 0)
-        {
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));
-            return;
-        }
-        else
-        {
+        if(PlayerData.Instance.IsPlayEnable(false))
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
-        }
     }
 
     public void OnClickGameShop()

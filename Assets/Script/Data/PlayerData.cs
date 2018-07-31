@@ -205,4 +205,18 @@ public class PlayerData
 
         return true;
     }
+
+
+    public bool IsPlayEnable(bool showMsgPopup)
+    {
+        if (Ddong <= 0)
+        {
+            if(showMsgPopup)
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));
+
+            return false;
+        }
+
+        return true;
+    }
 }

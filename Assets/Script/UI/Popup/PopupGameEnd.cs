@@ -11,15 +11,41 @@ public class PopupGameEnd : PopupUI {
         return PopupManager.POPUP_TYPE.GAME_END;
     }
 
-    public Button GameExitButton;
+    public class PopupData : PopupUIData
+    {
+        public int EndingNoteId = 0;
+        public int ScoreValue = 0;
+        public int CoinValue = 0;
+        public PopupData(int endingNoteId, int score, int coin)
+        {
+            EndingNoteId = endingNoteId;
+            ScoreValue = score;
+            CoinValue = coin;
+        }
+    }
+
+    public Image EndingScene;
+    public Text Score;
+    public Text Coin;
     public Button GameRestartButton;
-    public Button GameResurrectionButton;
+    public Button GameRevivalButton;
+    public Button GameExitButton;
 
     void Awake()
     {
         GameExitButton.onClick.AddListener(OnClickGameExit);
         GameRestartButton.onClick.AddListener(OnClickGameRestart);
-        GameResurrectionButton.onClick.AddListener(OnClickGameResurrection);
+        GameRevivalButton.onClick.AddListener(OnClickGameRevival);
+    }
+
+    public override void ShowPopup(PopupUIData data)
+    {
+        var popupData = data as PopupData;
+        Score.text = CommonFunc.ConvertNumber(popupData.ScoreValue);
+        Coin.text = CommonFunc.ConvertNumber(popupData.CoinValue);
+        var noteData = DataManager.Instance.NoteDataDic[popupData.EndingNoteId];
+        var endingData = DataManager.Instance.EndingDataList_NAME[noteData.endingName];
+        CommonFunc.SetImageFile(endingData.img, ref EndingScene);
     }
 
     void OnClickGameExit()
@@ -30,10 +56,13 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRestart()
     {
-        GamePlayManager.Instance.GameRestart();
-        PopupManager.Instance.DismissPopup();
+        if (PlayerData.Instance.IsPlayEnable(true))
+        {
+            GamePlayManager.Instance.GameRestart();
+            PopupManager.Instance.DismissPopup();
+        }
     }
-    void OnClickGameResurrection()
+    void OnClickGameRevival()
     {
         GamePlayManager.Instance.GameRestart();
         PopupManager.Instance.DismissPopup();
