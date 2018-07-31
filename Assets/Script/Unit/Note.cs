@@ -12,7 +12,7 @@ public class Note : MonoBehaviour
     public int NoteId = 0;
     
     public SpriteRenderer NoteImage;
-    public BoxCollider2D NoteCollider;
+    public BoxCollider NoteCollider;
     private NoteData NoteData = null;
     private ItemData ItemData = null;
 

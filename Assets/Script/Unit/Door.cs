@@ -51,4 +51,12 @@ public class Door : MonoBehaviour
         else
             DoorSprite.flipX = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Note"))
+        {
+            SetDoorState(DOOR_STATE.HALF_OPEN);
+        }
+    }
 }

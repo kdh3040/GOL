@@ -177,6 +177,8 @@ public class GamePlayManager : MonoBehaviour
         mNoteSystem.NoteDeleteCheck(door);
         // 라인타입
         mPlayerChar.ActionDoorClose(door);
+
+        SetDoorState(door.NoteLineType, 2);
     }
     
     public void PlusScore(int score)
@@ -263,6 +265,11 @@ public class GamePlayManager : MonoBehaviour
     private void SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX index, int id)
     {
         mNormalitemArr[(int)index] = id;
+    }
+
+    public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
+    {
+        mDoorSystem.SetDoorState(line, DoorState);
     }
 
 

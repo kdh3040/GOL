@@ -16,4 +16,23 @@ public class DoorSystem
             DoorList[i].SetData(type);
         }
     }
+
+    public void SetDoorState(CommonData.NOTE_LINE line, int State)
+    {
+        var DoorNum = (int)line;
+        switch(State)
+        {
+            case 0:
+                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.OPEN);
+                break;
+            case 1:
+                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.HALF_OPEN);
+                break;
+            case 2:
+                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.CLOSE);
+                break;
+
+        }
+        
+    }
 }

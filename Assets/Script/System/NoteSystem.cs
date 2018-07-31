@@ -110,7 +110,11 @@ public class NoteSystem
             {
                 if(NoteGroupList[i].IsAliveNote())
                 {
-                    GamePlayManager.Instance.GameOver();
+                    //GamePlayManager.Instance.GameOver();
+
+                    var line = NoteGroupList[i].GetAliveNoteLine();
+                    GamePlayManager.Instance.SetDoorState(line, 0);
+
                     // 게임오
                     int posIndex = i - 1;
                     if (posIndex < 0)
