@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirebaseManager : MonoBehaviour {
+public class FirebaseManager {
 
 
     public static FirebaseManager _instance = null;

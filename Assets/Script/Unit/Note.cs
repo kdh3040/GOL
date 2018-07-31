@@ -6,17 +6,20 @@ public class Note : MonoBehaviour
 {
     [System.NonSerialized]
     public CommonData.NOTE_TYPE NoteType = CommonData.NOTE_TYPE.NORMAL;
-
+    [System.NonSerialized]
+    public int NoteId = 0;
+    
     public SpriteRenderer NoteImage;
     private NoteData NoteData = null;
     private ItemData ItemData = null;
 
-    private void ResetNote()
+    public void ResetNote()
     {
         NoteType = CommonData.NOTE_TYPE.NONE;
         NoteData = null;
         ItemData = null;
         NoteImage.sprite = null;
+        NoteId = 0;
     }
 
     public void SetNote(CommonData.NOTE_TYPE type, int id)
@@ -37,6 +40,7 @@ public class Note : MonoBehaviour
 
     private void SetNormalNote(int id)
     {
+        NoteId = id;
         NoteType = CommonData.NOTE_TYPE.NORMAL;
         NoteData = DataManager.Instance.NoteDataDic[id];
         NoteImage.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));
@@ -44,6 +48,7 @@ public class Note : MonoBehaviour
 
     private void SetItemNote(int id)
     {
+        NoteId = id;
         NoteType = CommonData.NOTE_TYPE.ITEM;
         ItemData = ItemManager.Instance.GetItemData(id);
         NoteImage.sprite = (Sprite)Resources.Load(ItemData.icon, typeof(Sprite));

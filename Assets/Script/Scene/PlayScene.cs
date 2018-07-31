@@ -5,16 +5,11 @@ using UnityEngine.UI;
 
 public class PlayScene : MonoBehaviour
 {
-    public List<Transform> mDoorPosList = new List<Transform>();
-    public Transform NoteStartPos_1;
-    public Transform NoteEndPos_1;
-    public Transform NoteStartPos_2;
-    public Transform NoteEndPos_2;
-    public Transform NoteStartPos_3;
-    public Transform NoteEndPos_3;
+    public List<Door> DoorList = new List<Door>();
+    public List<NoteGroup> NoteGroupList = new List<NoteGroup>();
+    public Transform NoteGroupEndPos;
     public PageGameUI UIPage;
-    public Transform NotesParentPos;
-    public Transform PlayerParentPos;
+    public PlayerChar PlayerCharObj;
 
     public SpriteRenderer Background_Front;
     public SpriteRenderer Background_Back;

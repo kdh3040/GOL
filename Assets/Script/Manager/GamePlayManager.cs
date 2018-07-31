@@ -27,8 +27,6 @@ public class GamePlayManager : MonoBehaviour
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
-    private Transform mNoteParentPos;
-    private Transform mPlayerCharPos;
 
     public int[] mNormalitemArr = new int[2];
     public int mShielditem = 0;
@@ -38,13 +36,6 @@ public class GamePlayManager : MonoBehaviour
         get
         {
             return mNoteSystem.NoteSpeed;
-        }
-    }
-    public float AccumulateCreateNoteCount
-    {
-        get
-        {
-            return mNoteSystem.AccumulateCreateNoteCount;
         }
     }
     void Start()
@@ -57,15 +48,7 @@ public class GamePlayManager : MonoBehaviour
         mNoteSystem.Initialize(scene);
         mDoorSystem.Initialize(scene);
         mGameUIPage = scene.UIPage;
-        mNoteParentPos = scene.NotesParentPos;
-        mPlayerCharPos = scene.PlayerParentPos;
-
-        if (mPlayerChar == null)
-        {
-            var obj = Instantiate(Resources.Load("Prefab/PlayerChar"), mPlayerCharPos) as GameObject;
-            mPlayerChar = obj.GetComponent<PlayerChar>();
-        }
-
+        mPlayerChar = scene.PlayerCharObj;
         mPlayerChar.Initialize();
     }
 
@@ -178,54 +161,6 @@ public class GamePlayManager : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    public Note CreateNote(string prefab)
-    {
-        // TODO 환웅 : 오브젝트 풀 추가 예정
-        var obj = Instantiate(Resources.Load(prefab), mNoteParentPos) as GameObject;
-        var note = obj.GetComponent<Note>();
-
-        return note;
-    }
-
-    public void DeleteNote(Note note, bool score = true)
-    {
-        if(score)
-        {
-            if (note.NoteType == CommonData.NOTE_TYPE.NORMAL)
-            {
-                var noteNormal = note as NoteNormal;
-                int defaultScore = DataManager.Instance.NoteDataDic[noteNormal.Id].Score;
-                PlusScore(defaultScore);
-            }
-            else
-            {
-                var noteItem = note as NoteItem;
-                PlusItem(noteItem.Id);
-            }
-        }
-        
-
-        DestroyImmediate(note.gameObject);
-    }
-
-    public void AddDeleteReadyNote(Note note)
-    {
-        mNoteSystem.NoteDeleteReady(note);
-    }
-
-    public Door CreateDoor(Transform pos)
-    {
-        var obj = Instantiate(Resources.Load("Prefab/Door"), pos) as GameObject;
-        var door = obj.GetComponent<Door>();
-
-        return door;
-    }
-
-    public void DeleteDoor(Door door)
-    {
-        DestroyImmediate(door.gameObject);
     }
 
     public void ClickDoor(Door door)
@@ -342,35 +277,43 @@ public class GamePlayManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
         else if (Input.GetKey(KeyCode.Z))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
         }
         else if (Input.GetKey(KeyCode.X))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[1]);
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
         else if (Input.GetKey(KeyCode.C))
         {
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[0]);
-            GamePlayManager.Instance.ClickDoor(mDoorSystem.mDoorList[2]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
+            GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            mNoteSystem.NoteSpeed += 0.1f;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            mNoteSystem.NoteSpeed -= 0.1f;
         }
 
 #if UNITY_ANDROID
-        if(Input.touchCount >= 1)
+        if (Input.touchCount >= 1)
         {
             for(int i = 0; i<Input.touchCount; i++)
             {

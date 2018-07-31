@@ -129,8 +129,8 @@ public class PageGameUI : MonoBehaviour
         StringBuilder text = new StringBuilder();
         text.AppendFormat("노트속도 : {0}", GamePlayManager.Instance.NoteSpeed);
         text.AppendLine();
-        text.AppendFormat("누적노트 : {0}", GamePlayManager.Instance.AccumulateCreateNoteCount);
-        text.AppendLine();
+        //text.AppendFormat("누적노트 : {0}", GamePlayManager.Instance.AccumulateCreateNoteCount);
+        //text.AppendLine();
 
         // 스킬
         var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
