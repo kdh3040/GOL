@@ -108,21 +108,11 @@ public class NoteSystem
 
             if(NoteGroupEndPos.localPosition.y > pos.y)
             {
-                if(NoteGroupList[i].IsAliveNote())
+                if(NoteGroupList[i].IsAliveNote() && GamePlayManager.Instance.IsGameOver())
                 {
-                    //GamePlayManager.Instance.GameOver();
-
-                    var line = NoteGroupList[i].GetAliveNoteLine();
-                    GamePlayManager.Instance.SetDoorState(line, 0);
-
-                    // 게임오
-                    int posIndex = i - 1;
-                    if (posIndex < 0)
-                        posIndex = NoteGroupList.Count - 1;
-
-                    var nextPos = NoteGroupList[posIndex].transform.localPosition;
-                    NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, nextPos.y + CommonData.NOTE_GROUP_INTERVAL);
-                    AllocateNoteGroup(i);
+                    var note = NoteGroupList[i].GetGameOverCheckNote();
+                    GamePlayManager.Instance.SetDoorState(note.NoteLineType, 0);
+                    GamePlayManager.Instance.GameOver(note.NoteId);
                 }
                 else
                 {

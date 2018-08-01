@@ -107,33 +107,36 @@ public class GamePlayManager : MonoBehaviour
         mIsGamePause = false;
     }
 
-    public void GameOver()
+    public bool IsGameOver()
     {
         if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME) != null)
-            return;
-        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) != null)
+            return false;
+        else if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) != null)
         {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) as GameSkill_DamageShieldCount;
 
             if (skill.CharShield())
-                return;
+                return false;
             // TODO 환웅 : 캐릭티 맞음
         }
-        else if(SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) != null)
+        else if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) != null)
         {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) as GameSkill_Resurrection;
 
             if (skill.IsResurrection())
-                return;
+                return false;
 
             // TODO 환웅 : 캐릭터 부활
         }
 
-        mGameUIPage.GameOver();
-        mIsGamePause = true;
+        return true;
     }
 
-
+    public void GameOver(int gameOverNoteId)
+    {
+        mGameUIPage.GameOver(gameOverNoteId);
+        mIsGamePause = true;
+    }
 
     IEnumerator UpdateGamePlay()
     {
@@ -270,6 +273,11 @@ public class GamePlayManager : MonoBehaviour
     public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
     {
         mDoorSystem.SetDoorState(line, DoorState);
+    }
+
+    public int ConvertScoreToCoin()
+    {
+        return Score / 10;
     }
 
 
