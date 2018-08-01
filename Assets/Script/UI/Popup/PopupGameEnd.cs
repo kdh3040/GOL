@@ -31,6 +31,8 @@ public class PopupGameEnd : PopupUI {
     public Button GameRevivalButton;
     public Button GameExitButton;
 
+    private int CoinValue = 0;
+
     void Awake()
     {
         GameExitButton.onClick.AddListener(OnClickGameExit);
@@ -41,15 +43,33 @@ public class PopupGameEnd : PopupUI {
     public override void ShowPopup(PopupUIData data)
     {
         var popupData = data as PopupData;
+        CoinValue = popupData.CoinValue;
         Score.text = CommonFunc.ConvertNumber(popupData.ScoreValue);
         Coin.text = CommonFunc.ConvertNumber(popupData.CoinValue);
         var noteData = DataManager.Instance.NoteDataDic[popupData.EndingNoteId];
         var endingData = DataManager.Instance.EndingDataList_NAME[noteData.endingName];
         CommonFunc.SetImageFile(endingData.img, ref EndingScene);
+
+        StartCoroutine(Co_ScoreCoinEffect());
+    }
+
+    IEnumerator Co_ScoreCoinEffect()
+    {
+        // TODO 환웅 연출 수정
+        float saveTime = 0;
+        while(saveTime < 5f)
+        {
+            yield return null;
+            saveTime += Time.deltaTime;
+            Coin.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, CoinValue, saveTime / 5f));
+        }
+
+        Coin.text = CommonFunc.ConvertNumber(CoinValue);
     }
 
     void OnClickGameExit()
     {
+        PlayerData.Instance.AddCoin(CoinValue);
         GamePlayManager.Instance.GameExit();
         PopupManager.Instance.DismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);

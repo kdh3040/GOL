@@ -119,9 +119,16 @@ public class PageGameUI : MonoBehaviour
         progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
         mSkillProgressBarList.Add(progressBar);
     }
-    public void GameOver()
+    public void GameOver(int gameOverNoteId)
     {
-        var popupData = new PopupGameEnd.PopupData(1, 100, 100000);
+        StartCoroutine(Co_GameOver(gameOverNoteId));
+    }
+
+    public IEnumerator Co_GameOver(int gameOverNoteId)
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        var popupData = new PopupGameEnd.PopupData(gameOverNoteId, GamePlayManager.Instance.Score, GamePlayManager.Instance.ConvertScoreToCoin());
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, popupData);
     }
 

@@ -12,6 +12,7 @@ public class EndingData : SkinData
         id = int.Parse(node.Attributes.GetNamedItem("id").Value);
         name = node.Attributes.GetNamedItem("name").Value;
         desc = node.Attributes.GetNamedItem("desc").Value;
+        img = node.Attributes.GetNamedItem("img").Value;
     }
 
     public override string GetIcon()

@@ -32,15 +32,15 @@ public class NoteGroup : MonoBehaviour {
         return false;
     }
 
-    public CommonData.NOTE_LINE GetAliveNoteLine()
+    public Note GetGameOverCheckNote()
     {
         for (int i = 0; i < NoteList.Length; i++)
         {
             if (NoteList[i].NoteType == CommonData.NOTE_TYPE.NORMAL)
-                return NoteList[i].NoteLineType;
+                return NoteList[i];
         }
 
-        return CommonData.NOTE_LINE.INDEX_1;
+        return null;
     }
 
     public bool DeleteNote(CommonData.NOTE_LINE type)
