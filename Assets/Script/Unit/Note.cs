@@ -17,31 +17,12 @@ public class Note : MonoBehaviour
     private ItemData ItemData = null;
 
     public Animator Anim = null;
+    List<string> ArrAnim = new List<string>();
 
     public void ResetNote()
     {
-     
-        NoteType = CommonData.NOTE_TYPE.NONE;
-        NoteData = null;
-        ItemData = null;
-        NoteImage.sprite = null;
-        NoteId = 0;
-        NoteCollider.enabled = false;
-        Anim.enabled = false;
-    }
 
-
-   
-    public void SetNote(CommonData.NOTE_LINE lineType, CommonData.NOTE_TYPE type, int id)
-    {
-    
-        ResetNote();
-
-        
-        // 밑에 클립 명 데이터화 필요
-        List<string> ArrAnim = new List<string>();
-
-        ArrAnim.Add("1");     
+        ArrAnim.Add("1");
         ArrAnim.Add("2");
         ArrAnim.Add("3");
         ArrAnim.Add("4");
@@ -51,15 +32,34 @@ public class Note : MonoBehaviour
         ArrAnim.Add("8");
         ArrAnim.Add("9");
         ArrAnim.Add("10");
+        Anim.Rebind();
 
-    
+        NoteType = CommonData.NOTE_TYPE.NONE;
+        NoteData = null;
+        ItemData = null;
+        NoteImage.sprite = null;
+        NoteId = 0;
+        NoteCollider.enabled = false;
+        
+        Anim.enabled = false;
+        
+        
+    }
+
+
+   
+    public void SetNote(CommonData.NOTE_LINE lineType, CommonData.NOTE_TYPE type, int id)
+    {
 
         
+        ResetNote();
 
+        // 밑에 클립 명 데이터화 필요
+    
         switch (type)
         {
             case CommonData.NOTE_TYPE.NORMAL:
-                SetNormalNote(id);
+                SetNormalNote(id);             
                 Anim.SetTrigger(ArrAnim[id-1]);
                 break;
             case CommonData.NOTE_TYPE.ITEM:
