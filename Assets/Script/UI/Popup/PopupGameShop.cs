@@ -54,6 +54,12 @@ public class PopupGameShop : PopupUI
     {
         var popupData = data as PopupData;
 
+
+        ItamTab.SetTabTitle("POPUP_SHOP_TAB_ITEM");
+        CharTab.SetTabTitle("POPUP_SHOP_TAB_CHAR");
+        DoorTab.SetTabTitle("POPUP_SHOP_TAB_DOOR");
+        BGTab.SetTabTitle("POPUP_SHOP_TAB_BACKGROUND");
+
         GameStart.gameObject.SetActive(popupData.GameStartReady);
         TopBar.Initialize(true);
         OnClickTab(TAB_TYPE.ITEM);

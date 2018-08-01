@@ -56,7 +56,7 @@ public class GamePlayManager : MonoBehaviour
     {
         SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
         SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
-        mShielditem = PlayerData.Instance.mShielditem;
+        mShielditem = PlayerData.Instance.UseShieldItem;
 
         StopAllCoroutines();
         Score = 0;

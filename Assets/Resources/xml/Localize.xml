@@ -16,8 +16,14 @@
 	<Localize id="SHIELD_SKILL_DESC" kr="한번 막아줌" jp="한번 막아줌" en="한번 막아줌"/>
 	<Localize id="SCORE_DOUBLE_SKILL_DESC" kr="점수가 2배" jp="점수가 2배" en="점수가 2배"/>
 	<Localize id="LEVELUP_ITEM" kr="아이템을 강화 하시겠습니까?" jp="아이템을 강화 하시겠습니까?" en="아이템을 강화 하시겠습니까?"/>
+	<Localize id="ITEM_LEVELUP_MAX" kr="강화 최대치 입니다." jp="강화 최대치 입니다." en="강화 최대치 입니다."/>
+	<Localize id="NOT_BUY_SKIN" kr="구입하지 않은 스킨 입니다." jp="구입하지 않은 스킨 입니다." en="구입하지 않은 스킨 입니다."/>
 	<Localize id="POPUP_BOOK_TAB_CHAR" kr="캐릭터" jp="캐릭터" en="캐릭터"/>
 	<Localize id="POPUP_BOOK_TAB_ENDING" kr="엔딩도감" jp="엔딩도감" en="엔딩도감"/>
 	<Localize id="POPUP_BOOK_TAB_DOOR" kr="문" jp="문" en="문"/>
 	<Localize id="POPUP_BOOK_TAB_BACKGROUND" kr="배경" jp="배경" en="배경"/>
+	<Localize id="POPUP_SHOP_TAB_CHAR" kr="캐릭터" jp="캐릭터" en="캐릭터"/>
+	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템" jp="아이템" en="아이템"/>
+	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문" jp="문" en="문"/>
+	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경" jp="배경" en="배경"/>
 </Datas>

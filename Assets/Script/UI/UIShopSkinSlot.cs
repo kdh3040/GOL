@@ -8,10 +8,9 @@ public class UIShopSkinSlot : MonoBehaviour
     public Button SlotButton;
     public GameObject SelectImg;
     public Image Icon;
-    public UICountImgFont Cost;
-    public GameObject UseIcon;
-    public GameObject HaveIcon;
-    public GameObject QuestionMark;
+    public GameObject CostObj;
+    public Text CostValue;
+    public GameObject UseObj;
 
     [System.NonSerialized]
     public CommonData.SKIN_TYPE mSkinType;
@@ -64,27 +63,17 @@ public class UIShopSkinSlot : MonoBehaviour
 
     public void RefreshUI()
     {
-        UseIcon.SetActive(false);
-        HaveIcon.SetActive(false);
-        Cost.gameObject.SetActive(false);
-        QuestionMark.gameObject.SetActive(false);
+        CostObj.SetActive(false);
+        UseObj.SetActive(false);
 
-        if(mSkinData == null)
+        if (IsSkinUse())
         {
-            QuestionMark.gameObject.SetActive(true);
+            UseObj.SetActive(true);
         }
-        else if (IsSkinUse())
+        else if(IsSkinHave() == false)
         {
-            UseIcon.SetActive(true);
-        }
-        else if (IsSkinHave())
-        {
-            HaveIcon.SetActive(true);
-        }
-        else
-        {
-            Cost.gameObject.SetActive(true);
-            Cost.SetValue(mSkinData.cost, UICountImgFont.IMG_RANGE.CENTER);
+            CostObj.SetActive(true);
+            CostValue.text = CommonFunc.ConvertNumber(mSkinData.cost);
         }
     }
 

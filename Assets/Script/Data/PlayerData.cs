@@ -24,8 +24,8 @@ public class PlayerData
     public Dictionary<int, bool> HaveDoorDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveBGDic = new Dictionary<int, bool>();
     public Dictionary<int, bool> HaveEndingDic = new Dictionary<int, bool>();
-    public int[] mNormalitemArr = { 0,0 };
-    public int mShielditem = 0;
+    public int[] UseNormalItemArr = { 0,0 };
+    public int UseShieldItem = 0;
     public int Coin { get; private set; }
     public int Ddong { get; private set; }
     public int UseCharId { get; private set; }
@@ -38,9 +38,9 @@ public class PlayerData
     {
         Coin = 10;
         Ddong = 1;
-        mNormalitemArr[0] = 1;
-        mNormalitemArr[1] = 0;
-        mShielditem = 0;
+        UseNormalItemArr[0] = 1;
+        UseNormalItemArr[1] = 0;
+        UseShieldItem = 0;
 
         HaveItemDic.Add(1, 1);
         HaveCharDic.Add(1, true);
@@ -61,11 +61,11 @@ public class PlayerData
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
     {
-        return mNormalitemArr[(int)index];
+        return UseNormalItemArr[(int)index];
     }
     public void SetItemSlotId(CommonData.ITEM_SLOT_INDEX index, int id)
     {
-        mNormalitemArr[(int)index] = id;
+        UseNormalItemArr[(int)index] = id;
     }
 
     public void UpdatePlayerData(float time)
