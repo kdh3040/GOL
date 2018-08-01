@@ -16,8 +16,11 @@ public class Note : MonoBehaviour
     private NoteData NoteData = null;
     private ItemData ItemData = null;
 
+    public Animator Anim = null;
+
     public void ResetNote()
     {
+     
         NoteType = CommonData.NOTE_TYPE.NONE;
         NoteData = null;
         ItemData = null;
@@ -28,12 +31,12 @@ public class Note : MonoBehaviour
     }
 
 
-    Animator Anim;
+   
     public void SetNote(CommonData.NOTE_LINE lineType, CommonData.NOTE_TYPE type, int id)
     {
+    
         ResetNote();
 
-   
         
         // 밑에 클립 명 데이터화 필요
         List<string> ArrAnim = new List<string>();
@@ -51,7 +54,7 @@ public class Note : MonoBehaviour
 
     
 
-        Anim = GetComponent<Animator>();
+        
 
         switch (type)
         {
