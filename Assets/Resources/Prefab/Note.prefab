@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114117083936920954}
   - component: {fileID: 65285829999636566}
   - component: {fileID: 54303890078625662}
-  - component: {fileID: 95562609042525850}
+  - component: {fileID: 95039810330087200}
   m_Layer: 0
   m_Name: Note
   m_TagString: Note
@@ -71,7 +71,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 3, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95562609042525850
+--- !u!95 &95039810330087200
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -80,10 +80,10 @@ Animator:
   m_GameObject: {fileID: 1715292746051450}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c423bc1075173754980c7727509faf82, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8ab9780bed8e342498b98c8492fea189, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

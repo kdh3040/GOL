@@ -129,7 +129,7 @@ public class GamePlayManager : MonoBehaviour
             // TODO 환웅 : 캐릭터 부활
         }
 
-        return true;
+        return false;
     }
 
     public void GameOver(int gameOverNoteId)

@@ -24,15 +24,40 @@ public class Note : MonoBehaviour
         NoteImage.sprite = null;
         NoteId = 0;
         NoteCollider.enabled = false;
+        Anim.enabled = false;
     }
 
+
+    Animator Anim;
     public void SetNote(CommonData.NOTE_LINE lineType, CommonData.NOTE_TYPE type, int id)
     {
         ResetNote();
+
+   
+        
+        // 밑에 클립 명 데이터화 필요
+        List<string> ArrAnim = new List<string>();
+
+        ArrAnim.Add("1");     
+        ArrAnim.Add("2");
+        ArrAnim.Add("3");
+        ArrAnim.Add("4");
+        ArrAnim.Add("5");
+        ArrAnim.Add("6");
+        ArrAnim.Add("7");
+        ArrAnim.Add("8");
+        ArrAnim.Add("9");
+        ArrAnim.Add("10");
+
+    
+
+        Anim = GetComponent<Animator>();
+
         switch (type)
         {
             case CommonData.NOTE_TYPE.NORMAL:
                 SetNormalNote(id);
+                Anim.SetTrigger(ArrAnim[id-1]);
                 break;
             case CommonData.NOTE_TYPE.ITEM:
                 SetItemNote(id);
@@ -42,6 +67,8 @@ public class Note : MonoBehaviour
         }
 
         NoteLineType = lineType;
+        
+        
     }
 
     private void SetNormalNote(int id)
@@ -51,6 +78,7 @@ public class Note : MonoBehaviour
         NoteData = DataManager.Instance.NoteDataDic[id];
         NoteImage.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));
         NoteCollider.enabled = true;
+        Anim.enabled = true;
     }
 
     private void SetItemNote(int id)
