@@ -20,6 +20,7 @@ public class NoteSystem
     private int NoteItemAllPercentValue = 0;
 
     private float PlayTime = 0;
+    private float NoteSpeedCheckTime = 0;
     private float ItemNoteCreatePercent = 0;
 
     public void Initialize(PlayScene scene)
@@ -31,6 +32,7 @@ public class NoteSystem
     {
         NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
         PlayTime = 0;
+        NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
 
         var endPos = NoteGroupEndPos.localPosition;
@@ -100,6 +102,7 @@ public class NoteSystem
     public void NoteUpdate(float time)
     {
         PlayTime += time;
+        NoteSpeedCheckTime += time;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
             var pos = NoteGroupList[i].gameObject.transform.localPosition;
@@ -125,6 +128,17 @@ public class NoteSystem
                     AllocateNoteGroup(i);
                 }
             }
+        }
+
+        UpdateNoteSpeed();
+    }
+
+    private void UpdateNoteSpeed()
+    {
+        if(NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL)
+        {
+            NoteSpeedCheckTime = 0;
+            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP;
         }
     }
 

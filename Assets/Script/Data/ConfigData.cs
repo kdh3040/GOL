@@ -28,6 +28,9 @@ public class ConfigData {
     public int MAX_DDONG_COUNT;
     public int DDONG_REFIL_TIME;
     public int REVIVAL_COST;
+    public float NOTE_SPEED_UP_INTERVAL;
+    public float NOTE_SPEED_UP;
+    
 
     public void Initialize(XmlNodeList list)
     {
@@ -55,6 +58,10 @@ public class ConfigData {
                 DDONG_REFIL_TIME = GetIntValue(node);
             else if (key.Equals("REVIVAL_COST"))
                 REVIVAL_COST = GetIntValue(node);
+            else if (key.Equals("NOTE_SPEED_UP_INTERVAL"))
+                NOTE_SPEED_UP_INTERVAL = GetFloatValue(node);
+            else if (key.Equals("NOTE_SPEED_UP"))
+                NOTE_SPEED_UP = GetFloatValue(node);
         }
     }
 
