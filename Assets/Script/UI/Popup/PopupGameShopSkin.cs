@@ -6,24 +6,22 @@ using UnityEngine.UI;
 
 public class PopupGameShopSkin : MonoBehaviour {
 
-    public Image SelectIcon;
-    public Text SelectDesc;
-    public GridLayoutGroup SkinShopGrid;
+    public Image SelectSkinIcon;
+    public Text SelectSkinDesc;
+    public Button SkinBuy;
+    public Button SkinEquip;
+    public GridLayoutGroup SkinGrid;
+    public ScrollRect ScrollRect;
 
-    public Button SkinBuyButton;
-    public Button SkinEquipButton;
-
-    private CommonData.SKIN_TYPE mSkinType = CommonData.SKIN_TYPE.NONE;
-    private int mSelectSkinId = 0;
-    private List<UIShopSkinSlot> mSkinSlotList = new List<UIShopSkinSlot>();
-    private Dictionary<CommonData.SKIN_TYPE, List<int>> mSkinIndexDic = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
-
-    private int mDefaultSlotViewCount = 8;
+    private List<UIShopSkinSlot> SkinList = new List<UIShopSkinSlot>();
+    private int SelectSkinId = 0;
+    private CommonData.SKIN_TYPE SelectSkinType = CommonData.SKIN_TYPE.NONE;
+    private Dictionary<CommonData.SKIN_TYPE, List<int>> SkinIndexDic = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
 
     void Awake()
     {
-        SkinBuyButton.onClick.AddListener(OnClickBuy);
-        SkinEquipButton.onClick.AddListener(OnClickEquip);
+        SkinBuy.onClick.AddListener(OnClickBuy);
+        SkinEquip.onClick.AddListener(OnClickEquip);
     }
 
     public CommonData.SKIN_TYPE ConvertShopTab(PopupGameShop.TAB_TYPE type)
@@ -45,23 +43,12 @@ public class PopupGameShopSkin : MonoBehaviour {
 
     public void ShowUI(PopupGameShop.TAB_TYPE type)
     {
-        if (mSkinType == ConvertShopTab(type))
+        if (SelectSkinType == ConvertShopTab(type))
             return;
 
-        mSkinType = ConvertShopTab(type);
-        if (mSkinSlotList.Count <= 0)
+        SelectSkinType = ConvertShopTab(type);
+        if (SkinIndexDic.Count <= 0)
         {
-            for (int i = 0; i < mDefaultSlotViewCount; i++)
-            {
-                var obj = Instantiate(Resources.Load("Prefab/UIShopSkinSlot"), SkinShopGrid.gameObject.transform) as GameObject;
-                var slot = obj.GetComponent<UIShopSkinSlot>();
-                mSkinSlotList.Add(slot);
-                slot.SlotButton.onClick.AddListener(() => {
-                    if(slot.mSkinData != null)
-                        OnClickSlot(slot.mSkinData.id);
-                });
-            }
-
             var tempCharIndexList = new List<int>();
             var charDataDicEnumerator = DataManager.Instance.CharDataDic.GetEnumerator();
             while (charDataDicEnumerator.MoveNext())
@@ -77,7 +64,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.CHAR, tempCharIndexList);
+            SkinIndexDic.Add(CommonData.SKIN_TYPE.CHAR, tempCharIndexList);
 
             var tempDoorIndexList = new List<int>();
             var doorDataDicEnumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
@@ -94,7 +81,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.DOOR, tempDoorIndexList);
+            SkinIndexDic.Add(CommonData.SKIN_TYPE.DOOR, tempDoorIndexList);
 
             var tempBGIndexList = new List<int>();
             var bgDataDicEnumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
@@ -111,74 +98,77 @@ public class PopupGameShopSkin : MonoBehaviour {
                     return -1;
             });
 
-            mSkinIndexDic.Add(CommonData.SKIN_TYPE.BACKGROUND, tempBGIndexList);
+            SkinIndexDic.Add(CommonData.SKIN_TYPE.BACKGROUND, tempBGIndexList);
         }
 
         Initialize();
 
-        OnClickSlot(mSkinSlotList[0].mSkinData.id);
+        OnClickSlot(SkinList[0].mSkinData.id);
     }
 
     public void Initialize()
     {
-        var tempList = new List<int>();
+        var skinIndexList = SkinIndexDic[SelectSkinType];
 
-        tempList = mSkinIndexDic[mSkinType];
-
-        for (int i = 0; i < mSkinSlotList.Count; i++)
+        for (int i = 0; i < SkinList.Count; i++)
         {
-            if (i < tempList.Count)
-                mSkinSlotList[i].SetData(mSkinType, tempList[i]);
-            else
-                mSkinSlotList[i].SetData(mSkinType, 0);
+            DestroyImmediate(SkinList[i].gameObject);
         }
+        SkinList.Clear();
+
+        for (int i = 0; i < skinIndexList.Count; i++)
+        {
+            var obj = Instantiate(Resources.Load("Prefab/UIShopSkinSlot"), SkinGrid.gameObject.transform) as GameObject;
+            var slot = obj.GetComponent<UIShopSkinSlot>();
+            slot.SetData(SelectSkinType, skinIndexList[i]);
+            slot.SlotButton.onClick.AddListener(() => {OnClickSlot(slot.mSkinData.id);});
+            SkinList.Add(slot);
+        }
+        ScrollRect.content.sizeDelta = new Vector2(SkinList.Count * 261, ScrollRect.content.sizeDelta.y);
     }
 
-    
-    
     public void OnClickSlot(int id)
     {
-        for (int i = 0; i < mSkinSlotList.Count; i++)
+        for (int i = 0; i < SkinList.Count; i++)
         {
-            if (mSkinSlotList[i].mSkinData != null && 
-                mSkinSlotList[i].mSkinData.id == id)
-                mSkinSlotList[i].SetSelect(true);
+            if (SkinList[i].mSkinData.id == id)
+                SkinList[i].SetSelect(true);
             else
-                mSkinSlotList[i].SetSelect(false);
+                SkinList[i].SetSelect(false);
         }
 
-        mSelectSkinId = id;
+        SelectSkinId = id;
         RefreshTopUI();
     }
 
     public void RefreshTopUI()
     {
         SkinData skinData = null;
-        switch (mSkinType)
+        switch (SelectSkinType)
         {
             case CommonData.SKIN_TYPE.CHAR:
-                skinData = DataManager.Instance.CharDataDic[mSelectSkinId];
+                skinData = DataManager.Instance.CharDataDic[SelectSkinId];
                 break;
             case CommonData.SKIN_TYPE.DOOR:
-                skinData = DataManager.Instance.DoorDataDic[mSelectSkinId];
+                skinData = DataManager.Instance.DoorDataDic[SelectSkinId];
                 break;
             case CommonData.SKIN_TYPE.BACKGROUND:
-                skinData = DataManager.Instance.BackGroundDataDic[mSelectSkinId];
+                skinData = DataManager.Instance.BackGroundDataDic[SelectSkinId];
                 break;
             default:
                 break;
         }
         if(skinData != null)
         {
-            SelectIcon.sprite = (Sprite)Resources.Load(skinData.GetIcon(), typeof(Sprite));
-            SelectDesc.text = skinData.desc;
+            SelectSkinIcon.sprite = (Sprite)Resources.Load(skinData.GetIcon(), typeof(Sprite));
+            SelectSkinDesc.text = skinData.desc;
         }
     }
     public void RefreshMidUI()
     {
-        for (int i = 0; i < mSkinSlotList.Count; i++)
+        for (int i = 0; i < SkinList.Count; i++)
         {
-            mSkinSlotList[i].RefreshUI();
+            SkinList[i].RefreshUI();
         }
     }
     public void OnClickBuy()
@@ -187,16 +177,16 @@ public class PopupGameShopSkin : MonoBehaviour {
         {
             PopupManager.Instance.DismissPopup();
             SkinData skinData = null;
-            switch (mSkinType)
+            switch (SelectSkinType)
             {
                 case CommonData.SKIN_TYPE.CHAR:
-                    skinData = DataManager.Instance.CharDataDic[mSelectSkinId];
+                    skinData = DataManager.Instance.CharDataDic[SelectSkinId];
                     break;
                 case CommonData.SKIN_TYPE.DOOR:
-                    skinData = DataManager.Instance.DoorDataDic[mSelectSkinId];
+                    skinData = DataManager.Instance.DoorDataDic[SelectSkinId];
                     break;
                 case CommonData.SKIN_TYPE.BACKGROUND:
-                    skinData = DataManager.Instance.BackGroundDataDic[mSelectSkinId];
+                    skinData = DataManager.Instance.BackGroundDataDic[SelectSkinId];
                     break;
                 default:
                     break;
@@ -204,16 +194,16 @@ public class PopupGameShopSkin : MonoBehaviour {
 
             if (CommonFunc.UseCoin(skinData.cost))
             {
-                switch (mSkinType)
+                switch (SelectSkinType)
                 {
                     case CommonData.SKIN_TYPE.CHAR:
-                        PlayerData.Instance.AddChar(mSelectSkinId);
+                        PlayerData.Instance.AddChar(SelectSkinId);
                         break;
                     case CommonData.SKIN_TYPE.DOOR:
-                        PlayerData.Instance.AddDoor(mSelectSkinId);
+                        PlayerData.Instance.AddDoor(SelectSkinId);
                         break;
                     case CommonData.SKIN_TYPE.BACKGROUND:
-                        PlayerData.Instance.AddBG(mSelectSkinId);
+                        PlayerData.Instance.AddBG(SelectSkinId);
                         break;
                     default:
                         break;
@@ -232,20 +222,49 @@ public class PopupGameShopSkin : MonoBehaviour {
     }
     public void OnClickEquip()
     {
-        switch (mSkinType)
+        if (IsHaveSkin() == false)
+            return;
+
+        switch (SelectSkinType)
         {
             case CommonData.SKIN_TYPE.CHAR:
-                PlayerData.Instance.SetUseCharId(mSelectSkinId);
+                PlayerData.Instance.SetUseCharId(SelectSkinId);
                 break;
             case CommonData.SKIN_TYPE.DOOR:
-                PlayerData.Instance.SetUseDoorId(mSelectSkinId);
+                PlayerData.Instance.SetUseDoorId(SelectSkinId);
                 break;
             case CommonData.SKIN_TYPE.BACKGROUND:
-                PlayerData.Instance.SetUseBGId(mSelectSkinId);
+                PlayerData.Instance.SetUseBGId(SelectSkinId);
                 break;
             default:
                 break;
         }
         RefreshMidUI();
+    }
+
+    private bool IsHaveSkin()
+    {
+        bool returnValue = false;
+        switch (SelectSkinType)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                returnValue = PlayerData.Instance.IsHasChar(SelectSkinId);
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                returnValue = PlayerData.Instance.IsHasDoor(SelectSkinId);
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                returnValue = PlayerData.Instance.IsHasBG(SelectSkinId);
+                break;
+            default:
+                break;
+        }
+
+        if(returnValue == false)
+        {
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("NOT_BUY_SKIN")));
+        }
+
+        return returnValue;
     }
 }
