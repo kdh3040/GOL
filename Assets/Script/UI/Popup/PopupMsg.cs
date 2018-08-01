@@ -45,14 +45,12 @@ public class PopupMsg : PopupUI
 
     public Text Msg;
     public Button OkButton;
-    public Button BackgroundButton;
 
     private PopupData mPopupData;
 
     void Awake()
     {
         OkButton.onClick.AddListener(OnClickOk);
-        BackgroundButton.onClick.AddListener(()=> { PopupManager.Instance.DismissPopup(); });
         YesButton.onClick.AddListener(OnClickYes);
         NoButton.onClick.AddListener(OnClickNo);
     }
