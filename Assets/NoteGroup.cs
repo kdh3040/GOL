@@ -45,7 +45,7 @@ public class NoteGroup : MonoBehaviour {
 
     public bool DeleteNote(CommonData.NOTE_LINE type)
     {
-        var note = NoteList[(int)type - 1];
+        var note = NoteList[(int)type];
         var noteType = note.NoteType;
         var noteId = note.NoteId;
 

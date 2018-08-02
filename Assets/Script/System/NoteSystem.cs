@@ -101,6 +101,11 @@ public class NoteSystem
 
     public void NoteUpdate(float time)
     {
+
+    
+        
+
+
         PlayTime += time;
         NoteSpeedCheckTime += time;
         for (int i = 0; i < NoteGroupList.Count; i++)
@@ -224,8 +229,11 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-            var distance = Vector3.Distance(NoteGroupList[i].transform.position, door.gameObject.transform.position);
+            float distance = (NoteGroupList[i].transform.position.y - door.gameObject.transform.position.y);
+            //var distance = Vector3.Distance(NoteGroupList[i].transform.position.y, door.gameObject.transform.position.y);
 
+            //Debug.Log("minDistance : " + minDistance + " i : " + i);
+            //Debug.Log("NoteGroupList : " + NoteGroupList[i].transform.position + " door : " + door.gameObject.transform.position);
             if (minDistance > distance)
             {
                 minDistance = distance;
@@ -233,7 +241,9 @@ public class NoteSystem
             }   
         }
 
-        if(minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
+        //Debug.Log("minDistance : " + minDistance + " minDistanceIndex : " + minDistanceIndex + "door : " + door.NoteLineType);
+        // NoteGroupList[i].gameObject.transform.localPosition
+        if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
             return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 
         return false;
