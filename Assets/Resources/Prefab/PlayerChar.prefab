@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchChk: 0
-  PlayerAnim: {fileID: 0}
+  PlayerAnim: {fileID: 95687497026075764}
   PlayerImage: {fileID: 212620257450903790}
 --- !u!212 &212620257450903790
 SpriteRenderer:
