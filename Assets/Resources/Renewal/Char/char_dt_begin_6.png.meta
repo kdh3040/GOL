@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 2d12c1c544d674548b4e3e384019d5cf
-=======
-guid: 5181d7a80f06ad94b8dbea033ac5e562
->>>>>>> 056d0ff12b86d59eb2d39e189612e50cc6e887fa
+guid: d00c1dfa228abd540a88e814d5a21a06
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,6 +21,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -35,7 +33,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -77,16 +75,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: ad9a8446a93fceb42bf08441517d43ef
-=======
-    spriteID: f6af94ba72ad94b459a29e90ba386121
->>>>>>> 056d0ff12b86d59eb2d39e189612e50cc6e887fa
+    spriteID: 941c0458d3c863c438999bcc8543e0c5
     vertices: []
     indices: 
     edges: []
     weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
