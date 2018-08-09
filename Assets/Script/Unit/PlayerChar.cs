@@ -23,11 +23,11 @@ public class PlayerChar : MonoBehaviour
     public void ActionDoorClose(Door doorType)
     {
         if(doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_1)
-            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_1"), typeof(Sprite));
+            PlayerAnim.SetTrigger("1");
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_2)
-            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_2"), typeof(Sprite));
+            PlayerAnim.SetTrigger("2");
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_3)
-            PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_3"), typeof(Sprite));       
+            PlayerAnim.SetTrigger("3");
     }
 
     public void ActionDoorClose(string imgSrc)
