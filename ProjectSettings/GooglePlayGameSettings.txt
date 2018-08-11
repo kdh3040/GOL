@@ -1,2 +1,9 @@
 lastUpgrade=00950
 proj.pluginVersion=0.9.50
+proj.AppId=725663732545
+and.BundleId=com.dohosoft.gol
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e725663732545%3c%2fstring%3e%0d%0a++%3c%21--+package_name+--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.dohosoft.gol%3c%2fstring%3e%0d%0a++%3c%21--+achievement+1+--%3e%0d%0a++%3cstring+name%3d%22achievement_1%22+translatable%3d%22false%22%3eCgkIwaa3p48VEAIQAQ%3c%2fstring%3e%0d%0a++%3c%21--+achievement+2+--%3e%0d%0a++%3cstring+name%3d%22achievement_2%22+translatable%3d%22false%22%3eCgkIwaa3p48VEAIQAw%3c%2fstring%3e%0d%0a++%3c%21--+achievement+3+--%3e%0d%0a++%3cstring+name%3d%22achievement_3%22+translatable%3d%22false%22%3eCgkIwaa3p48VEAIQBA%3c%2fstring%3e%0d%0a++%3c%21--+achievement+4+--%3e%0d%0a++%3cstring+name%3d%22achievement_4%22+translatable%3d%22false%22%3eCgkIwaa3p48VEAIQBQ%3c%2fstring%3e%0d%0a++%3c%21--+achievement+5+--%3e%0d%0a++%3cstring+name%3d%22achievement_5%22+translatable%3d%22false%22%3eCgkIwaa3p48VEAIQBg%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=725663732545-7r96hlaoj117pnf3a329mi730i11grgp.apps.googleusercontent.com
+android.SetupDone=true
