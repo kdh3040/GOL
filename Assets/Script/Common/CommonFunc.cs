@@ -24,7 +24,7 @@ public class CommonFunc
 
     static public bool IsEnoughCoin(int coin, bool showPopup = false)
     {
-        var myCoin = PlayerData.Instance.Coin;
+        var myCoin = PlayerData.Instance.MyCoin;
 
         if (myCoin < coin)
         {
@@ -42,7 +42,7 @@ public class CommonFunc
     {
         if (IsEnoughCoin(coin, true))
         {
-            PlayerData.Instance.SubCoin(coin);
+            PlayerData.Instance.MinusCoin(coin);
             return true;
         }
 

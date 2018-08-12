@@ -25,7 +25,6 @@ public class ConfigData {
     public float NOTE_ITEM_CREATE_PERCENT;
     public int NOTE_ITEM_SCORE;
     public int MAX_USE_SHIELD_ITEM;
-    public int MAX_DDONG_COUNT;
     public int DDONG_REFIL_TIME;
     public int REVIVAL_COST;
     public float NOTE_SPEED_UP_INTERVAL;
@@ -52,8 +51,6 @@ public class ConfigData {
                 NOTE_ITEM_SCORE = GetIntValue(node);
             else if (key.Equals("MAX_USE_SHIELD_ITEM"))
                 MAX_USE_SHIELD_ITEM = GetIntValue(node);
-            else if (key.Equals("MAX_DDONG_COUNT"))
-                MAX_DDONG_COUNT = GetIntValue(node);
             else if (key.Equals("DDONG_REFIL_TIME"))
                 DDONG_REFIL_TIME = GetIntValue(node);
             else if (key.Equals("REVIVAL_COST"))

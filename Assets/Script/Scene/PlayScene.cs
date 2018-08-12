@@ -16,7 +16,7 @@ public class PlayScene : MonoBehaviour
 
     void Start()
     {
-        var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.UseBGId];
+        var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
         Background_Front.sprite = (Sprite)Resources.Load(backgroundData.img_front, typeof(Sprite));
         Background_Back.sprite = (Sprite)Resources.Load(backgroundData.img_back, typeof(Sprite));
 

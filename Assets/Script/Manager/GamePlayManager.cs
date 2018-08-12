@@ -56,7 +56,7 @@ public class GamePlayManager : MonoBehaviour
     {
         SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
         SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
-        mShielditem = PlayerData.Instance.UseShieldItem;
+        mShielditem = PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD);
 
         StopAllCoroutines();
         Score = 0;
@@ -72,7 +72,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameStart()
     {
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         UseGameShieldItem();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
@@ -82,7 +82,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRestart()
     {
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -91,7 +91,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRevival()
     {
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());

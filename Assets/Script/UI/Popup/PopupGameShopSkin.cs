@@ -194,21 +194,7 @@ public class PopupGameShopSkin : MonoBehaviour {
 
             if (CommonFunc.UseCoin(skinData.cost))
             {
-                switch (SelectSkinType)
-                {
-                    case CommonData.SKIN_TYPE.CHAR:
-                        PlayerData.Instance.AddChar(SelectSkinId);
-                        break;
-                    case CommonData.SKIN_TYPE.DOOR:
-                        PlayerData.Instance.AddDoor(SelectSkinId);
-                        break;
-                    case CommonData.SKIN_TYPE.BACKGROUND:
-                        PlayerData.Instance.AddBG(SelectSkinId);
-                        break;
-                    default:
-                        break;
-                }
-                
+                PlayerData.Instance.AddSkin(SelectSkinType, SelectSkinId);
                 RefreshMidUI();
             }
         };
@@ -225,40 +211,13 @@ public class PopupGameShopSkin : MonoBehaviour {
         if (IsHaveSkin() == false)
             return;
 
-        switch (SelectSkinType)
-        {
-            case CommonData.SKIN_TYPE.CHAR:
-                PlayerData.Instance.SetUseCharId(SelectSkinId);
-                break;
-            case CommonData.SKIN_TYPE.DOOR:
-                PlayerData.Instance.SetUseDoorId(SelectSkinId);
-                break;
-            case CommonData.SKIN_TYPE.BACKGROUND:
-                PlayerData.Instance.SetUseBGId(SelectSkinId);
-                break;
-            default:
-                break;
-        }
+        PlayerData.Instance.SetUseSkin(SelectSkinType, SelectSkinId);
         RefreshMidUI();
     }
 
     private bool IsHaveSkin()
     {
-        bool returnValue = false;
-        switch (SelectSkinType)
-        {
-            case CommonData.SKIN_TYPE.CHAR:
-                returnValue = PlayerData.Instance.IsHasChar(SelectSkinId);
-                break;
-            case CommonData.SKIN_TYPE.DOOR:
-                returnValue = PlayerData.Instance.IsHasDoor(SelectSkinId);
-                break;
-            case CommonData.SKIN_TYPE.BACKGROUND:
-                returnValue = PlayerData.Instance.IsHasBG(SelectSkinId);
-                break;
-            default:
-                break;
-        }
+        bool returnValue = PlayerData.Instance.HasSkin(SelectSkinType, SelectSkinId); ;
 
         if(returnValue == false)
         {

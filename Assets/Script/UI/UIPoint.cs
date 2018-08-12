@@ -47,27 +47,27 @@ public class UIPoint : MonoBehaviour {
         switch (mPointType)
         {
             case POINT_TYPE.DDONG:
-                if (mTempSaveValue == PlayerData.Instance.Ddong)
+                if (mTempSaveValue == PlayerData.Instance.MyDDong)
                     break;
 
-                if (PlayerData.Instance.Ddong > 0)
+                if (PlayerData.Instance.MyDDong > 0)
                 {
-                    mTempSaveValue = PlayerData.Instance.Ddong;
-                    PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.Ddong), CommonFunc.ConvertNumber(ConfigData.Instance.MAX_DDONG_COUNT));
+                    mTempSaveValue = PlayerData.Instance.MyDDong;
+                    PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT));
                 }
                 else
                 {
                     mTempSaveValue = -1;
-                    var time = PlayerData.Instance.DdongRefilTime - CommonFunc.GetCurrentTime();
+                    var time = PlayerData.Instance.GetNextDDongRefileTime();
                     PointText.text = string.Format("{0}:{1}", time.Minutes, time.Seconds);
                 }
                 break;
             case POINT_TYPE.COIN:
-                if (mTempSaveValue == PlayerData.Instance.Coin)
+                if (mTempSaveValue == PlayerData.Instance.MyCoin)
                     break;
 
-                mTempSaveValue = PlayerData.Instance.Coin;
-                PointText.text = CommonFunc.ConvertNumber(PlayerData.Instance.Coin);
+                mTempSaveValue = PlayerData.Instance.MyCoin;
+                PointText.text = CommonFunc.ConvertNumber(PlayerData.Instance.MyCoin);
                 break;
         }
     }
@@ -77,10 +77,10 @@ public class UIPoint : MonoBehaviour {
         switch (mPointType)
         {
             case POINT_TYPE.DDONG:
-                PlayerData.Instance.AddDdong(1);
+                PlayerData.Instance.PlusDDong(1);
                 break;
             case POINT_TYPE.COIN:
-                PlayerData.Instance.AddCoin(100);
+                PlayerData.Instance.PlusCoin(100);
                 break;
         }
     }

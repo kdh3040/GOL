@@ -59,21 +59,7 @@ public class UIBookSkinSlot : MonoBehaviour
 
     private bool IsSkinHave()
     {
-        switch (mSkinType)
-        {
-            case CommonData.SKIN_TYPE.CHAR:
-                return PlayerData.Instance.IsHasChar(mSkinData.id);
-            case CommonData.SKIN_TYPE.DOOR:
-                return PlayerData.Instance.IsHasDoor(mSkinData.id);
-            case CommonData.SKIN_TYPE.ENDING:
-                return PlayerData.Instance.IsHasEnding(mSkinData.id);
-            case CommonData.SKIN_TYPE.BACKGROUND:
-                return PlayerData.Instance.IsHasBG(mSkinData.id);
-            default:
-                break;
-        }
-
-        return false;
+        return PlayerData.Instance.HasSkin(mSkinType, mSkinData.id);
     }
 
     public void SetSelect(bool enable)

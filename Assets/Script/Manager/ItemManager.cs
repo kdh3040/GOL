@@ -49,7 +49,7 @@ public class ItemManager
     {
         if (IsItemLevelUp(id))
         {
-            PlayerData.Instance.ItemLevelUp(id);
+            PlayerData.Instance.PlusItem_Level(id);
         }
     }
 }

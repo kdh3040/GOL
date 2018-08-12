@@ -96,7 +96,7 @@ public class PopupGameShop : PopupUI
     
     public void OnClickGameStart()
     {
-        PlayerData.Instance.SubDdong(1);
+        PlayerData.Instance.MinusDDong();
         PopupManager.Instance.DismissPopup();
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
