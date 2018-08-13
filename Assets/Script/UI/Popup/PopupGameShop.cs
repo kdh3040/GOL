@@ -62,6 +62,7 @@ public class PopupGameShop : PopupUI
 
         GameStart.gameObject.SetActive(popupData.GameStartReady);
         TopBar.Initialize(true);
+        TabType = TAB_TYPE.NONE;
         OnClickTab(TAB_TYPE.ITEM);
     }
 
@@ -96,7 +97,7 @@ public class PopupGameShop : PopupUI
     
     public void OnClickGameStart()
     {
-        PlayerData.Instance.SubDdong(1);
+        PlayerData.Instance.MinusDDong();
         PopupManager.Instance.DismissPopup();
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }

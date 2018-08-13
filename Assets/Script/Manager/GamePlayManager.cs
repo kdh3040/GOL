@@ -17,6 +17,18 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
+    public class GamePlayItem
+    {
+        public bool IngameGet;
+        public int ItemId;
+
+        public GamePlayItem(bool ingameGet, int itemId)
+        {
+            IngameGet = ingameGet;
+            ItemId = itemId;
+        }
+    }
+
     public int Score
     {
         get;
@@ -28,8 +40,8 @@ public class GamePlayManager : MonoBehaviour
     private DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
 
-    public int[] mNormalitemArr = new int[2];
-    public int mShielditem = 0;
+    public Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem> ItemDic = new Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem>();
+    public bool FirstStart = true;
 
     public float NoteSpeed
     {
@@ -54,13 +66,24 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
-        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.LEFT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.LEFT));
-        SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX.RIGHT, PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.RIGHT));
-        mShielditem = PlayerData.Instance.UseShieldItem;
+        if(FirstStart)
+        {
+            ItemDic.Clear();
+            FirstSetItem(CommonData.ITEM_SLOT_INDEX.LEFT);
+            FirstSetItem(CommonData.ITEM_SLOT_INDEX.RIGHT);
+            FirstSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD);
+        }
+        else
+        {
+            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.LEFT, 0);
+            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.RIGHT, 0);
+            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
+        }
 
         StopAllCoroutines();
         Score = 0;
         mIsGamePause = false;
+        FirstStart = false;
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
     }
@@ -71,8 +94,9 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
+        FirstStart = true;
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         UseGameShieldItem();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
@@ -82,7 +106,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRestart()
     {
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -91,7 +115,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRevival()
     {
         ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.UseCharId);
+        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -117,7 +141,6 @@ public class GamePlayManager : MonoBehaviour
 
             if (skill.CharShield())
                 return false;
-            // TODO 환웅 : 캐릭티 맞음
         }
         else if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) != null)
         {
@@ -125,11 +148,9 @@ public class GamePlayManager : MonoBehaviour
 
             if (skill.IsResurrection())
                 return false;
-
-            // TODO 환웅 : 캐릭터 부활
         }
 
-        return false;
+        return true;
     }
 
     public void GameOver(int gameOverNoteId)
@@ -206,15 +227,7 @@ public class GamePlayManager : MonoBehaviour
         bool itemAdd = false;
         if (data.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
-            for (int i = 0; i < mNormalitemArr.Length; i++)
-            {
-                if (mNormalitemArr[i] == 0)
-                {
-                    mNormalitemArr[i] = id;
-                    itemAdd = true;
-                    break;
-                }
-            }
+            itemAdd = AddEmptyNormalItem(id);
 
             if (itemAdd == false)
             {
@@ -231,7 +244,7 @@ public class GamePlayManager : MonoBehaviour
                 var shieldCount = skill.mCount;
                 if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
                 {
-                    mShielditem = id;
+                    IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, id);
                     UseGameShieldItem();
                     itemAdd = true;
                 }
@@ -244,30 +257,34 @@ public class GamePlayManager : MonoBehaviour
     }
     public void UseGameNormalItem(CommonData.ITEM_SLOT_INDEX index)
     {
-        int itemId = mNormalitemArr[(int)index];
-        if (itemId == 0)
+        var data = ItemDic[index];
+        if (data.ItemId == 0)
             return;
 
-        SetGameNormalItemId(index, 0);
+        if(data.IngameGet == false)
+        {
+            PlayerData.Instance.MinusItem_Count(data.ItemId);
+        }
+        var skill = SkillManager.Instance.UseItemSkill(data.ItemId);
+        mGameUIPage.UseItemSkill(data.ItemId, skill);
 
-        var skill = SkillManager.Instance.UseItemSkill(itemId);
-        mGameUIPage.UseItemSkill(itemId, skill);
+        IngameGetSetItem(index, 0);
     }
 
     public void UseGameShieldItem()
     {
-        if (mShielditem == 0)
+        var data = ItemDic[CommonData.ITEM_SLOT_INDEX.SHIELD];
+        if (data.ItemId == 0)
             return;
 
-        SkillManager.Instance.UseItemSkill(mShielditem);
-
-        mShielditem = 0;
+        if (data.IngameGet == false)
+        {
+            PlayerData.Instance.MinusItem_Count(data.ItemId);
+        }
+        SkillManager.Instance.UseItemSkill(GetItemId(CommonData.ITEM_SLOT_INDEX.SHIELD));
         mGameUIPage.RefreshShieldItemUI();
-    }
 
-    private void SetGameNormalItemId(CommonData.ITEM_SLOT_INDEX index, int id)
-    {
-        mNormalitemArr[(int)index] = id;
+        IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
     }
 
     public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
@@ -279,6 +296,54 @@ public class GamePlayManager : MonoBehaviour
     {
         return Score / 10;
     }
+
+    public int GetItemId(CommonData.ITEM_SLOT_INDEX type)
+    {
+        if (ItemDic.ContainsKey(type) == false)
+            return 0;
+
+        return ItemDic[type].ItemId;
+    }
+    public void FirstSetItem(CommonData.ITEM_SLOT_INDEX type)
+    {
+        var id = PlayerData.Instance.GetItemSlotId(type);
+        if (id != 0)
+            ItemDic.Add(type, new GamePlayItem(false, id));
+        else
+            ItemDic.Add(type, new GamePlayItem(false, id));
+    }
+    public bool IngameGetSetItem(CommonData.ITEM_SLOT_INDEX type, int id)
+    {
+        if(id == 0)
+        {
+            ItemDic[type].IngameGet = true;
+            ItemDic[type].ItemId = 0;
+            return true;
+        }
+        else if(ItemDic[type].ItemId == 0)
+        {
+            ItemDic[type].IngameGet = true;
+            ItemDic[type].ItemId = id;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool AddEmptyNormalItem(int id)
+    {
+        for (int i = (int)CommonData.ITEM_SLOT_INDEX.LEFT; i < (int)CommonData.ITEM_SLOT_INDEX.SHIELD; i++)
+        {
+            if (IngameGetSetItem((CommonData.ITEM_SLOT_INDEX) i, id))
+                return true;
+        }
+
+        return false;
+    }
+
+
+
+
 
 
     private void GetUserTouchEvent()

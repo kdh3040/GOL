@@ -26,7 +26,8 @@ public class CommonData : MonoBehaviour {
     public enum ITEM_SLOT_INDEX
     {
         LEFT = 0,
-        RIGHT = 1
+        RIGHT = 1,
+        SHIELD = 2
     }
 
     public enum SKIN_TYPE
@@ -42,4 +43,5 @@ public class CommonData : MonoBehaviour {
     public static int NOTE_GROUP_NOTE_COUNT = 3;
     public static float NOTE_GROUP_INTERVAL = 3.0f;
     public static float NOTE_TOUCH_DELETE_INTERVAL = 2.0f;
+    public static int MAX_DDONG_COUNT = 5;
 }

@@ -23,8 +23,8 @@ public class PopupGameShopItem : MonoBehaviour {
 
     void Awake()
     {
-        MyItemSlot_1.onClick.AddListener(() => { OnClickMyItemSlot(0); });
-        MyItemSlot_2.onClick.AddListener(() => { OnClickMyItemSlot(1); });
+        MyItemSlot_1.onClick.AddListener(() => { OnClickMyItemSlot(CommonData.ITEM_SLOT_INDEX.LEFT); });
+        MyItemSlot_2.onClick.AddListener(() => { OnClickMyItemSlot(CommonData.ITEM_SLOT_INDEX.RIGHT); });
         MyItemSlot_Shield.onClick.AddListener(OnClickMyShieldItemSlot);
         ItemBuy.onClick.AddListener(OnClickItemBuy);
         ItemEquip.onClick.AddListener(OnClickItemEquip);
@@ -64,31 +64,31 @@ public class PopupGameShopItem : MonoBehaviour {
     public void MyItemSlotUI()
     {
 
-        RefreshMyNormalItemSlot(0, ref MyItemSlotImg_1);
-        RefreshMyNormalItemSlot(1, ref MyItemSlotImg_2);
+        RefreshMyNormalItemSlot(CommonData.ITEM_SLOT_INDEX.LEFT, ref MyItemSlotImg_1);
+        RefreshMyNormalItemSlot(CommonData.ITEM_SLOT_INDEX.RIGHT, ref MyItemSlotImg_2);
 
         RefreshMyShieldItemSlot();
     }
 
-    private void RefreshMyNormalItemSlot(int index, ref Image icon)
+    private void RefreshMyNormalItemSlot(CommonData.ITEM_SLOT_INDEX index, ref Image icon)
     {
-        var normalItemArr = PlayerData.Instance.UseNormalItemArr;
-        if (normalItemArr[index] == 0)
+        int id = PlayerData.Instance.GetItemSlotId(index);
+        if (id == 0)
             icon.gameObject.SetActive(false);
         else
         {
             icon.gameObject.SetActive(true);
-            var itemData = ItemManager.Instance.GetItemData(normalItemArr[index]);
+            var itemData = ItemManager.Instance.GetItemData(id);
             CommonFunc.SetImageFile(itemData.icon, ref icon);
         }
     }
 
     private void RefreshMyShieldItemSlot()
     {
-        if (PlayerData.Instance.UseShieldItem != 0)
+        if (PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD) != 0)
         {
             MyItemSlotImg_Shield.gameObject.SetActive(true);
-            var itemData = ItemManager.Instance.GetItemData(PlayerData.Instance.UseShieldItem);
+            var itemData = ItemManager.Instance.GetItemData(PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD));
             CommonFunc.SetImageFile(itemData.icon, ref MyItemSlotImg_Shield);
         }
         else
@@ -119,17 +119,17 @@ public class PopupGameShopItem : MonoBehaviour {
         SelectItemDesc.text = "아이템 설명 추가해야함";
         CommonFunc.SetImageFile(itemData.icon, ref SelectItemIcon);
     }
-    public void OnClickMyItemSlot(int index)
+    public void OnClickMyItemSlot(CommonData.ITEM_SLOT_INDEX index)
     {
-        if (PlayerData.Instance.UseNormalItemArr[index] != 0)
+        if (PlayerData.Instance.GetItemSlotId(index) != 0)
         {
-            PlayerData.Instance.SetItemSlotId((CommonData.ITEM_SLOT_INDEX)index, 0);
+            PlayerData.Instance.SetItemSlotId(index, 0);
             MyItemSlotUI();
         }
     }
     public void OnClickMyShieldItemSlot()
     {
-        PlayerData.Instance.UseShieldItem = 0;
+        PlayerData.Instance.SetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
         MyItemSlotUI();
     }
     public void OnClickItemBuy()
@@ -140,7 +140,7 @@ public class PopupGameShopItem : MonoBehaviour {
             PopupManager.Instance.DismissPopup();
             if (CommonFunc.UseCoin(itemData.cost))
             {
-                PlayerData.Instance.AddItem(SelectItemId);
+                PlayerData.Instance.PlusItem_Count(SelectItemId);
                 RefreshItemSlot();
             }
         };
@@ -156,27 +156,18 @@ public class PopupGameShopItem : MonoBehaviour {
     {
         bool equipEnable = false;
         var itemData = ItemManager.Instance.GetItemData(SelectItemId);
-        if(PlayerData.Instance.GetHaveItem(SelectItemId) > 0)
+        if(PlayerData.Instance.GetItemCount(SelectItemId) > 0)
         {
             if (itemData.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
             {
-                var normalItemArr = PlayerData.Instance.UseNormalItemArr;
-                for (int i = 0; i < normalItemArr.Length; i++)
-                {
-                    if (normalItemArr[i] == 0)
-                    {
-                        equipEnable = true;
-                        normalItemArr[i] = SelectItemId;
-                        break;
-                    }
-                }
+                equipEnable = PlayerData.Instance.SetItemSlotId_Normal(SelectItemId);
             }
             else
             {
-                if (PlayerData.Instance.UseShieldItem == 0)
+                if (PlayerData.Instance.GetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD) == 0)
                 {
                     equipEnable = true;
-                    PlayerData.Instance.UseShieldItem = SelectItemId;
+                    PlayerData.Instance.SetItemSlotId(CommonData.ITEM_SLOT_INDEX.SHIELD, SelectItemId);
                 }
             }
             if (equipEnable)

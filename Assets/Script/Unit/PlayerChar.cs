@@ -11,7 +11,7 @@ public class PlayerChar : MonoBehaviour
 
     public void Initialize()
     {
-        Data = DataManager.Instance.CharDataDic[PlayerData.Instance.UseCharId];
+        Data = DataManager.Instance.CharDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR)];
         PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_idle"), typeof(Sprite));
     }
 

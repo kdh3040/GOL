@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 
 public class PlayerData
 {
@@ -18,198 +21,294 @@ public class PlayerData
         }
     }
 
-    public Dictionary<int, int> HaveItemDic = new Dictionary<int, int>();
-    public Dictionary<int, int> ItemLevelDic = new Dictionary<int, int>();
-    public Dictionary<int, bool> HaveCharDic = new Dictionary<int, bool>();
-    public Dictionary<int, bool> HaveDoorDic = new Dictionary<int, bool>();
-    public Dictionary<int, bool> HaveBGDic = new Dictionary<int, bool>();
-    public Dictionary<int, bool> HaveEndingDic = new Dictionary<int, bool>();
-    public int[] UseNormalItemArr = { 0,0 };
-    public int UseShieldItem = 0;
-    public int Coin { get; private set; }
-    public int Ddong { get; private set; }
-    public int UseCharId { get; private set; }
-    public int UseDoorId { get; private set; }
-    public int UseBGId { get; private set; }
+    [System.Serializable]
+    public class SaveData
+    {
+        public Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
+        public Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
+        public Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+        public int MyCoin;
+        public int MyDDong;
+        public long NextDDongRefilTime;
 
-    public DateTime DdongRefilTime = DateTime.MaxValue;
+        public int UseChar;
+        public int UseDoor;
+        public int UseBackground;
+        public int[] UseItemArr = { 0, 0, 0 };
+
+        public void Save()
+        {
+            HaveSkin = PlayerData.Instance.HaveSkin;
+            UseSkin = PlayerData.Instance.UseSkin;
+            HaveItem_LevelCount = PlayerData.Instance.HaveItem_LevelCount;
+            MyCoin = PlayerData.Instance.MyCoin;
+            MyDDong = PlayerData.Instance.MyDDong;
+
+            UseItemArr = PlayerData.Instance.UseItemArr;
+            NextDDongRefilTime = PlayerData.Instance.NextDDongRefilTime.Ticks;
+        }
+
+        public void Load()
+        {
+            PlayerData.Instance.HaveSkin = HaveSkin;
+            PlayerData.Instance.UseSkin = UseSkin;
+            PlayerData.Instance.HaveItem_LevelCount = HaveItem_LevelCount;
+            PlayerData.Instance.MyCoin = MyCoin;
+            PlayerData.Instance.MyDDong = MyDDong;
+
+            PlayerData.Instance.UseItemArr = UseItemArr;
+            PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
+        }
+    }
+
+    private Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
+    private Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
+    private Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+    public int MyCoin { get; private set; }
+    private int Myddong;
+    public int MyDDong {
+        get { return Myddong; }
+        private set
+        {
+            if (value <= 0)
+            {
+                Myddong = 0;
+                NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+            }
+            else
+                Myddong = value;
+        }
+    }
+    private DateTime NextDDongRefilTime;
+
+    private int[] UseItemArr = { 0, 0, 0 };
+
+    private SaveData MySaveData = new SaveData();
+    
+    public void SaveFile()
+    {
+        MySaveData.Save();
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(Application.dataPath + "PlayerData.ini", FileMode.Create);
+        formatter.Serialize(stream, MySaveData);
+        stream.Close();
+    }
+
+    public void LoadFile()
+    {
+        FileInfo fileInfo = new FileInfo(Application.dataPath + "PlayerData.ini");
+        if (fileInfo.Exists)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.dataPath + "PlayerData.ini", FileMode.Open);
+            MySaveData = (SaveData)formatter.Deserialize(stream);
+            stream.Close();
+
+            MySaveData.Load();
+        }
+        else
+        {
+            HaveSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, new List<int>());
+            HaveSkin[CommonData.SKIN_TYPE.BACKGROUND].Add(1);
+            HaveSkin.Add(CommonData.SKIN_TYPE.CHAR, new List<int>());
+            HaveSkin[CommonData.SKIN_TYPE.CHAR].Add(1);
+            HaveSkin.Add(CommonData.SKIN_TYPE.DOOR, new List<int>());
+            HaveSkin[CommonData.SKIN_TYPE.DOOR].Add(1);
+
+            UseSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
+            UseSkin.Add(CommonData.SKIN_TYPE.CHAR, 1);
+            UseSkin.Add(CommonData.SKIN_TYPE.DOOR, 1);
+
+            MyCoin = 1000;
+            MyDDong = CommonData.MAX_DDONG_COUNT;
+            NextDDongRefilTime = DateTime.MaxValue;
+
+            SaveFile();
+        }
+    }
 
     public void Initialize()
     {
-        Coin = 10;
-        Ddong = 1;
-        UseNormalItemArr[0] = 1;
-        UseNormalItemArr[1] = 0;
-        UseShieldItem = 0;
-
-        HaveItemDic.Add(1, 1);
-        HaveCharDic.Add(1, true);
-        HaveDoorDic.Add(1, true);
-        HaveBGDic.Add(1, true);
-
-        ItemLevelDic.Add(1, 1);
-        ItemLevelDic.Add(2, 1);
-        ItemLevelDic.Add(3, 1);
-        ItemLevelDic.Add(4, 1);
-
-        HaveEndingDic.Add(1, true);
-
-        UseCharId = 1;
-        UseDoorId = 1;
-        UseBGId = 1;
+        LoadFile();
     }
 
     public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
     {
-        return UseNormalItemArr[(int)index];
+        return UseItemArr[(int)index];
     }
     public void SetItemSlotId(CommonData.ITEM_SLOT_INDEX index, int id)
     {
-        UseNormalItemArr[(int)index] = id;
+        UseItemArr[(int)index] = id;
+        SaveFile();
+    }
+
+    public bool SetItemSlotId_Normal(int id)
+    {
+        for (int i = 0; i < UseItemArr.Length; i++)
+        {
+            if ((CommonData.ITEM_SLOT_INDEX)i == CommonData.ITEM_SLOT_INDEX.SHIELD)
+                return false;
+
+            if (UseItemArr[i] == 0)
+            {
+                UseItemArr[i] = id;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void UpdatePlayerData(float time)
     {
-        if(DdongRefilTime <= CommonFunc.GetCurrentTime())
+        if (NextDDongRefilTime <= CommonFunc.GetCurrentTime())
         {
-            var spanTime = CommonFunc.GetCurrentTime() - DdongRefilTime;
+            var spanTime = CommonFunc.GetCurrentTime() - NextDDongRefilTime;
             var refileCount = 1 + (int)(spanTime.TotalSeconds / ConfigData.Instance.DDONG_REFIL_TIME);
 
-            AddDdong(refileCount);
-            if (Ddong >= ConfigData.Instance.MAX_DDONG_COUNT)
-                DdongRefilTime = DateTime.MaxValue;
+            PlusDDong(refileCount);
+            if (MyDDong >= CommonData.MAX_DDONG_COUNT)
+                NextDDongRefilTime = DateTime.MaxValue;
             else
-                DdongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+            {
+                NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+                SaveFile();
+            }
         }
     }
-    public void AddItem(int id)
+
+    public TimeSpan GetNextDDongRefileTime()
     {
-        if (HaveItemDic.ContainsKey(id) == false)
-            HaveItemDic.Add(id, 1);
+        return NextDDongRefilTime - CommonFunc.GetCurrentTime();
+    }
+
+    public void PlusItem_Count(int id)
+    {
+        if (HaveItem_LevelCount.ContainsKey(id) == false)
+            HaveItem_LevelCount.Add(id, new KeyValuePair<int, int>(1, 1));
         else
-            HaveItemDic[id] += 1;
+        {
+            var key = HaveItem_LevelCount[id].Key;
+            var value = HaveItem_LevelCount[id].Value + 1;
+            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
+        }
+
+        SaveFile();
     }
-    public int GetHaveItem(int id)
+
+    public void MinusItem_Count(int id)
     {
-        if (HaveItemDic.ContainsKey(id) == false)
-            return 0;
+        if (HaveItem_LevelCount.ContainsKey(id))
+        {
+            var key = HaveItem_LevelCount[id].Key;
+            var value = HaveItem_LevelCount[id].Value > 0 ? HaveItem_LevelCount[id].Value - 1 : 0;
+            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
+
+            if(value == 0)
+            {
+                for (int i = 0; i < UseItemArr.Length; i++)
+                {
+                    if (UseItemArr[i] == id)
+                        SetItemSlotId((CommonData.ITEM_SLOT_INDEX)i, 0);
+                }
+            }
+        }
+
+        SaveFile();
+    }
+
+    public int GetItemCount(int id)
+    {
+        if (HaveItem_LevelCount.ContainsKey(id))
+            return HaveItem_LevelCount[id].Value;
+
+        return 0;
+    }
+
+    public void PlusItem_Level(int id)
+    {
+        if (HaveItem_LevelCount.ContainsKey(id) == false)
+            HaveItem_LevelCount.Add(id, new KeyValuePair<int, int>(1, 1));
         else
-            return HaveItemDic[id];
+        {
+            var key = HaveItem_LevelCount[id].Key + 1;
+            var value = HaveItem_LevelCount[id].Value;
+            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
+        }
+
+        SaveFile();
     }
-    public void RemoveItem(int id)
-    {
-        HaveItemDic[id] -= 1;
-    }
+
     public int GetItemLevel(int id)
     {
-        if (ItemLevelDic.ContainsKey(id) == false)
-            return 1;
-        else
-            return ItemLevelDic[id];
-    }
-    public void ItemLevelUp(int id)
-    {
-        if (ItemLevelDic.ContainsKey(id) == false)
-            ItemLevelDic.Add(id, 1);
-        else
-            ItemLevelDic[id]++;
-    }
-    public void AddDdong(int value)
-    {
-        Ddong += value;
-    }
-    public void SubDdong(int value)
-    {
-        Ddong -= value;
+        if (HaveItem_LevelCount.ContainsKey(id))
+            return HaveItem_LevelCount[id].Key;
 
-        if (Ddong <= 0)
+        return 1;
+    }
+
+    public void PlusDDong(int count)
+    {
+        MyDDong += count;
+        SaveFile();
+    }
+
+    public void MinusDDong()
+    {
+        MyDDong -= 1;
+        SaveFile();
+    }
+
+    public void PlusCoin(int coin)
+    {
+        MyCoin += coin;
+        SaveFile();
+    }
+
+    public void MinusCoin(int coin)
+    {
+        MyCoin -= coin;
+        SaveFile();
+    }
+
+    public void AddSkin(CommonData.SKIN_TYPE type, int id)
+    {
+        if (HaveSkin.ContainsKey(type) == false)
+            HaveSkin.Add(type, new List<int>());
+
+        HaveSkin[type].Add(id);
+        SaveFile();
+    }
+
+    public bool HasSkin(CommonData.SKIN_TYPE type, int id)
+    {
+        if (HaveSkin.ContainsKey(type) == false)
+            return false;
+        else
         {
-            DdongRefilTime = DateTime.Now;// new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            DdongRefilTime = DdongRefilTime.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+            for (int i = 0; i < HaveSkin[type].Count; i++)
+            {
+                if (HaveSkin[type][i] == id)
+                    return true;
+            }
         }
-
+        return false;
     }
-    public void AddCoin(int value)
+
+    public void SetUseSkin(CommonData.SKIN_TYPE type, int id)
     {
-        Coin += value;
+        UseSkin[type] = id;
+        SaveFile();
     }
-    public void SubCoin(int value)
+
+    public int GetUseSkin(CommonData.SKIN_TYPE type)
     {
-        Coin -= value;
+        return UseSkin[type];
     }
-
-    public void AddChar(int id)
-    {
-        if (HaveCharDic.ContainsKey(id) == false)
-            HaveCharDic.Add(id, true);
-    }
-    public bool IsHasChar(int id)
-    {
-        if (HaveCharDic.ContainsKey(id) == false)
-            return false;
-
-        return true;
-    }
-
-    public void SetUseCharId(int id)
-    {
-        UseCharId = id;
-    }
-
-    public void AddDoor(int id)
-    {
-        if (HaveDoorDic.ContainsKey(id) == false)
-            HaveDoorDic.Add(id, true);
-    }
-    public bool IsHasDoor(int id)
-    {
-        if (HaveDoorDic.ContainsKey(id) == false)
-            return false;
-
-        return true;
-    }
-
-    public void SetUseDoorId(int id)
-    {
-        UseDoorId = id;
-    }
-
-    public void AddBG(int id)
-    {
-        if (HaveBGDic.ContainsKey(id) == false)
-            HaveBGDic.Add(id, true);
-    }
-    public bool IsHasBG(int id)
-    {
-        if (HaveBGDic.ContainsKey(id) == false)
-            return false;
-
-        return true;
-    }
-
-    public void SetUseBGId(int id)
-    {
-        UseBGId = id;
-    }
-
-
-    public void AddEnding(int id)
-    {
-        if (HaveEndingDic.ContainsKey(id) == false)
-            HaveEndingDic.Add(id, true);
-    }
-    public bool IsHasEnding(int id)
-    {
-        if (HaveEndingDic.ContainsKey(id) == false)
-            return false;
-
-        return true;
-    }
-
 
     public bool IsPlayEnable(bool showMsgPopup)
     {
-        if (Ddong <= 0)
+        if (MyDDong <= 0)
         {
             if(showMsgPopup)
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));

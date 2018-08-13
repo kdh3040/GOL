@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
 
     public void SetData(CommonData.NOTE_LINE type)
     {
-        Data = DataManager.Instance.DoorDataDic[PlayerData.Instance.UseDoorId];
+        Data = DataManager.Instance.DoorDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.DOOR)];
         NoteLineType = type;
         SetDoorState(DOOR_STATE.CLOSE);
     }

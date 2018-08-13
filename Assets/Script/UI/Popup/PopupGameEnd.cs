@@ -69,7 +69,7 @@ public class PopupGameEnd : PopupUI {
 
     void OnClickGameExit()
     {
-        PlayerData.Instance.AddCoin(CoinValue);
+        PlayerData.Instance.PlusCoin(CoinValue);
         GamePlayManager.Instance.GameExit();
         PopupManager.Instance.DismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);

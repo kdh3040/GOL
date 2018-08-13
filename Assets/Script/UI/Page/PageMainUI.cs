@@ -30,8 +30,7 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGamePlay()
     {
-        if(PlayerData.Instance.IsPlayEnable(false))
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
     }
 
     public void OnClickGameShop()

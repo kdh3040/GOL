@@ -26,7 +26,7 @@ public class UIShopItemSlot : MonoBehaviour {
 
     public void RefreshUI()
     {
-        int haveCount = PlayerData.Instance.GetHaveItem(ItemData.id);
+        int haveCount = PlayerData.Instance.GetItemCount(ItemData.id);
         if (haveCount > 0)
         {
             CostObj.SetActive(false);
@@ -40,7 +40,7 @@ public class UIShopItemSlot : MonoBehaviour {
             CostValue.text = CommonFunc.ConvertNumber(ItemData.cost);
         }
 
-        LevelValue.text = string.Format("+{0}", PlayerData.Instance.ItemLevelDic[ItemData.id]);
+        LevelValue.text = string.Format("+{0}", PlayerData.Instance.GetItemLevel(ItemData.id));
     }
 
     public void SetSelect(bool enable)
