@@ -101,11 +101,6 @@ public class NoteSystem
 
     public void NoteUpdate(float time)
     {
-
-    
-        
-
-
         PlayTime += time;
         NoteSpeedCheckTime += time;
         for (int i = 0; i < NoteGroupList.Count; i++)

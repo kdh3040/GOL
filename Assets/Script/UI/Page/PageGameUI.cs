@@ -37,10 +37,10 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshItemUI()
     {
-        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT] != 0)
+        int leftItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.LEFT);
+        if (leftItemId != 0)
         {
-            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.LEFT];
-            mItemLeftImg.sprite = ItemManager.Instance.GetItemIcon(itemId);
+            mItemLeftImg.sprite = ItemManager.Instance.GetItemIcon(leftItemId);
             mItemLeftImg.color = new Color(1, 1, 1, 1);
         }
         else
@@ -49,10 +49,10 @@ public class PageGameUI : MonoBehaviour
             mItemLeftImg.sprite = null;
         }
 
-        if (GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT] != 0)
+        int rightItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.RIGHT);
+        if (rightItemId != 0)
         {
-            int itemId = GamePlayManager.Instance.mNormalitemArr[(int)CommonData.ITEM_SLOT_INDEX.RIGHT];
-            mItemRightImg.sprite = ItemManager.Instance.GetItemIcon(itemId);
+            mItemRightImg.sprite = ItemManager.Instance.GetItemIcon(rightItemId);
             mItemRightImg.color = new Color(1, 1, 1, 1);
         }
         else

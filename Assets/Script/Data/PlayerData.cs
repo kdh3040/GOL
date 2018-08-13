@@ -139,6 +139,7 @@ public class PlayerData
     public void SetItemSlotId(CommonData.ITEM_SLOT_INDEX index, int id)
     {
         UseItemArr[(int)index] = id;
+        SaveFile();
     }
 
     public bool SetItemSlotId_Normal(int id)
@@ -197,12 +198,20 @@ public class PlayerData
 
     public void MinusItem_Count(int id)
     {
-        // 가지고 있는 아이템 제거하는 로직 필요
         if (HaveItem_LevelCount.ContainsKey(id))
         {
             var key = HaveItem_LevelCount[id].Key;
             var value = HaveItem_LevelCount[id].Value > 0 ? HaveItem_LevelCount[id].Value - 1 : 0;
             HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
+
+            if(value == 0)
+            {
+                for (int i = 0; i < UseItemArr.Length; i++)
+                {
+                    if (UseItemArr[i] == id)
+                        SetItemSlotId((CommonData.ITEM_SLOT_INDEX)i, 0);
+                }
+            }
         }
 
         SaveFile();

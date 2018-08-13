@@ -62,6 +62,7 @@ public class PopupGameBook : PopupUI
             BGTab.SetTabTitle("POPUP_BOOK_TAB_BACKGROUND");
         }
 
+        TabType = TAB_TYPE.NONE;
         TopBar.Initialize(true);
         OnClickTab(TAB_TYPE.CHAR);
     }

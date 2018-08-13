@@ -62,6 +62,7 @@ public class PopupGameShop : PopupUI
 
         GameStart.gameObject.SetActive(popupData.GameStartReady);
         TopBar.Initialize(true);
+        TabType = TAB_TYPE.NONE;
         OnClickTab(TAB_TYPE.ITEM);
     }
 
