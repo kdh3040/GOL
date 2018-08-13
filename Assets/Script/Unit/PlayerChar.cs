@@ -13,6 +13,7 @@ public class PlayerChar : MonoBehaviour
     {
         Data = DataManager.Instance.CharDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR)];
         PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_idle"), typeof(Sprite));
+        PlayerAnim.set
     }
 
     public string GetCharImg(string add)
