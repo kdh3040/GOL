@@ -37,6 +37,28 @@ public class GManager : MonoBehaviour
         Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
 
 
+
+        
+#if UNITY_ANDROID
+
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+            .EnableSavedGames()
+            .Build();
+
+        PlayGamesPlatform.InitializeInstance(config);
+
+        PlayGamesPlatform.DebugLogEnabled = true;
+
+        PlayGamesPlatform.Activate();
+        SignIn();
+        
+#elif UNITY_IOS
+ 
+        GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
+ 
+#endif
+
+
         /*
          * PlayGamesClientConfiguration.Builder()
     // enables saving game progress.
@@ -57,27 +79,27 @@ public class GManager : MonoBehaviour
     .RequestIdToken()
     .Build();
          */
-        
+
         // 안드로이드 빌더 초기화
-       //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-       //PlayGamesPlatform.InitializeInstance(config);
+        //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+        //PlayGamesPlatform.InitializeInstance(config);
 
-       //// 구글 플레이 로그를 확인할려면 활성화
-       //PlayGamesPlatform.DebugLogEnabled = true;
+        //// 구글 플레이 로그를 확인할려면 활성화
+        //PlayGamesPlatform.DebugLogEnabled = true;
 
-       //// 구글 플레이 활성화
-       //PlayGamesPlatform.Activate();
+        //// 구글 플레이 활성화
+        //PlayGamesPlatform.Activate();
 
 
-       // Callback 함수 정의
-       //signInCallback = (bool success) =>
-       //{
-       //    if (success)
-       //        stateText.text = "SignIn Success!";
-       //    else
-       //        stateText.text = "SignIn Fail!";
-       //};
-         
+        // Callback 함수 정의
+        //signInCallback = (bool success) =>
+        //{
+        //    if (success)
+        //        stateText.text = "SignIn Success!";
+        //    else
+        //        stateText.text = "SignIn Fail!";
+        //};
+
 
         /*
         ttt.text = "1";
@@ -106,6 +128,46 @@ public class GManager : MonoBehaviour
         */
 
         StartCoroutine(UpdateGame());
+    }
+
+
+    public void SignIn()
+    {
+        
+
+#if UNITY_ANDROID
+
+        PlayGamesPlatform.Instance.Authenticate((bool success) =>
+        {
+            if (success)
+            {
+                // to do ...
+                // 구글 플레이 게임 서비스 로그인 성공 처리
+            }
+            else
+            {
+                // to do ...
+                // 구글 플레이 게임 서비스 로그인 실패 처리
+            }
+        });
+
+#elif UNITY_IOS
+ 
+        Social.localUser.Authenticate((bool success) =>
+        {
+            if (success)
+            {
+                // to do ...
+                // 애플 게임 센터 로그인 성공 처리
+            }
+            else
+            {
+                // to do ...
+                // 애플 게임 센터 로그인 실패 처리
+            }
+        });
+ 
+#endif
     }
 
     IEnumerator UpdateGame()
