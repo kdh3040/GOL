@@ -131,10 +131,11 @@ public class PlayerData
 
     public string pathForDocumentsFile(string filename)
     {
-        //string path_pc = Application.dataPath;
-        //path_pc = path_pc.Substring(0, path_pc.LastIndexOf('/'));
-        //return Path.Combine(path_pc, filename);
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+        string path_pc = Application.dataPath;
+        path_pc = path_pc.Substring(0, path_pc.LastIndexOf('/'));
+        return Path.Combine(path_pc, filename);
+#elif UNITY_ANDROID
         string path = Application.persistentDataPath;
         path = path.Substring(0, path.LastIndexOf('/'));
         return Path.Combine(path, filename);
