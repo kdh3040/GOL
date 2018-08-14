@@ -89,18 +89,20 @@ public class PlayerData
     {
         MySaveData.Save();
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(Application.dataPath + "PlayerData.ini", FileMode.Create);
+        string path = pathForDocumentsFile("PlayerData.ini");
+        FileStream stream = new FileStream(path, FileMode.Create);
         formatter.Serialize(stream, MySaveData);
         stream.Close();
     }
 
     public void LoadFile()
     {
-        FileInfo fileInfo = new FileInfo(Application.dataPath + "PlayerData.ini");
+        string path = pathForDocumentsFile("PlayerData.ini");
+        FileInfo fileInfo = new FileInfo(path);
         if (fileInfo.Exists)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(Application.dataPath + "PlayerData.ini", FileMode.Open);
+            FileStream stream = new FileStream(path, FileMode.Open);
             MySaveData = (SaveData)formatter.Deserialize(stream);
             stream.Close();
 
@@ -125,6 +127,22 @@ public class PlayerData
 
             SaveFile();
         }
+    }
+
+    public string pathForDocumentsFile(string filename)
+    {
+        string path_pc = Application.dataPath;
+        path_pc = path_pc.Substring(0, path_pc.LastIndexOf('/'));
+        return Path.Combine(path_pc, filename);
+#if UNITY_ANDROID
+        string path = Application.persistentDataPath;
+        path = path.Substring(0, path.LastIndexOf('/'));
+        return Path.Combine(path, filename);
+#elif UNITY_IOS
+        string path = Application.dataPath.Substring(0, Application.dataPath.Length - 5);
+        path = path.Substring(0, path.LastIndexOf('/'));
+        return Path.Combine(Path.Combine(path, "Documents"), filename);
+#endif
     }
 
     public void Initialize()
