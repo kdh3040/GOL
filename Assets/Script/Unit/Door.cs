@@ -61,6 +61,4 @@ public class Door : MonoBehaviour
             SetDoorState(DOOR_STATE.HALF_OPEN);
         }
     }
-
-    public void SetItemEffect(string )
 }
