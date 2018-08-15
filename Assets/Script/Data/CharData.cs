@@ -7,6 +7,7 @@ public class CharData : SkinData
 {
     public string skill;
     public string img;
+    public string ani_trigger;
 
     public CharData(XmlNode node)
     {
@@ -17,6 +18,7 @@ public class CharData : SkinData
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         skill = node.Attributes.GetNamedItem("skill").Value;
         img = node.Attributes.GetNamedItem("img").Value;
+        ani_trigger = node.Attributes.GetNamedItem("ani_trigger").Value;
     }
 
     public override string GetIcon()
