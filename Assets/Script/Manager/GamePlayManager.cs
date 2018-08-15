@@ -150,7 +150,7 @@ public class GamePlayManager : MonoBehaviour
                 return false;
         }
 
-        return true;
+        return false;
     }
 
     public void GameOver(int gameOverNoteId)

@@ -16,6 +16,8 @@ public class Door : MonoBehaviour
     public SpriteRenderer DoorSprite;
     public CommonData.NOTE_LINE NoteLineType;
     public DOOR_STATE DoorState = DOOR_STATE.NONE;
+    public Animator DoorAnim;
+    public SpriteRenderer ItemEffectSprite;
 
     public void SetData(CommonData.NOTE_LINE type)
     {
@@ -59,4 +61,6 @@ public class Door : MonoBehaviour
             SetDoorState(DOOR_STATE.HALF_OPEN);
         }
     }
+
+    public void SetItemEffect(string )
 }
