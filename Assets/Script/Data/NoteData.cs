@@ -9,6 +9,7 @@ public class NoteData {
     public int Score = 1;
     public string img;
     public string endingName;
+    public string ani_trigger;
 
     public NoteData(XmlNode node)
     {
@@ -16,5 +17,6 @@ public class NoteData {
         Score = int.Parse(node.Attributes.GetNamedItem("score").Value);
         img = node.Attributes.GetNamedItem("img").Value;
         endingName = node.Attributes.GetNamedItem("ending").Value;
+        ani_trigger = node.Attributes.GetNamedItem("ani_trigger").Value;
     }
 }

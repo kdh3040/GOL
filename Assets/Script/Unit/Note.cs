@@ -17,23 +17,9 @@ public class Note : MonoBehaviour
     private ItemData ItemData = null;
 
     public Animator Anim = null;
-    List<string> ArrAnim = new List<string>();
 
     public void ResetNote()
     {
-
-        ArrAnim.Add("1");
-        ArrAnim.Add("2");
-        ArrAnim.Add("3");
-        ArrAnim.Add("4");
-        ArrAnim.Add("5");
-        ArrAnim.Add("6");
-        ArrAnim.Add("7");
-        ArrAnim.Add("8");
-        ArrAnim.Add("9");
-        ArrAnim.Add("10");
-        Anim.Rebind();
-
         NoteType = CommonData.NOTE_TYPE.NONE;
         NoteData = null;
         ItemData = null;
@@ -42,8 +28,6 @@ public class Note : MonoBehaviour
         NoteCollider.enabled = false;
         
         Anim.enabled = false;
-        
-        
     }
 
 
@@ -60,7 +44,7 @@ public class Note : MonoBehaviour
         {
             case CommonData.NOTE_TYPE.NORMAL:
                 SetNormalNote(id);             
-                Anim.SetTrigger(ArrAnim[id-1]);
+                Anim.SetTrigger(NoteData.ani_trigger);
                 break;
             case CommonData.NOTE_TYPE.ITEM:
                 SetItemNote(id);
