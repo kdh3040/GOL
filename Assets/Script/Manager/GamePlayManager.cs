@@ -131,7 +131,7 @@ public class GamePlayManager : MonoBehaviour
         mIsGamePause = false;
     }
 
-    public bool IsGameOver()
+    public bool IsGameOver(CommonData.NOTE_LINE line)
     {
         if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME) != null)
             return false;
@@ -140,7 +140,11 @@ public class GamePlayManager : MonoBehaviour
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT) as GameSkill_DamageShieldCount;
 
             if (skill.CharShield())
+            {
+                mDoorSystem.ShowSkillEffect_Shield(line);
                 return false;
+            }
+                
         }
         else if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) != null)
         {
@@ -184,14 +188,10 @@ public class GamePlayManager : MonoBehaviour
                 mNoteSystem.NoteUpdate(time);
             }
 
-
-            
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
 
             GetUserTouchEvent();
-
-
             yield return null;
         }
     }
@@ -267,6 +267,7 @@ public class GamePlayManager : MonoBehaviour
         }
         var skill = SkillManager.Instance.UseItemSkill(data.ItemId);
         mGameUIPage.UseItemSkill(data.ItemId, skill);
+        mDoorSystem.StartSkillEffect(skill);
 
         IngameGetSetItem(index, 0);
     }
@@ -285,6 +286,11 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage.RefreshShieldItemUI();
 
         IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
+    }
+
+    public void EndSkill(GameSkill skill)
+    {
+        mDoorSystem.EndSkillEffect(skill);
     }
 
     public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
@@ -366,14 +372,17 @@ public class GamePlayManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
+            mDoorSystem.DoorList[0].SetEffect("INVINCIBILITY");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            mDoorSystem.DoorList[0].SetEffect("SHIELD");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            mDoorSystem.DoorList[0].SetEffect("IDLE");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 

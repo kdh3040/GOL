@@ -16,18 +16,22 @@ public class Door : MonoBehaviour
     public SpriteRenderer DoorSprite;
     public CommonData.NOTE_LINE NoteLineType;
     public DOOR_STATE DoorState = DOOR_STATE.NONE;
-    public Animator DoorAnim;
-    public SpriteRenderer ItemEffectSprite;
+    public Animator DoorEffectAnim;
+    public bool EffectPlay = false;
 
     public void SetData(CommonData.NOTE_LINE type)
     {
         Data = DataManager.Instance.DoorDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.DOOR)];
         NoteLineType = type;
+        EffectPlay = false;
         SetDoorState(DOOR_STATE.CLOSE);
     }
 
     public void SetDoorState(DOOR_STATE type)
     {
+        if (EffectPlay)
+            return;
+
         if (DoorState == type)
             return;
 
@@ -60,5 +64,23 @@ public class Door : MonoBehaviour
         {
             SetDoorState(DOOR_STATE.HALF_OPEN);
         }
+    }
+
+    public void SetEffect(string trigger)
+    {
+        switch (trigger)
+        {
+            case "INVINCIBILITY":
+                EffectPlay = true;
+                DoorEffectAnim.SetTrigger(trigger);
+                break;
+            case "SHIELD":
+                EffectPlay = false;
+                DoorEffectAnim.SetTrigger(trigger);
+                break;
+            default:
+                EffectPlay = false;
+                break;
+        } 
     }
 }

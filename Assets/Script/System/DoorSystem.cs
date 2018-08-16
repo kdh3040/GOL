@@ -31,8 +31,37 @@ public class DoorSystem
             case 2:
                 DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.CLOSE);
                 break;
-
         }
-        
+    }
+
+    public void StartSkillEffect(GameSkill skill)
+    {
+        if (skill.mSkillType == SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME)
+            SetDoorEffect("INVINCIBILITY");
+    }
+
+    public void EndSkillEffect(GameSkill skill)
+    {
+        if (skill.mSkillType == SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME)
+            SetDoorEffect("IDLE");
+    }
+
+    public void ShowSkillEffect_Shield(CommonData.NOTE_LINE line)
+    {
+        SetDoorEffect(line, "SHIELD");
+    }
+
+    public void SetDoorEffect(CommonData.NOTE_LINE line, string trigger)
+    {
+        DoorList[(int)line].SetEffect(trigger);
+    }
+
+    public void SetDoorEffect(string trigger)
+    {
+        for (int i = 0; i < DoorList.Count; i++)
+        {
+            var type = (CommonData.NOTE_LINE)i;
+            SetDoorEffect(type, trigger);
+        }
     }
 }

@@ -119,6 +119,7 @@ public class PageGameUI : MonoBehaviour
         progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
         mSkillProgressBarList.Add(progressBar);
     }
+
     public void GameOver(int gameOverNoteId)
     {
         StartCoroutine(Co_GameOver(gameOverNoteId));

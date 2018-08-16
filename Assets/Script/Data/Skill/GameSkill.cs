@@ -32,6 +32,7 @@ public abstract class GameSkill
 
     public virtual void EndSkill()
     {
+        GamePlayManager.Instance.EndSkill(this);
         mEnable = false;
         mSkillRemoveReady = true;
     }

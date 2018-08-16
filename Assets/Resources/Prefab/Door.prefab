@@ -82,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449604186407376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4583635888833630}
@@ -139,7 +139,7 @@ Animator:
   m_GameObject: {fileID: 1449604186407376}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4a91b3a4d975b0849a090b70d3ed5634, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8812c8a10ff094c44b5b1d83462cb405, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -162,7 +162,8 @@ MonoBehaviour:
   DoorSprite: {fileID: 212524778810438976}
   NoteLineType: 0
   DoorState: 1
-  DoorAnim: {fileID: 95003237193290064}
+  DoorEffectAnim: {fileID: 95003237193290064}
+  EffectPlay: 0
 --- !u!212 &212471433284457316
 SpriteRenderer:
   m_ObjectHideFlags: 1
