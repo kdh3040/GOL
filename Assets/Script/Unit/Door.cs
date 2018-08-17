@@ -68,18 +68,18 @@ public class Door : MonoBehaviour
 
     public void SetEffect(string trigger)
     {
+        DoorEffectAnim.SetTrigger(trigger);
+
         switch (trigger)
-        {
+        {        
             case "INVINCIBILITY":
-                EffectPlay = true;
-                DoorEffectAnim.SetTrigger(trigger);
+                EffectPlay = true;                
                 break;
             case "SHIELD":
-                EffectPlay = false;
-                DoorEffectAnim.SetTrigger(trigger);
+                EffectPlay = false;                
                 break;
             default:
-                EffectPlay = false;
+                EffectPlay = false;                
                 break;
         } 
     }
