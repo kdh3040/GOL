@@ -14,6 +14,7 @@ public class NoteSystem
 
     private List<NoteGroup> NoteGroupList = new List<NoteGroup>();
     private Transform NoteGroupEndPos;
+    private Transform NoteGroupOpenPos;
     public float NoteSpeed { get; set; }
     private List<NoteCreateData> NoteCreatePercentList = new List<NoteCreateData>();
     private List<NoteCreateData> NoteItemCreatePercentList = new List<NoteCreateData>();
@@ -27,6 +28,7 @@ public class NoteSystem
     {
         NoteGroupList = scene.NoteGroupList;
         NoteGroupEndPos = scene.NoteGroupEndPos;
+        NoteGroupOpenPos = scene.NoteGroupOpenPos;
     }
     public void ResetSystem()
     {
@@ -140,6 +142,17 @@ public class NoteSystem
                     NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, nextPos.y + CommonData.NOTE_GROUP_INTERVAL);
                     AllocateNoteGroup(i);
                 }
+            }
+
+            else if(NoteGroupOpenPos.localPosition.y > pos.y)
+            {
+                if (NoteGroupList[i].IsAliveNote())
+                {
+                    var note = NoteGroupList[i].GetGameOverCheckNote();
+                    if(note != null)
+                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, 1);
+                }
+                 
             }
         }
 

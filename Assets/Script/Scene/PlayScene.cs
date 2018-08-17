@@ -8,6 +8,7 @@ public class PlayScene : MonoBehaviour
     public List<Door> DoorList = new List<Door>();
     public List<NoteGroup> NoteGroupList = new List<NoteGroup>();
     public Transform NoteGroupEndPos;
+    public Transform NoteGroupOpenPos;
     public PageGameUI UIPage;
     public PlayerChar PlayerCharObj;
 

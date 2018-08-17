@@ -39,6 +39,7 @@ public class GamePlayManager : MonoBehaviour
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
+    private Admob mAdmob = new Admob();
 
     public Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem> ItemDic = new Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem>();
     public bool FirstStart = true;
@@ -62,11 +63,14 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage = scene.UIPage;
         mPlayerChar = scene.PlayerCharObj;
         mPlayerChar.Initialize();
+        mAdmob.Init();        
     }
 
     public void ResetGame()
     {
-        if(FirstStart)
+        mAdmob.HideAd();
+
+        if (FirstStart)
         {
             ItemDic.Clear();
             FirstSetItem(CommonData.ITEM_SLOT_INDEX.LEFT);
@@ -94,6 +98,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
+    
         FirstStart = true;
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
@@ -348,9 +353,10 @@ public class GamePlayManager : MonoBehaviour
     }
 
 
-
-
-
+    public void HideAd()
+    {
+        mAdmob.HideAd();
+    }
 
     private void GetUserTouchEvent()
     {
@@ -413,15 +419,19 @@ public class GamePlayManager : MonoBehaviour
 #if UNITY_ANDROID
         if (Input.touchCount >= 1)
         {
-            for(int i = 0; i<Input.touchCount; i++)
+          //  for(int i = 0; i<Input.touchCount; i++)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
-                    GamePlayManager.Instance.ClickDoor(mClickDoor);
-                    Debug.Log("Complete" + hit.collider.name);
+                    if(Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
+                        GamePlayManager.Instance.ClickDoor(mClickDoor);
+                        Debug.Log("Complete" + hit.collider.name);
+                    }
+                    
                 }                
             }
         }
