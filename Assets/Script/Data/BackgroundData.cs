@@ -29,10 +29,10 @@ public class BackgroundData : SkinData
         }
 
         var endingListString = node.Attributes.GetNamedItem("ending_list").Value;
-        var endingListStringArr = noteListString.Split(',');
+        var endingListStringArr = endingListString.Split(',');
         for (int i = 0; i < endingListStringArr.Length; i++)
         {
-            endingList.Add(int.Parse(noteListStringArr[i]));
+            endingList.Add(int.Parse(endingListStringArr[i]));
         }
 
         endingTitle = node.Attributes.GetNamedItem("ending_title").Value;
