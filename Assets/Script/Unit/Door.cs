@@ -57,7 +57,7 @@ public class Door : MonoBehaviour
         else
             DoorSprite.flipX = false;
     }
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Note"))
@@ -65,21 +65,22 @@ public class Door : MonoBehaviour
             SetDoorState(DOOR_STATE.HALF_OPEN);
         }
     }
+    */
 
     public void SetEffect(string trigger)
     {
+        DoorEffectAnim.SetTrigger(trigger);
+
         switch (trigger)
-        {
+        {        
             case "INVINCIBILITY":
-                EffectPlay = true;
-                DoorEffectAnim.SetTrigger(trigger);
+                EffectPlay = true;                
                 break;
             case "SHIELD":
-                EffectPlay = false;
-                DoorEffectAnim.SetTrigger(trigger);
+                EffectPlay = false;                
                 break;
             default:
-                EffectPlay = false;
+                EffectPlay = false;                
                 break;
         } 
     }

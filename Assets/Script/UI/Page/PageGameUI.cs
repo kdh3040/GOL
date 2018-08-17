@@ -13,7 +13,7 @@ public class PageGameUI : MonoBehaviour
     public Button mItemLeftButton;
     public Image mItemLeftImg;
     public List<Image> mShieldIconList = new List<Image>();
-    public Transform mSkillProgressStartPos;
+    public Transform mSkillProgressStartPos;    
 
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
