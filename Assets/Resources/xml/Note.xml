@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Notes>
-	<Note id="1" score="1" img="Renewal/Note/note_1" ending="ENDING_NOTE_NAME_1" ani_trigger="NOTE_1"/>
-	<Note id="2" score="2" img="Renewal/Note/note_2" ending="ENDING_NOTE_NAME_2" ani_trigger="NOTE_2"/>
-	<Note id="3" score="2" img="Renewal/Note/note_3" ending="ENDING_NOTE_NAME_3" ani_trigger="NOTE_3"/>
-	<Note id="4" score="2" img="Renewal/Note/note_4" ending="ENDING_NOTE_NAME_4" ani_trigger="NOTE_4"/>
-	<Note id="5" score="2" img="Renewal/Note/note_5" ending="ENDING_NOTE_NAME_5" ani_trigger="NOTE_5"/>
-	<Note id="6" score="2" img="Renewal/Note/note_6" ending="ENDING_NOTE_NAME_6" ani_trigger="NOTE_6"/>
-	<Note id="7" score="2" img="Renewal/Note/note_7" ending="ENDING_NOTE_NAME_7" ani_trigger="NOTE_7"/>
-	<Note id="8" score="2" img="Renewal/Note/note_8" ending="ENDING_NOTE_NAME_8" ani_trigger="NOTE_8"/>
-	<Note id="9" score="2" img="Renewal/Note/note_9" ending="ENDING_NOTE_NAME_9" ani_trigger="NOTE_9"/>
-	<Note id="10" score="2" img="Renewal/Note/note_10" ending="ENDING_NOTE_NAME_10" ani_trigger="NOTE_10"/>
+	<Note id="1" score="1" img="Renewal/Note/note_1_1" ending="ENDING_NOTE_NAME_1" ani_trigger="NOTE_1"/>
+	<Note id="2" score="2" img="Renewal/Note/note_2_1" ending="ENDING_NOTE_NAME_2" ani_trigger="NOTE_2"/>
+	<Note id="3" score="2" img="Renewal/Note/note_3_1" ending="ENDING_NOTE_NAME_3" ani_trigger="NOTE_3"/>
+	<Note id="4" score="2" img="Renewal/Note/note_4_1" ending="ENDING_NOTE_NAME_4" ani_trigger="NOTE_4"/>
+	<Note id="5" score="2" img="Renewal/Note/note_5_1" ending="ENDING_NOTE_NAME_5" ani_trigger="NOTE_5"/>
+	<Note id="6" score="2" img="Renewal/Note/note_6_1" ending="ENDING_NOTE_NAME_6" ani_trigger="NOTE_6"/>
+	<Note id="7" score="2" img="Renewal/Note/note_7_1" ending="ENDING_NOTE_NAME_7" ani_trigger="NOTE_7"/>
+	<Note id="8" score="2" img="Renewal/Note/note_8_1" ending="ENDING_NOTE_NAME_8" ani_trigger="NOTE_8"/>
+	<Note id="9" score="2" img="Renewal/Note/note_9_1" ending="ENDING_NOTE_NAME_9" ani_trigger="NOTE_9"/>
+	<Note id="10" score="2" img="Renewal/Note/note_10_1" ending="ENDING_NOTE_NAME_10" ani_trigger="NOTE_10"/>
 </Notes>

@@ -44,7 +44,6 @@ public class Note : MonoBehaviour
         {
             case CommonData.NOTE_TYPE.NORMAL:
                 SetNormalNote(id);             
-                Anim.SetTrigger(NoteData.ani_trigger);
                 break;
             case CommonData.NOTE_TYPE.ITEM:
                 SetItemNote(id);
@@ -60,12 +59,13 @@ public class Note : MonoBehaviour
 
     private void SetNormalNote(int id)
     {
+        Anim.enabled = true;
         NoteId = id;
         NoteType = CommonData.NOTE_TYPE.NORMAL;
         NoteData = DataManager.Instance.NoteDataDic[id];
         NoteImage.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));
         NoteCollider.enabled = true;
-        Anim.enabled = true;
+      
     }
 
     private void SetItemNote(int id)
