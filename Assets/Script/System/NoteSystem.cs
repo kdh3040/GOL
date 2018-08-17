@@ -15,7 +15,7 @@ public class NoteSystem
     private List<NoteGroup> NoteGroupList = new List<NoteGroup>();
     private Transform NoteGroupEndPos;
     public float NoteSpeed { get; set; }
-    private List<NoteCreateData> NoteCreatePercentList = new List<NoteCreateData>();
+    private List<int> NoteNormalCreateList = new List<int>();
     private List<NoteCreateData> NoteItemCreatePercentList = new List<NoteCreateData>();
     private int NoteItemAllPercentValue = 0;
 
@@ -34,32 +34,15 @@ public class NoteSystem
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
+        NoteNormalCreateList.Clear();
+        var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
+        NoteNormalCreateList = backgroundData.noteList;
 
         var endPos = NoteGroupEndPos.localPosition;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
             NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
             NoteGroupList[i].ResetNoteGroup();
-        }
-
-        if(NoteCreatePercentList.Count <= 0)
-        {
-            int percentValue = 0;
-            var list = DataManager.Instance.NoteCreateDataList;
-            for (int index_1 = 0; index_1 < list.Count; index_1++)
-            {
-                for (int index_2 = 0; index_2 < list[index_1].noteCreateList.Count; index_2++)
-                {
-                    var data = list[index_1].noteCreateList[index_2];
-                    NoteCreateData createData = new NoteCreateData();
-                    createData.Percent = percentValue + data.Value;
-                    createData.OriginalPercent = data.Value;
-                    createData.Id = data.Key;
-                    createData.EnableTime = list[index_1].time;
-                    percentValue += data.Value;
-                    NoteCreatePercentList.Add(createData);
-                }
-            }
         }
 
         if(NoteItemCreatePercentList.Count <= 0)
@@ -199,23 +182,7 @@ public class NoteSystem
 
     private int PickNormalNoteId()
     {
-        var allPercentValue = 0;
-
-        for (int i = 0; i < NoteCreatePercentList.Count; i++)
-        {
-            if (NoteCreatePercentList[i].EnableTime < PlayTime)
-                allPercentValue += NoteCreatePercentList[i].OriginalPercent;
-        }
-
-        var percentValue = Random.Range(0, allPercentValue + 1);
-
-        for (int i = 0; i < NoteCreatePercentList.Count; i++)
-        {
-            if (percentValue <= NoteCreatePercentList[i].Percent)
-                return NoteCreatePercentList[i].Id;
-        }
-
-        return 1;
+        return NoteNormalCreateList[Random.Range(0, NoteNormalCreateList.Count)];
     }
 
     private int PickItemNoteId()

@@ -327,7 +327,6 @@
     <Compile Include="Assets\Script\UI\Popup\PopupMsg.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupUI.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupUIData.cs" />
-    <Compile Include="Assets\Script\UI\UIBookSkinSlot.cs" />
     <Compile Include="Assets\Script\UI\UICountImgFont.cs" />
     <Compile Include="Assets\Script\UI\UIPoint.cs" />
     <Compile Include="Assets\Script\UI\UIShopItemSlot.cs" />
@@ -339,6 +338,10 @@
     <Compile Include="Assets\Script\Unit\Note.cs" />
     <Compile Include="Assets\Script\Unit\NoteGroup.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
+    <Compile Include="Assets\UIEndingBookSlot.cs" />
+    <Compile Include="Assets\UIEndingSceneSlot.cs" />
+    <Compile Include="Assets\UIEndingSlot.cs" />
+    <Compile Include="Assets\UIPointValue.cs" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\Firebase\Plugins\link.xml" />
@@ -349,7 +352,6 @@
     <None Include="Assets\Resources\xml\Skill.xml" />
     <None Include="Assets\Resources\xml\Door.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-analytics-unity\maven-metadata.xml" />
-    <None Include="Assets\Resources\xml\NoteCreate.xml" />
     <None Include="Assets\Resources\xml\Ending.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-database-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />

@@ -23,11 +23,9 @@ public class DataManager {
     public Dictionary<int, NoteData> NoteDataDic = new Dictionary<int, NoteData>();
     public Dictionary<int, CharData> CharDataDic = new Dictionary<int, CharData>();
     public Dictionary<int, BackgroundData> BackGroundDataDic = new Dictionary<int, BackgroundData>();
-    public List<NoteCreateData> NoteCreateDataList = new List<NoteCreateData>();
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
-    public Dictionary<string, EndingData> EndingDataList_NAME = new Dictionary<string, EndingData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -43,7 +41,6 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Skill", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Character", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
-            LoadingDataXmlList.Add(new KeyValuePair<string, string>("NoteCreate", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Ending", "Datas"));
 
         }
@@ -135,26 +132,6 @@ public class DataManager {
                     }
                 }
             }
-            else if (xmlName == "NoteCreate")
-            {
-                foreach (XmlNode node in list)
-                {
-                    foreach (XmlNode child in node.ChildNodes)
-                    {
-                        var data = new NoteCreateData(child);
-                        NoteCreateDataList.Add(data);
-                    }
-                }
-
-                NoteCreateDataList.Sort(delegate (NoteCreateData A, NoteCreateData B)
-                {
-                    if (A.time < B.time)
-                        return -1;
-                    else
-                        return 1;
-                });
-            }
-
             else if (xmlName == "Ending")
             {
                 foreach (XmlNode node in list)
@@ -163,7 +140,6 @@ public class DataManager {
                     {
                         var data = new EndingData(child);
                         EndingDataList.Add(data.id, data);
-                        EndingDataList_NAME.Add(data.name, data);
                     }
                 }
             }

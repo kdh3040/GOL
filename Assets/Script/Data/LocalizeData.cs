@@ -36,6 +36,11 @@ public class LocalizeData {
         if (LocalizeList.ContainsKey(key))
             return LocalizeList[key];
 
-        return string.Empty;
+        return key;
+    }
+
+    public string GetLocalizeString(string key, params object[] args)
+    {
+        return string.Format(GetLocalizeString(key), args);
     }
 }

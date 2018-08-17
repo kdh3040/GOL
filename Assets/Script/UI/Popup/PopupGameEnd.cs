@@ -10,7 +10,7 @@ public class PopupGameEnd : PopupUI {
     {
         return PopupManager.POPUP_TYPE.GAME_END;
     }
-
+    // TODO 환웅 : 엔딩 팝업 수정
     public class PopupData : PopupUIData
     {
         public int EndingNoteId = 0;
@@ -47,8 +47,7 @@ public class PopupGameEnd : PopupUI {
         Score.text = CommonFunc.ConvertNumber(popupData.ScoreValue);
         Coin.text = CommonFunc.ConvertNumber(popupData.CoinValue);
         var noteData = DataManager.Instance.NoteDataDic[popupData.EndingNoteId];
-        var endingData = DataManager.Instance.EndingDataList_NAME[noteData.endingName];
-        CommonFunc.SetImageFile(endingData.img, ref EndingScene);
+        
 
         StartCoroutine(Co_ScoreCoinEffect());
     }

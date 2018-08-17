@@ -13,16 +13,11 @@ public class EndingData : SkinData
         name = node.Attributes.GetNamedItem("name").Value;
         desc = node.Attributes.GetNamedItem("desc").Value;
         img = node.Attributes.GetNamedItem("img").Value;
+        cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
     }
 
     public override string GetIcon()
     {
-        var enumerator = DataManager.Instance.NoteDataDic.GetEnumerator();
-        while (enumerator.MoveNext())
-        {
-            if (enumerator.Current.Value.endingName == name)
-                return enumerator.Current.Value.img;
-        }
         return "";
     }
 }

@@ -30,7 +30,7 @@ public class UICountImgFont : MonoBehaviour
 
         for (int i = 0; i < countLength; i++)
         {
-            string imgfileName = string.Format("n{0}", countSrt[i]);
+            string imgfileName = string.Format("Renewal/UI/icon_number_1_{0}", countSrt[i]);
 
             if(ImgFontList.Count <= i)
             {
@@ -39,6 +39,7 @@ public class UICountImgFont : MonoBehaviour
                 Image tempImage = obj.GetComponent<Image>();
                 ImgFontList.Add(tempImage);
                 obj.gameObject.transform.SetParent(gameObject.transform);
+                obj.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
 
             Image countImg = ImgFontList[i];
@@ -55,20 +56,7 @@ public class UICountImgFont : MonoBehaviour
             Vector2 currimgSize = currImg.sprite.rect.size;
             Vector2 previmgSize = prevImg == null ? Vector2.zero : prevImg.sprite.rect.size;
 
-            if (range == IMG_RANGE.LEFT)
-            {
-                currImgLocalPosition = new Vector3(prevImgLocalPosition.x + previmgSize.x / 2 + currimgSize.x / 2, 0);
-            }
-            else if (range == IMG_RANGE.RIGHT)
-            {
-                currImgLocalPosition = new Vector3(prevImgLocalPosition.x - previmgSize.x / 2 - currimgSize.x / 2, 0);
-            }
-            else
-            {
-
-                currImgLocalPosition = new Vector3(prevImgLocalPosition.x + previmgSize.x / 2 + currimgSize.x / 2, 0);
-            }
-
+            currImgLocalPosition = new Vector3(prevImgLocalPosition.x + previmgSize.x / 2 + currimgSize.x / 2, 0);
             currImg.gameObject.transform.localPosition = currImgLocalPosition;
 
             prevImg = currImg;
@@ -82,6 +70,17 @@ public class UICountImgFont : MonoBehaviour
                 Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
 
                 currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
+                currImg.gameObject.transform.localPosition = currImgLocalPosition;
+            }
+        }
+        else if (range == IMG_RANGE.RIGHT)
+        {
+            for (int i = 0; i < countLength; i++)
+            {
+                Image currImg = ImgFontList[i];
+                Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
+
+                currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize + ImgFontList[0].sprite.rect.size.x / 2, 0);
                 currImg.gameObject.transform.localPosition = currImgLocalPosition;
             }
         }
