@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PopupGameBook : PopupUI
+public class PopupGameEndingBook : PopupUI
 {
     public override PopupManager.POPUP_TYPE GetPopupType()
     {
@@ -17,7 +17,7 @@ public class PopupGameBook : PopupUI
     public GridLayoutGroup EndingSlotGrid;
     public ScrollRect ScrollRect;
 
-    private List<int> BackgroudList = new List<int>();
+    private List<KeyValuePair<int, int>> BackgroundEndingGroupList = new List<KeyValuePair<int, int>>();
     private List<UIEndingBookSlot> EndingBookSlotList = new List<UIEndingBookSlot>();
 
     public override void ShowPopup(PopupUIData data)
@@ -25,18 +25,22 @@ public class PopupGameBook : PopupUI
         Title.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_BOOK_TITLE");
         TopBar.Initialize(true);
 
-        if(BackgroudList.Count <= 0)
+        if(BackgroundEndingGroupList.Count <= 0)
         {
             var dic = DataManager.Instance.BackGroundDataDic;
             var dicEnumerator = dic.GetEnumerator();
             while(dicEnumerator.MoveNext())
             {
-                BackgroudList.Add(dicEnumerator.Current.Key);
+                for (int i = 0; i < dicEnumerator.Current.Value.endingGroupList.Count; i++)
+                {
+                    int endingGroupId = dicEnumerator.Current.Value.endingGroupList[i];
+                    BackgroundEndingGroupList.Add(new KeyValuePair<int, int>(dicEnumerator.Current.Key, endingGroupId));
+                }
             }
 
-            BackgroudList.Sort(delegate (int A, int B)
+            BackgroundEndingGroupList.Sort(delegate (KeyValuePair<int, int> A, KeyValuePair<int, int> B)
             {
-                if (A > B)
+                if (A.Key > B.Key)
                     return 1;
                 else
                     return -1;
@@ -53,12 +57,12 @@ public class PopupGameBook : PopupUI
             DestroyImmediate(EndingBookSlotList[i].gameObject);
         }
 
-        for (int i = 0; i < BackgroudList.Count; i++)
+        for (int i = 0; i < BackgroundEndingGroupList.Count; i++)
         {
             var obj = Instantiate(Resources.Load("Prefab/UIEndingBookSlot"), EndingSlotGrid.gameObject.transform) as GameObject;
             var slot = obj.GetComponent<UIEndingBookSlot>();
             EndingBookSlotList.Add(slot);
-            slot.SetData(BackgroudList[i]);
+            slot.SetData(BackgroundEndingGroupList[i].Key, BackgroundEndingGroupList[i].Value);
         }
 
         ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, EndingBookSlotList.Count * 366);

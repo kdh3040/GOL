@@ -14,7 +14,7 @@ public class UIEndingBookSlot : MonoBehaviour {
     public GridLayoutGroup EndingSlotGrid;
 
     private int EndingBuyCost = 0;
-    private BackgroundData BackgroundData = null;
+    private EndingGroupData EndingGroupData = null;
     private List<UIEndingSceneSlot> EndingSceneSlotList = new List<UIEndingSceneSlot>();
 
     void Awake()
@@ -23,7 +23,7 @@ public class UIEndingBookSlot : MonoBehaviour {
         BuyButton.onClick.AddListener(OnClickEndingBuy);
     }
 
-    public void SetData(int backgroundId)
+    public void SetData(int backgroundId, int endingGroupId)
     {
         for (int i = 0; i < EndingSceneSlotList.Count; i++)
         {
@@ -31,14 +31,15 @@ public class UIEndingBookSlot : MonoBehaviour {
         }
 
 
-        BackgroundData = DataManager.Instance.BackGroundDataDic[backgroundId];
-        EndingTitle.text = LocalizeData.Instance.GetLocalizeString(BackgroundData.endingTitle);
-        EndingBackgroundTitle.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_BG", LocalizeData.Instance.GetLocalizeString(BackgroundData.name));
+        EndingGroupData = DataManager.Instance.EndingGroupDataList[endingGroupId];
+        EndingTitle.text = LocalizeData.Instance.GetLocalizeString(EndingGroupData.name);
+        var backgroudData = DataManager.Instance.BackGroundDataDic[backgroundId];
+        EndingBackgroundTitle.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_BG", LocalizeData.Instance.GetLocalizeString(backgroudData.name));
 
         EndingBuyCost = 0;
-        for (int i = 0; i < BackgroundData.endingList.Count; i++)
+        for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
-            int id = BackgroundData.endingList[i];
+            int id = EndingGroupData.ending_list[i];
             if (PlayerData.Instance.HasSkin(CommonData.SKIN_TYPE.ENDING, id))
                 continue;
 
@@ -75,5 +76,7 @@ public class UIEndingBookSlot : MonoBehaviour {
     public void OnClickEnding()
     {
         // 엔딩 팝업
+        var data = new PopupGameEndingScene.PopupData(EndingGroupData.id);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, data);
     }
 }

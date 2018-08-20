@@ -21,7 +21,5 @@ public class UIEndingSceneSlot : MonoBehaviour {
             LockObj.gameObject.SetActive(true);
             EnddingScene.gameObject.SetActive(false);
         }
-        
-
     }
 }

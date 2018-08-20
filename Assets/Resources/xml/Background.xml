@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Background id = "1" name="BG_NAME_1" desc="BG_DESC_1" cost="10" icon="bg_a_selected" img_front="Renewal/Background/bg_sea_front_1" img_back="Renewal/Background/bg_sea_back_1" note_list="1,2,3" ending_list="1,2,3,4" ending_title="END_TITLE_1"/>
-	<Background id = "2" name="BG_NAME_2" desc="BG_DESC_2" cost="30" icon="bg_b_selected" img_front="Renewal/Background/bg_space_front_1" img_back="Renewal/Background/bg_space_back_1" note_list="4,5,6" ending_list="5,6,7,8" ending_title="END_TITLE_1"/>
-	<Background id = "3" name="BG_NAME_3" desc="BG_DESC_2" cost="30" icon="bg_b_selected" img_front="Renewal/Background/bg_winter_front" img_back="Renewal/Background/bg_winter_back" note_list="7,8,9" ending_list="9,10,11,12" ending_title="END_TITLE_1"/>
+	<Background id = "1" name="BG_NAME_1" desc="BG_DESC_1" cost="10" icon="bg_a_selected" img_front="Renewal/Background/bg_sea_front_1" img_back="Renewal/Background/bg_sea_back_1" note_list="1,2,3" ending_group_list="1"/>
+	<Background id = "2" name="BG_NAME_2" desc="BG_DESC_2" cost="30" icon="bg_b_selected" img_front="Renewal/Background/bg_space_front_1" img_back="Renewal/Background/bg_space_back_1" note_list="4,5,6" ending_group_list="2"/>
+	<Background id = "3" name="BG_NAME_3" desc="BG_DESC_2" cost="30" icon="bg_b_selected" img_front="Renewal/Background/bg_winter_front" img_back="Renewal/Background/bg_winter_back" note_list="7,8,9" ending_group_list="3"/>
 </Datas>
