@@ -308,6 +308,7 @@
     <Compile Include="Assets\Script\Data\Skill\GameSkill_SpeedDown.cs" />
     <Compile Include="Assets\Script\Data\SkillData.cs" />
     <Compile Include="Assets\Script\Data\SkinData.cs" />
+    <Compile Include="Assets\Script\Data\SkinSlotLevelData.cs" />
     <Compile Include="Assets\Script\Manager\FirebaseManager.cs" />
     <Compile Include="Assets\Script\Manager\GamePlayManager.cs" />
     <Compile Include="Assets\Script\Manager\GManager.cs" />
@@ -323,6 +324,7 @@
     <Compile Include="Assets\Script\UI\Popup\PopupGameEnd.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameEndingBook.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameEndingScene.cs" />
+    <Compile Include="Assets\Script\UI\Popup\PopupGameReady.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShop.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShopItem.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShopSkin.cs" />
@@ -332,11 +334,13 @@
     <Compile Include="Assets\Script\UI\UICountImgFont.cs" />
     <Compile Include="Assets\Script\UI\UIEndingBookSlot.cs" />
     <Compile Include="Assets\Script\UI\UIEndingSceneSlot.cs" />
+    <Compile Include="Assets\Script\UI\UIItemSlot.cs" />
     <Compile Include="Assets\Script\UI\UIPoint.cs" />
     <Compile Include="Assets\Script\UI\UIPointValue.cs" />
     <Compile Include="Assets\Script\UI\UIShopItemSlot.cs" />
     <Compile Include="Assets\Script\UI\UIShopSkinSlot.cs" />
     <Compile Include="Assets\Script\UI\UISkillProgressBar.cs" />
+    <Compile Include="Assets\Script\UI\UISkinSlot.cs" />
     <Compile Include="Assets\Script\UI\UITabButton.cs" />
     <Compile Include="Assets\Script\UI\UITopBar.cs" />
     <Compile Include="Assets\Script\Unit\Door.cs" />
@@ -347,14 +351,17 @@
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\Firebase\Plugins\link.xml" />
     <None Include="Assets\Resources\xml\EndingGroup.xml" />
+    <None Include="Assets\Resources\xml\CharSkinSlotLevel.xml" />
     <None Include="Assets\Resources\xml\Character.xml" />
     <None Include="Assets\Resources\xml\Item.xml" />
     <None Include="Assets\Resources\xml\Localize.xml" />
     <None Include="Assets\Resources\xml\Note.xml" />
     <None Include="Assets\Resources\xml\Skill.xml" />
+    <None Include="Assets\Resources\xml\DoorSkinSlotLevel.xml" />
     <None Include="Assets\Resources\xml\Door.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-analytics-unity\maven-metadata.xml" />
     <None Include="Assets\Resources\xml\Ending.xml" />
+    <None Include="Assets\Resources\xml\BGSkinSlotLevel.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-database-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />

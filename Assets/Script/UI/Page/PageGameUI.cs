@@ -27,12 +27,12 @@ public class PageGameUI : MonoBehaviour
     {
         RefreshItemUI();
         RefreshShieldItemUI();
-        Score.SetValue(0, UICountImgFont.IMG_RANGE.CENTER);
+        Score.SetValue("0", UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
     }
 
     public void RefreshUI()
     {
-        Score.SetValue(GamePlayManager.Instance.Score, UICountImgFont.IMG_RANGE.CENTER);
+        Score.SetValue(GamePlayManager.Instance.Score.ToString(), UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
     }
 
     public void RefreshItemUI()

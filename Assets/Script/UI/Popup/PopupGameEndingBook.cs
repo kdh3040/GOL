@@ -56,6 +56,7 @@ public class PopupGameEndingBook : PopupUI
         {
             DestroyImmediate(EndingBookSlotList[i].gameObject);
         }
+        EndingBookSlotList.Clear();
 
         for (int i = 0; i < BackgroundEndingGroupList.Count; i++)
         {
