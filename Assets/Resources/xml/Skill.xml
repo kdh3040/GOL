@@ -6,5 +6,20 @@
 	<Skill id = "400" name="SPEED_DOWN_LV1" desc="SPEED_DOWN_SKILL" skilltype="SPEED_DOWN" time="10" count="0" percent="50"/>
 	<Skill id = "500" name="RESURRECTION_LV1" desc="RESURRECTION_SKILL" skilltype="RESURRECTION" time="0" count="0" percent="50"/>
 	<Skill id = "600" name="GAME_OVER_SCORE_BONUS_LV1" desc="GAME_OVER_SCORE_BONUS_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="50"/>
-	<Skill id = "800" name="ITEM_CREATE_LV1" desc="ITEM_CREATE_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="30"/>
+	<Skill id = "700" name="ITEM_CREATE_LV1" desc="ITEM_CREATE_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="30"/>
+	<Skill id = "10100" name="CHAR_SKIN_SKILL_LV1" desc="CHAR_SKIN_SKILL" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="5"/>
+	<Skill id = "10101" name="CHAR_SKIN_SKILL_LV2" desc="CHAR_SKIN_SKILL" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="6"/>
+	<Skill id = "10102" name="CHAR_SKIN_SKILL_LV3" desc="CHAR_SKIN_SKILL" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="7"/>
+	<Skill id = "10103" name="CHAR_SKIN_SKILL_LV4" desc="CHAR_SKIN_SKILL" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="8"/>
+	<Skill id = "10104" name="CHAR_SKIN_SKILL_LV5" desc="CHAR_SKIN_SKILL" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="9"/>
+	<Skill id = "20100" name="DOOR_SKIN_SKILL_LV1" desc="DOOR_SKIN_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="5"/>
+	<Skill id = "20101" name="DOOR_SKIN_SKILL_LV2" desc="DOOR_SKIN_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="6"/>
+	<Skill id = "20102" name="DOOR_SKIN_SKILL_LV3" desc="DOOR_SKIN_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="7"/>
+	<Skill id = "20103" name="DOOR_SKIN_SKILL_LV4" desc="DOOR_SKIN_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="8"/>
+	<Skill id = "20104" name="DOOR_SKIN_SKILL_LV5" desc="DOOR_SKIN_SKILL" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="9"/>
+	<Skill id = "30100" name="BG_SKIN_SKILL_LV1" desc="BG_SKIN_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="5"/>
+	<Skill id = "30101" name="BG_SKIN_SKILL_LV2" desc="BG_SKIN_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="6"/>
+	<Skill id = "30102" name="BG_SKIN_SKILL_LV3" desc="BG_SKIN_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="7"/>
+	<Skill id = "30103" name="BG_SKIN_SKILL_LV4" desc="BG_SKIN_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="8"/>
+	<Skill id = "30104" name="BG_SKIN_SKILL_LV5" desc="BG_SKIN_SKILL" skilltype="ITEM_CREATE" time="0" count="0" percent="9"/>
 </Datas>

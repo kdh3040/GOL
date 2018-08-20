@@ -102,6 +102,7 @@ public class GamePlayManager : MonoBehaviour
         FirstStart = true;
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
@@ -112,6 +113,7 @@ public class GamePlayManager : MonoBehaviour
     {
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -121,6 +123,7 @@ public class GamePlayManager : MonoBehaviour
     {
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -208,6 +211,10 @@ public class GamePlayManager : MonoBehaviour
         mPlayerChar.ActionDoorClose(door);
 
         SetDoorState(door.NoteLineType, 2);
+
+        PlayDoorSound(door.NoteLineType);
+
+
     }
     
     public void PlusScore(int score)
@@ -301,6 +308,11 @@ public class GamePlayManager : MonoBehaviour
     public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
     {
         mDoorSystem.SetDoorState(line, DoorState);
+    }
+
+    public void PlayDoorSound(CommonData.NOTE_LINE line)
+    {
+        mDoorSystem.PlaySound(line);
     }
 
     public int ConvertScoreToCoin()

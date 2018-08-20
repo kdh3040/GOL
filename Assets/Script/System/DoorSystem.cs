@@ -34,6 +34,12 @@ public class DoorSystem
         }
     }
 
+    public void PlaySound(CommonData.NOTE_LINE line)
+    {
+        var DoorNum = (int)line;
+        DoorList[DoorNum].PlaySound();
+    }
+
     public void StartSkillEffect(GameSkill skill)
     {
         if (skill.mSkillType == SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME)

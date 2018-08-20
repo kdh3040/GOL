@@ -55,7 +55,7 @@ public class UIEndingBookSlot : MonoBehaviour {
         if(EndingBuyCost > 0)
         {
             BuyCostValue.gameObject.SetActive(true);
-            BuyCostValue.SetValue(EndingBuyCost, LocalizeData.Instance.GetLocalizeString("COMMON_BUY"));
+            BuyCostValue.SetValue(EndingBuyCost);
             EndingComplete.text = "";
         }
         else

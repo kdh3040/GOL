@@ -41,6 +41,7 @@ public class Door : MonoBehaviour
         {
             case DOOR_STATE.CLOSE:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.close_img, typeof(Sprite));
+              
                 break;
             case DOOR_STATE.HALF_OPEN:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.halfopen_img, typeof(Sprite));
@@ -66,6 +67,11 @@ public class Door : MonoBehaviour
         }
     }
     */
+
+    public void PlaySound()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 
     public void SetEffect(string trigger)
     {
