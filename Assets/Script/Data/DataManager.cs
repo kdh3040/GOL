@@ -26,6 +26,7 @@ public class DataManager {
     public Dictionary<int, ItemData> ItemDataDic = new Dictionary<int, ItemData>();
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
+    public Dictionary<int, EndingGroupData> EndingGroupDataList = new Dictionary<int, EndingGroupData>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -42,6 +43,7 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Character", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Ending", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("EndingGroup", "Datas"));
 
         }
 
@@ -140,6 +142,18 @@ public class DataManager {
                     {
                         var data = new EndingData(child);
                         EndingDataList.Add(data.id, data);
+                    }
+                }
+            }
+
+            else if (xmlName == "EndingGroup")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new EndingGroupData(child);
+                        EndingGroupDataList.Add(data.id, data);
                     }
                 }
             }

@@ -8,8 +8,7 @@ public class BackgroundData : SkinData
     public string img_front;
     public string img_back;
     public List<int> noteList = new List<int>();
-    public List<int> endingList = new List<int>();
-    public string endingTitle;
+    public List<int> endingGroupList = new List<int>();
 
     public BackgroundData(XmlNode node)
     {
@@ -28,14 +27,12 @@ public class BackgroundData : SkinData
             noteList.Add(int.Parse(noteListStringArr[i]));
         }
 
-        var endingListString = node.Attributes.GetNamedItem("ending_list").Value;
+        var endingListString = node.Attributes.GetNamedItem("ending_group_list").Value;
         var endingListStringArr = endingListString.Split(',');
         for (int i = 0; i < endingListStringArr.Length; i++)
         {
-            endingList.Add(int.Parse(endingListStringArr[i]));
+            endingGroupList.Add(int.Parse(endingListStringArr[i]));
         }
-
-        endingTitle = node.Attributes.GetNamedItem("ending_title").Value;
     }
 
     public override string GetIcon()

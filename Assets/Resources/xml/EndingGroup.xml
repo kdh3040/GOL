@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Ending id = "1" name="END_TITLE_1" ending_list="1,2,3,4"/>
+	<Ending id = "2" name="END_TITLE_2" ending_list="5,6,7,8"/>
+	<Ending id = "3" name="END_TITLE_3" ending_list="9,10"/>
+</Datas>
