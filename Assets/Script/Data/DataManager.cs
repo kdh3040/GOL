@@ -27,6 +27,7 @@ public class DataManager {
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
     public Dictionary<int, EndingGroupData> EndingGroupDataList = new Dictionary<int, EndingGroupData>();
+    public Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>> SkinSlotLevelDataList = new Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
@@ -44,6 +45,9 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Background", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Ending", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("EndingGroup", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("CharSkinSlotLevel", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("BGSkinSlotLevel", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("DoorSkinSlotLevel", "Datas"));
 
         }
 
@@ -156,6 +160,75 @@ public class DataManager {
                         EndingGroupDataList.Add(data.id, data);
                     }
                 }
+            }
+
+            else if (xmlName == "CharSkinSlotLevel")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new SkinSlotLevelData(child);
+                        if(SkinSlotLevelDataList.ContainsKey(CommonData.SKIN_TYPE.CHAR) == false)
+                            SkinSlotLevelDataList.Add(CommonData.SKIN_TYPE.CHAR, new List<SkinSlotLevelData>());
+
+                        SkinSlotLevelDataList[CommonData.SKIN_TYPE.CHAR].Add(data);
+                    }
+                }
+
+                SkinSlotLevelDataList[CommonData.SKIN_TYPE.CHAR].Sort(delegate (SkinSlotLevelData A, SkinSlotLevelData B)
+                {
+                    if (A.level > B.level)
+                        return 1;
+                    else
+                        return -1;
+                });
+            }
+
+            else if (xmlName == "BGSkinSlotLevel")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new SkinSlotLevelData(child);
+                        if (SkinSlotLevelDataList.ContainsKey(CommonData.SKIN_TYPE.BACKGROUND) == false)
+                            SkinSlotLevelDataList.Add(CommonData.SKIN_TYPE.BACKGROUND, new List<SkinSlotLevelData>());
+
+                        SkinSlotLevelDataList[CommonData.SKIN_TYPE.BACKGROUND].Add(data);
+                    }
+                }
+
+                SkinSlotLevelDataList[CommonData.SKIN_TYPE.BACKGROUND].Sort(delegate (SkinSlotLevelData A, SkinSlotLevelData B)
+                {
+                    if (A.level > B.level)
+                        return 1;
+                    else
+                        return -1;
+                });
+            }
+
+            else if (xmlName == "DoorSkinSlotLevel")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new SkinSlotLevelData(child);
+                        if (SkinSlotLevelDataList.ContainsKey(CommonData.SKIN_TYPE.DOOR) == false)
+                            SkinSlotLevelDataList.Add(CommonData.SKIN_TYPE.DOOR, new List<SkinSlotLevelData>());
+
+                        SkinSlotLevelDataList[CommonData.SKIN_TYPE.DOOR].Add(data);
+                    }
+                }
+
+                SkinSlotLevelDataList[CommonData.SKIN_TYPE.DOOR].Sort(delegate (SkinSlotLevelData A, SkinSlotLevelData B)
+                {
+                    if (A.level > B.level)
+                        return 1;
+                    else
+                        return -1;
+                });
             }
 
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);

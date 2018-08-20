@@ -36,9 +36,14 @@ public class SkillManager
     {
         mUseSkillList.Clear();
     }
+    public void UseSkinSlotSkill()
+    {
+        AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.CHAR));
+        AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.BACKGROUND));
+        AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.DOOR));
+    }
     public GameSkill UseCharSkill(int charId)
     {
-        // TODO 환웅 캐릭터 강화 기능 추가 손볼필요가 있음
         var charData = DataManager.Instance.CharDataDic[charId];
         var skill = AddUseSkill(charData.GetSkillName());
 

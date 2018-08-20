@@ -26,6 +26,7 @@ public class PlayerData
     {
         public Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
         public Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
+        private Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
         public Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
         public int MyCoin;
         public int MyDDong;
@@ -40,6 +41,7 @@ public class PlayerData
         {
             HaveSkin = PlayerData.Instance.HaveSkin;
             UseSkin = PlayerData.Instance.UseSkin;
+            SkinSlotLevel = PlayerData.Instance.SkinSlotLevel;
             HaveItem_LevelCount = PlayerData.Instance.HaveItem_LevelCount;
             MyCoin = PlayerData.Instance.MyCoin;
             MyDDong = PlayerData.Instance.MyDDong;
@@ -52,6 +54,7 @@ public class PlayerData
         {
             PlayerData.Instance.HaveSkin = HaveSkin;
             PlayerData.Instance.UseSkin = UseSkin;
+            PlayerData.Instance.SkinSlotLevel = SkinSlotLevel;
             PlayerData.Instance.HaveItem_LevelCount = HaveItem_LevelCount;
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.MyDDong = MyDDong;
@@ -63,6 +66,7 @@ public class PlayerData
 
     private Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
     private Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
+    private Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
     private Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
     public int MyCoin { get; private set; }
     private int Myddong;
@@ -120,6 +124,10 @@ public class PlayerData
             UseSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
             UseSkin.Add(CommonData.SKIN_TYPE.CHAR, 1);
             UseSkin.Add(CommonData.SKIN_TYPE.DOOR, 1);
+
+            SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
+            SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
+            SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
 
             MyCoin = 1000;
             MyDDong = CommonData.MAX_DDONG_COUNT;
@@ -323,6 +331,45 @@ public class PlayerData
     public int GetUseSkin(CommonData.SKIN_TYPE type)
     {
         return UseSkin[type];
+    }
+
+    public SkinData GetUseSkinData(CommonData.SKIN_TYPE type)
+    {
+        SkinData skinData = null;
+        switch (type)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                skinData = DataManager.Instance.CharDataDic[GetUseSkin(type)];
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                skinData = DataManager.Instance.DoorDataDic[GetUseSkin(type)];
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                skinData = DataManager.Instance.BackGroundDataDic[GetUseSkin(type)];
+                break;
+            default:
+                break;
+        }
+
+        return skinData;
+    }
+
+    public void SetSkinSlotLevel(CommonData.SKIN_TYPE type, int level)
+    {
+        SkinSlotLevel[type] = level;
+        SaveFile();
+    }
+
+    public int GetSkinSlotLevel(CommonData.SKIN_TYPE type)
+    {
+        return SkinSlotLevel[type];
+    }
+
+    public string GetSkinSlotSkill(CommonData.SKIN_TYPE type)
+    {
+        var level = GetSkinSlotLevel(type);
+        var data = DataManager.Instance.SkinSlotLevelDataList[type][level - 1];
+        return data.skill;
     }
 
     public bool IsPlayEnable(bool showMsgPopup)

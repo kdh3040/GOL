@@ -16,7 +16,13 @@ public class UICountImgFont : MonoBehaviour
         RIGHT
     }
 
-    public void SetValue(int count, IMG_RANGE range)
+    public enum IMG_TYPE
+    {
+        YELLOW,
+        GREEN,
+    }
+
+    public void SetValue(string count, IMG_RANGE range, IMG_TYPE imgType)
     {
         string countSrt = count.ToString();
         int countLength = countSrt.Length;
@@ -28,9 +34,26 @@ public class UICountImgFont : MonoBehaviour
             ImgFontList[i].gameObject.SetActive(false);
         }
 
+        string formString = "";
+        switch (imgType)
+        {
+            case IMG_TYPE.YELLOW:
+                formString = "Renewal/UI/icon_number_1_{0}";
+                break;
+            case IMG_TYPE.GREEN:
+                formString = "Renewal/UI/icon_number_2_{0}";
+                break;
+            default:
+                break;
+        }
+
         for (int i = 0; i < countLength; i++)
         {
-            string imgfileName = string.Format("Renewal/UI/icon_number_1_{0}", countSrt[i]);
+            char oneStr = countSrt[i];
+            if (oneStr == '+')
+                oneStr = 'p';
+
+            string imgfileName = string.Format(formString, oneStr);
 
             if(ImgFontList.Count <= i)
             {

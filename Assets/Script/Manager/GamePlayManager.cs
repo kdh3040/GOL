@@ -102,6 +102,7 @@ public class GamePlayManager : MonoBehaviour
         FirstStart = true;
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
@@ -112,6 +113,7 @@ public class GamePlayManager : MonoBehaviour
     {
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
@@ -121,6 +123,7 @@ public class GamePlayManager : MonoBehaviour
     {
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+        SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
