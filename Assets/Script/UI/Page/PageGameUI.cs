@@ -8,10 +8,8 @@ public class PageGameUI : MonoBehaviour
 {
     public UICountImgFont Score;
     public Text Info;
-    public Button mItemRightButton;
-    public Image mItemRightImg;
-    public Button mItemLeftButton;
-    public Image mItemLeftImg;
+    public Button mItemButton;
+    public Image mItemImg;
     public List<Image> mShieldIconList = new List<Image>();
     public Transform mSkillProgressStartPos;    
 
@@ -19,8 +17,7 @@ public class PageGameUI : MonoBehaviour
 
     void Awake()
     {
-        mItemRightButton.onClick.AddListener(OnClickItemRight);
-        mItemLeftButton.onClick.AddListener(OnClickItemLeft);
+        mItemButton.onClick.AddListener(OnClickItem);
     }
 
     public void ResetUI()
@@ -37,28 +34,16 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshItemUI()
     {
-        int leftItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.LEFT);
-        if (leftItemId != 0)
+        int ItemId = GamePlayManager.Instance.UseItemId;
+        if (ItemId != 0)
         {
-            mItemLeftImg.sprite = ItemManager.Instance.GetItemIcon(leftItemId);
-            mItemLeftImg.color = new Color(1, 1, 1, 1);
+            mItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
+            mItemImg.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            mItemLeftImg.color = new Color(1, 1, 1, 0);
-            mItemLeftImg.sprite = null;
-        }
-
-        int rightItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.RIGHT);
-        if (rightItemId != 0)
-        {
-            mItemRightImg.sprite = ItemManager.Instance.GetItemIcon(rightItemId);
-            mItemRightImg.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            mItemRightImg.color = new Color(1, 1, 1, 0);
-            mItemRightImg.sprite = null;
+            mItemImg.color = new Color(1, 1, 1, 0);
+            mItemImg.sprite = null;
         }
     }
 
@@ -92,19 +77,11 @@ public class PageGameUI : MonoBehaviour
         }
     }
 
-    public void OnClickItemLeft()
+    public void OnClickItem()
     {
-        UseItem(CommonData.ITEM_SLOT_INDEX.LEFT);
+        GamePlayManager.Instance.UseGameNormalItem();
     }
-    public void OnClickItemRight()
-    {
-        UseItem(CommonData.ITEM_SLOT_INDEX.RIGHT);
-    }
-    private void UseItem(CommonData.ITEM_SLOT_INDEX index)
-    {
-        GamePlayManager.Instance.UseGameNormalItem(index);
-        RefreshItemUI();
-    }
+
     public void UseItemSkill(int itemId, GameSkill skill)
     {
         for (int i = 0; i < mSkillProgressBarList.Count; i++)

@@ -75,7 +75,7 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRestart()
     {
-        if (PlayerData.Instance.IsPlayEnable(true))
+        if (PlayerData.Instance.IsPlayEnable())
         {
             GamePlayManager.Instance.GameRestart();
             PopupManager.Instance.DismissPopup();

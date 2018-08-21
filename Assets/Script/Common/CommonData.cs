@@ -23,13 +23,6 @@ public class CommonData : MonoBehaviour {
         SHIELD,
     }
 
-    public enum ITEM_SLOT_INDEX
-    {
-        LEFT = 0,
-        RIGHT = 1,
-        SHIELD = 2
-    }
-
     public enum SKIN_TYPE
     {
         NONE,
