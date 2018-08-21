@@ -41,6 +41,9 @@ public class GamePlayManager : MonoBehaviour
     private PageGameUI mGameUIPage;
     private Admob mAdmob = new Admob();
 
+    private AudioSource mAudio;
+    public AudioClip[] mClip = new AudioClip[3];
+
     public int UseItemId = 0;
     public bool FirstStart = true;
 
@@ -63,7 +66,9 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage = scene.UIPage;
         mPlayerChar = scene.PlayerCharObj;
         mPlayerChar.Initialize();
-        mAdmob.Init();        
+        mAdmob.Init();
+        mAudio = scene.gameObject.AddComponent<AudioSource>();
+        
     }
 
     public void ResetGame()
@@ -199,7 +204,7 @@ public class GamePlayManager : MonoBehaviour
 
         SetDoorState(door.NoteLineType, 2);
 
-        PlayDoorSound(door.NoteLineType);
+        PlayDoorSound();
 
 
     }
@@ -218,6 +223,7 @@ public class GamePlayManager : MonoBehaviour
             Score += score;
 
         mGameUIPage.RefreshUI();
+        PlayGetItemSound();
     }
 
     public void PlusItem(int id)
@@ -254,7 +260,16 @@ public class GamePlayManager : MonoBehaviour
             if (itemAdd == false)
                 PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
         }
+
+        PlayGetItemSound();
     }
+
+    public void PlayGetItemSound()
+    {
+        mAudio.clip = mClip[0];
+        mAudio.Play();
+    }
+
     public void UseGameNormalItem()
     {
         if (UseItemId == 0)
@@ -264,11 +279,19 @@ public class GamePlayManager : MonoBehaviour
         var skill = SkillManager.Instance.UseItemSkill(itemData.id);
         mGameUIPage.UseItemSkill(itemData.id, skill);
         mDoorSystem.StartSkillEffect(skill);
+
         UseItemId = 0;
         mGameUIPage.RefreshItemUI();
+        PlayUseItemSound();
     }
 
-    public void UseGameShieldItem()
+    public void PlayUseItemSound()
+    {
+        mAudio.clip = mClip[2];
+        mAudio.Play();
+    }
+
+        public void UseGameShieldItem()
     {
         if (UseItemId == 0)
             return;
@@ -291,9 +314,10 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.SetDoorState(line, DoorState);
     }
 
-    public void PlayDoorSound(CommonData.NOTE_LINE line)
+    public void PlayDoorSound()
     {
-        mDoorSystem.PlaySound(line);
+        mAudio.clip = mClip[1];
+        mAudio.Play();
     }
 
     public int ConvertScoreToCoin()
