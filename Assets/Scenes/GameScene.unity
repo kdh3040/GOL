@@ -1122,11 +1122,6 @@ Prefab:
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 82854640997456734, guid: 6ebe13e566e8c5b48bac5022419e3e0f,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ebe13e566e8c5b48bac5022419e3e0f, type: 2}
   m_IsPrefabAsset: 0
@@ -2076,7 +2071,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 83351bfbec31c464f85a02c060e03f33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 231c10187823d124aa2232ac7b984111, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2499,6 +2494,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212771324877359238, guid: 89998fec90db35b4b9dcfead38f0885d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6398da344f87af94aa99e7a9ee44a613,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89998fec90db35b4b9dcfead38f0885d, type: 2}
   m_IsPrefabAsset: 0
@@ -2592,7 +2593,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47c1721b4f4f9134d8e144da0a5e17d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f24a51b35263b074996dfa5aae173a4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
