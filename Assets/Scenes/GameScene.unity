@@ -3010,7 +3010,7 @@ Prefab:
     - target: {fileID: 224907857206885390, guid: e0abfc339dc2ceb49aa6710bc7f1b355,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224907857206885390, guid: e0abfc339dc2ceb49aa6710bc7f1b355,
         type: 2}

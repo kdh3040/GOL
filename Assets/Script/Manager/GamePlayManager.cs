@@ -205,7 +205,7 @@ public class GamePlayManager : MonoBehaviour
 
         SetDoorState(door.NoteLineType, 2);
 
-        PlayDoorSound();
+        PlayDoorSound(door.NoteLineType);
 
 
     }
@@ -315,10 +315,9 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.SetDoorState(line, DoorState);
     }
 
-    public void PlayDoorSound()
+    public void PlayDoorSound(CommonData.NOTE_LINE line)
     {
-        mAudio.clip = mClip[1];
-        mAudio.Play();
+        mDoorSystem.PlaySound(line);
     }
 
     public int ConvertScoreToCoin()
