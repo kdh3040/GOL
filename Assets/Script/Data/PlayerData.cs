@@ -26,7 +26,7 @@ public class PlayerData
     {
         public Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
         public Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
-        private Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
+        public Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
         public Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
         public int MyCoin;
         public int MyDDong;
@@ -35,7 +35,6 @@ public class PlayerData
         public int UseChar;
         public int UseDoor;
         public int UseBackground;
-        public int[] UseItemArr = { 0, 0, 0 };
 
         public void Save()
         {
@@ -45,8 +44,6 @@ public class PlayerData
             HaveItem_LevelCount = PlayerData.Instance.HaveItem_LevelCount;
             MyCoin = PlayerData.Instance.MyCoin;
             MyDDong = PlayerData.Instance.MyDDong;
-
-            UseItemArr = PlayerData.Instance.UseItemArr;
             NextDDongRefilTime = PlayerData.Instance.NextDDongRefilTime.Ticks;
         }
 
@@ -58,8 +55,6 @@ public class PlayerData
             PlayerData.Instance.HaveItem_LevelCount = HaveItem_LevelCount;
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.MyDDong = MyDDong;
-
-            PlayerData.Instance.UseItemArr = UseItemArr;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
         }
     }
@@ -84,8 +79,7 @@ public class PlayerData
         }
     }
     private DateTime NextDDongRefilTime;
-
-    private int[] UseItemArr = { 0, 0, 0 };
+    private int UseItemId = 0;
 
     private SaveData MySaveData = new SaveData();
     
@@ -111,6 +105,13 @@ public class PlayerData
             stream.Close();
 
             MySaveData.Load();
+
+            if(SkinSlotLevel.Count <= 0)
+            {
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
+            }
         }
         else
         {
@@ -159,31 +160,13 @@ public class PlayerData
         LoadFile();
     }
 
-    public int GetItemSlotId(CommonData.ITEM_SLOT_INDEX index)
+    public int GetUseItemId()
     {
-        return UseItemArr[(int)index];
+        return UseItemId;
     }
-    public void SetItemSlotId(CommonData.ITEM_SLOT_INDEX index, int id)
+    public void SetUseItemId(int id)
     {
-        UseItemArr[(int)index] = id;
-        SaveFile();
-    }
-
-    public bool SetItemSlotId_Normal(int id)
-    {
-        for (int i = 0; i < UseItemArr.Length; i++)
-        {
-            if ((CommonData.ITEM_SLOT_INDEX)i == CommonData.ITEM_SLOT_INDEX.SHIELD)
-                return false;
-
-            if (UseItemArr[i] == 0)
-            {
-                UseItemArr[i] = id;
-                return true;
-            }
-        }
-
-        return false;
+        UseItemId = id;
     }
 
     public void UpdatePlayerData(float time)
@@ -230,15 +213,6 @@ public class PlayerData
             var key = HaveItem_LevelCount[id].Key;
             var value = HaveItem_LevelCount[id].Value > 0 ? HaveItem_LevelCount[id].Value - 1 : 0;
             HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
-
-            if(value == 0)
-            {
-                for (int i = 0; i < UseItemArr.Length; i++)
-                {
-                    if (UseItemArr[i] == id)
-                        SetItemSlotId((CommonData.ITEM_SLOT_INDEX)i, 0);
-                }
-            }
         }
 
         SaveFile();
@@ -372,15 +346,10 @@ public class PlayerData
         return data.skill;
     }
 
-    public bool IsPlayEnable(bool showMsgPopup)
+    public bool IsPlayEnable()
     {
-        if (MyDDong <= 0)
-        {
-            if(showMsgPopup)
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));
-
+        if (CommonFunc.UseDDong() == false)
             return false;
-        }
 
         return true;
     }

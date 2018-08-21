@@ -41,7 +41,7 @@ public class GamePlayManager : MonoBehaviour
     private PageGameUI mGameUIPage;
     private Admob mAdmob = new Admob();
 
-    public Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem> ItemDic = new Dictionary<CommonData.ITEM_SLOT_INDEX, GamePlayItem>();
+    public int UseItemId = 0;
     public bool FirstStart = true;
 
     public float NoteSpeed
@@ -70,20 +70,7 @@ public class GamePlayManager : MonoBehaviour
     {
         mAdmob.HideAd();
 
-        if (FirstStart)
-        {
-            ItemDic.Clear();
-            FirstSetItem(CommonData.ITEM_SLOT_INDEX.LEFT);
-            FirstSetItem(CommonData.ITEM_SLOT_INDEX.RIGHT);
-            FirstSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD);
-        }
-        else
-        {
-            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.LEFT, 0);
-            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.RIGHT, 0);
-            IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
-        }
-
+        UseItemId = PlayerData.Instance.GetUseItemId();
         StopAllCoroutines();
         Score = 0;
         mIsGamePause = false;
@@ -239,14 +226,15 @@ public class GamePlayManager : MonoBehaviour
         bool itemAdd = false;
         if (data.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
-            itemAdd = AddEmptyNormalItem(id);
-
-            if (itemAdd == false)
+            if (UseItemId != 0)
             {
                 PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
             }
             else
+            {
+                UseItemId = id;
                 mGameUIPage.RefreshItemUI();
+            }
         }
         else
         {
@@ -256,7 +244,7 @@ public class GamePlayManager : MonoBehaviour
                 var shieldCount = skill.mCount;
                 if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
                 {
-                    IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, id);
+                    UseItemId = id;
                     UseGameShieldItem();
                     itemAdd = true;
                 }
@@ -267,37 +255,30 @@ public class GamePlayManager : MonoBehaviour
                 PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
         }
     }
-    public void UseGameNormalItem(CommonData.ITEM_SLOT_INDEX index)
+    public void UseGameNormalItem()
     {
-        var data = ItemDic[index];
-        if (data.ItemId == 0)
+        if (UseItemId == 0)
             return;
 
-        if(data.IngameGet == false)
-        {
-            PlayerData.Instance.MinusItem_Count(data.ItemId);
-        }
-        var skill = SkillManager.Instance.UseItemSkill(data.ItemId);
-        mGameUIPage.UseItemSkill(data.ItemId, skill);
+        var itemData = DataManager.Instance.ItemDataDic[UseItemId];
+        var skill = SkillManager.Instance.UseItemSkill(itemData.id);
+        mGameUIPage.UseItemSkill(itemData.id, skill);
         mDoorSystem.StartSkillEffect(skill);
-
-        IngameGetSetItem(index, 0);
+        UseItemId = 0;
+        mGameUIPage.RefreshItemUI();
     }
 
     public void UseGameShieldItem()
     {
-        var data = ItemDic[CommonData.ITEM_SLOT_INDEX.SHIELD];
-        if (data.ItemId == 0)
+        if (UseItemId == 0)
             return;
-
-        if (data.IngameGet == false)
+        var itemData = DataManager.Instance.ItemDataDic[UseItemId];
+        if (itemData.slot_type == CommonData.ITEM_SLOT_TYPE.SHIELD)
         {
-            PlayerData.Instance.MinusItem_Count(data.ItemId);
+            SkillManager.Instance.UseItemSkill(UseItemId);
+            UseItemId = 0;
+            mGameUIPage.RefreshShieldItemUI();
         }
-        SkillManager.Instance.UseItemSkill(GetItemId(CommonData.ITEM_SLOT_INDEX.SHIELD));
-        mGameUIPage.RefreshShieldItemUI();
-
-        IngameGetSetItem(CommonData.ITEM_SLOT_INDEX.SHIELD, 0);
     }
 
     public void EndSkill(GameSkill skill)
@@ -319,51 +300,6 @@ public class GamePlayManager : MonoBehaviour
     {
         return Score / 10;
     }
-
-    public int GetItemId(CommonData.ITEM_SLOT_INDEX type)
-    {
-        if (ItemDic.ContainsKey(type) == false)
-            return 0;
-
-        return ItemDic[type].ItemId;
-    }
-    public void FirstSetItem(CommonData.ITEM_SLOT_INDEX type)
-    {
-        var id = PlayerData.Instance.GetItemSlotId(type);
-        if (id != 0)
-            ItemDic.Add(type, new GamePlayItem(false, id));
-        else
-            ItemDic.Add(type, new GamePlayItem(false, id));
-    }
-    public bool IngameGetSetItem(CommonData.ITEM_SLOT_INDEX type, int id)
-    {
-        if(id == 0)
-        {
-            ItemDic[type].IngameGet = true;
-            ItemDic[type].ItemId = 0;
-            return true;
-        }
-        else if(ItemDic[type].ItemId == 0)
-        {
-            ItemDic[type].IngameGet = true;
-            ItemDic[type].ItemId = id;
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool AddEmptyNormalItem(int id)
-    {
-        for (int i = (int)CommonData.ITEM_SLOT_INDEX.LEFT; i < (int)CommonData.ITEM_SLOT_INDEX.SHIELD; i++)
-        {
-            if (IngameGetSetItem((CommonData.ITEM_SLOT_INDEX) i, id))
-                return true;
-        }
-
-        return false;
-    }
-
 
     public void HideAd()
     {

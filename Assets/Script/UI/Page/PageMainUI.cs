@@ -30,7 +30,7 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGamePlay()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(true));
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY);
     }
 
     public void OnClickGameShop()
