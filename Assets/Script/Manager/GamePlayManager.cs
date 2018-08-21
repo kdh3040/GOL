@@ -76,6 +76,7 @@ public class GamePlayManager : MonoBehaviour
         mAdmob.HideAd();
 
         UseItemId = PlayerData.Instance.GetUseItemId();
+        PlayerData.Instance.SetUseItemId(0);
         StopAllCoroutines();
         Score = 0;
         mIsGamePause = false;
@@ -180,12 +181,12 @@ public class GamePlayManager : MonoBehaviour
                 var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN) as GameSkill_SpeedDown;
                 if (skill != null)
                 {
-                    mNoteSystem.NoteUpdate(skill.ConvertSpeed(time));
+                    mNoteSystem.NoteUpdate(time, skill.ConvertSpeed(time));
                 }
             }
             else
             {
-                mNoteSystem.NoteUpdate(time);
+                mNoteSystem.NoteUpdate(time, time);
             }
 
             SkillManager.Instance.UpdateSkill(time);

@@ -46,6 +46,7 @@ public class PopupGameReady : PopupUI
         SelectSlotIndex = 0;
         EquipItemSlotIndex = -1;
         Topbar.Initialize(true);
+        PlayerData.Instance.SetUseItemId(0);
 
         SkinSlotList[0].SetSkinSlot(CommonData.SKIN_TYPE.CHAR);
         SkinSlotList[0].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(0); });
@@ -233,7 +234,6 @@ public class PopupGameReady : PopupUI
         {
             UnityAction yesAction = () =>
             {
-                PopupManager.Instance.DismissPopup();
                 GameStart();
             };
 
@@ -253,7 +253,11 @@ public class PopupGameReady : PopupUI
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
             }
             else
+            {
+                PlayerData.Instance.SetUseItemId(itemId);
+                PlayerData.Instance.MinusItem_Count(itemId);
                 GameStart();
+            }
         }
     }
 
