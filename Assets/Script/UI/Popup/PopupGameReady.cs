@@ -171,13 +171,8 @@ public class PopupGameReady : PopupUI
 
             RefreshDesc();
             RefreshSlot();
-            PopupManager.Instance.DismissPopup();
         };
-        UnityAction noAction = () =>
-        {
-            PopupManager.Instance.DismissPopup();
-        };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ITEM_TITLE"), yesAction, noAction);
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ITEM_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 
@@ -204,13 +199,8 @@ public class PopupGameReady : PopupUI
 
                 RefreshDesc();
                 RefreshSlot();
-                PopupManager.Instance.DismissPopup();
             };
-            UnityAction noAction = () =>
-            {
-                PopupManager.Instance.DismissPopup();
-            };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction, noAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
@@ -226,13 +216,8 @@ public class PopupGameReady : PopupUI
 
                 RefreshDesc();
                 RefreshSlot();
-                PopupManager.Instance.DismissPopup();
             };
-            UnityAction noAction = () =>
-            {
-                PopupManager.Instance.DismissPopup();
-            };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE"), yesAction, noAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }
@@ -251,11 +236,8 @@ public class PopupGameReady : PopupUI
                 PopupManager.Instance.DismissPopup();
                 GameStart();
             };
-            UnityAction noAction = () =>
-            {
-                PopupManager.Instance.DismissPopup();
-            };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_EQUIP"), yesAction, noAction);
+
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_EQUIP"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
@@ -265,14 +247,9 @@ public class PopupGameReady : PopupUI
             {
                 UnityAction yesAction = () =>
                 {
-                    PopupManager.Instance.DismissPopup();
                     GameStart();
                 };
-                UnityAction noAction = () =>
-                {
-                    PopupManager.Instance.DismissPopup();
-                };
-                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction, noAction);
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
             }
             else

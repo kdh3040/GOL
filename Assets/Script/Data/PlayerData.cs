@@ -330,7 +330,11 @@ public class PlayerData
 
     public void SetSkinSlotLevel(CommonData.SKIN_TYPE type, int level)
     {
-        SkinSlotLevel[type] = level;
+        if (level > DataManager.Instance.SkinSlotLevelDataList[type].Count)
+            SkinSlotLevel[type] = DataManager.Instance.SkinSlotLevelDataList[type].Count;
+        else
+            SkinSlotLevel[type] = level;
+
         SaveFile();
     }
 
