@@ -49,6 +49,33 @@ public class PlayerData
 
         public void Load()
         {
+            if (HaveSkin == null)
+            {
+                HaveSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, new List<int>());
+                HaveSkin[CommonData.SKIN_TYPE.BACKGROUND].Add(1);
+                HaveSkin.Add(CommonData.SKIN_TYPE.CHAR, new List<int>());
+                HaveSkin[CommonData.SKIN_TYPE.CHAR].Add(1);
+                HaveSkin.Add(CommonData.SKIN_TYPE.DOOR, new List<int>());
+                HaveSkin[CommonData.SKIN_TYPE.DOOR].Add(1);
+                HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
+            }
+            if(UseSkin == null)
+            {
+                UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
+                UseSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
+                UseSkin.Add(CommonData.SKIN_TYPE.CHAR, 1);
+                UseSkin.Add(CommonData.SKIN_TYPE.DOOR, 1);
+            }
+            if(SkinSlotLevel == null)
+            {
+                SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
+                SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
+            } 
+            if(HaveItem_LevelCount == null)
+                HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+
             PlayerData.Instance.HaveSkin = HaveSkin;
             PlayerData.Instance.UseSkin = UseSkin;
             PlayerData.Instance.SkinSlotLevel = SkinSlotLevel;
@@ -56,6 +83,8 @@ public class PlayerData
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
+
+            
         }
     }
 
@@ -105,13 +134,6 @@ public class PlayerData
             stream.Close();
 
             MySaveData.Load();
-
-            if(SkinSlotLevel.Count <= 0)
-            {
-                SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
-                SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
-                SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
-            }
         }
         else
         {
