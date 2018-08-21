@@ -168,6 +168,13 @@ public class PageGameUI : MonoBehaviour
             text.AppendFormat("아이템 노트 생성 스킬 {0:f2}퍼센트", skillData.mPercent * 100);
             text.AppendLine();
         }
+        skillData = null;
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS);
+        if (skillData != null)
+        {
+            text.AppendFormat("게임오버시 코인 상승 스킬 {0:f2}배", skillData.mPercent);
+            text.AppendLine();
+        }
 
         Info.text = text.ToString();
     }

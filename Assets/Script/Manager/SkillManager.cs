@@ -27,6 +27,7 @@ public class SkillManager
         SPEED_DOWN,
         RESURRECTION,
         GAME_OVER_SCORE_BONUS,
+        GAME_OVER_COIN_BONUS,
         ITEM_CREATE,
     }
 
@@ -81,6 +82,9 @@ public class SkillManager
                 break;
             case SKILL_TYPE.GAME_OVER_SCORE_BONUS:
                 data = new GameSkill_GameOverScoreBonus(skillName);
+                break;
+            case SKILL_TYPE.GAME_OVER_COIN_BONUS:
+                data = new GameSkill_GameOverCoinBonus(skillName);
                 break;
             case SKILL_TYPE.ITEM_CREATE:
                 data = new GameSkill_ItemCreate(skillName);
@@ -168,6 +172,9 @@ public class SkillManager
                 break;
             case "ITEM_CREATE":
                 type = SKILL_TYPE.ITEM_CREATE;
+                break;
+            case "GAME_OVER_COIN_BONUS":
+                type = SKILL_TYPE.GAME_OVER_COIN_BONUS;
                 break;
             default:
                 break;
