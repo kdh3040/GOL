@@ -84,14 +84,14 @@ public class NoteSystem
         ResetSystem();
     }
 
-    public void NoteUpdate(float time)
+    public void NoteUpdate(float time, float speedTime)
     {
         PlayTime += time;
         NoteSpeedCheckTime += time;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
             var pos = NoteGroupList[i].gameObject.transform.localPosition;
-            pos.y = pos.y - (NoteSpeed * time);
+            pos.y = pos.y - (NoteSpeed * speedTime);
             NoteGroupList[i].gameObject.transform.localPosition = pos;
 
             if(NoteGroupEndPos.localPosition.y > pos.y)

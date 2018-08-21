@@ -92,6 +92,7 @@ public class SkillManager
         if (data != null)
         {
             AddUseSkill(data);
+            data.StartSkill();
         }
 
         return data;

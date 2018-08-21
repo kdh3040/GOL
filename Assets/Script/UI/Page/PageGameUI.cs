@@ -113,13 +113,20 @@ public class PageGameUI : MonoBehaviour
     void Update()
     {
         StringBuilder text = new StringBuilder();
-        text.AppendFormat("노트속도 : {0}", GamePlayManager.Instance.NoteSpeed);
-        text.AppendLine();
-        //text.AppendFormat("누적노트 : {0}", GamePlayManager.Instance.AccumulateCreateNoteCount);
-        //text.AppendLine();
+        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN);
+        if (skillData != null)
+        {
+            text.AppendFormat("노트속도 : {0:f2}", GamePlayManager.Instance.NoteSpeed * skillData.mPercent);
+            text.AppendLine();
+        }
+        else
+        {
+            text.AppendFormat("노트속도 : {0:f2}", GamePlayManager.Instance.NoteSpeed);
+            text.AppendLine();
+        }
 
         // 스킬
-        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
         if(skillData != null)
         {
             text.AppendFormat("무적스킬 남은시간 {0:f2}", skillData.mTime);
