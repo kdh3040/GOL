@@ -24,7 +24,7 @@ public class PopupMsg : PopupUI
             MsgPopupType = MSG_POPUP_TYPE.OK;
         }
 
-        public PopupData(string msg, UnityAction yesAction, UnityAction noAction)
+        public PopupData(string msg, UnityAction yesAction, UnityAction noAction = null)
         {
             Msg = msg;
             MsgPopupType = MSG_POPUP_TYPE.YES_NO;
@@ -72,11 +72,13 @@ public class PopupMsg : PopupUI
 
     private void OnClickYes()
     {
+        PopupManager.Instance.DismissPopup();
         if (mPopupData.YesAction != null)
             mPopupData.YesAction();
     }
     private void OnClickNo()
     {
+        PopupManager.Instance.DismissPopup();
         if (mPopupData.NoAction != null)
             mPopupData.NoAction();
     }

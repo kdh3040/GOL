@@ -175,7 +175,6 @@ public class PopupGameShopSkin : MonoBehaviour {
     {
         UnityAction yesAction = () =>
         {
-            PopupManager.Instance.DismissPopup();
             SkinData skinData = null;
             switch (SelectSkinType)
             {
@@ -198,11 +197,7 @@ public class PopupGameShopSkin : MonoBehaviour {
                 RefreshMidUI();
             }
         };
-        UnityAction noAction = () =>
-        {
-            PopupManager.Instance.DismissPopup();
-        };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction, noAction);
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
 
     }

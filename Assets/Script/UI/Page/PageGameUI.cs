@@ -8,10 +8,8 @@ public class PageGameUI : MonoBehaviour
 {
     public UICountImgFont Score;
     public Text Info;
-    public Button mItemRightButton;
-    public Image mItemRightImg;
-    public Button mItemLeftButton;
-    public Image mItemLeftImg;
+    public Button mItemButton;
+    public Image mItemImg;
     public List<Image> mShieldIconList = new List<Image>();
     public Transform mSkillProgressStartPos;    
 
@@ -19,8 +17,7 @@ public class PageGameUI : MonoBehaviour
 
     void Awake()
     {
-        mItemRightButton.onClick.AddListener(OnClickItemRight);
-        mItemLeftButton.onClick.AddListener(OnClickItemLeft);
+        mItemButton.onClick.AddListener(OnClickItem);
     }
 
     public void ResetUI()
@@ -37,28 +34,16 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshItemUI()
     {
-        int leftItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.LEFT);
-        if (leftItemId != 0)
+        int ItemId = GamePlayManager.Instance.UseItemId;
+        if (ItemId != 0)
         {
-            mItemLeftImg.sprite = ItemManager.Instance.GetItemIcon(leftItemId);
-            mItemLeftImg.color = new Color(1, 1, 1, 1);
+            mItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
+            mItemImg.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            mItemLeftImg.color = new Color(1, 1, 1, 0);
-            mItemLeftImg.sprite = null;
-        }
-
-        int rightItemId = GamePlayManager.Instance.GetItemId(CommonData.ITEM_SLOT_INDEX.RIGHT);
-        if (rightItemId != 0)
-        {
-            mItemRightImg.sprite = ItemManager.Instance.GetItemIcon(rightItemId);
-            mItemRightImg.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            mItemRightImg.color = new Color(1, 1, 1, 0);
-            mItemRightImg.sprite = null;
+            mItemImg.color = new Color(1, 1, 1, 0);
+            mItemImg.sprite = null;
         }
     }
 
@@ -92,19 +77,11 @@ public class PageGameUI : MonoBehaviour
         }
     }
 
-    public void OnClickItemLeft()
+    public void OnClickItem()
     {
-        UseItem(CommonData.ITEM_SLOT_INDEX.LEFT);
+        GamePlayManager.Instance.UseGameNormalItem();
     }
-    public void OnClickItemRight()
-    {
-        UseItem(CommonData.ITEM_SLOT_INDEX.RIGHT);
-    }
-    private void UseItem(CommonData.ITEM_SLOT_INDEX index)
-    {
-        GamePlayManager.Instance.UseGameNormalItem(index);
-        RefreshItemUI();
-    }
+
     public void UseItemSkill(int itemId, GameSkill skill)
     {
         for (int i = 0; i < mSkillProgressBarList.Count; i++)
@@ -136,13 +113,20 @@ public class PageGameUI : MonoBehaviour
     void Update()
     {
         StringBuilder text = new StringBuilder();
-        text.AppendFormat("노트속도 : {0}", GamePlayManager.Instance.NoteSpeed);
-        text.AppendLine();
-        //text.AppendFormat("누적노트 : {0}", GamePlayManager.Instance.AccumulateCreateNoteCount);
-        //text.AppendLine();
+        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN);
+        if (skillData != null)
+        {
+            text.AppendFormat("노트속도 : {0:f2}", GamePlayManager.Instance.NoteSpeed * skillData.mPercent);
+            text.AppendLine();
+        }
+        else
+        {
+            text.AppendFormat("노트속도 : {0:f2}", GamePlayManager.Instance.NoteSpeed);
+            text.AppendLine();
+        }
 
         // 스킬
-        var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME);
         if(skillData != null)
         {
             text.AppendFormat("무적스킬 남은시간 {0:f2}", skillData.mTime);
@@ -182,6 +166,13 @@ public class PageGameUI : MonoBehaviour
         if (skillData != null)
         {
             text.AppendFormat("아이템 노트 생성 스킬 {0:f2}퍼센트", skillData.mPercent * 100);
+            text.AppendLine();
+        }
+        skillData = null;
+        skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS);
+        if (skillData != null)
+        {
+            text.AppendFormat("게임오버시 코인 상승 스킬 {0:f2}배", skillData.mPercent);
             text.AppendLine();
         }
 
