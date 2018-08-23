@@ -33,4 +33,5 @@
 	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료" jp="획득완료" en="획득완료"/>
 	<Localize id="GAME_PLAY_ENABLE_ITEM_EQUIP" kr="아이템을 장착하지 않고 시작 할까요?" jp="아이템을 장착하지 않고 시작 할까요?" en="아이템을 장착하지 않고 시작 할까요?"/>
 	<Localize id="GAME_PLAY_ENABLE_ITEM_COUNT" kr="아이템의 갯수가 부족 합니다." jp="아이템의 갯수가 부족 합니다." en="아이템의 갯수가 부족 합니다."/>
+	<Localize id="MSG_POPUP_TITLE_NORMAL" kr="안내" jp="안내" en="안내"/>
 </Datas>
