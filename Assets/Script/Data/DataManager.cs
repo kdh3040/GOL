@@ -247,4 +247,25 @@ public class DataManager {
         XmlNodeList all_nodes = xmlDoc.SelectNodes(key);
         return all_nodes;
     }
+
+    public SkinData GetSkinData(CommonData.SKIN_TYPE type, int id)
+    {
+        SkinData skinData = null;
+        switch (type)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                skinData = DataManager.Instance.CharDataDic[id];
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                skinData = DataManager.Instance.DoorDataDic[id];
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                skinData = DataManager.Instance.BackGroundDataDic[id];
+                break;
+            default:
+                break;
+        }
+
+        return skinData;
+    }
 }

@@ -225,7 +225,7 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(false));
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
     }
 
     public void OnClickGameStart()
