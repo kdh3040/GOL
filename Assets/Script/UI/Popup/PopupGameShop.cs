@@ -12,93 +12,215 @@ public class PopupGameShop : PopupUI
         return PopupManager.POPUP_TYPE.GAME_SHOP;
     }
 
-    public class PopupData : PopupUIData
+    public UITopBar Topbar;
+    public Image DescIcon;
+    public Text Desc;
+    public Button SkinBuyButton;
+    public UIPointValue SkinBuyCost;
+    public Button UpgradeSlotButton;
+    public UIPointValue UpgradeSlotCost;
+    public Button SkinEquipButton;
+
+    public GridLayoutGroup SkinSlotGrid;
+    public ScrollRect ScrollRect;
+
+    public List<UISkinSlot> SkinSlotList = new List<UISkinSlot>();
+    public List<UIShopSkinSlot> ShopSkinList = new List<UIShopSkinSlot>();
+
+    private CommonData.SKIN_TYPE SelectSkinType = CommonData.SKIN_TYPE.NONE;
+    private int SelectSlotIndex = 0;
+    private bool SelectLIst = false;
+
+    public void Awake()
     {
-        public bool GameStartReady;
-        public PopupData(bool ready)
+        SkinBuyButton.onClick.AddListener(OnClickSkinBuy);
+        UpgradeSlotButton.onClick.AddListener(OnClickSkinUpgrade);
+        SkinEquipButton.onClick.AddListener(OnClickSkinEquip);
+    }
+
+    public override void ShowPopup(PopupUIData data)
+    {
+        SelectSkinType = CommonData.SKIN_TYPE.NONE;
+        SelectSlotIndex = 0;
+        SelectLIst = false;
+
+        Topbar.Initialize(true);
+
+        SkinSlotList[0].SetSkinSlot(CommonData.SKIN_TYPE.CHAR);
+        SkinSlotList[0].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(0); });
+        SkinSlotList[1].SetSkinSlot(CommonData.SKIN_TYPE.DOOR);
+        SkinSlotList[1].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(1); });
+        SkinSlotList[2].SetSkinSlot(CommonData.SKIN_TYPE.BACKGROUND);
+        SkinSlotList[2].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(2); });
+
+        OnClickSkinSlot(0);
+    }
+
+    
+
+    public void RefreshSlot()
+    {
+        for (int i = 0; i < SkinSlotList.Count; i++)
         {
-            GameStartReady = ready;
+            SkinSlotList[i].SetSelect(false);
+            SkinSlotList[i].RefreshUI();
+        }
+
+        for (int i = 0; i < ShopSkinList.Count; i++)
+        {
+            ShopSkinList[i].SetSelect(false);
+            ShopSkinList[i].RefreshUI();
+        }
+
+        if (SelectLIst == false)
+        {
+            SkinSlotList[SelectSlotIndex].SetSelect(true);
+        }
+        else
+        {
+            ShopSkinList[SelectSlotIndex].SetSelect(true);
         }
     }
 
-    public enum TAB_TYPE
+    public void RefreshDesc()
     {
-        NONE,
-        ITEM,
-        CHAR,
-        DOOR,
-        BG
+        SkinBuyButton.gameObject.SetActive(false);
+        UpgradeSlotButton.gameObject.SetActive(false);
+        SkinEquipButton.gameObject.SetActive(false);
+
+        SkinData data = null;
+        if (SelectLIst)
+        {
+            var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+            data = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
+            if (PlayerData.Instance.GetUseSkin(SelectSkinType) != skinId)
+            {
+                if(PlayerData.Instance.HasSkin(SelectSkinType, skinId))
+                    SkinEquipButton.gameObject.SetActive(true);
+                else
+                    SkinBuyButton.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            data = PlayerData.Instance.GetUseSkinData(SelectSkinType);
+            UpgradeSlotButton.gameObject.SetActive(true);
+        }
+
+        CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon);
+        Desc.text = LocalizeData.Instance.GetLocalizeString(data.desc);
     }
 
-    //public UITopBar TopBar;
-    //public PopupGameShopItem ItemUI;
-    //public PopupGameShopSkin SkinUI;
-    //public UITabButton ItamTab;
-    //public UITabButton CharTab;
-    //public UITabButton DoorTab;
-    //public UITabButton BGTab;
-    //public TAB_TYPE TabType = TAB_TYPE.NONE;
+    public void RefreshList()
+    {
+        for (int i = 0; i < ShopSkinList.Count; i++)
+        {
+            DestroyImmediate(ShopSkinList[i].gameObject);
+        }
+        ShopSkinList.Clear();
 
-    //public Button GameStart;
+        List<int> skinIdList = new List<int>();
 
-    //void Awake()
-    //{
-    //    GameStart.onClick.AddListener(OnClickGameStart);
-    //    ItamTab.TabButton.onClick.AddListener(() => { OnClickTab(TAB_TYPE.ITEM); });
-    //    CharTab.TabButton.onClick.AddListener(() => { OnClickTab(TAB_TYPE.CHAR); });
-    //    DoorTab.TabButton.onClick.AddListener(() => { OnClickTab(TAB_TYPE.DOOR); });
-    //    BGTab.TabButton.onClick.AddListener(() => { OnClickTab(TAB_TYPE.BG); });
-    //}
+        switch (SelectSkinType)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                var charEnumerator = DataManager.Instance.CharDataDic.GetEnumerator();
+                while (charEnumerator.MoveNext())
+                {
+                    skinIdList.Add(charEnumerator.Current.Key);
+                }
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                var doorEnumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
+                while (doorEnumerator.MoveNext())
+                {
+                    skinIdList.Add(doorEnumerator.Current.Key);
+                }
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                var bgEnumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
+                while (bgEnumerator.MoveNext())
+                {
+                    skinIdList.Add(bgEnumerator.Current.Key);
+                }
+                break;
+            default:
+                break;
+        }
 
-    //public override void ShowPopup(PopupUIData data)
-    //{
-    //    var popupData = data as PopupData;
+        for (int i = 0; i < skinIdList.Count; i++)
+        {
+            var obj = Instantiate(Resources.Load("Prefab/UIShopSkinSlot"), SkinSlotGrid.gameObject.transform) as GameObject;
+            var slot = obj.GetComponent<UIShopSkinSlot>();
+            ShopSkinList.Add(slot);
+            int index = i;
+            slot.SlotButton.onClick.AddListener(() => { OnClickSkin(index); });
+            slot.SetData(SelectSkinType, skinIdList[i]);
+        }
+
+        ScrollRect.content.sizeDelta = new Vector2(ShopSkinList.Count * 260, ScrollRect.content.sizeDelta.y);
+    }
+
+    public void OnClickSkinSlot(int index)
+    {
+        SelectLIst = false;
+        SelectSlotIndex = index;
+        SelectSkinType = SkinSlotList[index].SkinType;
+        RefreshUI();
+    }
+
+    public void OnClickSkin(int index)
+    {
+        SelectLIst = true;
+        SelectSlotIndex = index;
+        RefreshUI();
+    }
+
+    public void RefreshUI()
+    {
+        RefreshList();
+        RefreshDesc();
+        RefreshSlot();
+    }
 
 
-    //    ItamTab.SetTabTitle("POPUP_SHOP_TAB_ITEM");
-    //    CharTab.SetTabTitle("POPUP_SHOP_TAB_CHAR");
-    //    DoorTab.SetTabTitle("POPUP_SHOP_TAB_DOOR");
-    //    BGTab.SetTabTitle("POPUP_SHOP_TAB_BACKGROUND");
+    public void OnClickSkinBuy()
+    {
+        UnityAction yesAction = () =>
+        {
+            var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+            var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
+            if(CommonFunc.UseCoin(skinData.cost))
+            {
+                PlayerData.Instance.AddSkin(SelectSkinType, skinId);
+                RefreshUI();
+            }
+        };
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+    }
 
-    //    GameStart.gameObject.SetActive(popupData.GameStartReady);
-    //    TopBar.Initialize(true);
-    //    TabType = TAB_TYPE.NONE;
-    //    OnClickTab(TAB_TYPE.ITEM);
-    //}
+    public void OnClickSkinEquip()
+    {
+        var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+        PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
+        RefreshUI();
+    }
+    public void OnClickSkinUpgrade()
+    {
+        UnityAction yesAction = () =>
+        {
+            var skinType = SkinSlotList[SelectSlotIndex].SkinType;
+            var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
+            var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
+            if (CommonFunc.UseCoin(data.cost))
+            {
+                PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
+            }
 
-    //public void OnClickTab(TAB_TYPE type)
-    //{
-    //    if (TabType == type)
-    //        return;
-
-    //    TabType = type;
-
-    //    ItamTab.SetSelect(TabType == TAB_TYPE.ITEM);
-    //    CharTab.SetSelect(TabType == TAB_TYPE.CHAR);
-    //    DoorTab.SetSelect(TabType == TAB_TYPE.DOOR);
-    //    BGTab.SetSelect(TabType == TAB_TYPE.BG);
-
-    //    ItemUI.gameObject.SetActive(false);
-    //    SkinUI.gameObject.SetActive(false);
-    //    switch (TabType)
-    //    {
-    //        case TAB_TYPE.ITEM:
-    //            ItemUI.gameObject.SetActive(true);
-    //            ItemUI.ShowUI();
-    //            break;
-    //        case TAB_TYPE.CHAR:
-    //        case TAB_TYPE.DOOR:
-    //        case TAB_TYPE.BG:
-    //            SkinUI.gameObject.SetActive(true);
-    //            SkinUI.ShowUI(TabType);
-    //            break;
-    //    }
-    //}
-    
-    //public void OnClickGameStart()
-    //{
-    //    PlayerData.Instance.MinusDDong();
-    //    PopupManager.Instance.DismissPopup();
-    //    SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-    //}
+            RefreshUI();
+        };
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+    }
 }

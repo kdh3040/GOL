@@ -34,4 +34,6 @@
 	<Localize id="GAME_PLAY_ENABLE_ITEM_EQUIP" kr="아이템을 장착하지 않고 시작 할까요?" jp="아이템을 장착하지 않고 시작 할까요?" en="아이템을 장착하지 않고 시작 할까요?"/>
 	<Localize id="GAME_PLAY_ENABLE_ITEM_COUNT" kr="아이템의 갯수가 부족 합니다." jp="아이템의 갯수가 부족 합니다." en="아이템의 갯수가 부족 합니다."/>
 	<Localize id="MSG_POPUP_TITLE_NORMAL" kr="안내" jp="안내" en="안내"/>
+	<Localize id="SKIN_SLOT_HAS" kr="보유중" jp="보유중" en="보유중"/>
+	<Localize id="SKIN_SLOT_EQUIP" kr="장착중" jp="장착중" en="장착중"/>
 </Datas>

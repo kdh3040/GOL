@@ -6,89 +6,61 @@ using UnityEngine.UI;
 public class UIShopSkinSlot : MonoBehaviour
 {
     public Button SlotButton;
+    public Image Background;
     public GameObject SelectImg;
     public Image Icon;
-    public GameObject CostObj;
-    public Text CostValue;
-    public GameObject UseObj;
+    public UIPointValue Cost;
+    public Text Desc;
 
     [System.NonSerialized]
-    public CommonData.SKIN_TYPE mSkinType;
-
+    public CommonData.SKIN_TYPE SkinType;
     [System.NonSerialized]
-    public SkinData mSkinData;
+    public int SkinId;
 
     public void SetData(CommonData.SKIN_TYPE type, int id)
     {
-        mSkinType = type;
-        mSkinData = null;
-
-        if(id != 0)
-        {
-            switch (mSkinType)
-            {
-                case CommonData.SKIN_TYPE.CHAR:
-                    mSkinData = DataManager.Instance.CharDataDic[id];
-                    break;
-                case CommonData.SKIN_TYPE.DOOR:
-                    mSkinData = DataManager.Instance.DoorDataDic[id];
-                    break;
-                case CommonData.SKIN_TYPE.BACKGROUND:
-                    mSkinData = DataManager.Instance.BackGroundDataDic[id];
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-
-        Initialize();
-    }
-
-    public void Initialize()
-    {
-        if (mSkinData == null)
-        {
-            Icon.gameObject.SetActive(false);
-            SetSelect(false);
-            RefreshUI();
-        }
-        else
-        {
-            Icon.gameObject.SetActive(true);
-            Icon.sprite = (Sprite)Resources.Load(mSkinData.GetIcon(), typeof(Sprite));
-            RefreshUI();
-        }
-    }
-
-    public void RefreshUI()
-    {
-        CostObj.SetActive(false);
-        UseObj.SetActive(false);
-
-        if (IsSkinUse())
-        {
-            UseObj.SetActive(true);
-        }
-        else if(IsSkinHave() == false)
-        {
-            CostObj.SetActive(true);
-            CostValue.text = CommonFunc.ConvertNumber(mSkinData.cost);
-        }
-    }
-
-    private bool IsSkinUse()
-    {
-        return mSkinData.id == PlayerData.Instance.GetUseSkin(mSkinType);
-    }
-
-    private bool IsSkinHave()
-    {
-        return PlayerData.Instance.HasSkin(mSkinType, mSkinData.id);
+        SkinType = type;
+        SkinId = id;
+        SetSelect(false);
+        RefreshUI();
     }
 
     public void SetSelect(bool enable)
     {
-        SelectImg.SetActive(enable);
+        SelectImg.gameObject.SetActive(enable);
+    }
+
+    private void SetEquip(bool enable)
+    {
+        if (enable)
+            CommonFunc.SetImageFile("Renewal/UI/slot_bg_4", ref Background, false);
+        else
+            CommonFunc.SetImageFile("Renewal/UI/slot_bg_1", ref Background, false);
+    }
+
+    public void RefreshUI()
+    {
+        var data = DataManager.Instance.GetSkinData(SkinType, SkinId);
+        CommonFunc.SetImageFile(data.GetIcon(), ref Icon);
+        Cost.gameObject.SetActive(false);
+        Desc.gameObject.SetActive(false);
+        SetEquip(false);
+
+        if (PlayerData.Instance.HasSkin(SkinType, SkinId))
+        {
+            Desc.gameObject.SetActive(true);
+            if (PlayerData.Instance.GetUseSkin(SkinType) == SkinId)
+            {
+                SetEquip(true);
+                Desc.text = LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_EQUIP");
+            }
+            else
+                Desc.text = LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_HAS");
+        }
+        else
+        {
+            Cost.gameObject.SetActive(true);
+            Cost.SetValue(data.cost);
+        }
     }
 }
