@@ -37,4 +37,14 @@ public class ItemData
 
         }
     }
+
+    public string GetLocalizeName()
+    {
+        return LocalizeData.Instance.GetLocalizeString(name);
+    }
+
+    public string GetLocalizeDesc()
+    {
+        return LocalizeData.Instance.GetLocalizeString(desc);
+    }
 }

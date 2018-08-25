@@ -4,9 +4,9 @@
 	<Skill id = "101" name="DAMAGE_SHIELD_TIME_LV2" desc="DAMAGE_SHIELD_TIME_SKILL" skilltype="DAMAGE_SHIELD_TIME" time="20" count="0" percent="0"/>
 	<Skill id = "102" name="DAMAGE_SHIELD_TIME_LV3" desc="DAMAGE_SHIELD_TIME_SKILL" skilltype="DAMAGE_SHIELD_TIME" time="30" count="0" percent="0"/>
 	<Skill id = "200" name="DAMAGE_SHIELD_COUNT_LV1" desc="DAMAGE_SHIELD_COUNT_SKILL" skilltype="DAMAGE_SHIELD_COUNT" time="0" count="1" percent="0"/>
-	<Skill id = "300" name="SCORE_UP_LV1" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="10" count="2" percent="0"/>
-	<Skill id = "301" name="SCORE_UP_LV2" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="20" count="2" percent="0"/>
-	<Skill id = "302" name="SCORE_UP_LV3" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="30" count="2" percent="0"/>
+	<Skill id = "300" name="SCORE_UP_LV1" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="10" count="0" percent="100"/>
+	<Skill id = "301" name="SCORE_UP_LV2" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="20" count="0" percent="100"/>
+	<Skill id = "302" name="SCORE_UP_LV3" desc="SCORE_UP_SKILL" skilltype="SCORE_UP" time="30" count="0" percent="100"/>
 	<Skill id = "400" name="SPEED_DOWN_LV1" desc="SPEED_DOWN_SKILL" skilltype="SPEED_DOWN" time="10" count="0" percent="50"/>
 	<Skill id = "401" name="SPEED_DOWN_LV2" desc="SPEED_DOWN_SKILL" skilltype="SPEED_DOWN" time="20" count="0" percent="50"/>
 	<Skill id = "402" name="SPEED_DOWN_LV3" desc="SPEED_DOWN_SKILL" skilltype="SPEED_DOWN" time="30" count="0" percent="50"/>

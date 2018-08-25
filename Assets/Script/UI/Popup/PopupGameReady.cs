@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -155,6 +156,18 @@ public class PopupGameReady : PopupUI
                 UpgradeButton.gameObject.SetActive(false);
 
             ItemEquipButton.gameObject.SetActive(true);
+
+            var skillName = ItemManager.Instance.GetItemSkill(itemId);
+            var skillData = SkillManager.Instance.GetSkillData(skillName);
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_ITEM_NAME"), itemData.GetLocalizeName());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(itemData.GetLocalizeDesc());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(skillData.GetDesc());
+            Desc.text = desc.ToString();
         }
     }
 
