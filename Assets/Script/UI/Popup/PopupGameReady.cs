@@ -67,8 +67,7 @@ public class PopupGameReady : PopupUI
             itemIndex++;
         }
 
-        RefreshSlot();
-        RefreshDesc();
+        RefreshUI();
     }
 
     public void RefreshSlot()
@@ -103,15 +102,13 @@ public class PopupGameReady : PopupUI
     {
         SelectSkinSlot = true;
         SelectSlotIndex = index;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
     public void OnClickItem(int index)
     {
         SelectSkinSlot = false;
         SelectSlotIndex = index;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
 
     public void RefreshDesc()
@@ -125,7 +122,7 @@ public class PopupGameReady : PopupUI
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var skinData = PlayerData.Instance.GetUseSkinData(skinType);
-            CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon);
+            CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(skinData.desc);
 
             SkinChangeButton.gameObject.SetActive(true);
@@ -144,7 +141,7 @@ public class PopupGameReady : PopupUI
         {
             var itemId = ItemSlotList[SelectSlotIndex].ItemId;
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-            CommonFunc.SetImageFile(itemData.icon, ref DescIcon);
+            CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
             ItemBuyButton.gameObject.SetActive(true);
@@ -161,6 +158,12 @@ public class PopupGameReady : PopupUI
         }
     }
 
+    public void RefreshUI()
+    {
+        RefreshDesc();
+        RefreshSlot();
+    }
+
     public void OnClickItemBuy()
     {
         UnityAction yesAction = () =>
@@ -170,8 +173,7 @@ public class PopupGameReady : PopupUI
             if (CommonFunc.UseCoin(itemData.cost))
                 PlayerData.Instance.PlusItem_Count(id);
 
-            RefreshDesc();
-            RefreshSlot();
+            RefreshUI();
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ITEM_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -180,8 +182,7 @@ public class PopupGameReady : PopupUI
     public void OnClickItemEquip()
     {
         EquipItemSlotIndex = SelectSlotIndex;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
 
     public void OnClickUpgrade()
@@ -198,8 +199,7 @@ public class PopupGameReady : PopupUI
                     PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
                 }
 
-                RefreshDesc();
-                RefreshSlot();
+                RefreshUI();
             };
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -215,8 +215,7 @@ public class PopupGameReady : PopupUI
                     ItemManager.Instance.ItemLevelUp(itemId);
                 }
 
-                RefreshDesc();
-                RefreshSlot();
+                RefreshUI();
             };
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -225,7 +224,7 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI));
     }
 
     public void OnClickGameStart()

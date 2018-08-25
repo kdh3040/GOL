@@ -58,7 +58,7 @@ public class PopupGameEndingScene : PopupUI
 
     public void SetEndingScene()
     {
-        if(PlayerData.Instance.HasSkin(CommonData.SKIN_TYPE.ENDING, EndingSceneList[SelectIndex].id))
+        if(PlayerData.Instance.HasEnding(EndingSceneList[SelectIndex].id))
         {
             LockObj.gameObject.SetActive(false);
             EndingScene.gameObject.SetActive(true);

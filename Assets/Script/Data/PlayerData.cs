@@ -28,6 +28,7 @@ public class PlayerData
         public Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
         public Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
         public Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+        private List<int> HaveEnding = new List<int>();
         public int MyCoin;
         public int MyDDong;
         public long NextDDongRefilTime;
@@ -42,6 +43,7 @@ public class PlayerData
             UseSkin = PlayerData.Instance.UseSkin;
             SkinSlotLevel = PlayerData.Instance.SkinSlotLevel;
             HaveItem_LevelCount = PlayerData.Instance.HaveItem_LevelCount;
+            HaveEnding = PlayerData.Instance.HaveEnding;
             MyCoin = PlayerData.Instance.MyCoin;
             MyDDong = PlayerData.Instance.MyDDong;
             NextDDongRefilTime = PlayerData.Instance.NextDDongRefilTime.Ticks;
@@ -75,16 +77,17 @@ public class PlayerData
             } 
             if(HaveItem_LevelCount == null)
                 HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+            if (HaveEnding == null)
+                HaveEnding = new List<int>();
 
             PlayerData.Instance.HaveSkin = HaveSkin;
             PlayerData.Instance.UseSkin = UseSkin;
             PlayerData.Instance.SkinSlotLevel = SkinSlotLevel;
             PlayerData.Instance.HaveItem_LevelCount = HaveItem_LevelCount;
+            PlayerData.Instance.HaveEnding = HaveEnding;
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
-
-            
         }
     }
 
@@ -92,6 +95,7 @@ public class PlayerData
     private Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
     private Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
     private Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+    private List<int> HaveEnding = new List<int>();
     public int MyCoin { get; private set; }
     private int Myddong;
     public int MyDDong {
@@ -370,6 +374,30 @@ public class PlayerData
         var level = GetSkinSlotLevel(type);
         var data = DataManager.Instance.SkinSlotLevelDataList[type][level - 1];
         return data.skill;
+    }
+
+    public bool HasEnding(int id)
+    {
+        for (int i = 0; i < HaveEnding.Count; i++)
+        {
+            if (HaveEnding[i] == id)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void AddEnding(int id)
+    {
+        for (int i = 0; i < HaveEnding.Count; i++)
+        {
+            if (HaveEnding[i] == id)
+                return;
+        }
+
+        HaveEnding.Add(id);
+
+        SaveFile();
     }
 
     public bool IsPlayEnable()

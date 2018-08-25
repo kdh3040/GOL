@@ -12,6 +12,15 @@ public class PopupGameShop : PopupUI
         return PopupManager.POPUP_TYPE.GAME_SHOP;
     }
 
+    public class PopupData : PopupUIData
+    {
+        public UnityAction EndAction;
+        public PopupData(UnityAction endAction)
+        {
+            EndAction = endAction;
+        }
+    }
+
     public UITopBar Topbar;
     public Image DescIcon;
     public Text Desc;
@@ -30,6 +39,7 @@ public class PopupGameShop : PopupUI
     private CommonData.SKIN_TYPE SelectSkinType = CommonData.SKIN_TYPE.NONE;
     private int SelectSlotIndex = 0;
     private bool SelectLIst = false;
+    private UnityAction EndAction = null;
 
     public void Awake()
     {
@@ -40,6 +50,12 @@ public class PopupGameShop : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        var popupData = data as PopupData;
+        if(popupData != null)
+            EndAction = popupData.EndAction;
+        else
+            EndAction = null;
+
         SelectSkinType = CommonData.SKIN_TYPE.NONE;
         SelectSlotIndex = 0;
         SelectLIst = false;
@@ -56,7 +72,14 @@ public class PopupGameShop : PopupUI
         OnClickSkinSlot(0);
     }
 
-    
+    public override void DismissPopup()
+    {
+        base.DismissPopup();
+        if (EndAction != null)
+            EndAction();
+    }
+
+
 
     public void RefreshSlot()
     {
@@ -98,16 +121,25 @@ public class PopupGameShop : PopupUI
                 if(PlayerData.Instance.HasSkin(SelectSkinType, skinId))
                     SkinEquipButton.gameObject.SetActive(true);
                 else
+                {
                     SkinBuyButton.gameObject.SetActive(true);
+                    SkinBuyCost.SetValue(data.cost);
+                }
             }
         }
         else
         {
             data = PlayerData.Instance.GetUseSkinData(SelectSkinType);
-            UpgradeSlotButton.gameObject.SetActive(true);
+            var level = PlayerData.Instance.GetSkinSlotLevel(SelectSkinType);
+            if (level < DataManager.Instance.SkinSlotLevelDataList[SelectSkinType].Count)
+            {
+                var levelData = DataManager.Instance.SkinSlotLevelDataList[SelectSkinType][level];
+                UpgradeSlotButton.gameObject.SetActive(true);
+                UpgradeSlotCost.SetValue(levelData.cost);
+            }
         }
 
-        CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon);
+        CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon, false);
         Desc.text = LocalizeData.Instance.GetLocalizeString(data.desc);
     }
 
