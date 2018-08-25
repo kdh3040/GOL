@@ -1,39 +1,78 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Localize id="COMMON_BUY" kr="구매" jp="구매" en="구매"/>
-	<Localize id="COMBO_COUNT" kr="COMBO : {0}" jp="COMBO : {0}" en="COMBO : {0}"/>
-	<Localize id="SCORE_COUNT" kr="점수 : {0}" jp="점수 : {0}" en="점수 : {0}"/>
-	<Localize id="INVINCIBILITY_ITEM" kr="10초 무적" jp="10초 무적" en="10초 무적"/>
-	<Localize id="SHIELD_ITEM" kr="쉴드" jp="쉴드" en="쉴드"/>
-	<Localize id="SCORE_DOUBLE_ITEM" kr="점수 2배" jp="점수 2배" en="점수 2배"/>
-	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초" jp="{0:f2}초" en="{0:f2}초"/>
-	<Localize id="GAME_PLAY_LACK_DDONG" kr="똥이 부족합니다." jp="똥이 부족합니다." en="똥이 부족합니다."/>
-	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다." jp="코인이 부족합니다." en="코인이 부족합니다."/>
-	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?" jp="아이템을 구매하시겠습니까?" en="아이템을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?" jp="아이템을 강화하시겠습니까?" en="아이템을 강화하시겠습니까?"/>
-	<Localize id="BUY_SKIN_TITLE" kr="스킨을 구매하시겠습니까?" jp="스킨을 구매하시겠습니까?" en="스킨을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_SKIN_TITLE" kr="스킨을 강화하시겠습니까?" jp="스킨을 강화하시겠습니까?" en="스킨을 강화하시겠습니까?"/>
-	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉찼습니다." jp="장착 슬롯이 꽉찼습니다." en="장착 슬롯이 꽉찼습니다."/>
-	<Localize id="EQUIP_ITEM_NONE" kr="아이템이 없습니다." jp="아이템이 없습니다." en="아이템이 없습니다."/>
-	<Localize id="INVINCIBILITY_SKILL_DESC" kr="10초간 무적" jp="10초간 무적" en="10초간 무적"/>
-	<Localize id="SHIELD_SKILL_DESC" kr="한번 막아줌" jp="한번 막아줌" en="한번 막아줌"/>
-	<Localize id="SCORE_DOUBLE_SKILL_DESC" kr="점수가 2배" jp="점수가 2배" en="점수가 2배"/>
-	<Localize id="LEVELUP_ITEM" kr="아이템을 강화 하시겠습니까?" jp="아이템을 강화 하시겠습니까?" en="아이템을 강화 하시겠습니까?"/>
-	<Localize id="ITEM_LEVELUP_MAX" kr="강화 최대치 입니다." jp="강화 최대치 입니다." en="강화 최대치 입니다."/>
-	<Localize id="NOT_BUY_SKIN" kr="구입하지 않은 스킨 입니다." jp="구입하지 않은 스킨 입니다." en="구입하지 않은 스킨 입니다."/>
-	<Localize id="POPUP_BOOK_TAB_CHAR" kr="캐릭터" jp="캐릭터" en="캐릭터"/>
-	<Localize id="POPUP_BOOK_TAB_DOOR" kr="문" jp="문" en="문"/>
-	<Localize id="POPUP_BOOK_TAB_BACKGROUND" kr="배경" jp="배경" en="배경"/>
-	<Localize id="POPUP_SHOP_TAB_CHAR" kr="캐릭터" jp="캐릭터" en="캐릭터"/>
-	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템" jp="아이템" en="아이템"/>
-	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문" jp="문" en="문"/>
-	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경" jp="배경" en="배경"/>
-	<Localize id="POPUP_ENDING_BOOK_TITLE" kr="엔딩도감" jp="엔딩도감" en="엔딩도감"/>
-	<Localize id="POPUP_ENDING_SLOT_BG" kr="배경:" jp="배경:" en="배경:"/>
-	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료" jp="획득완료" en="획득완료"/>
-	<Localize id="GAME_PLAY_ENABLE_ITEM_EQUIP" kr="아이템을 장착하지 않고 시작 할까요?" jp="아이템을 장착하지 않고 시작 할까요?" en="아이템을 장착하지 않고 시작 할까요?"/>
-	<Localize id="GAME_PLAY_ENABLE_ITEM_COUNT" kr="아이템의 갯수가 부족 합니다." jp="아이템의 갯수가 부족 합니다." en="아이템의 갯수가 부족 합니다."/>
-	<Localize id="MSG_POPUP_TITLE_NORMAL" kr="안내" jp="안내" en="안내"/>
-	<Localize id="SKIN_SLOT_HAS" kr="보유중" jp="보유중" en="보유중"/>
-	<Localize id="SKIN_SLOT_EQUIP" kr="장착중" jp="장착중" en="장착중"/>
+	<Localize id="COMMON_BUY" kr="구매"/>
+	<Localize id="COMBO_COUNT" kr="COMBO : {0}"/>
+	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초"/>
+	<Localize id="GAME_PLAY_LACK_DDONG" kr="똥이 부족합니다."/>
+	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
+	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
+	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?"/>
+	<Localize id="BUY_SKIN_TITLE" kr="스킨을 구매하시겠습니까?"/>
+	<Localize id="UPGRADE_SKIN_TITLE" kr="스킨을 강화하시겠습니까?"/>
+	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉찼습니다."/>
+	<Localize id="EQUIP_ITEM_NONE" kr="아이템이 없습니다."/>
+	<Localize id="INVINCIBILITY_SKILL_DESC" kr="10초간 무적"/>
+	<Localize id="SHIELD_SKILL_DESC" kr="한번 막아줌"/>
+	<Localize id="SCORE_DOUBLE_SKILL_DESC" kr="점수가 2배"/>
+	<Localize id="LEVELUP_ITEM" kr="아이템을 강화 하시겠습니까?"/>
+	<Localize id="ITEM_LEVELUP_MAX" kr="강화 최대치 입니다."/>
+	<Localize id="NOT_BUY_SKIN" kr="구입하지 않은 스킨 입니다."/>
+	<Localize id="POPUP_BOOK_TAB_CHAR" kr="캐릭터"/>
+	<Localize id="POPUP_BOOK_TAB_DOOR" kr="문"/>
+	<Localize id="POPUP_BOOK_TAB_BACKGROUND" kr="배경"/>
+	<Localize id="POPUP_SHOP_TAB_CHAR" kr="캐릭터"/>
+	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템"/>
+	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문"/>
+	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경"/>
+	<Localize id="POPUP_ENDING_BOOK_TITLE" kr="엔딩도감"/>
+	<Localize id="POPUP_ENDING_SLOT_BG" kr="배경:"/>
+	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료"/>
+	<Localize id="GAME_PLAY_ENABLE_ITEM_EQUIP" kr="아이템을 장착하지 않고 시작 할까요?"/>
+	<Localize id="GAME_PLAY_ENABLE_ITEM_COUNT" kr="아이템의 갯수가 부족 합니다."/>
+	<Localize id="MSG_POPUP_TITLE_NORMAL" kr="안내"/>
+	<Localize id="SKIN_SLOT_HAS" kr="보유중"/>
+	<Localize id="SKIN_SLOT_EQUIP" kr="장착중"/>
+	<Localize id="POPUP_GAME_READY_DESC_NAME" kr="이름 : "/>
+	<Localize id="SKILL_DESC_DAMAGE_SHIELD_TIME" kr="{0}초 동안 주민들이 밖으로 나오지 못하게 막아줍니다."/>
+	<Localize id="SKILL_DESC_DAMAGE_SHIELD_COUNT" kr="주민들이 밖으로 나올때 1번 막아 줍니다."/>
+	<Localize id="SKILL_DESC_SCORE_UP" kr="{0}초 동안 {1}%추가점수를 획득 합니다."/>
+	<Localize id="SKILL_DESC_SPEED_DOWN" kr="{0}초 동안 주민들의 속도를 늦춰 줍니다."/>
+	<Localize id="SKILL_DESC_RESURRECTION" kr="{0}%확률로 부활을 합니다."/>
+	<Localize id="SKILL_DESC_GAME_OVER_SCORE_BONUS" kr="게임종료후 {0}%추가점수를 얻습니다."/>
+	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="게임종료후 {0}%추가코인을 얻습니다."/>
+	<Localize id="SKILL_DESC_ITEM_CREATE" kr="게임중 아이템 생성 확률을 {0}% 올려줍니다."/>
+	<Localize id="INVINCIBILITY_ITEM" kr="철컹철컹 철문"/>
+	<Localize id="INVINCIBILITY_ITEM_DESC" kr="철컹철컹 이거 왜 안열려!!"/>
+	<Localize id="SHIELD_ITEM" kr="바사삭 쉴드"/>
+	<Localize id="SHIELD_ITEM_DESC" kr="문밖에서 바사삭 거리는 소리를 들은것 같은데?"/>
+	<Localize id="SCORE_DOUBLE_ITEM" kr="점프점프 점수"/>
+	<Localize id="SCORE_DOUBLE_ITEM_DESC" kr="점수가 쭉쭉 올라가는구나!!"/>
+	<Localize id="NOTE_SPEED_DOWN" kr="느릿느릿 달팽이"/>
+	<Localize id="NOTE_SPEED_DOWN_DESC" kr="어휴 속터져!"/>
+	<Localize id="SKIN_SLOT_CHAR" kr="캐릭터 스킨 슬롯"/>
+	<Localize id="SKIN_SLOT_DOOR" kr="문 스킨 슬롯"/>
+	<Localize id="SKIN_SLOT_BG" kr="배경 스킨 슬롯"/>
+	<Localize id="POPUP_GAME_SHOP_DESC_NAME" kr="이름 : "/>
+	<Localize id="CHAR_NAME_DT" kr="기본 동털"/>
+	<Localize id="CHAR_NAME_BG" kr="기본 바깡"/>
+	<Localize id="CHAR_NAME_DG" kr="기본 대꿍"/>
+	<Localize id="CHAR_NAME_HP" kr="기본 호팔"/>
+	<Localize id="CHAR_DESC_DT" kr="으윽! 어데고?? 똥싸는 곳이"/>
+	<Localize id="CHAR_DESC_BG" kr="쓰흡! 배가 살살 아픈데?"/>
+	<Localize id="CHAR_DESC_DG" kr="어헙! 슬슬 위험한데.."/>
+	<Localize id="CHAR_DESC_HP" kr="아앗! 위험하다 위험해!"/>
+	<Localize id="BG_NAME_SEA" kr="잠수함"/>
+	<Localize id="BG_NAME_DESERT" kr="피라미드"/>
+	<Localize id="BG_NAME_SPACE" kr="우주"/>
+	<Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
+	<Localize id="BG_DESC_DESERT" kr="여기에 왜 피라미드가 있는거야?? 급하니까 미안.."/>
+	<Localize id="BG_DESC_SPACE" kr="우주까지 와서 쌀빠엔 집에 가야지.."/>
+	<Localize id="DOOR_NAME_SEA" kr="잠수함문"/>
+	<Localize id="DOOR_NAME_SPACE" kr="우주문"/>
+	<Localize id="DOOR_NAME_WINTER" kr="얼음문"/>
+	<Localize id="DOOR_NAME_APART" kr="얼음문"/>
+	<Localize id="DOOR_DESC_SEA" kr="문이 너무 무겁다!"/>
+	<Localize id="DOOR_DESC_SPACE" kr="문이 자동문이네??"/>
+	<Localize id="DOOR_DESC_WINTER" kr="문이 너무 차갑다"/>
+	<Localize id="DOOR_DESC_APART" kr="역시 아파트문이 촥촥 감기지"/>
 </Datas>

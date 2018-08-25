@@ -40,7 +40,7 @@ public class UIEndingBookSlot : MonoBehaviour {
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
             int id = EndingGroupData.ending_list[i];
-            if (PlayerData.Instance.HasSkin(CommonData.SKIN_TYPE.ENDING, id))
+            if (PlayerData.Instance.HasEnding(id))
                 continue;
 
             var endingData = DataManager.Instance.EndingDataList[id];

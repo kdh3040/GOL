@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -67,8 +68,7 @@ public class PopupGameReady : PopupUI
             itemIndex++;
         }
 
-        RefreshSlot();
-        RefreshDesc();
+        RefreshUI();
     }
 
     public void RefreshSlot()
@@ -103,15 +103,13 @@ public class PopupGameReady : PopupUI
     {
         SelectSkinSlot = true;
         SelectSlotIndex = index;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
     public void OnClickItem(int index)
     {
         SelectSkinSlot = false;
         SelectSlotIndex = index;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
 
     public void RefreshDesc()
@@ -125,8 +123,7 @@ public class PopupGameReady : PopupUI
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var skinData = PlayerData.Instance.GetUseSkinData(skinType);
-            CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon);
-            Desc.text = LocalizeData.Instance.GetLocalizeString(skinData.desc);
+            CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
 
             SkinChangeButton.gameObject.SetActive(true);
 
@@ -139,12 +136,30 @@ public class PopupGameReady : PopupUI
             }
             else
                 UpgradeButton.gameObject.SetActive(false);
+
+
+            var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
+            var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+            var skinSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
+            
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level);
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(slotSkillData.GetDesc());
+            if(skinSkillName != "")
+            {
+                desc.AppendLine();
+                var skinSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+                desc.AppendFormat(skinSkillData.GetDesc());
+            }
+            Desc.text = desc.ToString();
         }
         else
         {
             var itemId = ItemSlotList[SelectSlotIndex].ItemId;
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-            CommonFunc.SetImageFile(itemData.icon, ref DescIcon);
+            CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
             ItemBuyButton.gameObject.SetActive(true);
@@ -158,7 +173,25 @@ public class PopupGameReady : PopupUI
                 UpgradeButton.gameObject.SetActive(false);
 
             ItemEquipButton.gameObject.SetActive(true);
+
+            var skillName = ItemManager.Instance.GetItemSkill(itemId);
+            var skillData = SkillManager.Instance.GetSkillData(skillName);
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(itemData.GetLocalizeDesc());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(skillData.GetDesc());
+            Desc.text = desc.ToString();
         }
+    }
+
+    public void RefreshUI()
+    {
+        RefreshDesc();
+        RefreshSlot();
     }
 
     public void OnClickItemBuy()
@@ -170,8 +203,7 @@ public class PopupGameReady : PopupUI
             if (CommonFunc.UseCoin(itemData.cost))
                 PlayerData.Instance.PlusItem_Count(id);
 
-            RefreshDesc();
-            RefreshSlot();
+            RefreshUI();
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ITEM_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -180,8 +212,7 @@ public class PopupGameReady : PopupUI
     public void OnClickItemEquip()
     {
         EquipItemSlotIndex = SelectSlotIndex;
-        RefreshDesc();
-        RefreshSlot();
+        RefreshUI();
     }
 
     public void OnClickUpgrade()
@@ -198,8 +229,7 @@ public class PopupGameReady : PopupUI
                     PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
                 }
 
-                RefreshDesc();
-                RefreshSlot();
+                RefreshUI();
             };
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -215,8 +245,7 @@ public class PopupGameReady : PopupUI
                     ItemManager.Instance.ItemLevelUp(itemId);
                 }
 
-                RefreshDesc();
-                RefreshSlot();
+                RefreshUI();
             };
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
@@ -225,7 +254,7 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI));
     }
 
     public void OnClickGameStart()

@@ -155,12 +155,12 @@ public class GamePlayManager : MonoBehaviour
                 return false;
         }
 
-        return false;
+        return true;
     }
 
-    public void GameOver(int gameOverNoteId)
+    public void GameOver()
     {
-        mGameUIPage.GameOver(gameOverNoteId);
+        mGameUIPage.GameOver();
         mIsGamePause = true;
     }
 
@@ -292,7 +292,7 @@ public class GamePlayManager : MonoBehaviour
         mAudio.Play();
     }
 
-        public void UseGameShieldItem()
+    public void UseGameShieldItem()
     {
         if (UseItemId == 0)
             return;
@@ -302,6 +302,7 @@ public class GamePlayManager : MonoBehaviour
             SkillManager.Instance.UseItemSkill(UseItemId);
             UseItemId = 0;
             mGameUIPage.RefreshShieldItemUI();
+            mGameUIPage.RefreshItemUI();
         }
     }
 

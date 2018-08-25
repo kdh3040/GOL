@@ -12,14 +12,14 @@ public class PlayScene : MonoBehaviour
     public PageGameUI UIPage;
     public PlayerChar PlayerCharObj;
 
-    public SpriteRenderer Background_Front;
     public SpriteRenderer Background_Back;
+    public SpriteRenderer Background_Front;
 
     void Start()
     {
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
-        Background_Front.sprite = (Sprite)Resources.Load(backgroundData.img_front, typeof(Sprite));
         Background_Back.sprite = (Sprite)Resources.Load(backgroundData.img_back, typeof(Sprite));
+        Background_Front.sprite = (Sprite)Resources.Load(backgroundData.img_front, typeof(Sprite));
 
         // 데이터 할당
         GamePlayManager.Instance.Initialize(this);

@@ -41,7 +41,7 @@ public class UIShopSkinSlot : MonoBehaviour
     public void RefreshUI()
     {
         var data = DataManager.Instance.GetSkinData(SkinType, SkinId);
-        CommonFunc.SetImageFile(data.GetIcon(), ref Icon);
+        CommonFunc.SetImageFile(data.GetIcon(), ref Icon , false);
         Cost.gameObject.SetActive(false);
         Desc.gameObject.SetActive(false);
         SetEquip(false);

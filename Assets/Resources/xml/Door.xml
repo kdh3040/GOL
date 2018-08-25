@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Doors>
-	<Door id = "1" name="DOOR_NAME_1" desc="DOOR_DESC_1" cost="10" icon="door_a" close_img="Renewal/Door/door_jamsoo_close" halfopen_img="Renewal/Door/door_jamsoo_half" open_img="Renewal/Door/door_jamsoo_open" img_twist_1="true" img_twist_2="true" img_twist_3="false"/>
-	<Door id = "2" name="DOOR_NAME_2" desc="DOOR_DESC_2" cost="30" icon="door_b" close_img="Renewal/Door/door_space_close" halfopen_img="Renewal/Door/door_space_half" open_img="Renewal/Door/door_space_open" img_twist_1="false" img_twist_2="false" img_twist_3="false"/>
-	<Door id = "3" name="DOOR_NAME_3" desc="DOOR_DESC_3" cost="40" icon="door_c" close_img="Renewal/Door/door_winter_close" halfopen_img="Renewal/Door/door_winter_half" open_img="Renewal/Door/door_winter_open" img_twist_1="true" img_twist_2="true" img_twist_3="false"/>
+	<Door id = "1" name="DOOR_NAME_SEA" desc="DOOR_DESC_SEA" cost="10" icon="door_a" close_img="Renewal/Door/door_jamsoo_close" halfopen_img="Renewal/Door/door_jamsoo_half" open_img="Renewal/Door/door_jamsoo_open" img_twist_1="true" img_twist_2="true" img_twist_3="false"/>
+	<Door id = "2" name="DOOR_NAME_SPACE" desc="DOOR_DESC_SPACE" cost="30" icon="door_b" close_img="Renewal/Door/door_space_close" halfopen_img="Renewal/Door/door_space_half" open_img="Renewal/Door/door_space_open" img_twist_1="false" img_twist_2="false" img_twist_3="false"/>
+	<Door id = "3" name="DOOR_NAME_WINTER" desc="DOOR_DESC_WINTER" cost="40" icon="door_c" close_img="Renewal/Door/door_winter_close" halfopen_img="Renewal/Door/door_winter_half" open_img="Renewal/Door/door_winter_open" img_twist_1="true" img_twist_2="true" img_twist_3="false"/>
+	<Door id = "4" name="DOOR_NAME_APART" desc="DOOR_DESC_APART" cost="40" icon="door_c" close_img="Renewal/Door/door_winter_close" halfopen_img="Renewal/Door/door_winter_half" open_img="Renewal/Door/door_winter_open" img_twist_1="true" img_twist_2="true" img_twist_3="false"/>
 </Doors>

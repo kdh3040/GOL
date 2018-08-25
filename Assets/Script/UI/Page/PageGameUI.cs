@@ -97,17 +97,16 @@ public class PageGameUI : MonoBehaviour
         mSkillProgressBarList.Add(progressBar);
     }
 
-    public void GameOver(int gameOverNoteId)
+    public void GameOver()
     {
-        StartCoroutine(Co_GameOver(gameOverNoteId));
+        StartCoroutine(Co_GameOver());
     }
 
-    public IEnumerator Co_GameOver(int gameOverNoteId)
+    public IEnumerator Co_GameOver()
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        var popupData = new PopupGameEnd.PopupData(gameOverNoteId, GamePlayManager.Instance.Score, GamePlayManager.Instance.ConvertScoreToCoin());
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, popupData);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END);
     }
 
     void Update()

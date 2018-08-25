@@ -32,6 +32,6 @@ public class UISkinSlot : MonoBehaviour
         var level = PlayerData.Instance.GetSkinSlotLevel(SkinType);
         Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
         SkinData skinData = PlayerData.Instance.GetUseSkinData(SkinType);
-        CommonFunc.SetImageFile(skinData.GetIcon(), ref SkinIcon);
+        CommonFunc.SetImageFile(skinData.GetIcon(), ref SkinIcon, false);
     }
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Ending id = "1" name="ENDING_NOTE_NAME_1" desc="ENDING_NOTE_DESC_1" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "2" name="ENDING_NOTE_NAME_2" desc="ENDING_NOTE_DESC_2" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "3" name="ENDING_NOTE_NAME_3" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "4" name="ENDING_NOTE_NAME_4" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "5" name="ENDING_NOTE_NAME_5" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "6" name="ENDING_NOTE_NAME_6" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "7" name="ENDING_NOTE_NAME_7" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "8" name="ENDING_NOTE_NAME_8" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "9" name="ENDING_NOTE_NAME_9" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
-	<Ending id = "10" name="ENDING_NOTE_NAME_10" desc="ENDING_NOTE_DESC_3" img="Renewal/Char/char_baggang_1_2" cost="100"/>
+	<Ending id = "1" name="ENDING_NOTE_NAME_1" desc="ENDING_NOTE_DESC_1" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "2" name="ENDING_NOTE_NAME_2" desc="ENDING_NOTE_DESC_2" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "3" name="ENDING_NOTE_NAME_3" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "4" name="ENDING_NOTE_NAME_4" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "5" name="ENDING_NOTE_NAME_5" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "6" name="ENDING_NOTE_NAME_6" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "7" name="ENDING_NOTE_NAME_7" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "8" name="ENDING_NOTE_NAME_8" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
+	<Ending id = "9" name="ENDING_NOTE_NAME_9" desc="ENDING_NOTE_DESC_3" img="Renewal/Note/desert_note1" cost="100" condition_type1="" condition_value1="" condition_type2="" condition_value2="" condition_type3="" condition_value3=""/>
 </Datas>

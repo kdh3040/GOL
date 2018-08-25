@@ -10,7 +10,7 @@ public class UIEndingSceneSlot : MonoBehaviour {
     public void SetData(int endingId)
     {
         var data = DataManager.Instance.EndingDataList[endingId];
-        if (PlayerData.Instance.HasSkin(CommonData.SKIN_TYPE.ENDING, endingId))
+        if (PlayerData.Instance.HasEnding(endingId))
         {
             LockObj.gameObject.SetActive(false);
             EnddingScene.gameObject.SetActive(true);
