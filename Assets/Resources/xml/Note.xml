@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Notes>
-	<Note id="1" score="10" img="Renewal/Note/note_1_1" probability="300"/>
-	<Note id="2" score="20" img="Renewal/Note/note_2_1" probability="200"/>
-	<Note id="3" score="30" img="Renewal/Note/note_3_1" probability="100"/>
-	<Note id="4" score="2" img="Renewal/Note/note_4_1" probability="100"/>
-	<Note id="5" score="2" img="Renewal/Note/note_dt_5" probability="100"/>
-	<Note id="6" score="2" img="Renewal/Note/note_6_1" probability="100"/>
-	<Note id="7" score="2" img="Renewal/Note/note_7_1" probability="100"/>
-	<Note id="8" score="2" img="Renewal/Note/note_8_1" probability="100"/>
-	<Note id="9" score="2" img="Renewal/Note/note_9_1" probability="100"/>
-	<Note id="10" score="2" img="Renewal/Note/note_10_1"  probability="100"/>
+	<Note id="1" score="10" img="Renewal/Note/desert_note1" probability="300"/>
+	<Note id="2" score="20" img="Renewal/Note/desert_note2" probability="200"/>
+	<Note id="3" score="30" img="Renewal/Note/desert_note3" probability="100"/>
+	<Note id="4" score="10" img="Renewal/Note/sea_note1" probability="300"/>
+	<Note id="5" score="20" img="Renewal/Note/sea_note2" probability="200"/>
+	<Note id="6" score="30" img="Renewal/Note/sea_note3" probability="100"/>
+	<Note id="7" score="10" img="Renewal/Note/space_note1" probability="300"/>
+	<Note id="8" score="20" img="Renewal/Note/space_note2" probability="200"/>
+	<Note id="9" score="30" img="Renewal/Note/space_note3" probability="100"/>
 </Notes>

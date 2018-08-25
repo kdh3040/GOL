@@ -70,7 +70,9 @@
 	<Localize id="DOOR_NAME_SEA" kr="잠수함문"/>
 	<Localize id="DOOR_NAME_SPACE" kr="우주문"/>
 	<Localize id="DOOR_NAME_WINTER" kr="얼음문"/>
+	<Localize id="DOOR_NAME_APART" kr="얼음문"/>
 	<Localize id="DOOR_DESC_SEA" kr="문이 너무 무겁다!"/>
 	<Localize id="DOOR_DESC_SPACE" kr="문이 자동문이네??"/>
 	<Localize id="DOOR_DESC_WINTER" kr="문이 너무 차갑다"/>
+	<Localize id="DOOR_DESC_APART" kr="역시 아파트문이 촥촥 감기지"/>
 </Datas>
