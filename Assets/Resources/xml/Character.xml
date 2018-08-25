@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Char id = "1" name="CHAR_NAME_1" desc="CHAR_DESC_1" cost="10" icon="character_a_selected" img="Renewal/Char/char_dt" skill="ITEM_CREATE" ani_trigger="CHAR_DT"/>
-	<Char id = "2" name="CHAR_NAME_2" desc="CHAR_DESC_2" cost="102" icon="character_b_selected" img="Renewal/Char/char_baggang" skill="GAME_OVER_SCORE_BONUS" ani_trigger="CHAR_BAGGANG"/>
-	<Char id = "3" name="CHAR_NAME_3" desc="CHAR_DESC_3" cost="130" icon="character_c_selected" img="Renewal/Char/char_deggung" skill="DAMAGE_SHIELD_COUNT" ani_trigger="CHAR_DEGGUNG"/>
-	<Char id = "4" name="CHAR_NAME_4" desc="CHAR_DESC_4" cost="230" icon="character_d_selected" img="Renewal/Char/char_hopal" skill="ITEM_CREATE" ani_trigger="CHAR_HOPAL"/>
+	<Char id = "1" name="CHAR_NAME_DT" desc="CHAR_DESC_DT" cost="10" icon="character_a_selected" img="Renewal/Char/char_dt" skill="ITEM_CREATE" ani_trigger="CHAR_DT"/>
+	<Char id = "2" name="CHAR_NAME_BG" desc="CHAR_DESC_BG" cost="102" icon="character_b_selected" img="Renewal/Char/char_baggang" skill="GAME_OVER_SCORE_BONUS" ani_trigger="CHAR_BAGGANG"/>
+	<Char id = "3" name="CHAR_NAME_DG" desc="CHAR_DESC_DG" cost="130" icon="character_c_selected" img="Renewal/Char/char_deggung" skill="DAMAGE_SHIELD_COUNT" ani_trigger="CHAR_DEGGUNG"/>
+	<Char id = "4" name="CHAR_NAME_HP" desc="CHAR_DESC_HP" cost="230" icon="character_d_selected" img="Renewal/Char/char_hopal" skill="ITEM_CREATE" ani_trigger="CHAR_HOPAL"/>
 </Datas>

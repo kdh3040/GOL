@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -126,6 +127,25 @@ public class PopupGameShop : PopupUI
                     SkinBuyCost.SetValue(data.cost);
                 }
             }
+
+            var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(SelectSkinType);
+            var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+            var skinSkillName = data.GetSkillName();
+
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetLocalizeName());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(data.GetLocalizeDesc());
+            desc.AppendLine();
+            desc.AppendLine();
+            if (skinSkillName != "")
+            {
+                desc.AppendLine();
+                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
+                desc.AppendFormat(skinSkillData.GetDesc());
+            }
+            Desc.text = desc.ToString();
         }
         else
         {
@@ -137,10 +157,29 @@ public class PopupGameShop : PopupUI
                 UpgradeSlotButton.gameObject.SetActive(true);
                 UpgradeSlotCost.SetValue(levelData.cost);
             }
+
+            var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(SelectSkinType);
+            var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+            var skinSkillName = data.GetSkillName();
+
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetSkinSlotTypeName(), level);
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(data.GetLocalizeDesc());
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(slotSkillData.GetDesc());
+            if (skinSkillName != "")
+            {
+                desc.AppendLine();
+                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
+                desc.AppendFormat(skinSkillData.GetDesc());
+            }
+            Desc.text = desc.ToString();
         }
 
         CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon, false);
-        Desc.text = LocalizeData.Instance.GetLocalizeString(data.desc);
     }
 
     public void RefreshList()

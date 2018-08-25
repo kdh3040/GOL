@@ -5,7 +5,7 @@ using System.Xml;
 
 public class CharData : SkinData
 {
-    public string skill;
+    
     public string img;
     public string ani_trigger;
 
@@ -26,9 +26,8 @@ public class CharData : SkinData
         return icon;
     }
 
-    public string GetSkillName()
+    public override string GetSkinSlotTypeName()
     {
-        string skillName = string.Format("{0}_LV{1}", skill, 1);
-        return skillName;
+        return LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_CHAR");
     }
 }

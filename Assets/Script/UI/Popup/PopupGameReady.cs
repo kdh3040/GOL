@@ -124,7 +124,6 @@ public class PopupGameReady : PopupUI
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var skinData = PlayerData.Instance.GetUseSkinData(skinType);
             CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
-            Desc.text = LocalizeData.Instance.GetLocalizeString(skinData.desc);
 
             SkinChangeButton.gameObject.SetActive(true);
 
@@ -137,6 +136,24 @@ public class PopupGameReady : PopupUI
             }
             else
                 UpgradeButton.gameObject.SetActive(false);
+
+
+            var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
+            var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+            var skinSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
+            
+            StringBuilder desc = new StringBuilder();
+            desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level);
+            desc.AppendLine();
+            desc.AppendLine();
+            desc.AppendFormat(slotSkillData.GetDesc());
+            if(skinSkillName != "")
+            {
+                desc.AppendLine();
+                var skinSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+                desc.AppendFormat(skinSkillData.GetDesc());
+            }
+            Desc.text = desc.ToString();
         }
         else
         {
@@ -160,7 +177,7 @@ public class PopupGameReady : PopupUI
             var skillName = ItemManager.Instance.GetItemSkill(itemId);
             var skillData = SkillManager.Instance.GetSkillData(skillName);
             StringBuilder desc = new StringBuilder();
-            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_ITEM_NAME"), itemData.GetLocalizeName());
+            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName());
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(itemData.GetLocalizeDesc());

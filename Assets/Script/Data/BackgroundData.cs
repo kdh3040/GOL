@@ -5,8 +5,7 @@ using System.Xml;
 
 public class BackgroundData : SkinData
 {
-    public string img_front;
-    public string img_back;
+    public string img;
     public List<int> noteList = new List<int>();
     public List<int> endingGroupList = new List<int>();
 
@@ -17,8 +16,7 @@ public class BackgroundData : SkinData
         desc = node.Attributes.GetNamedItem("desc").Value;
         icon = node.Attributes.GetNamedItem("icon").Value;
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
-        img_front = node.Attributes.GetNamedItem("img_front").Value;
-        img_back = node.Attributes.GetNamedItem("img_back").Value;
+        img = node.Attributes.GetNamedItem("img").Value;
 
         var noteListString = node.Attributes.GetNamedItem("note_list").Value;
         var noteListStringArr = noteListString.Split(',');
@@ -38,5 +36,10 @@ public class BackgroundData : SkinData
     public override string GetIcon()
     {
         return icon;
+    }
+
+    public override string GetSkinSlotTypeName()
+    {
+        return LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_BG");
     }
 }

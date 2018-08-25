@@ -29,4 +29,9 @@ public class DoorData : SkinData
     {
         return icon;
     }
+
+    public override string GetSkinSlotTypeName()
+    {
+        return LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_DOOR");
+    }
 }
