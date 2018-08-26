@@ -71,7 +71,7 @@ public class NoteSystem
             createData.Percent = NoteNormalAllPercentValue + noteData.Probability;
             createData.OriginalPercent = noteData.Probability;
             createData.Id = noteData.id;
-            NoteItemAllPercentValue += noteData.Probability;
+            NoteNormalAllPercentValue += noteData.Probability;
             NoteNormalCreateList.Add(createData);
         }
     }

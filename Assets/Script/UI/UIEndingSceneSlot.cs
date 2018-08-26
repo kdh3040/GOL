@@ -14,7 +14,7 @@ public class UIEndingSceneSlot : MonoBehaviour {
         {
             LockObj.gameObject.SetActive(false);
             EnddingScene.gameObject.SetActive(true);
-            CommonFunc.SetImageFile(data.img, ref EnddingScene);
+            CommonFunc.SetImageFile(data.img, ref EnddingScene, false);
         }
         else
         {

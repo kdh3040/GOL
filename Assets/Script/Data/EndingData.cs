@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
+using System.Text;
 
 public class EndingData
 {
@@ -22,7 +23,6 @@ public class EndingData
     public int id;
     public string name = "";
     public string desc = "";
-    protected string icon = "";
     public int cost = 0;
     public string img;
     public List<KeyValuePair<ENDING_CONDITION, int>> EndingConditionList = new List<KeyValuePair<ENDING_CONDITION, int>>();
@@ -66,9 +66,9 @@ public class EndingData
             case "CHAR_SKIN":
                 return ENDING_CONDITION.CHAR_SKIN;
             case "DOOR_SKIN":
-                return ENDING_CONDITION.CHAR_SKIN;
+                return ENDING_CONDITION.DOOR_SKIN;
             case "BG_SKIN":
-                return ENDING_CONDITION.CHAR_SKIN;
+                return ENDING_CONDITION.BG_SKIN;
         }
 
         return ENDING_CONDITION.NONE;
@@ -79,6 +79,7 @@ public class EndingData
         bool returnValue = false;
         for (int i = 0; i < EndingConditionList.Count; i++)
         {
+            returnValue = false;
             var value = EndingConditionList[i].Value;
             switch (EndingConditionList[i].Key)
             {
@@ -127,6 +128,82 @@ public class EndingData
             if (returnValue == false)
                 return false;
         }
-        return returnValue;
+        return true;
+    }
+
+    public string GetConditionDesc()
+    {
+        StringBuilder desc = new StringBuilder();
+        for (int i = 0; i < EndingConditionList.Count; i++)
+        {
+            if (EndingConditionList[i].Key == ENDING_CONDITION.NONE)
+                continue;
+
+            int value = EndingConditionList[i].Value;
+            switch (EndingConditionList[i].Key)
+            {
+                case ENDING_CONDITION.CHAR_SLOT_LEVEL:
+                    desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_CHAR_SLOT_LEVEL", value));
+                    desc.AppendLine();
+                    break;
+                case ENDING_CONDITION.DOOR_SLOT_LEVEL:
+                    desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_DOOR_SLOT_LEVEL", value));
+                    desc.AppendLine();
+                    break;
+                case ENDING_CONDITION.BG_SLOT_LEVEL:
+                    desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_BG_SLOT_LEVEL", value));
+                    desc.AppendLine();
+                    break;
+                case ENDING_CONDITION.GAME_COIN:
+                    desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_GAME_COIN", CommonFunc.ConvertNumber(value)));
+                    desc.AppendLine();
+                    break;
+                case ENDING_CONDITION.GAME_SCORE:
+                    desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_GAME_SCORE", CommonFunc.ConvertNumber(value)));
+                    desc.AppendLine();
+                    break;
+                case ENDING_CONDITION.HAVE_ENDING:
+                    {
+                        var data = DataManager.Instance.EndingDataList[value];
+                        desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_HAVE_ENDING", data.GetLocalizeName()));
+                        desc.AppendLine();
+                        break;
+                    }
+                case ENDING_CONDITION.CHAR_SKIN:
+                    {
+                        var data = DataManager.Instance.CharDataDic[value];
+                        desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_CHAR_SKIN", data.GetLocalizeName()));
+                        desc.AppendLine();
+                        break;
+                    }
+                case ENDING_CONDITION.DOOR_SKIN:
+                    {
+                        var data = DataManager.Instance.DoorDataDic[value];
+                        desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_DOOR_SKIN", data.GetLocalizeName()));
+                        desc.AppendLine();
+                        break;
+                    }
+                case ENDING_CONDITION.BG_SKIN:
+                    {
+                        var data = DataManager.Instance.BackGroundDataDic[value];
+                        desc.Append(LocalizeData.Instance.GetLocalizeString("ENDING_CONDITION_BG_SKIN", data.GetLocalizeName()));
+                        desc.AppendLine();
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+
+        return desc.ToString();
+    }
+
+    public string GetLocalizeName()
+    {
+        return LocalizeData.Instance.GetLocalizeString(name);
+    }
+    public string GetLocalizeDesc()
+    {
+        return LocalizeData.Instance.GetLocalizeString(desc);
     }
 }

@@ -3,5 +3,5 @@
 	<Background id = "1" name="BG_NAME_SEA" desc="BG_DESC_SEA" cost="10" icon="bg_a_selected" img_back="Renewal/Background/bg_sea_back_1" img_front="Renewal/Background/bg_sea_front_1" note_list="4,5,6" ending_group_list="1"/>
 	<Background id = "2" name="BG_NAME_DESERT" desc="BG_DESC_DESERT" cost="30" icon="bg_b_selected" img_back="Renewal/Background/bg_desert_back_1" img_front="Renewal/Background/bg_desert_front_1" note_list="1,2,3" ending_group_list="2"/>
 	<Background id = "3" name="BG_NAME_SPACE" desc="BG_DESC_SPACE" cost="30" icon="bg_b_selected" img_back="Renewal/Background/bg_space_back_1" img_front="Renewal/Background/bg_space_front_1" note_list="7,8,9" ending_group_list="3"/>
-	<Background id = "4" name="BG_NAME_APART" desc="BG_DESC_APART" cost="10" icon="bg_a_selected" img_back="Renewal/Background/bg_apart_back_1" img_front="Renewal/Background/bg_apart_front_1" note_list="4,5,6" ending_group_list="1"/>
+	<Background id = "4" name="BG_NAME_APART" desc="BG_DESC_APART" cost="10" icon="bg_a_selected" img_back="Renewal/Background/bg_apart_back_1" img_front="Renewal/Background/bg_apart_front_1" note_list="4,5,6" ending_group_list="4"/>
 </Datas>

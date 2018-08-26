@@ -12,6 +12,7 @@ public class PopupGameEnd : PopupUI {
     }
 
     public Image EndingScene;
+    public Text EndingDesc;
     public Text Score;
     public Text Coin;
     public Button GameRestartButton;
@@ -22,6 +23,7 @@ public class PopupGameEnd : PopupUI {
     private int CoinValue = 0;
     private int PlusScoreValue = 0;
     private int PlusCoinValue = 0;
+    private int EndingSceneId = 0;
 
     void Awake()
     {
@@ -62,22 +64,24 @@ public class PopupGameEnd : PopupUI {
             for (int index_2 = 0; index_2 < endingList.Count; index_2++)
             {
                 var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
-                if (endingData.IsOpenEnding(CoinValue, ScoreValue))
-                {
-                    PlayerData.Instance.AddEnding(endingData.id);
-                    endingId = endingData.id;
-                }
+                if (endingData.IsOpenEnding(CoinValue, ScoreValue) || PlayerData.Instance.HasEnding(endingData.id))
+                    EndingSceneId = endingData.id;
             }
         }
 
-        var endingViewData = DataManager.Instance.EndingDataList[endingId];
-        CommonFunc.SetImageFile(endingViewData.img, ref EndingScene);
+        var endingViewData = DataManager.Instance.EndingDataList[EndingSceneId];
+        CommonFunc.SetImageFile(endingViewData.img, ref EndingScene, false);
+        EndingDesc.text = endingViewData.GetLocalizeDesc();
 
         StartCoroutine(Co_ScoreCoinEffect());
     }
 
     IEnumerator Co_ScoreCoinEffect()
     {
+        yield return null;
+        PlayerData.Instance.PlusCoin(CoinValue + PlusCoinValue);
+        PlayerData.Instance.AddEnding(EndingSceneId);
+
         yield return new WaitForSeconds(0.3f);
         float saveTime = 0;
         while(saveTime < 3f)
@@ -132,8 +136,6 @@ public class PopupGameEnd : PopupUI {
         }
 
         yield return null;
-
-        PlayerData.Instance.PlusCoin(CoinValue + PlusCoinValue);
     }
 
     void OnClickGameExit()
