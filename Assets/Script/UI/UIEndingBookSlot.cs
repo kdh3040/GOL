@@ -40,11 +40,9 @@ public class UIEndingBookSlot : MonoBehaviour {
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
             int id = EndingGroupData.ending_list[i];
-            if (PlayerData.Instance.HasEnding(id))
-                continue;
-
             var endingData = DataManager.Instance.EndingDataList[id];
-            EndingBuyCost += endingData.cost;
+            if (PlayerData.Instance.HasEnding(id) == false)
+                EndingBuyCost += endingData.cost;
 
             var obj = Instantiate(Resources.Load("Prefab/UIEndingSceneSlot"), EndingSlotGrid.gameObject.transform) as GameObject;
             var slot = obj.GetComponent<UIEndingSceneSlot>();

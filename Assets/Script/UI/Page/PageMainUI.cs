@@ -48,7 +48,7 @@ public class PageMainUI : MonoBehaviour
     }
     public void OnClickGameSetting()
     {
-        
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
 
 }

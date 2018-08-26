@@ -87,14 +87,23 @@ public class UICountImgFont : MonoBehaviour
 
         if(range == IMG_RANGE.CENTER)
         {
-            for (int i = 0; i < countLength; i++)
+            if(countLength > 1)
             {
-                Image currImg = ImgFontList[i];
-                Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
+                for (int i = 0; i < countLength; i++)
+                {
+                    Image currImg = ImgFontList[i];
+                    Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
 
-                currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
-                currImg.gameObject.transform.localPosition = currImgLocalPosition;
+                    currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
+                    currImg.gameObject.transform.localPosition = currImgLocalPosition;
+                }
             }
+            else if(countLength == 1)
+            {
+                Image currImg = ImgFontList[0];
+                currImg.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            }
+            
         }
         else if (range == IMG_RANGE.RIGHT)
         {

@@ -124,10 +124,14 @@ public class GamePlayManager : MonoBehaviour
 
     public void GamePause()
     {
-       // mIsGamePause = true;
+       mIsGamePause = true;
     }
 
-    public void GameContinue()
+    public void GameResumeCountStart()
+    {
+        mGameUIPage.GameResume();
+    }
+    public void GameResume()
     {
         mIsGamePause = false;
     }
@@ -142,6 +146,7 @@ public class GamePlayManager : MonoBehaviour
 
             if (skill.CharShield())
             {
+                mGameUIPage.RefreshShieldItemUI();
                 mDoorSystem.ShowSkillEffect_Shield(line);
                 return false;
             }

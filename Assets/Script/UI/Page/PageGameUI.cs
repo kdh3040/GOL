@@ -8,16 +8,19 @@ public class PageGameUI : MonoBehaviour
 {
     public UICountImgFont Score;
     public Text Info;
-    public Button mItemButton;
-    public Image mItemImg;
-    public List<Image> mShieldIconList = new List<Image>();
-    public Transform mSkillProgressStartPos;    
+    public Button ItemButton;
+    public Image ItemImg;
+    public List<Image> ShieldIconList = new List<Image>();
+    public Transform SkillProgressStartPos;
+    public Button GamePauseButton;
+    public UICountImgFont GameResumeCount;
 
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
     void Awake()
     {
-        mItemButton.onClick.AddListener(OnClickItem);
+        ItemButton.onClick.AddListener(OnClickItem);
+        GamePauseButton.onClick.AddListener(OnClickPause);
     }
 
     public void ResetUI()
@@ -37,28 +40,28 @@ public class PageGameUI : MonoBehaviour
         int ItemId = GamePlayManager.Instance.UseItemId;
         if (ItemId != 0)
         {
-            mItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
-            mItemImg.color = new Color(1, 1, 1, 1);
+            ItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
+            ItemImg.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            mItemImg.color = new Color(1, 1, 1, 0);
-            mItemImg.sprite = null;
+            ItemImg.color = new Color(1, 1, 1, 0);
+            ItemImg.sprite = null;
         }
     }
 
     public void RefreshShieldItemUI()
     {
         var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
-        for (int i = 0; i < mShieldIconList.Count; i++)
+        for (int i = 0; i < ShieldIconList.Count; i++)
         {
             if (skill != null && skill.mCount >= i + 1)
             {
-                mShieldIconList[i].gameObject.SetActive(true);
+                ShieldIconList[i].gameObject.SetActive(true);
             }
             else
             {
-                mShieldIconList[i].gameObject.SetActive(false);
+                ShieldIconList[i].gameObject.SetActive(false);
             }
         }
     }
@@ -90,11 +93,38 @@ public class PageGameUI : MonoBehaviour
                 return;
         }
 
-        var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), mSkillProgressStartPos) as GameObject;
+        var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), SkillProgressStartPos) as GameObject;
         var progressBar = obj.GetComponent<UISkillProgressBar>();
         progressBar.SetItemSkill(itemId, skill.mSkillType);
         progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
         mSkillProgressBarList.Add(progressBar);
+    }
+
+    public void GameResume()
+    {
+        GameResumeCount.gameObject.SetActive(true);
+        StartCoroutine(Co_GameResume());
+    }
+
+    public IEnumerator Co_GameResume()
+    {
+        int waitTime = 3;
+
+        while(waitTime > 0)
+        {
+            GameResumeCount.SetValue(waitTime.ToString(), UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
+            yield return new WaitForSecondsRealtime(1f);
+            waitTime--;
+        }
+
+        GameResumeCount.gameObject.SetActive(false);
+        GamePlayManager.Instance.GameResume();
+    }
+
+    public void OnClickPause()
+    {
+        GamePlayManager.Instance.GamePause();
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
     }
 
     public void GameOver()

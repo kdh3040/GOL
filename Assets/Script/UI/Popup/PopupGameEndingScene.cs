@@ -62,13 +62,16 @@ public class PopupGameEndingScene : PopupUI
         {
             LockObj.gameObject.SetActive(false);
             EndingScene.gameObject.SetActive(true);
+
+            Desc.text = EndingSceneList[SelectIndex].GetLocalizeDesc();
+            CommonFunc.SetImageFile(EndingSceneList[SelectIndex].img, ref EndingScene, false);
         }
         else
         {
             LockObj.gameObject.SetActive(true);
             EndingScene.gameObject.SetActive(false);
 
-            CommonFunc.SetImageFile(EndingSceneList[SelectIndex].img, ref EndingScene);
+            Desc.text = EndingSceneList[SelectIndex].GetConditionDesc();
         }
 
         RefreshButtons();
