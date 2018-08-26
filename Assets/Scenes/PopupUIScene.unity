@@ -8390,14 +8390,13 @@ GameObject:
   - component: {fileID: 1409706355}
   - component: {fileID: 1409706354}
   - component: {fileID: 1409706353}
-  - component: {fileID: 1409706352}
   m_Layer: 5
   m_Name: GamePurchasePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1409706351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8417,36 +8416,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1409706352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1409706350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b492664cfddf744bbc07bc41e0afe37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topbar: {fileID: 2018179313}
-  DescIcon: {fileID: 0}
-  Desc: {fileID: 0}
-  ItemBuyButton: {fileID: 0}
-  ItemBuyCost: {fileID: 0}
-  UpgradeButton: {fileID: 0}
-  UpgradeCost: {fileID: 0}
-  SkinChangeButton: {fileID: 0}
-  ItemEquipButton: {fileID: 0}
-  SkinSlotList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ItemSlotList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  StartButton: {fileID: 0}
 --- !u!114 &1409706353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13058,12 +13027,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
     type: 2}
   m_PrefabInternal: {fileID: 2018179311}
---- !u!114 &2018179313 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114095140597445510, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-    type: 2}
-  m_PrefabInternal: {fileID: 2018179311}
-  m_Script: {fileID: 11500000, guid: 7f5f0caa0ac335843891c4baf681d0cc, type: 3}
 --- !u!1 &2022554518
 GameObject:
   m_ObjectHideFlags: 0

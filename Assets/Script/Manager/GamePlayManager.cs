@@ -146,6 +146,7 @@ public class GamePlayManager : MonoBehaviour
 
             if (skill.CharShield())
             {
+                mGameUIPage.RefreshShieldItemUI();
                 mDoorSystem.ShowSkillEffect_Shield(line);
                 return false;
             }
