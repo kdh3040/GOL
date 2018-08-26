@@ -124,10 +124,14 @@ public class GamePlayManager : MonoBehaviour
 
     public void GamePause()
     {
-       // mIsGamePause = true;
+       mIsGamePause = true;
     }
 
-    public void GameContinue()
+    public void GameResumeCountStart()
+    {
+        mGameUIPage.GameResume();
+    }
+    public void GameResume()
     {
         mIsGamePause = false;
     }
