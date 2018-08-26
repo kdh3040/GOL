@@ -37,6 +37,10 @@ public class PlayerData
         public int UseDoor;
         public int UseBackground;
 
+        public bool SoundSetting = true;
+        public bool VibrationSetting = true;
+        public bool AlarmSetting = true;
+
         public void Save()
         {
             HaveSkin = PlayerData.Instance.HaveSkin;
@@ -47,6 +51,9 @@ public class PlayerData
             MyCoin = PlayerData.Instance.MyCoin;
             MyDDong = PlayerData.Instance.MyDDong;
             NextDDongRefilTime = PlayerData.Instance.NextDDongRefilTime.Ticks;
+            SoundSetting = PlayerData.Instance.SoundSetting;
+            VibrationSetting = PlayerData.Instance.VibrationSetting;
+            AlarmSetting = PlayerData.Instance.AlarmSetting;
         }
 
         public void Load()
@@ -61,21 +68,21 @@ public class PlayerData
                 HaveSkin[CommonData.SKIN_TYPE.DOOR].Add(1);
                 HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
             }
-            if(UseSkin == null)
+            if (UseSkin == null)
             {
                 UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
                 UseSkin.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
                 UseSkin.Add(CommonData.SKIN_TYPE.CHAR, 1);
                 UseSkin.Add(CommonData.SKIN_TYPE.DOOR, 1);
             }
-            if(SkinSlotLevel == null)
+            if (SkinSlotLevel == null)
             {
                 SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
                 SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
                 SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
                 SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
-            } 
-            if(HaveItem_LevelCount == null)
+            }
+            if (HaveItem_LevelCount == null)
                 HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
             if (HaveEnding == null)
                 HaveEnding = new List<int>();
@@ -88,6 +95,9 @@ public class PlayerData
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
+            PlayerData.Instance.SoundSetting = SoundSetting;
+            PlayerData.Instance.VibrationSetting = VibrationSetting;
+            PlayerData.Instance.AlarmSetting = AlarmSetting;
         }
     }
 
@@ -115,7 +125,11 @@ public class PlayerData
     private int UseItemId = 0;
 
     private SaveData MySaveData = new SaveData();
-    
+
+    public bool SoundSetting { get; private set; }
+    public bool VibrationSetting { get; private set; }
+    public bool AlarmSetting { get; private set; }
+
     public void SaveFile()
     {
         MySaveData.Save();
@@ -406,5 +420,23 @@ public class PlayerData
             return false;
 
         return true;
+    }
+
+    public void SetSoundSetting(bool enable)
+    {
+        SoundSetting = enable;
+        SaveFile();
+    }
+
+    public void SetVibrationSetting(bool enable)
+    {
+        VibrationSetting = enable;
+        SaveFile();
+    }
+
+    public void SetAlarmSetting(bool enable)
+    {
+        AlarmSetting = enable;
+        SaveFile();
     }
 }
