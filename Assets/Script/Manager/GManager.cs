@@ -26,6 +26,7 @@ public class GManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        Screen.SetResolution(Screen.width, (Screen.width * 16) / 9, false);
         PlayerData.Instance.Initialize();
 
         if (!FirebaseManager.Instance.SingedInFirebase())
