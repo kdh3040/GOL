@@ -84,11 +84,11 @@ public class PopupGameEnd : PopupUI {
 
         yield return new WaitForSeconds(0.3f);
         float saveTime = 0;
-        while(saveTime < 3f)
+        while(saveTime < 1.5f)
         {
             yield return null;
             saveTime += Time.deltaTime;
-            Score.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, ScoreValue, saveTime / 3f));
+            Score.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, ScoreValue, saveTime / 1.5f));
         }
 
         Score.text = CommonFunc.ConvertNumber(ScoreValue);
@@ -98,11 +98,11 @@ public class PopupGameEnd : PopupUI {
         {
             saveTime = 0;
 
-            while (saveTime < 2f)
+            while (saveTime < 1f)
             {
                 yield return null;
                 saveTime += Time.deltaTime;
-                Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusScoreValue, saveTime / 2f)));
+                Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusScoreValue, saveTime / 1f)));
             }
 
             Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber(PlusScoreValue));

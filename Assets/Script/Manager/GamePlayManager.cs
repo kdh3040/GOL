@@ -360,17 +360,14 @@ public class GamePlayManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            mDoorSystem.DoorList[0].SetEffect("INVINCIBILITY");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            mDoorSystem.DoorList[0].SetEffect("SHIELD");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            mDoorSystem.DoorList[0].SetEffect("IDLE");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
