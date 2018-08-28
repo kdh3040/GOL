@@ -66,6 +66,12 @@ public class PopupGameReady : PopupUI
             ItemSlotList[itemIndex].SetItemSlot(itemEnumerator.Current.Key);
             ItemSlotList[itemIndex].SlotButton.onClick.AddListener(() => { OnClickItem(index); });
             itemIndex++;
+
+            if(PlayerData.Instance.LastEquipItemId == itemEnumerator.Current.Key)
+            {
+                OnClickItem(index);
+                OnClickItemEquip();
+            }
         }
 
         RefreshUI();
@@ -172,7 +178,7 @@ public class PopupGameReady : PopupUI
             else
                 UpgradeButton.gameObject.SetActive(false);
 
-            ItemEquipButton.gameObject.SetActive(true);
+            ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
 
             var skillName = ItemManager.Instance.GetItemSkill(itemId);
             var skillData = SkillManager.Instance.GetSkillData(skillName);
@@ -196,17 +202,12 @@ public class PopupGameReady : PopupUI
 
     public void OnClickItemBuy()
     {
-        UnityAction yesAction = () =>
-        {
-            var id = ItemSlotList[SelectSlotIndex].ItemId;
-            var itemData = DataManager.Instance.ItemDataDic[id];
-            if (CommonFunc.UseCoin(itemData.cost))
-                PlayerData.Instance.PlusItem_Count(id);
+        var id = ItemSlotList[SelectSlotIndex].ItemId;
+        var itemData = DataManager.Instance.ItemDataDic[id];
+        if (CommonFunc.UseCoin(itemData.cost))
+            PlayerData.Instance.PlusItem_Count(id);
 
-            RefreshUI();
-        };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ITEM_TITLE"), yesAction);
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+        RefreshUI();
     }
 
     public void OnClickItemEquip()
@@ -294,6 +295,7 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
+            PlayerData.Instance.SetLastEquipItemId(ItemSlotList[EquipItemSlotIndex].ItemId);
             PopupManager.Instance.DismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }

@@ -345,8 +345,12 @@ public class GamePlayManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
-                GamePlayManager.Instance.ClickDoor(mClickDoor);
-                Debug.Log("Complete" + hit.collider.name);
+                if(mClickDoor != null)
+                {
+                    GamePlayManager.Instance.ClickDoor(mClickDoor);
+                    Debug.Log("Complete" + hit.collider.name);
+                }
+                    
             }
             else
             {

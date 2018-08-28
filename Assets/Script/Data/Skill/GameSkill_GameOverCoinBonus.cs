@@ -15,8 +15,8 @@ public class GameSkill_GameOverCoinBonus : GameSkill
     }
 
 
-    public int ConvertCoin(int coin)
+    public int BonusCoin(int coin)
     {
-        return coin + (int)(coin * mPercent);
+        return (int)(coin * mPercent);
     }
 }

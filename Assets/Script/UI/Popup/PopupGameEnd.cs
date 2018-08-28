@@ -43,13 +43,13 @@ public class PopupGameEnd : PopupUI {
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS))
         {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS) as GameSkill_GameOverScoreBonus;
-            PlusScoreValue = skill.ConvertScore(ScoreValue);
+            PlusScoreValue = skill.BonusScore(ScoreValue);
         }
 
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS))
         {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS) as GameSkill_GameOverCoinBonus;
-            PlusCoinValue = skill.ConvertCoin(CoinValue);
+            PlusCoinValue = skill.BonusCoin(CoinValue);
         }
 
         Score.text = CommonFunc.ConvertNumber(0);

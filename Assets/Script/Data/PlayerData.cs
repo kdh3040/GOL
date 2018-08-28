@@ -41,6 +41,8 @@ public class PlayerData
         public bool VibrationSetting = true;
         public bool AlarmSetting = true;
 
+        public int LastEquipItemId = 1;
+
         public void Save()
         {
             HaveSkin = PlayerData.Instance.HaveSkin;
@@ -54,6 +56,7 @@ public class PlayerData
             SoundSetting = PlayerData.Instance.SoundSetting;
             VibrationSetting = PlayerData.Instance.VibrationSetting;
             AlarmSetting = PlayerData.Instance.AlarmSetting;
+            LastEquipItemId = PlayerData.Instance.LastEquipItemId;
         }
 
         public void Load()
@@ -86,6 +89,8 @@ public class PlayerData
                 HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
             if (HaveEnding == null)
                 HaveEnding = new List<int>();
+            if (LastEquipItemId <= 0)
+                LastEquipItemId = 1;
 
             PlayerData.Instance.HaveSkin = HaveSkin;
             PlayerData.Instance.UseSkin = UseSkin;
@@ -98,6 +103,7 @@ public class PlayerData
             PlayerData.Instance.SoundSetting = SoundSetting;
             PlayerData.Instance.VibrationSetting = VibrationSetting;
             PlayerData.Instance.AlarmSetting = AlarmSetting;
+            PlayerData.Instance.LastEquipItemId = LastEquipItemId;
         }
     }
 
@@ -122,6 +128,7 @@ public class PlayerData
         }
     }
     private DateTime NextDDongRefilTime;
+    public int LastEquipItemId { get; private set; }
     private int UseItemId = 0;
 
     private SaveData MySaveData = new SaveData();
@@ -207,6 +214,12 @@ public class PlayerData
     public void SetUseItemId(int id)
     {
         UseItemId = id;
+    }
+
+    public void SetLastEquipItemId(int id)
+    {
+        LastEquipItemId = id;
+        SaveFile();
     }
 
     public void UpdatePlayerData(float time)
