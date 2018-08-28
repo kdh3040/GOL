@@ -28,6 +28,8 @@ public class Note : MonoBehaviour
         NoteCollider.enabled = false;
         
         Anim.enabled = false;
+
+        gameObject.transform.localRotation = new Quaternion();
     }
 
 
