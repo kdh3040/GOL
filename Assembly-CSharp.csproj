@@ -326,6 +326,7 @@
     <Compile Include="Assets\Script\UI\Popup\PopupGameEndingBook.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameEndingScene.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGamePause.cs" />
+    <Compile Include="Assets\Script\UI\Popup\PopupGamePurchase.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameReady.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameSetting.cs" />
     <Compile Include="Assets\Script\UI\Popup\PopupGameShop.cs" />
@@ -339,6 +340,7 @@
     <Compile Include="Assets\Script\UI\UIItemSlot.cs" />
     <Compile Include="Assets\Script\UI\UIPoint.cs" />
     <Compile Include="Assets\Script\UI\UIPointValue.cs" />
+    <Compile Include="Assets\Script\UI\UIPurchaseSlot.cs" />
     <Compile Include="Assets\Script\UI\UIShopSkinSlot.cs" />
     <Compile Include="Assets\Script\UI\UISkillProgressBar.cs" />
     <Compile Include="Assets\Script\UI\UISkinSlot.cs" />
