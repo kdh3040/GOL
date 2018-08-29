@@ -28,8 +28,8 @@ public class UITopBar : MonoBehaviour
             CoinPoint.gameObject.transform.localPosition = new Vector3(213, 0);
         }
 
-        DdongPoint.Initialize(UIPoint.POINT_TYPE.DDONG);
-        CoinPoint.Initialize(UIPoint.POINT_TYPE.COIN);
+        DdongPoint.Initialize(CommonData.POINT_TYPE.DDONG);
+        CoinPoint.Initialize(CommonData.POINT_TYPE.COIN);
         DdongPoint.UpdatePoint();
         CoinPoint.UpdatePoint();
 

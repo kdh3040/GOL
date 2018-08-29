@@ -32,6 +32,13 @@ public class CommonData : MonoBehaviour {
         BACKGROUND,
     }
 
+    public enum POINT_TYPE
+    {
+        CASH,
+        DDONG,
+        COIN,
+    }
+
     public static int SHIELD_ITEM_ID = 2;
     public static int NOTE_GROUP_NOTE_COUNT = 3;
     public static float NOTE_GROUP_INTERVAL = 3.0f;
