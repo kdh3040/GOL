@@ -130,13 +130,9 @@ public class NoteSystem
 
             else if(NoteGroupOpenPos.localPosition.y > pos.y)
             {
-                if (NoteGroupList[i].IsAliveNote())
-                {
-                    var note = NoteGroupList[i].GetGameOverCheckNote();
-                    if(note != null)
-                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.HALF_OPEN);
-                }
-                 
+                var note = NoteGroupList[i].IsDoorOpenNote();
+                if (note != null)
+                    GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.HALF_OPEN);
             }
         }
 
@@ -237,25 +233,13 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-            if (door == null || NoteGroupList[i] == null)
-            {
-                int a = 10;
-            }
-                
             float distance = (NoteGroupList[i].transform.position.y - door.gameObject.transform.position.y);
-            //var distance = Vector3.Distance(NoteGroupList[i].transform.position.y, door.gameObject.transform.position.y);
-
-            //Debug.Log("minDistance : " + minDistance + " i : " + i);
-            //Debug.Log("NoteGroupList : " + NoteGroupList[i].transform.position + " door : " + door.gameObject.transform.position);
             if (minDistance > distance)
             {
                 minDistance = distance;
                 minDistanceIndex = i;
             }   
         }
-
-        //Debug.Log("minDistance : " + minDistance + " minDistanceIndex : " + minDistanceIndex + "door : " + door.NoteLineType);
-        // NoteGroupList[i].gameObject.transform.localPosition
         if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
             return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 

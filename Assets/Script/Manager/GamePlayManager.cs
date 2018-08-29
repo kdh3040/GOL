@@ -35,7 +35,7 @@ public class GamePlayManager : MonoBehaviour
         private set;
     }
     private PlayerChar mPlayerChar = null;
-    private bool mIsGamePause = false;
+    private bool IsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     private DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
@@ -79,7 +79,7 @@ public class GamePlayManager : MonoBehaviour
         PlayerData.Instance.SetUseItemId(0);
         StopAllCoroutines();
         Score = 0;
-        mIsGamePause = false;
+        IsGamePause = false;
         FirstStart = false;
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
@@ -117,18 +117,12 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameRevival()
     {
-        ResetGame();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
-        SkillManager.Instance.UseSkinSlotSkill();
-        mGameUIPage.RefreshShieldItemUI();
-        mNoteSystem.GameRestart();
-        mDoorSystem.GameRestart();
-        StartCoroutine(UpdateGamePlay());
+        mGameUIPage.GameResume();
     }
 
     public void GamePause()
     {
-       mIsGamePause = true;
+       IsGamePause = true;
     }
 
     public void GameResumeCountStart()
@@ -137,7 +131,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameResume()
     {
-        mIsGamePause = false;
+        IsGamePause = false;
     }
 
     public bool IsGameOver(CommonData.NOTE_LINE line)
@@ -170,14 +164,14 @@ public class GamePlayManager : MonoBehaviour
     public void GameOver()
     {
         mGameUIPage.GameOver();
-        mIsGamePause = true;
+        IsGamePause = true;
     }
 
     IEnumerator UpdateGamePlay()
     {
         while(true)
         {
-            if (mIsGamePause)
+            if (IsGamePause)
             {
                 yield return null;
                 continue;
@@ -215,8 +209,6 @@ public class GamePlayManager : MonoBehaviour
         SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE);
 
         PlayDoorSound(door.NoteLineType);
-
-
     }
     
     public void PlusScore(int score)
@@ -329,12 +321,6 @@ public class GamePlayManager : MonoBehaviour
     {
         mDoorSystem.PlaySound(line);
     }
-
-    public int ConvertScoreToCoin()
-    {
-        return Score / 10;
-    }
-
     public void HideAd()
     {
         mAdmob.HideAd();

@@ -11,12 +11,14 @@ public class PopupGameEnd : PopupUI {
         return PopupManager.POPUP_TYPE.GAME_END;
     }
 
+    public UITopBar TopBar;
     public Image EndingScene;
     public Text EndingDesc;
     public Text Score;
     public Text Coin;
     public Button GameRestartButton;
     public Button GameRevivalButton;
+    public UIPointValue GameRevivalCost;
     public Button GameExitButton;
 
     private int ScoreValue = 0;
@@ -35,9 +37,11 @@ public class PopupGameEnd : PopupUI {
     public override void ShowPopup(PopupUIData data)
     {
         ScoreValue = GamePlayManager.Instance.Score;
-        CoinValue = GamePlayManager.Instance.ConvertScoreToCoin();
+        CoinValue = 0;
         PlusScoreValue = 0;
         PlusCoinValue = 0;
+        TopBar.Initialize(false);
+        GameRevivalCost.SetValue(ConfigData.Instance.REVIVAL_COST);
 
         // 스킬로 추가 획득
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS))
@@ -45,6 +49,8 @@ public class PopupGameEnd : PopupUI {
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS) as GameSkill_GameOverScoreBonus;
             PlusScoreValue = skill.BonusScore(ScoreValue);
         }
+
+        CoinValue = CommonFunc.ConvertCoin(ScoreValue + PlusScoreValue);
 
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS))
         {
@@ -57,7 +63,6 @@ public class PopupGameEnd : PopupUI {
 
         var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
         var endingGroupList = bgData.endingGroupList;
-        int endingId = 1;
         for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
         {
             var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
@@ -84,25 +89,24 @@ public class PopupGameEnd : PopupUI {
 
         yield return new WaitForSeconds(0.3f);
         float saveTime = 0;
-        while(saveTime < 1.5f)
+        while(saveTime < 1f)
         {
             yield return null;
             saveTime += Time.deltaTime;
-            Score.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, ScoreValue, saveTime / 1.5f));
+            Score.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, ScoreValue, saveTime / 1f));
         }
 
         Score.text = CommonFunc.ConvertNumber(ScoreValue);
 
-        yield return new WaitForSeconds(0.1f);
         if(PlusScoreValue > 0)
         {
             saveTime = 0;
 
-            while (saveTime < 1f)
+            while (saveTime < 0.5f)
             {
                 yield return null;
                 saveTime += Time.deltaTime;
-                Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusScoreValue, saveTime / 1f)));
+                Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusScoreValue, saveTime / 0.5f)));
             }
 
             Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber(PlusScoreValue));
@@ -111,25 +115,24 @@ public class PopupGameEnd : PopupUI {
         yield return null;
 
         saveTime = 0;
-        while (saveTime < 3f)
+        while (saveTime < 1f)
         {
             yield return null;
             saveTime += Time.deltaTime;
-            Coin.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, CoinValue, saveTime / 3f));
+            Coin.text = CommonFunc.ConvertNumber((int)Mathf.Lerp(0, CoinValue, saveTime / 1f));
         }
 
         Coin.text = CommonFunc.ConvertNumber(CoinValue);
 
-        yield return new WaitForSeconds(0.1f);
         if (PlusCoinValue > 0)
         {
             saveTime = 0;
 
-            while (saveTime < 2f)
+            while (saveTime < 0.5f)
             {
                 yield return null;
                 saveTime += Time.deltaTime;
-                Coin.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(CoinValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusCoinValue, saveTime / 2f)));
+                Coin.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(CoinValue), CommonFunc.ConvertNumber((int)Mathf.Lerp(0, PlusCoinValue, saveTime / 0.5f)));
             }
 
             Coin.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(CoinValue), CommonFunc.ConvertNumber(PlusCoinValue));

@@ -16,9 +16,11 @@ public class PopupGameShop : PopupUI
     public class PopupData : PopupUIData
     {
         public UnityAction EndAction;
-        public PopupData(UnityAction endAction)
+        public CommonData.SKIN_TYPE SelectSkinType;
+        public PopupData(UnityAction endAction, CommonData.SKIN_TYPE selectSkinType = CommonData.SKIN_TYPE.CHAR)
         {
             EndAction = endAction;
+            SelectSkinType = selectSkinType;
         }
     }
 
@@ -52,12 +54,18 @@ public class PopupGameShop : PopupUI
     public override void ShowPopup(PopupUIData data)
     {
         var popupData = data as PopupData;
-        if(popupData != null)
+        if (popupData != null)
+        {
             EndAction = popupData.EndAction;
+            SelectSkinType = popupData.SelectSkinType;
+        }
         else
+        {
             EndAction = null;
+            SelectSkinType = CommonData.SKIN_TYPE.CHAR;
+        }
 
-        SelectSkinType = CommonData.SKIN_TYPE.NONE;
+        
         SelectSlotIndex = 0;
         SelectLIst = false;
 
@@ -70,7 +78,20 @@ public class PopupGameShop : PopupUI
         SkinSlotList[2].SetSkinSlot(CommonData.SKIN_TYPE.BACKGROUND);
         SkinSlotList[2].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(2); });
 
-        OnClickSkinSlot(0);
+        switch (SelectSkinType)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                OnClickSkinSlot(0);
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                OnClickSkinSlot(1);
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                OnClickSkinSlot(2);
+                break;
+            default:
+                break;
+        }
     }
 
     public override void DismissPopup()
@@ -128,8 +149,6 @@ public class PopupGameShop : PopupUI
                 }
             }
 
-            var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(SelectSkinType);
-            var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
             var skinSkillName = data.GetSkillName();
 
             StringBuilder desc = new StringBuilder();

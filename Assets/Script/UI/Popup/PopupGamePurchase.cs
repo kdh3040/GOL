@@ -10,10 +10,13 @@ public class PopupGamePurchase : PopupUI
         return PopupManager.POPUP_TYPE.GAME_PURCHASE;
     }
 
+    public UITopBar TopBar;
     public List<UIPurchaseSlot> SlotList = new List<UIPurchaseSlot>();
 
     public override void ShowPopup(PopupUIData data)
     {
+        TopBar.Initialize(true);
+
         SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.COIN, 1000, CommonData.POINT_TYPE.DDONG, 5);
         SlotList[0].SlotButton.onClick.AddListener(() => { OnClickPurchase(0); });
 

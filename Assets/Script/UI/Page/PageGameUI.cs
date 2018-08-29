@@ -108,6 +108,7 @@ public class PageGameUI : MonoBehaviour
 
     public IEnumerator Co_GameResume()
     {
+        GamePauseButton.gameObject.SetActive(false);
         int waitTime = 3;
 
         while(waitTime > 0)
@@ -117,6 +118,7 @@ public class PageGameUI : MonoBehaviour
             waitTime--;
         }
 
+        GamePauseButton.gameObject.SetActive(true);
         GameResumeCount.gameObject.SetActive(false);
         GamePlayManager.Instance.GameResume();
     }

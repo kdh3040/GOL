@@ -146,8 +146,8 @@ public class PopupGameReady : PopupUI
 
             var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
             var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
-            var skinSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
-            
+            var skinSkillName = skinData.GetSkillName();
+
             StringBuilder desc = new StringBuilder();
             desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level);
             desc.AppendLine();
@@ -156,7 +156,7 @@ public class PopupGameReady : PopupUI
             if(skinSkillName != "")
             {
                 desc.AppendLine();
-                var skinSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
+                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
                 desc.AppendFormat(skinSkillData.GetDesc());
             }
             Desc.text = desc.ToString();
@@ -255,7 +255,13 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI));
+        if (SelectSkinSlot)
+        {
+            var skinType = SkinSlotList[SelectSlotIndex].SkinType;
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI, skinType));
+        }
+        else
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI));    
     }
 
     public void OnClickGameStart()

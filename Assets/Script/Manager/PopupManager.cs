@@ -50,6 +50,9 @@ public class PopupManager : MonoBehaviour {
     public void ShowPopup(POPUP_TYPE type, PopupUIData data = null)
     {
         var popup = mPopupUIList[type];
+        if (mShowPopup != null && mShowPopup.GetPopupType() == popup.GetPopupType())
+            return;
+
         popup.gameObject.SetActive(true);
         popup.ShowPopup(data);
         mShowPopup = popup;

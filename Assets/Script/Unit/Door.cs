@@ -53,11 +53,6 @@ public class Door : MonoBehaviour
             default:
                 break;
         }
-
-        if (Data.img_twist[(int)NoteLineType])
-            DoorSprite.flipX = true;
-        else
-            DoorSprite.flipX = false;
     }
     /*
     private void OnTriggerEnter(Collider other)

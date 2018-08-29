@@ -83,4 +83,9 @@ public class CommonFunc
     {
         return DateTime.Now;
     }
+
+    static public int ConvertCoin(int score)
+    {
+        return score / 10;
+    }
 }
