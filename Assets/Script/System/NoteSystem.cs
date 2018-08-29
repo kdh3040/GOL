@@ -114,7 +114,7 @@ public class NoteSystem
                     var note = NoteGroupList[i].GetGameOverCheckNote();
                     if(note != null && GamePlayManager.Instance.IsGameOver(note.NoteLineType))
                     {
-                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, 0);
+                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
                         GamePlayManager.Instance.GameOver();
                     }
                     else
@@ -134,7 +134,7 @@ public class NoteSystem
                 {
                     var note = NoteGroupList[i].GetGameOverCheckNote();
                     if(note != null)
-                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, 1);
+                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.HALF_OPEN);
                 }
                  
             }
@@ -237,6 +237,11 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
+            if (door == null || NoteGroupList[i] == null)
+            {
+                int a = 10;
+            }
+                
             float distance = (NoteGroupList[i].transform.position.y - door.gameObject.transform.position.y);
             //var distance = Vector3.Distance(NoteGroupList[i].transform.position.y, door.gameObject.transform.position.y);
 

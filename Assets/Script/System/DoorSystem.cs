@@ -17,21 +17,39 @@ public class DoorSystem
         }
     }
 
-    public void SetDoorState(CommonData.NOTE_LINE line, int State)
+
+    public void ResetSystem()
+    {
+        SetAllDoorState(Door.DOOR_STATE.CLOSE);
+    }
+
+    public void GameStart()
+    {
+        ResetSystem();
+    }
+
+    public void GameRestart()
+    {
+        ResetSystem();
+    }
+
+    public void GameExit()
+    {
+        ResetSystem();
+    }
+
+    public void SetAllDoorState(Door.DOOR_STATE state)
+    {
+        for (int i = 0; i < DoorList.Count; i++)
+        {
+            DoorList[i].SetDoorState(state);
+        }
+    }
+
+    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state)
     {
         var DoorNum = (int)line;
-        switch(State)
-        {
-            case 0:
-                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.OPEN);
-                break;
-            case 1:
-                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.HALF_OPEN);
-                break;
-            case 2:
-                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.CLOSE);
-                break;
-        }
+        DoorList[DoorNum].SetDoorState(state);
     }
 
     public void PlaySound(CommonData.NOTE_LINE line)
@@ -49,9 +67,6 @@ public class DoorSystem
 
             SetDoorEffect("INVINCIBILITY");
         }
-            
-
-  
     }
 
     public void EndSkillEffect(GameSkill skill)

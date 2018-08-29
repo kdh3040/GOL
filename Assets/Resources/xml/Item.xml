@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
 	<Item id = "1" name="INVINCIBILITY_ITEM" desc="INVINCIBILITY_ITEM_DESC" skill="DAMAGE_SHIELD_TIME" icon="Renewal/UI/icon_item_invincibilty" cost="10" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
-	<Item id = "2" name="SHIELD_ITEM" desc="SHIELD_ITEM_DESC" skill="DAMAGE_SHIELD_COUNT" icon="Renewal/UI/icon_item_shiend" cost="20" levelup_cost="1000" create_probability="0" slot_type="shield"/>
+	<Item id = "2" name="SHIELD_ITEM" desc="SHIELD_ITEM_DESC" skill="DAMAGE_SHIELD_COUNT" icon="Renewal/UI/icon_item_shiend" cost="20" levelup_cost="1000" create_probability="3000" slot_type="shield"/>
 	<Item id = "3" name="SCORE_DOUBLE_ITEM" desc="SCORE_DOUBLE_ITEM_DESC" skill="SCORE_UP" icon="Renewal/UI/icon_item_score" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
 	<Item id = "4" name="NOTE_SPEED_DOWN" desc="NOTE_SPEED_DOWN_DESC" skill="SPEED_DOWN" icon="Renewal/UI/icon_item_slow" cost="30" levelup_cost="1000" create_probability="1000" slot_type="normal"/>
 </Datas>

@@ -15,8 +15,8 @@ public class GameSkill_GameOverScoreBonus : GameSkill
     }
 
 
-    public int ConvertScore(int score)
+    public int BonusScore(int score)
     {
-        return score + (int)(score * mPercent);
+        return (int)(score * mPercent);
     }
 }

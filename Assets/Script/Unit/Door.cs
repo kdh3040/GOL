@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
         Data = DataManager.Instance.DoorDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.DOOR)];
         NoteLineType = type;
         EffectPlay = false;
+        DoorState = DOOR_STATE.NONE;
         SetDoorState(DOOR_STATE.CLOSE);
     }
 

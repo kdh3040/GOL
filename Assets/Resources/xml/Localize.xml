@@ -67,14 +67,24 @@
 	<Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
 	<Localize id="BG_DESC_DESERT" kr="여기에 왜 피라미드가 있는거야?? 급하니까 미안.."/>
 	<Localize id="BG_DESC_SPACE" kr="우주까지 와서 쌀빠엔 집에 가야지.."/>
-	<Localize id="DOOR_NAME_SEA" kr="잠수함문"/>
+	<Localize id="DOOR_NAME_SEA_1" kr="잠수함문 1"/>
+	<Localize id="DOOR_NAME_SEA_2" kr="잠수함문 2"/>
+	<Localize id="DOOR_NAME_SEA_3" kr="잠수함문 3"/>
 	<Localize id="DOOR_NAME_SPACE" kr="우주문"/>
 	<Localize id="DOOR_NAME_WINTER" kr="얼음문"/>
 	<Localize id="DOOR_NAME_APART" kr="얼음문"/>
-	<Localize id="DOOR_DESC_SEA" kr="문이 너무 무겁다!"/>
+	<Localize id="DOOR_NAME_DESERT_1" kr="피라미드문 1"/>
+	<Localize id="DOOR_NAME_DESERT_2" kr="피라미드문 2"/>
+	<Localize id="DOOR_NAME_DESERT_3" kr="피라미드문 3"/>
+	<Localize id="DOOR_DESC_SEA_1" kr="문이 너무 무겁다!"/>
+	<Localize id="DOOR_DESC_SEA_2" kr="문이 너무 무겁다!"/>
+	<Localize id="DOOR_DESC_SEA_3" kr="문이 너무 무겁다!"/>
+	<Localize id="DOOR_DESC_DESERT_1" kr="문이 너무 뜨겁다!"/>
+	<Localize id="DOOR_DESC_DESERT_2" kr="문이 너무 뜨겁다!"/>
+	<Localize id="DOOR_DESC_DESERT_3" kr="문이 너무 뜨겁다!"/>
 	<Localize id="DOOR_DESC_SPACE" kr="문이 자동문이네??"/>
 	<Localize id="DOOR_DESC_WINTER" kr="문이 너무 차갑다"/>
-	<Localize id="DOOR_DESC_APART" kr="역시 아파트문이 촥촥 감기지"/>
+	<Localize id="DOOR_DESC_APART" kr="역시 아파트문이 착착 감기지"/>
 	<Localize id="ENDING_CONDITION_CHAR_SLOT_LEVEL" kr="캐릭터 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_DOOR_SLOT_LEVEL" kr="문 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_BG_SLOT_LEVEL" kr="배경 스킨 슬롯 레벨 {0}이상"/>

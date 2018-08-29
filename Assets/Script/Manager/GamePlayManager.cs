@@ -88,6 +88,7 @@ public class GamePlayManager : MonoBehaviour
     {
         ResetGame();
         mNoteSystem.GameExit();
+        mDoorSystem.GameExit();
     }
     public void GameStart()
     {
@@ -99,6 +100,7 @@ public class GamePlayManager : MonoBehaviour
         UseGameShieldItem();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
+        mDoorSystem.GameStart();
         StartCoroutine(UpdateGamePlay());
     }
 
@@ -109,6 +111,7 @@ public class GamePlayManager : MonoBehaviour
         SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
+        mDoorSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
     }
 
@@ -119,6 +122,7 @@ public class GamePlayManager : MonoBehaviour
         SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameRestart();
+        mDoorSystem.GameRestart();
         StartCoroutine(UpdateGamePlay());
     }
 
@@ -208,7 +212,7 @@ public class GamePlayManager : MonoBehaviour
         // 라인타입
         mPlayerChar.ActionDoorClose(door);
 
-        SetDoorState(door.NoteLineType, 2);
+        SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE);
 
         PlayDoorSound(door.NoteLineType);
 
@@ -316,9 +320,9 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.EndSkillEffect(skill);
     }
 
-    public void SetDoorState(CommonData.NOTE_LINE line, int DoorState)
+    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state)
     {
-        mDoorSystem.SetDoorState(line, DoorState);
+        mDoorSystem.SetDoorState(line, state);
     }
 
     public void PlayDoorSound(CommonData.NOTE_LINE line)
@@ -345,8 +349,12 @@ public class GamePlayManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
-                GamePlayManager.Instance.ClickDoor(mClickDoor);
-                Debug.Log("Complete" + hit.collider.name);
+                if(mClickDoor != null)
+                {
+                    GamePlayManager.Instance.ClickDoor(mClickDoor);
+                    Debug.Log("Complete" + hit.collider.name);
+                }
+                    
             }
             else
             {
@@ -356,17 +364,14 @@ public class GamePlayManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            mDoorSystem.DoorList[0].SetEffect("INVINCIBILITY");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[0]);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            mDoorSystem.DoorList[0].SetEffect("SHIELD");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[1]);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            mDoorSystem.DoorList[0].SetEffect("IDLE");
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
