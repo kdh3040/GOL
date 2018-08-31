@@ -31,6 +31,7 @@ public class ConfigData {
     public float NOTE_SPEED_UP;
     public float CHAR_MSG_VIEW_INTERVAL;
     public int CHAR_MSG_VIEW_PERCENT;
+    public int CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT;
 
 
     public void Initialize(XmlNodeList list)
@@ -65,6 +66,9 @@ public class ConfigData {
                 CHAR_MSG_VIEW_INTERVAL = GetFloatValue(node);
             else if (key.Equals("CHAR_MSG_VIEW_PERCENT"))
                 CHAR_MSG_VIEW_PERCENT = GetIntValue(node);
+            else if (key.Equals("CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT"))
+                CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT = GetIntValue(node);
+            
         }
     }
 

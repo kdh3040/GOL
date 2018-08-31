@@ -37,15 +37,9 @@ public class NoteSystem
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
         NoteNormalCreateList.Clear();
-        
-        var endPos = NoteGroupEndPos.localPosition;
-        for (int i = 0; i < NoteGroupList.Count; i++)
-        {
-            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
-            NoteGroupList[i].ResetNoteGroup();
-        }
 
-        if(NoteItemCreatePercentList.Count <= 0)
+        AllDeleteNote();
+        if (NoteItemCreatePercentList.Count <= 0)
         {
             NoteItemAllPercentValue = 0;
             var enumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
@@ -76,6 +70,17 @@ public class NoteSystem
         }
     }
 
+    public void AllDeleteNote()
+    {
+        var endPos = NoteGroupEndPos.localPosition;
+        for (int i = 0; i < NoteGroupList.Count; i++)
+        {
+            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
+            NoteGroupList[i].ResetNoteGroup();
+        }
+
+    }
+
     public void GameStart()
     {
         ResetSystem();
@@ -95,6 +100,12 @@ public class NoteSystem
     public void GameExit()
     {
         ResetSystem();
+    }
+
+    public void GameRevival()
+    {
+        NoteSpeed -= NoteSpeed * (float)ConfigData.Instance.CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT * 0.01f;
+        AllDeleteNote();
     }
 
     public void NoteUpdate(float time, float speedTime)
@@ -234,15 +245,19 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-            float distance = (NoteGroupList[i].transform.position.y - NoteGroupEndPos.localPosition.y);
-            if (minDistance > distance)
-            {
-                minDistance = distance;
-                minDistanceIndex = i;
-            }   
+
+            if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
+                return NoteGroupList[i].DeleteNote(door.NoteLineType);
+
+            //float distance = (NoteGroupList[i].transform.position.y - NoteGroupOpenPos.localPosition.y);
+            //if (minDistance > distance)
+            //{
+            //    minDistance = distance;
+            //    minDistanceIndex = i;
+            //}   
         }
-        if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
-            return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
+        //if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
+        //    return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 
         return false;
     }

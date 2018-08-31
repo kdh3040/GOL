@@ -9,8 +9,9 @@
 	<CommonData id="MAX_USE_SHIELD_ITEM" value="2"/>
 	<CommonData id="DDONG_REFIL_TIME" value="10"/>
 	<CommonData id="REVIVAL_COST" value="1000"/>
-	<CommonData id="NOTE_SPEED_UP_INTERVAL" value="0.3"/>
-	<CommonData id="NOTE_SPEED_UP" value="0.2"/>
+	<CommonData id="NOTE_SPEED_UP_INTERVAL" value="0.5"/>
+	<CommonData id="NOTE_SPEED_UP" value="0.15"/>
 	<CommonData id="CHAR_MSG_VIEW_INTERVAL" value="3"/>
 	<CommonData id="CHAR_MSG_VIEW_PERCENT" value="50"/>
+	<CommonData id="CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT" value="30"/>
 </Datas>
