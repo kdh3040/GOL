@@ -180,7 +180,7 @@ public class PlayerData
             MyCoin = 1000;
             MyDDong = CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MaxValue;
-
+            LastEquipItemId = 1;
             SaveFile();
         }
     }

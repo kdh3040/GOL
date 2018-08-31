@@ -41,6 +41,7 @@ public class GamePlayManager : MonoBehaviour
     private NoteSystem mNoteSystem = new NoteSystem();
     public DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
+    public GameObject NoteDeleteObj;
 
     private AudioSource mAudio;
     public AudioClip[] mClip = new AudioClip[3];
@@ -66,6 +67,7 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.Initialize(scene);
         mGameUIPage = scene.UIPage;
         mPlayerChar = scene.PlayerCharObj;
+        NoteDeleteObj = scene.NoteDeleteObj;
         mPlayerChar.Initialize();
         
         mAudio = scene.gameObject.AddComponent<AudioSource>();
@@ -328,8 +330,74 @@ public class GamePlayManager : MonoBehaviour
     public void PlayDoorSound(CommonData.NOTE_LINE line)
     {
         mDoorSystem.PlaySound(line);
-    }   
-    
+    } 
+
+    public void DeleteNoteAni(Note note)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/NoteDeleteAni"), NoteDeleteObj.transform) as GameObject;
+        SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
+        //sprite.gameObject.transform.SetParent(NoteDeleteObj.transform);
+        obj.gameObject.transform.localPosition = note.transform.localPosition;
+
+        switch (note.NoteType)
+        {
+            case CommonData.NOTE_TYPE.NORMAL:
+                var NoteData = DataManager.Instance.NoteDataDic[note.NoteId];
+                sprite.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));
+                break;
+            case CommonData.NOTE_TYPE.ITEM:
+                var ItemData = ItemManager.Instance.GetItemData(note.NoteId);
+                sprite.sprite = (Sprite)Resources.Load(ItemData.icon, typeof(Sprite));
+                break;
+            default:
+                break;
+        }
+
+        Animator ani = obj.GetComponent<Animator>();
+        switch (note.NoteLineType)
+        {
+            case CommonData.NOTE_LINE.INDEX_1:
+                ani.SetTrigger("LEFT");
+                StartCoroutine(Co_DeleteNoteAni(obj, true));
+                break;
+            case CommonData.NOTE_LINE.INDEX_2:
+                if(Random.Range(0, 1) == 1)
+                {
+                    ani.SetTrigger("LEFT");
+                    StartCoroutine(Co_DeleteNoteAni(obj, true));
+                }
+                else
+                {
+                    ani.SetTrigger("RIGHT");
+                    StartCoroutine(Co_DeleteNoteAni(obj, false));
+                }
+                break;
+            case CommonData.NOTE_LINE.INDEX_3:
+                ani.SetTrigger("RIGHT");
+                StartCoroutine(Co_DeleteNoteAni(obj, false));
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    IEnumerator Co_DeleteNoteAni(GameObject obj, bool left)
+    {
+        float time = 1;
+        float saveTime = 0;
+        while(saveTime < time)
+        {
+            saveTime += Time.fixedDeltaTime;
+            if(left)
+                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x - 0.1f, obj.transform.localPosition.y + 0.1f, obj.transform.localPosition.z);
+            else
+                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x + 0.1f, obj.transform.localPosition.y + 0.1f, obj.transform.localPosition.z);
+            yield return null;
+        }
+        DestroyImmediate(obj);
+    }
+
     private void GetUserTouchEvent()
     {
         if (Input.GetMouseButtonDown(0))

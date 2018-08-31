@@ -317,7 +317,8 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
-            PlayerData.Instance.SetLastEquipItemId(ItemSlotList[EquipItemSlotIndex].ItemId);
+            if(EquipItemSlotIndex >= 0)
+                PlayerData.Instance.SetLastEquipItemId(ItemSlotList[EquipItemSlotIndex].ItemId);
             PopupManager.Instance.DismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
