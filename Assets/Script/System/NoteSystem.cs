@@ -37,15 +37,9 @@ public class NoteSystem
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
         NoteNormalCreateList.Clear();
-        
-        var endPos = NoteGroupEndPos.localPosition;
-        for (int i = 0; i < NoteGroupList.Count; i++)
-        {
-            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
-            NoteGroupList[i].ResetNoteGroup();
-        }
 
-        if(NoteItemCreatePercentList.Count <= 0)
+        AllDeleteNote();
+        if (NoteItemCreatePercentList.Count <= 0)
         {
             NoteItemAllPercentValue = 0;
             var enumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
@@ -76,6 +70,17 @@ public class NoteSystem
         }
     }
 
+    public void AllDeleteNote()
+    {
+        var endPos = NoteGroupEndPos.localPosition;
+        for (int i = 0; i < NoteGroupList.Count; i++)
+        {
+            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
+            NoteGroupList[i].ResetNoteGroup();
+        }
+
+    }
+
     public void GameStart()
     {
         ResetSystem();
@@ -95,6 +100,11 @@ public class NoteSystem
     public void GameExit()
     {
         ResetSystem();
+    }
+
+    public void GameRevival()
+    {
+        AllDeleteNote();
     }
 
     public void NoteUpdate(float time, float speedTime)

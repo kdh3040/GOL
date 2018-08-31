@@ -117,6 +117,8 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameRevival()
     {
+        mDoorSystem.GameRevival();
+        mNoteSystem.GameRevival();
         mGameUIPage.GameResume();
     }
 

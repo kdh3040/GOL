@@ -38,6 +38,11 @@ public class DoorSystem
         ResetSystem();
     }
 
+    public void GameRevival()
+    {
+        SetAllDoorState(Door.DOOR_STATE.CLOSE);
+    }
+
     public void SetAllDoorState(Door.DOOR_STATE state)
     {
         for (int i = 0; i < DoorList.Count; i++)
