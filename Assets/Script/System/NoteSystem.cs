@@ -130,6 +130,8 @@ public class NoteSystem
                     }
                     else
                     {
+                        if(note != null)
+                            NoteGroupList[i].DeleteNote(note.NoteLineType);
                         NoteGroupReset(i);
                     }
                 }
