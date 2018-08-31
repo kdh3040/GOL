@@ -357,15 +357,27 @@ public class GamePlayManager : MonoBehaviour
                 break;
         }
 
+        Animator ani = obj.GetComponent<Animator>();
         switch (note.NoteLineType)
         {
             case CommonData.NOTE_LINE.INDEX_1:
+                ani.SetTrigger("LEFT");
                 StartCoroutine(Co_DeleteNoteAni(obj, true));
                 break;
             case CommonData.NOTE_LINE.INDEX_2:
-                StartCoroutine(Co_DeleteNoteAni(obj, Random.Range(0,1) == 1 ? true : false));
+                if(Random.Range(0, 1) == 1)
+                {
+                    ani.SetTrigger("LEFT");
+                    StartCoroutine(Co_DeleteNoteAni(obj, true));
+                }
+                else
+                {
+                    ani.SetTrigger("RIGHT");
+                    StartCoroutine(Co_DeleteNoteAni(obj, false));
+                }
                 break;
             case CommonData.NOTE_LINE.INDEX_3:
+                ani.SetTrigger("RIGHT");
                 StartCoroutine(Co_DeleteNoteAni(obj, false));
                 break;
             default:
@@ -376,7 +388,7 @@ public class GamePlayManager : MonoBehaviour
 
     IEnumerator Co_DeleteNoteAni(GameObject obj, bool left)
     {
-        float time = 3;
+        float time = 1;
         float saveTime = 0;
         while(saveTime < time)
         {
