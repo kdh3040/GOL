@@ -243,7 +243,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/DoHoSoft/Unity/GOL/dohosoft.keystore
+  AndroidKeystoreName: D:/unity_gol/dohosoft.keystore
   AndroidKeyaliasName: com.dohosoft.gol
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
