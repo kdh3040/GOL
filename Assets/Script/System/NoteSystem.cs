@@ -104,6 +104,7 @@ public class NoteSystem
 
     public void GameRevival()
     {
+        NoteSpeed -= NoteSpeed * (float)ConfigData.Instance.CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT * 0.01f;
         AllDeleteNote();
     }
 
