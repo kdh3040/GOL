@@ -61,8 +61,5 @@ public class PopupGamePurchase : PopupUI
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_DDONG_BUY_MSG"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
-
-
     }
-
 }

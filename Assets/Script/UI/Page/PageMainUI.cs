@@ -44,11 +44,10 @@ public class PageMainUI : MonoBehaviour
     }
     public void OnClickGameRank()
     {
-        
+        GameCenterManager.Instance.ShowLeaderboardUI();
     }
     public void OnClickGameSetting()
     {
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
-
 }

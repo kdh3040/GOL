@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -39,7 +41,6 @@ public class GamePlayManager : MonoBehaviour
     private NoteSystem mNoteSystem = new NoteSystem();
     public DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
-    private Admob mAdmob = new Admob();
 
     private AudioSource mAudio;
     public AudioClip[] mClip = new AudioClip[3];
@@ -66,15 +67,14 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage = scene.UIPage;
         mPlayerChar = scene.PlayerCharObj;
         mPlayerChar.Initialize();
-        mAdmob.Init();
-        mAudio = scene.gameObject.AddComponent<AudioSource>();
         
+        mAudio = scene.gameObject.AddComponent<AudioSource>();
+
     }
 
     public void ResetGame()
     {
-        mAdmob.HideAd();
-
+    
         UseItemId = PlayerData.Instance.GetUseItemId();
         PlayerData.Instance.SetUseItemId(0);
         StopAllCoroutines();
@@ -328,12 +328,8 @@ public class GamePlayManager : MonoBehaviour
     public void PlayDoorSound(CommonData.NOTE_LINE line)
     {
         mDoorSystem.PlaySound(line);
-    }
-    public void HideAd()
-    {
-        mAdmob.HideAd();
-    }
-
+    }   
+    
     private void GetUserTouchEvent()
     {
         if (Input.GetMouseButtonDown(0))
