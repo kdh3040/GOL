@@ -37,7 +37,7 @@ public class GamePlayManager : MonoBehaviour
     private PlayerChar mPlayerChar = null;
     private bool IsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
-    private DoorSystem mDoorSystem = new DoorSystem();
+    public DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
     private Admob mAdmob = new Admob();
 

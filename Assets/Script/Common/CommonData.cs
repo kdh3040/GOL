@@ -42,6 +42,6 @@ public class CommonData : MonoBehaviour {
     public static int SHIELD_ITEM_ID = 2;
     public static int NOTE_GROUP_NOTE_COUNT = 3;
     public static float NOTE_GROUP_INTERVAL = 4.0f;
-    public static float NOTE_TOUCH_DELETE_INTERVAL = 2.0f;
+    public static float NOTE_TOUCH_DELETE_INTERVAL = 1.0f;
     public static int MAX_DDONG_COUNT = 5;
 }

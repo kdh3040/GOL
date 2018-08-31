@@ -136,6 +136,7 @@ public class NoteSystem
             }
         }
 
+
         UpdateNoteSpeed();
     }
 
@@ -233,7 +234,7 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-            float distance = (NoteGroupList[i].transform.position.y - door.gameObject.transform.position.y);
+            float distance = (NoteGroupList[i].transform.position.y - NoteGroupEndPos.localPosition.y);
             if (minDistance > distance)
             {
                 minDistance = distance;
