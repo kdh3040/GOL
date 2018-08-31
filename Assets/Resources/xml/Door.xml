@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Doors>
-	<Door id = "1" name="DOOR_NAME_SPACE_1" desc="DOOR_DESC_SPACE_1" cost="30" icon="door_b" close_img="Renewal/Door/door_space_close" halfopen_img="Renewal/Door/door_space_half" open_img="Renewal/Door/door_space_open"/>
+	<Door id = "1" name="DOOR_NAME_SPACE_1" desc="DOOR_DESC_SPACE_1" cost="30" icon="door_b" close_img="Renewal/Door/door_space_a_close" halfopen_img="Renewal/Door/door_space_a_half" open_img="Renewal/Door/door_space_a_open"/>
 	<Door id = "2" name="DOOR_NAME_SPACE_2" desc="DOOR_DESC_SPACE_2" cost="30" icon="door_b" close_img="Renewal/Door/door_space_b_close" halfopen_img="Renewal/Door/door_space_b_half" open_img="Renewal/Door/door_space_b_open"/>
 	<Door id = "3" name="DOOR_NAME_SPACE_3" desc="DOOR_DESC_SPACE_3" cost="30" icon="door_b" close_img="Renewal/Door/door_space_c_close" halfopen_img="Renewal/Door/door_space_c_half" open_img="Renewal/Door/door_space_c_open"/>
 	<Door id = "4" name="DOOR_NAME_DESERT_1" desc="DOOR_DESC_DESERT_1" cost="40" icon="door_c" close_img="Renewal/Door/door_desert_c_close" halfopen_img="Renewal/Door/door_desert_c_half" open_img="Renewal/Door/door_desert_c_open"/>
