@@ -75,6 +75,7 @@ public class NoteGroup : MonoBehaviour {
                     break;
             }
 
+            GamePlayManager.Instance.DeleteNoteAni(note);
             note.ResetNote();
 
             return true;

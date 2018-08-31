@@ -243,8 +243,8 @@ public class NoteSystem
 
     public bool NoteDeleteCheck(Door door)
     {
-        float minDistance = float.MaxValue;
-        var minDistanceIndex = 0;
+        //float minDistance = float.MaxValue;
+        //var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
 

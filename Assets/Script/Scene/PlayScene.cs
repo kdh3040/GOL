@@ -15,6 +15,8 @@ public class PlayScene : MonoBehaviour
     public SpriteRenderer Background_Back;
     public SpriteRenderer Background_Front;
 
+    public GameObject NoteDeleteObj;
+
     void Start()
     {
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
