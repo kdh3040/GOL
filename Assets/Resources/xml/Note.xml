@@ -9,4 +9,7 @@
 	<Note id="7" score="10" img="Renewal/Note/space_note1" probability="300"/>
 	<Note id="8" score="20" img="Renewal/Note/space_note2" probability="200"/>
 	<Note id="9" score="30" img="Renewal/Note/space_note3" probability="100"/>
+	<Note id="10" score="10" img="Renewal/Note/apart_note1" probability="300"/>
+	<Note id="11" score="20" img="Renewal/Note/apart_note2" probability="200"/>
+	<Note id="12" score="30" img="Renewal/Note/apart_note3" probability="100"/>
 </Notes>
