@@ -234,15 +234,19 @@ public class NoteSystem
         var minDistanceIndex = 0;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-            float distance = (NoteGroupList[i].transform.position.y - NoteGroupEndPos.localPosition.y);
-            if (minDistance > distance)
-            {
-                minDistance = distance;
-                minDistanceIndex = i;
-            }   
+
+            if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
+                return NoteGroupList[i].DeleteNote(door.NoteLineType);
+
+            //float distance = (NoteGroupList[i].transform.position.y - NoteGroupOpenPos.localPosition.y);
+            //if (minDistance > distance)
+            //{
+            //    minDistance = distance;
+            //    minDistanceIndex = i;
+            //}   
         }
-        if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
-            return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
+        //if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
+        //    return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 
         return false;
     }
