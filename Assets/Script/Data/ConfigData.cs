@@ -29,7 +29,9 @@ public class ConfigData {
     public int REVIVAL_COST;
     public float NOTE_SPEED_UP_INTERVAL;
     public float NOTE_SPEED_UP;
-    
+    public float CHAR_MSG_VIEW_INTERVAL;
+    public int CHAR_MSG_VIEW_PERCENT;
+
 
     public void Initialize(XmlNodeList list)
     {
@@ -59,6 +61,10 @@ public class ConfigData {
                 NOTE_SPEED_UP_INTERVAL = GetFloatValue(node);
             else if (key.Equals("NOTE_SPEED_UP"))
                 NOTE_SPEED_UP = GetFloatValue(node);
+            else if (key.Equals("CHAR_MSG_VIEW_INTERVAL"))
+                CHAR_MSG_VIEW_INTERVAL = GetFloatValue(node);
+            else if (key.Equals("CHAR_MSG_VIEW_PERCENT"))
+                CHAR_MSG_VIEW_PERCENT = GetIntValue(node);
         }
     }
 

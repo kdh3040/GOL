@@ -26,6 +26,8 @@ public class PopupGameShop : PopupUI
 
     public UITopBar Topbar;
     public Image DescIcon;
+    public Image DescCharIcon;
+    public Animator DescCharIconAnim;
     public Text Desc;
     public Button SkinBuyButton;
     public UIPointValue SkinBuyCost;
@@ -198,7 +200,20 @@ public class PopupGameShop : PopupUI
             Desc.text = desc.ToString();
         }
 
-        CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon, false);
+        if (SelectSkinType != CommonData.SKIN_TYPE.CHAR)
+        {
+            DescIcon.gameObject.SetActive(true);
+            DescCharIcon.gameObject.SetActive(false);
+            CommonFunc.SetImageFile(data.GetIcon(), ref DescIcon, false);
+        }
+        else
+        {
+            var charData = data as CharData;
+            DescIcon.gameObject.SetActive(false);
+            DescCharIcon.gameObject.SetActive(true);
+            DescCharIconAnim.Rebind();
+            DescCharIconAnim.SetTrigger(charData.shopani_trigger);
+        }
     }
 
     public void RefreshList()

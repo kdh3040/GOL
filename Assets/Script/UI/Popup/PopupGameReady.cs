@@ -15,6 +15,8 @@ public class PopupGameReady : PopupUI
 
     public UITopBar Topbar;
     public Image DescIcon;
+    public Image DescCharIcon;
+    public Animator DescCharIconAnim;
     public Text Desc;
     public Button ItemBuyButton;
     public UIPointValue ItemBuyCost;
@@ -129,7 +131,21 @@ public class PopupGameReady : PopupUI
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var skinData = PlayerData.Instance.GetUseSkinData(skinType);
-            CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
+
+            if (skinType != CommonData.SKIN_TYPE.CHAR)
+            {
+                DescIcon.gameObject.SetActive(true);
+                DescCharIcon.gameObject.SetActive(false);
+                CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
+            }
+            else
+            {
+                var charData = skinData as CharData;
+                DescIcon.gameObject.SetActive(false);
+                DescCharIcon.gameObject.SetActive(true);
+                DescCharIconAnim.Rebind();
+                DescCharIconAnim.SetTrigger(charData.shopani_trigger);
+            }
 
             SkinChangeButton.gameObject.SetActive(true);
 

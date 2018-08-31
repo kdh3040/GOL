@@ -194,7 +194,7 @@ public class GamePlayManager : MonoBehaviour
 
             SkillManager.Instance.UpdateSkill(time);
             mGameUIPage.RefreshItemSkillUI();
-
+            mGameUIPage.RefreshCharMsgUI(time);
             GetUserTouchEvent();
             yield return null;
         }

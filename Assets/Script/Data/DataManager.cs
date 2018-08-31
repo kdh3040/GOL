@@ -27,6 +27,7 @@ public class DataManager {
     public Dictionary<string, SkillData> SkillDataList = new Dictionary<string, SkillData>();
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
     public Dictionary<int, EndingGroupData> EndingGroupDataList = new Dictionary<int, EndingGroupData>();
+    public Dictionary<int, CharMsgData> CharMsgDataList = new Dictionary<int, CharMsgData>();
     public Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>> SkinSlotLevelDataList = new Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
@@ -48,6 +49,7 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("CharSkinSlotLevel", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("BGSkinSlotLevel", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("DoorSkinSlotLevel", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("CharMsg", "Datas"));
 
         }
 
@@ -161,6 +163,7 @@ public class DataManager {
                     }
                 }
             }
+            
 
             else if (xmlName == "CharSkinSlotLevel")
             {
@@ -229,6 +232,18 @@ public class DataManager {
                     else
                         return -1;
                 });
+            }
+
+            else if (xmlName == "CharMsg")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new CharMsgData(child);
+                        CharMsgDataList.Add(data.id, data);
+                    }
+                }
             }
 
             loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);

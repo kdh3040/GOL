@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<Char id = "1" msg="CHAR_MSG_1"/>
+	<Char id = "2" msg="CHAR_MSG_2"/>
+	<Char id = "3" msg="CHAR_MSG_3"/>
+	<Char id = "4" msg="CHAR_MSG_4"/>
+</Datas>

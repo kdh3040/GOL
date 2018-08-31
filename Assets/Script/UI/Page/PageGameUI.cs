@@ -15,6 +15,10 @@ public class PageGameUI : MonoBehaviour
     public Button GamePauseButton;
     public UICountImgFont GameResumeCount;
 
+    public GameObject CharMsgObj;
+    public Text CharMsg;
+    private float CharMsgViewInterval;
+
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
     void Awake()
@@ -25,6 +29,7 @@ public class PageGameUI : MonoBehaviour
 
     public void ResetUI()
     {
+        CharMsgViewInterval = ConfigData.Instance.CHAR_MSG_VIEW_INTERVAL;
         RefreshItemUI();
         RefreshShieldItemUI();
         Score.SetValue("0", UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
@@ -139,6 +144,35 @@ public class PageGameUI : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END);
+    }
+
+    public void RefreshCharMsgUI(float time)
+    {
+        CharMsgViewInterval -= time;
+        if (CharMsgViewInterval < 0)
+        {
+            CharMsgViewInterval = ConfigData.Instance.CHAR_MSG_VIEW_INTERVAL;
+            bool charMsgViewEnable = ConfigData.Instance.CHAR_MSG_VIEW_PERCENT > Random.Range(1, 100);
+            if(charMsgViewEnable)
+            {
+                var randId = Random.Range(1, DataManager.Instance.CharMsgDataList.Count);
+                ShowCharMsg(randId);
+            }
+        }
+    }
+
+    public void ShowCharMsg(int id)
+    {
+        CharMsgObj.SetActive(true);
+        var data = DataManager.Instance.CharMsgDataList[id];
+        CharMsg.text = LocalizeData.Instance.GetLocalizeString(data.Msg);
+        StartCoroutine(Co_CharMsgDisable());
+    }
+
+    public IEnumerator Co_CharMsgDisable()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        CharMsgObj.gameObject.SetActive(false);
     }
 
     void Update()

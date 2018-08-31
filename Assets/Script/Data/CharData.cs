@@ -8,6 +8,7 @@ public class CharData : SkinData
     
     public string img;
     public string ani_trigger;
+    public string shopani_trigger;
 
     public CharData(XmlNode node)
     {
@@ -19,6 +20,7 @@ public class CharData : SkinData
         skill = node.Attributes.GetNamedItem("skill").Value;
         img = node.Attributes.GetNamedItem("img").Value;
         ani_trigger = node.Attributes.GetNamedItem("ani_trigger").Value;
+        shopani_trigger = node.Attributes.GetNamedItem("shopani_trigger").Value;
     }
 
     public override string GetIcon()
