@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Purchasing;
+//using UnityEngine.Purchasing;
 
-public class PurchaseManager : MonoBehaviour, IStoreListener
+public class PurchaseManager : MonoBehaviour//, IStoreListener
 {
     public static PurchaseManager _instance = null;
     public static PurchaseManager Instance
@@ -18,14 +18,14 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             return _instance;
         }
     }
-
+    /*
     PurchaseManager()
     {
         InitializePurchasing();
     }
 
-    private static IStoreController storeController;
-    private static IExtensionProvider extensionProvider;
+  //  private static IStoreController storeController;
+  //  private static IExtensionProvider extensionProvider;
 
     #region 상품ID
     public const string productId1 = "1";
@@ -39,6 +39,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     {
     }
 
+ 
     private bool IsInitialized()
     {
         return (storeController != null && extensionProvider != null);
@@ -46,6 +47,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void InitializePurchasing()
     {
+        
         if (IsInitialized())
             return;
 
@@ -84,6 +86,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         });
 
         UnityPurchasing.Initialize(this, builder);
+        
     }
 
     public void BuyProductID(string productId)
@@ -117,6 +120,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void RestorePurchase()
     {
+        
         if (!IsInitialized())
         {
             Debug.Log("RestorePurchases FAIL. Not initialized.");
@@ -138,6 +142,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
         }
+        
     }
 
     public void OnInitialized(IStoreController sc, IExtensionProvider ep)
@@ -187,4 +192,6 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     {
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
+
+*/
 }

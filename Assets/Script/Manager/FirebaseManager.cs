@@ -17,7 +17,7 @@ public class FirebaseManager {
             return _instance;
         }
     }
-
+    /*
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
@@ -40,6 +40,7 @@ public class FirebaseManager {
 
     public void TokenRefresh()
     {
+        
         user.TokenAsync(true).ContinueWith(task => {
             if (task.IsCanceled)
             {
@@ -57,10 +58,11 @@ public class FirebaseManager {
 
             Debug.LogFormat("Token: " + idToken);
         });
-
+        
     }
     public bool SingedInFirebase()
     {
+        
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         if (auth.CurrentUser != null)
         {
@@ -68,13 +70,15 @@ public class FirebaseManager {
             TokenRefresh();
             return true;
         }
-
+        
         return false;
+
     }
 
 
     public void LogIn()
     {
+         
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         auth.SignInAnonymouslyAsync().ContinueWith(Task =>
         {
@@ -92,8 +96,9 @@ public class FirebaseManager {
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                     user.DisplayName, user.UserId);
         });
+        
     }
-
+     
     public void OnTokenReceived(object sender, Firebase.Messaging.TokenReceivedEventArgs token)
     {
         Debug.LogFormat("Received Registration Token: " + token.Token);
@@ -121,5 +126,5 @@ public class FirebaseManager {
             }
         }
     }
-
+*/    
 }

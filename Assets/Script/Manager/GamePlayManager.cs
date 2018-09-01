@@ -421,6 +421,8 @@ public class GamePlayManager : MonoBehaviour
 
     private void ShowDDong(float time)
     {
+       
+        /*
         DDongViewTimeSave -= time;
         if(DDongViewTimeSave < 0)
         {
@@ -441,6 +443,7 @@ public class GamePlayManager : MonoBehaviour
                     DDongViewPosChangeIndex = 0;
             }
         }
+        */
     }
 
     private void GetUserTouchEvent()
