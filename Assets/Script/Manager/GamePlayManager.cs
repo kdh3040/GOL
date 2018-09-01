@@ -361,7 +361,7 @@ public class GamePlayManager : MonoBehaviour
                 StartCoroutine(Co_DeleteNoteAni(obj, true));
                 break;
             case CommonData.NOTE_LINE.INDEX_2:
-                if(Random.Range(0, 1) == 1)
+                if(Random.Range(0, 2) == 1)
                 {
                     ani.SetTrigger("LEFT");
                     StartCoroutine(Co_DeleteNoteAni(obj, true));
