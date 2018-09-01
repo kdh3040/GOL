@@ -177,7 +177,7 @@ public class GamePlayManager : MonoBehaviour
                 return false;
         }
 
-        return true;
+        return false;
     }
 
     public void GameOver()
@@ -374,6 +374,7 @@ public class GamePlayManager : MonoBehaviour
         }
 
         Animator ani = obj.GetComponent<Animator>();
+        ani.Rebind();
         switch (note.NoteLineType)
         {
             case CommonData.NOTE_LINE.INDEX_1:
@@ -475,6 +476,11 @@ public class GamePlayManager : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            UseGameNormalItem();
+            //GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
         else if (Input.GetKey(KeyCode.Z))

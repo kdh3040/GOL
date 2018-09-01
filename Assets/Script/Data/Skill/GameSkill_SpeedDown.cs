@@ -21,7 +21,9 @@ public class GameSkill_SpeedDown : GameSkill
     public override void PlusSameSkill(GameSkill data)
     {
         mTime += data.mTime;
-        mMaxTime += data.mTime;
+
+        if (mMaxTime < mTime)
+            mTime = mMaxTime;
     }
 
     public float ConvertSpeed(float time)
