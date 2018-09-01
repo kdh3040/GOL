@@ -43,5 +43,5 @@ public class CommonData : MonoBehaviour {
     public static int NOTE_GROUP_NOTE_COUNT = 3;
     public static float NOTE_GROUP_INTERVAL = 4.0f;
     public static int MAX_DDONG_COUNT = 5;
-    public static float DDONG_VIEW_INTERVAL = 1f;
+    public static float DDONG_VIEW_INTERVAL = 5f;
 }
