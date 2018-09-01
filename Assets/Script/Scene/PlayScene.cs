@@ -16,6 +16,7 @@ public class PlayScene : MonoBehaviour
     public SpriteRenderer Background_Front;
 
     public GameObject NoteDeleteObj;
+    public GameObject DDongViewObj;
 
     void Start()
     {
