@@ -8,6 +8,7 @@ public class PlayerChar : MonoBehaviour
     public Animator PlayerAnim;
     public SpriteRenderer PlayerImage;
     public CharData Data;
+    public string CurrentTrigger;
 
     public void Initialize()
     {
@@ -24,21 +25,15 @@ public class PlayerChar : MonoBehaviour
 
     public void ActionDoorClose(Door doorType)
     {
-        if(doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_1)
-            PlayerAnim.SetTrigger("NOTE_LINE_1");
+        //PlayerAnim.Rebind();
+        PlayerAnim.ResetTrigger(CurrentTrigger);
+        if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_1)
+            CurrentTrigger = "NOTE_LINE_1";
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_2)
-            PlayerAnim.SetTrigger("NOTE_LINE_2");
+            CurrentTrigger = "NOTE_LINE_2";
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_3)
-            PlayerAnim.SetTrigger("NOTE_LINE_3");
-    }
+            CurrentTrigger = "NOTE_LINE_3";
 
-
-    // 문닫는 애니메이션 끝나고 Idle 애니메이션으로 복귀
-    void TouchAnimEnd()
-    {
-        if (PlayerAnim != null)
-        {
-            PlayerAnim.SetTrigger("Idle");
-        }
+        PlayerAnim.SetTrigger(CurrentTrigger);
     }
 }

@@ -177,7 +177,7 @@ public class GamePlayManager : MonoBehaviour
                 return false;
         }
 
-        return false;
+        return true;
     }
 
     public void GameOver()
