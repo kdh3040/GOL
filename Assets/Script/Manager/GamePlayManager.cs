@@ -49,6 +49,11 @@ public class GamePlayManager : MonoBehaviour
     public int UseItemId = 0;
     public bool FirstStart = true;
 
+    private GameObject DDongViewObj;
+    private List<GameObject> DDongViewList = new List<GameObject>();
+    private float DDongViewTimeSave;
+    private int DDongViewPosChangeIndex = 0;
+
     public float NoteSpeed
     {
         get
@@ -68,6 +73,7 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage = scene.UIPage;
         mPlayerChar = scene.PlayerCharObj;
         NoteDeleteObj = scene.NoteDeleteObj;
+        DDongViewObj = scene.DDongViewObj;
         mPlayerChar.Initialize();
         
         mAudio = scene.gameObject.AddComponent<AudioSource>();
@@ -85,6 +91,15 @@ public class GamePlayManager : MonoBehaviour
         FirstStart = false;
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
+
+        for (int i = 0; i < DDongViewList.Count; i++)
+        {
+            DestroyImmediate(DDongViewList[i]);
+        }
+        DDongViewList.Clear();
+
+        DDongViewTimeSave = CommonData.DDONG_VIEW_INTERVAL;
+        DDongViewPosChangeIndex = 0;
     }
     public void GameExit()
     {
@@ -200,6 +215,7 @@ public class GamePlayManager : MonoBehaviour
             mGameUIPage.RefreshItemSkillUI();
             mGameUIPage.RefreshCharMsgUI(time);
             GetUserTouchEvent();
+            ShowDDong(time);
             yield return null;
         }
     }
@@ -358,6 +374,7 @@ public class GamePlayManager : MonoBehaviour
         }
 
         Animator ani = obj.GetComponent<Animator>();
+        ani.Rebind();
         switch (note.NoteLineType)
         {
             case CommonData.NOTE_LINE.INDEX_1:
@@ -402,6 +419,30 @@ public class GamePlayManager : MonoBehaviour
         DestroyImmediate(obj);
     }
 
+    private void ShowDDong(float time)
+    {
+        DDongViewTimeSave -= time;
+        if(DDongViewTimeSave < 0)
+        {
+            DDongViewTimeSave = CommonData.DDONG_VIEW_INTERVAL;
+
+            if (DDongViewList.Count <= 10)
+            {
+                var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7f, -9f), 0);
+                DDongViewList.Add(obj);
+            }
+            else
+            {
+                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7f, -9f), 0);
+                DDongViewPosChangeIndex++;
+
+                if (DDongViewPosChangeIndex >= 10)
+                    DDongViewPosChangeIndex = 0;
+            }
+        }
+    }
+
     private void GetUserTouchEvent()
     {
         if (Input.GetMouseButtonDown(0))
@@ -435,6 +476,11 @@ public class GamePlayManager : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            UseGameNormalItem();
+            //GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
         else if (Input.GetKey(KeyCode.Z))

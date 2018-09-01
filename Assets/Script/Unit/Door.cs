@@ -71,6 +71,7 @@ public class Door : MonoBehaviour
 
     public void SetEffect(string trigger)
     {
+        DoorEffectAnim.Rebind();
         DoorEffectAnim.SetTrigger(trigger);
 
         switch (trigger)

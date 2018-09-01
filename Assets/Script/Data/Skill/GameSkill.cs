@@ -22,7 +22,7 @@ public abstract class GameSkill
         mTime = mSkillData.time;
         mCount = mSkillData.count;
         mPercent = mSkillData.percent * 0.01f;
-        mMaxTime = mTime;
+        mMaxTime = mSkillData.time;
     }
 
     public virtual void StartSkill()
@@ -40,9 +40,10 @@ public abstract class GameSkill
     public virtual void PlusSameSkill(GameSkill data)
     {
         mTime += data.mTime;
+        if (mMaxTime < mTime)
+            mTime = mMaxTime;
         mCount += data.mCount;
         mPercent += data.mPercent;
-        mMaxTime += data.mTime;
     }
     public abstract void SkillUpdate(float time);
 }

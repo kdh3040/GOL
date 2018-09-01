@@ -21,6 +21,7 @@ public class DoorSystem
     public void ResetSystem()
     {
         SetAllDoorState(Door.DOOR_STATE.CLOSE);
+        SetDoorEffect("IDLE");
     }
 
     public void GameStart()
