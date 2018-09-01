@@ -250,23 +250,27 @@ public class GamePlayManager : MonoBehaviour
         }
         else
         {
-            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
-            if (skill != null)
+            if(UseItemId == 0)
             {
-                var shieldCount = skill.mCount;
-                if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
+                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
+                if (skill != null)
+                {
+                    var shieldCount = skill.mCount;
+                    if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
+                    {
+                        UseItemId = id;
+                        UseGameShieldItem();
+                        itemAdd = true;
+                    }
+                }
+                else
                 {
                     UseItemId = id;
                     UseGameShieldItem();
                     itemAdd = true;
                 }
             }
-            else
-            {
-                UseItemId = id;
-                UseGameShieldItem();
-                itemAdd = true;
-            }
+            
             
 
             if (itemAdd == false)
