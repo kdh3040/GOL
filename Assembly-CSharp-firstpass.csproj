@@ -72,43 +72,43 @@
     <Compile Include="Assets\Plugins\UnityPurchasing\script\IAPDemoProductUI.cs" />
     <Compile Include="Assets\Plugins\UnityPurchasing\script\IAPListener.cs" />
     <Compile Include="Assets\Plugins\UnityPurchasing\script\PurchasingCheck.cs" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values-v14\values-v14.xml" />
-    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-app-unity-5.1.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-games-license-11.8.0\third_party_licenses.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-messaging-unity-5.1.1\R.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-base-license-11.8.0\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-drive-license-11.8.0\third_party_licenses.txt" />
     <None Include="Assets\Plugins\Android\com.google.firebase.firebase-app-unity-5.1.1\R.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\R.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\R.txt" />
     <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-games-license-11.8.0\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-messaging-unity-5.1.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-nearby-license-11.8.0\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\proguard.txt" />
     <None Include="Assets\Plugins\Android\com.google.firebase.firebase-messaging-unity-5.1.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-nearby-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-base-license-11.8.0\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-messaging-unity-5.1.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-messaging-unity-5.1.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-base-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-games-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\proguard.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\proguard.txt" />
+    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values-v11\values-v11.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\proguard.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-api-phone-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-drive-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-nearby-license-11.8.0\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-app-unity-5.1.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values-v14\values-v14.xml" />
     <None Include="Assets\Plugins\UnityPurchasing\script\link.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-drive-license-11.8.0\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-api-phone-license-11.8.0\third_party_licenses.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-app-unity-5.1.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values\values.xml" />
     <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\R.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-common-16.0.1\third_party_licenses.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-app-unity-5.1.1\proguard.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\AndroidManifest.xml" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-drive-license-11.8.0\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-api-phone-license-11.8.0\AndroidManifest.xml" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-analytics-unity-5.1.1\proguard.txt" />
-    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-auth-unity-5.1.1\R.txt" />
-    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values-v11\values-v11.xml" />
-    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-auth-base-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.firebase.firebase-database-unity-5.1.1\R.txt" />
+    <None Include="Assets\Plugins\Android\com.google.android.gms.play-services-nearby-license-11.8.0\third_party_licenses.txt" />
+    <None Include="Assets\Plugins\Android\com.google.games.gpgs-plugin-support-0.9.50\res\values\values.xml" />
     <None Include="Assets\Plugins\Android\Firebase\res\values\google-services.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/DoHoSoft/Unity/GOL/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -344,6 +344,42 @@
     <Reference Include="Unity.Tasks">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
     </Reference>
+    <Reference Include="UDP">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
+    </Reference>
+    <Reference Include="AppStoreSettings">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Editor">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="Apple">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/User0/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -352,42 +388,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/User0/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="ChannelPurchase">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityStore">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
-    </Reference>
-    <Reference Include="UDP">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
-    </Reference>
-    <Reference Include="AppStoreSettings">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
-    </Reference>
-    <Reference Include="Security">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Stores">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Editor">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="winrt">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Apple">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
-    </Reference>
-    <Reference Include="Tizen">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/DoHoSoft/Unity/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
