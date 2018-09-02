@@ -40,13 +40,8 @@ public class GameCenterManager : MonoBehaviour {
 
 #if UNITY_ANDROID
 
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()                         
-         // requests a server auth code be generated so it can be passed to an
-         //  associated back end server application and exchanged for an OAuth token.
-         .RequestServerAuthCode(false)
-         // requests an ID token be generated.  This OAuth token can be used to
-         //  identify the player to other services such as Firebase.
-         .RequestIdToken()
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+         .EnableSavedGames()
          .Build();
 
         PlayGamesPlatform.InitializeInstance(config);
@@ -103,34 +98,37 @@ public class GameCenterManager : MonoBehaviour {
 
     public void ShowLeaderboardUI()
     {
-        // Sign In 이 되어있지 않은 상태라면
-        // Sign In 후 리더보드 UI 표시 요청할 것
-        
-        if (PlayGamesPlatform.Instance.localUser.authenticated == false)
         {
-            PlayGamesPlatform.Instance.Authenticate((bool success) =>
+            // Sign In 이 되어있지 않은 상태라면
+            // Sign In 후 리더보드 UI 표시 요청할 것
+            if (Social.localUser.authenticated == false)
             {
-                if (success)
+                Social.localUser.Authenticate((bool success) =>
                 {
-                    Debug.Log("!!!!!! ShowLeaderboardUI Success");
-                    PlayGamesPlatform.Instance.ShowLeaderboardUI();
-                }
-                else
-                {
-                    Debug.Log("!!!!!! ShowLeaderboardUI fail");
-                    // to do ...
-                    // 구글 플레이 게임 서비스 로그인 실패 처리
-                }
-            });
-        }
-        
-        /*
+                    if (success)
+                    {
+                        // Sign In 성공
+                        // 바로 리더보드 UI 표시 요청
+                        Social.ShowLeaderboardUI();
+                        return;
+                    }
+                    else
+                    {
+                        // Sign In 실패 
+                        // 그에 따른 처리
+                        return;
+                    }
+                });
+            }
+
 #if UNITY_ANDROID
-        PlayGamesPlatform.Instance.ShowLeaderboardUI();
+            PlayGamesPlatform.Instance.ShowLeaderboardUI();
 #elif UNITY_IOS
         GameCenterPlatform.ShowLeaderboardUI("Leaderboard_ID", UnityEngine.SocialPlatforms.TimeScope.AllTime);
 #endif
-*/
+        }
+
     }
+        
 
 }
