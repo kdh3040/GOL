@@ -312,7 +312,9 @@
     <Compile Include="Assets\Script\Unit\Note.cs" />
     <Compile Include="Assets\Script\Unit\NoteGroup.cs" />
     <Compile Include="Assets\Script\Unit\PlayerChar.cs" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
+    <None Include="Assets\Firebase\Plugins\link.xml" />
     <None Include="Assets\Resources\xml\EndingGroup.xml" />
     <None Include="Assets\Resources\xml\CharSkinSlotLevel.xml" />
     <None Include="Assets\Resources\xml\Character.xml" />
@@ -324,6 +326,8 @@
     <None Include="Assets\Resources\xml\Door.xml" />
     <None Include="Assets\Resources\xml\Ending.xml" />
     <None Include="Assets\Resources\xml\BGSkinSlotLevel.xml" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-messaging-unity\maven-metadata.xml" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
     <None Include="Assets\Resources\xml\CommonData.xml" />
     <None Include="Assets\Resources\xml\Background.xml" />
     <None Include="Assets\Resources\xml\CharMsg.xml" />
@@ -534,11 +538,62 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>F:/unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Auth">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Messaging">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Compat">
       <HintPath>F:/unity/GOL/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Tasks">
       <HintPath>F:/unity/GOL/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="UDP">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
+    </Reference>
+    <Reference Include="AppStoreSettings">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Editor">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="Apple">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/boram/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
@@ -548,42 +603,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/boram/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="ChannelPurchase">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityStore">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
-    </Reference>
-    <Reference Include="UDP">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
-    </Reference>
-    <Reference Include="AppStoreSettings">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
-    </Reference>
-    <Reference Include="Security">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Stores">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Editor">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="winrt">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Apple">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
-    </Reference>
-    <Reference Include="Tizen">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>F:/unity/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

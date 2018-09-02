@@ -33,7 +33,7 @@ public class GManager : MonoBehaviour
 
         PlayerData.Instance.Initialize();
 
-        /*
+        
         if (!FirebaseManager.Instance.SingedInFirebase())
         {
             FirebaseManager.Instance.LogIn();
@@ -41,7 +41,7 @@ public class GManager : MonoBehaviour
 
         Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
         Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
-        */
+        
         GameCenterManager.Instance.SignIn();
 
 

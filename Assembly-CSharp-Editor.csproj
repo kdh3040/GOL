@@ -70,13 +70,18 @@
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.84.0.txt" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
+    <None Include="Assets\Firebase\Editor\FirebaseAuth_v5.2.1_manifest.txt" />
+    <None Include="Assets\Firebase\Editor\FirebaseMessaging_v5.2.1_manifest.txt" />
     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
     <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
+    <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
+    <None Include="Assets\Firebase\Editor\AuthDependencies.xml" />
     <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
-    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.61.0.txt" />
     <None Include="Assets\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.9.50.txt" />
+    <None Include="Assets\Firebase\Editor\MessagingDependencies.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/unity/GOL/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -335,23 +340,80 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>F:/unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.Editor">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Editor/Firebase.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Auth">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Messaging">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>F:/unity/GOL/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Compat">
       <HintPath>F:/unity/GOL/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Tasks">
       <HintPath>F:/unity/GOL/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="Google.IOSResolver_v1.2.61.0">
-      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.61.0.dll</HintPath>
+    <Reference Include="Google.IOSResolver_v1.2.84.0">
+      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.84.0.dll</HintPath>
     </Reference>
-    <Reference Include="Google.JarResolver_v1.2.61.0">
-      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.61.0.dll</HintPath>
+    <Reference Include="Google.JarResolver_v1.2.84.0">
+      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.84.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
       <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
-    <Reference Include="Google.VersionHandlerImpl_v1.2.61.0">
-      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.61.0.dll</HintPath>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.84.0">
+      <HintPath>F:/unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.84.0.dll</HintPath>
+    </Reference>
+    <Reference Include="UDP">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
+    </Reference>
+    <Reference Include="AppStoreSettings">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="UDPEditor">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/Editor/UDPEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Editor">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="Apple">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/boram/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -373,45 +435,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="ChannelPurchase">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/ChannelPurchase.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityStore">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityChannel/UnityStore.dll</HintPath>
-    </Reference>
-    <Reference Include="UDPEditor">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/Editor/UDPEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UDP">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>
-    </Reference>
-    <Reference Include="AppStoreSettings">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UDP/UdpSupport/AppStoreSettings.dll</HintPath>
-    </Reference>
-    <Reference Include="Security">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Stores">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Editor">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="winrt">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Apple">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
-    </Reference>
-    <Reference Include="Tizen">
-      <HintPath>F:/unity/GOL/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>F:/unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

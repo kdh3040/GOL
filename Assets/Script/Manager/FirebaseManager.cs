@@ -17,7 +17,7 @@ public class FirebaseManager {
             return _instance;
         }
     }
-    /*
+    
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
@@ -44,19 +44,19 @@ public class FirebaseManager {
         user.TokenAsync(true).ContinueWith(task => {
             if (task.IsCanceled)
             {
-                Debug.LogError("TokenAsync was canceled.");
+                Debug.Log("!!!!! TokenAsync was canceled.");
                 return;
             }
 
             if (task.IsFaulted)
             {
-                Debug.LogError("TokenAsync encountered an error: " + task.Exception);
+                Debug.Log("!!!!! TokenAsync encountered an error: " + task.Exception);
                 return;
             }
 
             string idToken = task.Result;
 
-            Debug.LogFormat("Token: " + idToken);
+            Debug.Log("!!!!! Token: " + idToken);
         });
         
     }
@@ -84,15 +84,18 @@ public class FirebaseManager {
         {
             if (Task.IsCanceled)
             {
+                Debug.Log("!!!!!! User signed in IsCanceled");
                 return;
             }
             if(Task.IsFaulted)
             {
+                Debug.Log("!!!!!! User signed in IsFaulted");
                 return;
             }
 
             user = Task.Result;
             TokenRefresh();
+            Debug.Log("!!!!!! User signed in successfully");
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                     user.DisplayName, user.UserId);
         });
@@ -101,7 +104,7 @@ public class FirebaseManager {
      
     public void OnTokenReceived(object sender, Firebase.Messaging.TokenReceivedEventArgs token)
     {
-        Debug.LogFormat("Received Registration Token: " + token.Token);
+        Debug.Log("!!!!! Received Registration Token: " + token.Token);
     }
 
     public void OnMessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e)
@@ -111,20 +114,20 @@ public class FirebaseManager {
         var notification = e.Message.Notification;
         if (notification != null)
         {
-            Debug.LogFormat("title: " + notification.Title);
-            Debug.LogFormat("body: " + notification.Body);
+            Debug.Log("!!!!! title: " + notification.Title);
+            Debug.Log("!!!!! body: " + notification.Body);
 
         }
         if (e.Message.From.Length > 0)
-            Debug.LogFormat("from: " + e.Message.From);
+            Debug.Log("!!!!! from: " + e.Message.From);
         if (e.Message.Data.Count > 0)
         {
-            Debug.LogFormat("data:");
+            Debug.Log("!!!!! data:");
             foreach (System.Collections.Generic.KeyValuePair<string, string> iter in e.Message.Data)
             {
-                Debug.LogFormat("  " + iter.Key + ": " + iter.Value);
+                Debug.Log("!!!!!   " + iter.Key + ": " + iter.Value);
             }
         }
     }
-*/    
+ 
 }
