@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Purchasing;
+using UnityEngine.Purchasing;
 
-public class PurchaseManager : MonoBehaviour//, IStoreListener
+public class PurchaseManager : MonoBehaviour, IStoreListener
 {
     public static PurchaseManager _instance = null;
     public static PurchaseManager Instance
@@ -18,14 +18,14 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
             return _instance;
         }
     }
-    /*
+    
     PurchaseManager()
     {
         InitializePurchasing();
     }
 
-  //  private static IStoreController storeController;
-  //  private static IExtensionProvider extensionProvider;
+    private static IStoreController storeController;
+    private static IExtensionProvider extensionProvider;
 
     #region 상품ID
     public const string productId1 = "1";
@@ -193,5 +193,5 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 
-*/
+
 }

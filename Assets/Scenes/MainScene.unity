@@ -350,7 +350,7 @@ Prefab:
     - target: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 880
+      value: 820
       objectReference: {fileID: 0}
     - target: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
         type: 2}
@@ -405,6 +405,10 @@ Prefab:
     - target: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
         type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235678843177162, guid: d7daf9bbb89a90c43a32f4a6cdacf538, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1768,8 +1772,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 1080, y: 1560}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 1080, y: 1480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1756338716
 Animator:
