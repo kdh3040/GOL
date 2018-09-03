@@ -1,28 +1,73 @@
-##############################
-# Unity folders & files
-**/Library/
-**/obj/
-**/Temp/
-**/v15/
-
-
-##############################
-# Source Files
-
-*.psd
-*.max
-
-##############################
-# Package files
-*.7z
-*.gz
-*.rar
-*.tar
-*.zip
+# =============== #
  
-######################
-# Logs and databases
-*.log
-.DS_Store*
+# Unity generated #
+ 
+# =============== #
+ 
+Temp/
+ 
+Obj/
+ 
+UnityGenerated/
+ 
+Library/
+ 
+ 
+ 
+# ===================================== #
+ 
+# Visual Studio / MonoDevelop generated #
+ 
+# ===================================== #
+ 
+ExportedObj/
+ 
+*.svd
+ 
+*.userprefs
+ 
+*.csproj
+ 
+*.pidb
+ 
+*.suo
+ 
+*.sln
+ 
+*.user
+ 
+*.unityproj
+ 
+*.booproj
+ 
+ 
+ 
+# ============ #
+ 
+# OS generated #
+ 
+# ============ #
+ 
+.DS_Store
+ 
+.DS_Store?
+ 
+._*
+ 
+.Spotlight-V100
+ 
+.Trashes
+ 
+Icon?
+ 
+ehthumbs.db
+ 
 Thumbs.db
-AssetsPlayerData.ini
+ 
+GraphicsSettings.asset
+ 
+ProjectSettings.asset
+ 
+ProjectVersion.txt
+
+

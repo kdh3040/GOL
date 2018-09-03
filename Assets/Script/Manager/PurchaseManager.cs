@@ -6,6 +6,7 @@ using UnityEngine.Purchasing;
 
 public class PurchaseManager : MonoBehaviour, IStoreListener
 {
+    
     public static PurchaseManager _instance = null;
     public static PurchaseManager Instance
     {
