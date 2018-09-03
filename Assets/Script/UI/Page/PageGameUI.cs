@@ -14,6 +14,7 @@ public class PageGameUI : MonoBehaviour
     public Transform SkillProgressStartPos;
     public Button GamePauseButton;
     public UICountImgFont GameResumeCount;
+    public List<Button> DoorButtons = new List<Button>();
 
     public GameObject CharMsgObj;
     public Text CharMsg;
@@ -21,10 +22,17 @@ public class PageGameUI : MonoBehaviour
 
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
+
     void Awake()
     {
         ItemButton.onClick.AddListener(OnClickItem);
         GamePauseButton.onClick.AddListener(OnClickPause);
+
+        for (int i = 0; i < DoorButtons.Count; i++)
+        {
+            int index = i;
+            DoorButtons[i].onClick.AddListener(() => { OnClickDoorButton(index); });
+        }
     }
 
     public void ResetUI()
@@ -107,6 +115,7 @@ public class PageGameUI : MonoBehaviour
 
     public void GameResume()
     {
+        CharMsgViewInterval = ConfigData.Instance.CHAR_MSG_VIEW_INTERVAL;
         GameResumeCount.gameObject.SetActive(true);
         StartCoroutine(Co_GameResume());
     }
@@ -148,6 +157,9 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshCharMsgUI(float time)
     {
+        if (GamePlayManager.Instance.IsGamePause)
+            return;
+
         CharMsgViewInterval -= time;
         if (CharMsgViewInterval < 0)
         {
@@ -173,6 +185,11 @@ public class PageGameUI : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         CharMsgObj.gameObject.SetActive(false);
+    }
+
+    public void OnClickDoorButton(int index)
+    {
+        GamePlayManager.Instance.ClickDoorButton(index);
     }
 
     void Update()

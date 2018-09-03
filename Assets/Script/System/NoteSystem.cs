@@ -70,11 +70,20 @@ public class NoteSystem
         }
     }
 
-    public void AllDeleteNote()
+    public void AllDeleteNote(bool deleteAni = false)
     {
         var endPos = NoteGroupEndPos.localPosition;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
+            if(deleteAni)
+            {
+                for (int index_1 = 0; index_1 < NoteGroupList[i].NoteList.Length; index_1++)
+                {
+                    if (NoteGroupList[i].NoteList[index_1].NoteType != CommonData.NOTE_TYPE.NONE)
+                        GamePlayManager.Instance.DeleteNoteAni(NoteGroupList[i].NoteList[index_1]);
+                }
+            }
+
             NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
             NoteGroupList[i].ResetNoteGroup();
         }
@@ -105,7 +114,7 @@ public class NoteSystem
     public void GameRevival()
     {
         NoteSpeed -= NoteSpeed * (float)ConfigData.Instance.CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT * 0.01f;
-        AllDeleteNote();
+        AllDeleteNote(true);
     }
 
     public void NoteUpdate(float time, float speedTime)

@@ -37,7 +37,7 @@ public class GamePlayManager : MonoBehaviour
         private set;
     }
     private PlayerChar mPlayerChar = null;
-    private bool IsGamePause = false;
+    public bool IsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
     public DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
@@ -47,7 +47,6 @@ public class GamePlayManager : MonoBehaviour
     public AudioClip[] mClip = new AudioClip[3];
 
     public int UseItemId = 0;
-    public bool FirstStart = true;
 
     private GameObject DDongViewObj;
     private List<GameObject> DDongViewList = new List<GameObject>();
@@ -88,7 +87,6 @@ public class GamePlayManager : MonoBehaviour
         StopAllCoroutines();
         Score = 0;
         IsGamePause = false;
-        FirstStart = false;
         mGameUIPage.ResetUI();
         SkillManager.Instance.ResetGame();
 
@@ -109,8 +107,6 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
-    
-        FirstStart = true;
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
@@ -124,6 +120,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameRestart()
     {
         ResetGame();
+        mPlayerChar.Initialize();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
@@ -219,9 +216,15 @@ public class GamePlayManager : MonoBehaviour
             yield return null;
         }
     }
-
+    public void ClickDoorButton(int index)
+    {
+        ClickDoor(mDoorSystem.DoorList[index]);
+    }
     public void ClickDoor(Door door)
     {
+        if (IsGamePause)
+            return;
+
         mNoteSystem.NoteDeleteCheck(door);
         // 라인타입
         mPlayerChar.ActionDoorClose(door);
@@ -357,7 +360,7 @@ public class GamePlayManager : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteAni"), NoteDeleteObj.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         //sprite.gameObject.transform.SetParent(NoteDeleteObj.transform);
-        obj.gameObject.transform.localPosition = note.transform.localPosition;
+        obj.gameObject.transform.localPosition = note.transform.position;
 
         switch (note.NoteType)
         {
@@ -421,8 +424,6 @@ public class GamePlayManager : MonoBehaviour
 
     private void ShowDDong(float time)
     {
-       
-        /*
         DDongViewTimeSave -= time;
         if(DDongViewTimeSave < 0)
         {
@@ -431,7 +432,7 @@ public class GamePlayManager : MonoBehaviour
             if (DDongViewList.Count <= 10)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
-                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7f, -9f), 0);
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), 0);
                 DDongViewList.Add(obj);
             }
             else
@@ -443,30 +444,29 @@ public class GamePlayManager : MonoBehaviour
                     DDongViewPosChangeIndex = 0;
             }
         }
-        */
     }
 
     private void GetUserTouchEvent()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
-                if(mClickDoor != null)
-                {
-                    GamePlayManager.Instance.ClickDoor(mClickDoor);
-                    Debug.Log("Complete" + hit.collider.name);
-                }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        var mClickDoor = hit.collider.gameObject.GetComponent<Door>();
+        //        if(mClickDoor != null)
+        //        {
+        //            GamePlayManager.Instance.ClickDoor(mClickDoor);
+        //            Debug.Log("Complete" + hit.collider.name);
+        //        }
                     
-            }
-            else
-            {
-                Debug.Log("null");
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("null");
+        //    }
+        //}
 
         if (Input.GetKey(KeyCode.A))
         {

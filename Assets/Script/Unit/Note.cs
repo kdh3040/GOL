@@ -75,7 +75,7 @@ public class Note : MonoBehaviour
         NoteId = id;
         NoteType = CommonData.NOTE_TYPE.ITEM;
         ItemData = ItemManager.Instance.GetItemData(id);
-        NoteImage.sprite = (Sprite)Resources.Load(ItemData.icon, typeof(Sprite));
+        NoteImage.sprite = (Sprite)Resources.Load(ItemData.note_img, typeof(Sprite));
         NoteCollider.enabled = true;
     }
 }

@@ -12,6 +12,7 @@ public class PlayerChar : MonoBehaviour
 
     public void Initialize()
     {
+        CurrentTrigger = "";
         Data = DataManager.Instance.CharDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR)];
         PlayerAnim.Rebind();
         PlayerImage.sprite = (Sprite)Resources.Load(GetCharImg("_idle"), typeof(Sprite));
@@ -25,8 +26,9 @@ public class PlayerChar : MonoBehaviour
 
     public void ActionDoorClose(Door doorType)
     {
-        //PlayerAnim.Rebind();
-        PlayerAnim.ResetTrigger(CurrentTrigger);
+        if(CurrentTrigger != "")
+            PlayerAnim.ResetTrigger(CurrentTrigger);
+
         if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_1)
             CurrentTrigger = "NOTE_LINE_1";
         else if (doorType.NoteLineType == CommonData.NOTE_LINE.INDEX_2)
