@@ -237,7 +237,7 @@ public class GamePlayManager : MonoBehaviour
                 continue;
             }
 
-            var time = Time.fixedDeltaTime;
+            var time = Time.deltaTime;
 
             if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
             {
@@ -488,11 +488,11 @@ public class GamePlayManager : MonoBehaviour
         float saveTime = 0;
         while(saveTime < time)
         {
-            saveTime += Time.fixedDeltaTime;
+            saveTime += Time.deltaTime;
             if(left)
-                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x - 0.1f, obj.transform.localPosition.y + 0.1f, obj.transform.localPosition.z);
+                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x - 0.1f, obj.transform.localPosition.y + 0.2f, obj.transform.localPosition.z);
             else
-                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x + 0.1f, obj.transform.localPosition.y + 0.1f, obj.transform.localPosition.z);
+                obj.transform.localPosition = new Vector3(obj.transform.localPosition.x + 0.1f, obj.transform.localPosition.y + 0.2f, obj.transform.localPosition.z);
             yield return null;
         }
         DestroyImmediate(obj);
