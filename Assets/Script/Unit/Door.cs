@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
     public CommonData.NOTE_LINE NoteLineType;
     public DOOR_STATE DoorState = DOOR_STATE.NONE;
     public Animator DoorEffectAnim;
+    public Animator DoorCloseEffect;
     public bool EffectPlay = false;
 
     public void SetData(CommonData.NOTE_LINE type)
@@ -42,7 +43,7 @@ public class Door : MonoBehaviour
         {
             case DOOR_STATE.CLOSE:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.close_img, typeof(Sprite));
-              
+                SetCloseEffect();
                 break;
             case DOOR_STATE.HALF_OPEN:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.halfopen_img, typeof(Sprite));
@@ -67,6 +68,12 @@ public class Door : MonoBehaviour
     public void PlaySound()
     {
         GetComponent<AudioSource>().Play();
+    }
+
+    public void SetCloseEffect()
+    {
+        DoorCloseEffect.Rebind();
+        DoorCloseEffect.SetTrigger("Close");
     }
 
     public void SetEffect(string trigger)
