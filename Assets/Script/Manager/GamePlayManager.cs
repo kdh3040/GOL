@@ -53,6 +53,9 @@ public class GamePlayManager : MonoBehaviour
     private float DDongViewTimeSave;
     private int DDongViewPosChangeIndex = 0;
 
+    private GameObject InGameEffect_Slow;
+    private GameObject InGameEffect_Double;
+
     public float NoteSpeed
     {
         get
@@ -74,7 +77,9 @@ public class GamePlayManager : MonoBehaviour
         NoteDeleteObj = scene.NoteDeleteObj;
         DDongViewObj = scene.DDongViewObj;
         mPlayerChar.Initialize();
-        
+
+        InGameEffect_Slow = scene.InGameEffect_Slow;
+        InGameEffect_Double = scene.InGameEffect_Double;
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
     }
@@ -322,11 +327,14 @@ public class GamePlayManager : MonoBehaviour
         var skill = SkillManager.Instance.UseItemSkill(itemData.id);
         mGameUIPage.UseItemSkill(itemData.id, skill);
         mDoorSystem.StartSkillEffect(skill);
+        ViewInGameEffect(skill);
 
         UseItemId = 0;
         mGameUIPage.RefreshItemUI();
         PlayUseItemSound();
     }
+    
+  
 
     public void PlayUseItemSound()
     {
@@ -351,6 +359,32 @@ public class GamePlayManager : MonoBehaviour
     public void EndSkill(GameSkill skill)
     {
         mDoorSystem.EndSkillEffect(skill);
+        EndInGameEffect(skill);
+    }
+
+
+    public void ViewInGameEffect(GameSkill skill)
+    {
+        if (skill.mSkillType == SkillManager.SKILL_TYPE.SPEED_DOWN)
+        {
+            InGameEffect_Slow.SetActive(true);
+        }
+        else if (skill.mSkillType == SkillManager.SKILL_TYPE.SCORE_UP)
+        {
+            InGameEffect_Double.SetActive(true);
+        }
+    }
+
+    public void EndInGameEffect(GameSkill skill)
+    {
+        if (skill.mSkillType == SkillManager.SKILL_TYPE.SPEED_DOWN)
+        {
+            InGameEffect_Slow.SetActive(false);
+        }
+        else if (skill.mSkillType == SkillManager.SKILL_TYPE.SCORE_UP)
+        {
+            InGameEffect_Double.SetActive(false);
+        }
     }
 
     public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state)
