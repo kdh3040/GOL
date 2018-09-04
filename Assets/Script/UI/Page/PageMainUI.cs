@@ -10,7 +10,6 @@ public class PageMainUI : MonoBehaviour
 
     public Button GamePlay;
     public Button GameShop;
-    public Button GameBook;
     public Button GameRank;
     public Button GameSetting;
 
@@ -18,7 +17,6 @@ public class PageMainUI : MonoBehaviour
     {
         GamePlay.onClick.AddListener(OnClickGamePlay);
         GameShop.onClick.AddListener(OnClickGameShop);
-        GameBook.onClick.AddListener(OnClickGameBook);
         GameRank.onClick.AddListener(OnClickGameRank);
         GameSetting.onClick.AddListener(OnClickGameSetting);
     }
@@ -36,11 +34,6 @@ public class PageMainUI : MonoBehaviour
     public void OnClickGameShop()
     {
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
-    }
-
-    public void OnClickGameBook()
-    {
-//PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
     public void OnClickGameRank()
     {
