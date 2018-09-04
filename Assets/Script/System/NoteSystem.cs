@@ -135,7 +135,7 @@ public class NoteSystem
                     if(note != null && GamePlayManager.Instance.IsGameOver(note.NoteLineType))
                     {
                         GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
-                        GamePlayManager.Instance.GameOver();
+                        GamePlayManager.Instance.GameOver(note);
                     }
                     else
                     {

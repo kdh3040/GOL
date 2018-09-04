@@ -109,5 +109,40 @@
 	<Localize id="CHAR_MSG_2" kr="싼드아!"/>
 	<Localize id="CHAR_MSG_3" kr="바지에 묻으면 안되는데.."/>
 	<Localize id="CHAR_MSG_4" kr="이런.."/>
-	
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_1_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_1_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_2_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_2_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_2_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_3_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_3_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_3_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_4_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_4_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_4_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_5_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_5_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_5_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_6_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_6_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_6_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_7_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_7_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_7_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_8_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_8_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_8_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_9_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_9_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_9_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_10_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_10_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_10_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_11_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_11_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_11_3" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_12_1" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_12_2" kr="누고?"/>
+	<Localize id="NOTE_ENDING_DESC_12_3" kr="누고?"/>
 </Datas>

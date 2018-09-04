@@ -11,6 +11,15 @@ public class PopupGameEnd : PopupUI {
         return PopupManager.POPUP_TYPE.GAME_END;
     }
 
+    public class PopupData : PopupUIData
+    {
+        public int EndNoteId;
+        public PopupData(int endNoteId)
+        {
+            EndNoteId = endNoteId;
+        }
+    }
+
     public UITopBar TopBar;
     public Image EndingScene;
     public Text EndingDesc;
@@ -25,7 +34,7 @@ public class PopupGameEnd : PopupUI {
     private int CoinValue = 0;
     private int PlusScoreValue = 0;
     private int PlusCoinValue = 0;
-    private int EndingSceneId = 0;
+    private int EndNoteId = 0;
 
     void Awake()
     {
@@ -36,6 +45,8 @@ public class PopupGameEnd : PopupUI {
 
     public override void ShowPopup(PopupUIData data)
     {
+        var popupData = data as PopupData;
+        EndNoteId = popupData.EndNoteId;
         ScoreValue = GamePlayManager.Instance.Score;
         CoinValue = 0;
         PlusScoreValue = 0;
@@ -64,22 +75,26 @@ public class PopupGameEnd : PopupUI {
         Score.text = CommonFunc.ConvertNumber(0);
         Coin.text = CommonFunc.ConvertNumber(0);
 
-        var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
-        var endingGroupList = bgData.endingGroupList;
-        for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
-        {
-            var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
-            for (int index_2 = 0; index_2 < endingList.Count; index_2++)
-            {
-                var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
-                if (endingData.IsOpenEnding(CoinValue, ScoreValue) || PlayerData.Instance.HasEnding(endingData.id))
-                    EndingSceneId = endingData.id;
-            }
-        }
+        var noteData = DataManager.Instance.NoteDataDic[EndNoteId];
+        CommonFunc.SetImageFile(noteData.img, ref EndingScene, false);
+        EndingDesc.text = noteData.GetEndDesc();
 
-        var endingViewData = DataManager.Instance.EndingDataList[EndingSceneId];
-        CommonFunc.SetImageFile(endingViewData.img, ref EndingScene, false);
-        EndingDesc.text = endingViewData.GetLocalizeDesc();
+        //var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
+        //var endingGroupList = bgData.endingGroupList;
+        //for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
+        //{
+        //    var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
+        //    for (int index_2 = 0; index_2 < endingList.Count; index_2++)
+        //    {
+        //        var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
+        //        if (endingData.IsOpenEnding(CoinValue, ScoreValue) || PlayerData.Instance.HasEnding(endingData.id))
+        //            EndingSceneId = endingData.id;
+        //    }
+        //}
+
+        //var endingViewData = DataManager.Instance.EndingDataList[EndingSceneId];
+        //CommonFunc.SetImageFile(endingViewData.img, ref EndingScene, false);
+        //EndingDesc.text = endingViewData.GetLocalizeDesc();
 
         StartCoroutine(Co_ScoreCoinEffect());
     }
@@ -88,7 +103,7 @@ public class PopupGameEnd : PopupUI {
     {
         yield return null;
         PlayerData.Instance.PlusCoin(CoinValue + PlusCoinValue);
-        PlayerData.Instance.AddEnding(EndingSceneId);
+       
 
         yield return new WaitForSeconds(0.3f);
         float saveTime = 0;
