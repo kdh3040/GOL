@@ -57,6 +57,8 @@ public class GamePlayManager : MonoBehaviour
     private GameObject InGameEffect_Double;
     private GameObject InGameEffect_Revive;
 
+    private bool FirstStart = true;
+
     public float NoteSpeed
     {
         get
@@ -114,6 +116,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
+        FirstStart = true;
         ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
@@ -225,6 +228,12 @@ public class GamePlayManager : MonoBehaviour
     {
         while(true)
         {
+            if (FirstStart)
+            {
+                yield return new WaitForSecondsRealtime(3.5f);
+                FirstStart = false;
+            }
+                
             if (IsGamePause)
             {
                 yield return null;

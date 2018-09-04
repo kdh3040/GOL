@@ -185,9 +185,10 @@ public class PageGameUI : MonoBehaviour
     {
         GamePlayManager.Instance.ClickDoorButton(index);
     }
-
+#if UNITY_EDITOR
     void Update()
     {
+
         StringBuilder text = new StringBuilder();
         var skillData = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN);
         if (skillData != null)
@@ -253,5 +254,7 @@ public class PageGameUI : MonoBehaviour
         }
 
         Info.text = text.ToString();
+
     }
+#endif
 }
