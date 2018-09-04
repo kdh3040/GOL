@@ -56,8 +56,9 @@ public class GamePlayManager : MonoBehaviour
     private GameObject InGameEffect_Slow;
     private GameObject InGameEffect_Double;
     private GameObject InGameEffect_Revive;
-
+    
     private GameObject InGameEffect_Start;
+    private bool FirstStart = true;
 
     public float NoteSpeed
     {
@@ -118,7 +119,9 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
-        ResetGame();        
+
+        FirstStart = true;
+        ResetGame();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem();
@@ -128,25 +131,30 @@ public class GamePlayManager : MonoBehaviour
         StartCoroutine(UpdateGamePlay());
     }
 
-    public void GameRestart()
-    {
-        ResetGame();        
-        mPlayerChar.Initialize();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
-        SkillManager.Instance.UseSkinSlotSkill();
-        mGameUIPage.RefreshShieldItemUI();
-        mNoteSystem.GameRestart();
-        mDoorSystem.GameRestart();
-        StartCoroutine(UpdateGamePlay());
-    }
 
-    public void GameRevival()
+    public void GameRevival(bool immediately = false)
     {
         mDoorSystem.GameRevival();
         mNoteSystem.GameRevival();
-        mGameUIPage.GameResume();
+
+        if(immediately == false)
+        {
+            IsGamePause = true;
+            mGameUIPage.GameResume();
+            SkillManager.Instance.ResetGame();
+            SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
+            SkillManager.Instance.UseSkinSlotSkill();
+        }
+
         InGameEffect_Revive.SetActive(true);
+        StartCoroutine(Co_GameResume());
     }
+    public IEnumerator Co_GameResume()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        InGameEffect_Revive.SetActive(false);
+    }
+
 
     public void GamePause()
     {
@@ -175,6 +183,7 @@ public class GamePlayManager : MonoBehaviour
             {
                 mGameUIPage.RefreshShieldItemUI();
                 mDoorSystem.ShowSkillEffect_Shield(line);
+                SetDoorState(line, Door.DOOR_STATE.OPEN);
                 return false;
             }
                 
@@ -184,7 +193,11 @@ public class GamePlayManager : MonoBehaviour
             var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.RESURRECTION) as GameSkill_Resurrection;
 
             if (skill.IsResurrection())
+            {
+                GameRevival(true);
                 return false;
+            }
+                
         }
 
         return true;
@@ -208,6 +221,12 @@ public class GamePlayManager : MonoBehaviour
     {
         while(true)
         {
+            if (FirstStart)
+            {
+                yield return new WaitForSecondsRealtime(3.5f);
+                FirstStart = false;
+            }
+                
             if (IsGamePause)
             {
                 yield return null;
