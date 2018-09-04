@@ -18,6 +18,9 @@ public class PlayScene : MonoBehaviour
     public GameObject NoteDeleteObj;
     public GameObject DDongViewObj;
 
+    public GameObject InGameEffect_Slow;
+    public GameObject InGameEffect_Double;
+
     void Start()
     {
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
