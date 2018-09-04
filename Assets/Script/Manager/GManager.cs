@@ -40,7 +40,9 @@ public class GManager : MonoBehaviour
         }
 
         Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
-        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
+
+        if(SettingManager.Instance.GetNotiStatus())
+            Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
         
         GameCenterManager.Instance.SignIn();
 

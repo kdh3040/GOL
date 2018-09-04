@@ -22,6 +22,8 @@ public class PlayScene : MonoBehaviour
     public GameObject InGameEffect_Double;
     public GameObject InGameEffect_Revive;
 
+    public GameObject InGameEffect_Start;
+
     void Start()
     {
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];

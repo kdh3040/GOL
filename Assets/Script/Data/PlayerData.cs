@@ -438,18 +438,21 @@ public class PlayerData
     public void SetSoundSetting(bool enable)
     {
         SoundSetting = enable;
+        SettingManager.Instance.SetSoundStatus(enable);
         SaveFile();
     }
 
     public void SetVibrationSetting(bool enable)
     {
         VibrationSetting = enable;
+        SettingManager.Instance.SetVibeStatus(enable);
         SaveFile();
     }
 
     public void SetAlarmSetting(bool enable)
     {
         AlarmSetting = enable;
+        SettingManager.Instance.SetNotiStatus(enable);
         SaveFile();
     }
 }

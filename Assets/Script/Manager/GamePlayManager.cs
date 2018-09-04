@@ -57,6 +57,8 @@ public class GamePlayManager : MonoBehaviour
     private GameObject InGameEffect_Double;
     private GameObject InGameEffect_Revive;
 
+    private GameObject InGameEffect_Start;
+
     public float NoteSpeed
     {
         get
@@ -82,6 +84,8 @@ public class GamePlayManager : MonoBehaviour
         InGameEffect_Slow = scene.InGameEffect_Slow;
         InGameEffect_Double = scene.InGameEffect_Double;
         InGameEffect_Revive = scene.InGameEffect_Revive;
+
+        InGameEffect_Start = scene.InGameEffect_Start;
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
     }
@@ -114,7 +118,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
-        ResetGame();
+        ResetGame();        
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem();
@@ -126,7 +130,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameRestart()
     {
-        ResetGame();
+        ResetGame();        
         mPlayerChar.Initialize();
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
