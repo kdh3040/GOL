@@ -177,10 +177,18 @@ public class GamePlayManager : MonoBehaviour
         return true;
     }
 
-    public void GameOver()
+    public void GameOver(Note note)
     {
         mGameUIPage.GameOver();
         IsGamePause = true;
+        StartCoroutine(Co_GameOver(note));
+    }
+
+    public IEnumerator Co_GameOver(Note note)
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }
 
     IEnumerator UpdateGamePlay()

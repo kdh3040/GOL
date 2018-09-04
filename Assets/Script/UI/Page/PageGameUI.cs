@@ -145,15 +145,9 @@ public class PageGameUI : MonoBehaviour
 
     public void GameOver()
     {
-        StartCoroutine(Co_GameOver());
     }
 
-    public IEnumerator Co_GameOver()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END);
-    }
+    
 
     public void RefreshCharMsgUI(float time)
     {
