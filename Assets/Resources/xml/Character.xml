@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Char id = "1" name="CHAR_NAME_DT" desc="CHAR_DESC_DT" cost="10" icon="Renewal/shop/icon/icon_char_dt" img="Renewal/Char/char_dt" skill="ITEM_CREATE" ani_trigger="CHAR_DT" shopani_trigger="CHAR_DT"/>
-	<Char id = "2" name="CHAR_NAME_BG" desc="CHAR_DESC_BG" cost="102" icon="Renewal/shop/icon/icon_char_bg" img="Renewal/Char/char_baggang" skill="GAME_OVER_SCORE_BONUS" ani_trigger="CHAR_BAGGANG" shopani_trigger="CHAR_BG"/>
-	<Char id = "3" name="CHAR_NAME_DG" desc="CHAR_DESC_DG" cost="130" icon="Renewal/shop/icon/icon_char_dg" img="Renewal/Char/char_deggung" skill="DAMAGE_SHIELD_COUNT" ani_trigger="CHAR_DEGGUNG" shopani_trigger="CHAR_DG"/>
-	<Char id = "4" name="CHAR_NAME_HP" desc="CHAR_DESC_HP" cost="230" icon="Renewal/shop/icon/icon_char_hp" img="Renewal/Char/char_hopal" skill="ITEM_CREATE" ani_trigger="CHAR_HOPAL" shopani_trigger="CHAR_HP"/>
+	<Char id = "1" name="CHAR_NAME_DT" desc="CHAR_DESC_DT" cost="10" icon="Renewal/shop/icon/icon_char_dt" img="Renewal/Char/char_dt" skill="RESURRECTION_LV1" ani_trigger="CHAR_DT" shopani_trigger="CHAR_DT"/>
+	<Char id = "2" name="CHAR_NAME_BG" desc="CHAR_DESC_BG" cost="102" icon="Renewal/shop/icon/icon_char_bg" img="Renewal/Char/char_baggang" skill="GAME_OVER_SCORE_BONUS_LV1" ani_trigger="CHAR_BAGGANG" shopani_trigger="CHAR_BG"/>
+	<Char id = "3" name="CHAR_NAME_DG" desc="CHAR_DESC_DG" cost="130" icon="Renewal/shop/icon/icon_char_dg" img="Renewal/Char/char_deggung" skill="DAMAGE_SHIELD_COUNT_LV1" ani_trigger="CHAR_DEGGUNG" shopani_trigger="CHAR_DG"/>
+	<Char id = "4" name="CHAR_NAME_HP" desc="CHAR_DESC_HP" cost="230" icon="Renewal/shop/icon/icon_char_hp" img="Renewal/Char/char_hopal" skill="ITEM_CREATE_LV1" ani_trigger="CHAR_HOPAL" shopani_trigger="CHAR_HP"/>
 </Datas>
