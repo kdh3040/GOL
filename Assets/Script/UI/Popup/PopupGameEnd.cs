@@ -50,6 +50,9 @@ public class PopupGameEnd : PopupUI {
             PlusScoreValue = skill.BonusScore(ScoreValue);
         }
 
+        GameCenterManager.Instance.UnlockAchievement(PlusScoreValue + ScoreValue);
+        GameCenterManager.Instance.ReportScore(PlusScoreValue + ScoreValue);
+
         CoinValue = CommonFunc.ConvertCoin(ScoreValue + PlusScoreValue);
 
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS))
