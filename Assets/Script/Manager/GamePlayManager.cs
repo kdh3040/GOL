@@ -437,7 +437,7 @@ public class GamePlayManager : MonoBehaviour
             }
             else
             {
-                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7f, -9f), 0);
+                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-4.5f, -7f), 0);
                 DDongViewPosChangeIndex++;
 
                 if (DDongViewPosChangeIndex >= 10)
