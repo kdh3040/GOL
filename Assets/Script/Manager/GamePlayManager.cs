@@ -55,6 +55,7 @@ public class GamePlayManager : MonoBehaviour
 
     private GameObject InGameEffect_Slow;
     private GameObject InGameEffect_Double;
+    private GameObject InGameEffect_Revive;
 
     public float NoteSpeed
     {
@@ -80,6 +81,7 @@ public class GamePlayManager : MonoBehaviour
 
         InGameEffect_Slow = scene.InGameEffect_Slow;
         InGameEffect_Double = scene.InGameEffect_Double;
+        InGameEffect_Revive = scene.InGameEffect_Revive;
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
     }
@@ -139,6 +141,7 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.GameRevival();
         mNoteSystem.GameRevival();
         mGameUIPage.GameResume();
+        InGameEffect_Revive.SetActive(true);
     }
 
     public void GamePause()
@@ -153,6 +156,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameResume()
     {
         IsGamePause = false;
+        InGameEffect_Revive.SetActive(false);
     }
 
     public bool IsGameOver(CommonData.NOTE_LINE line)
@@ -179,7 +183,7 @@ public class GamePlayManager : MonoBehaviour
                 return false;
         }
 
-        return false;
+        return true;
     }
 
     public void GameOver(Note note)
