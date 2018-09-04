@@ -26,7 +26,7 @@ public class PopupGamePause : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
-            GamePlayManager.Instance.GameRestart();
+            GamePlayManager.Instance.GameStart();
             PopupManager.Instance.DismissPopup();
         }
     }

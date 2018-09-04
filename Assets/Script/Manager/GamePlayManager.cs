@@ -127,18 +127,6 @@ public class GamePlayManager : MonoBehaviour
         StartCoroutine(UpdateGamePlay());
     }
 
-    public void GameRestart()
-    {
-        ResetGame();
-        mPlayerChar.Initialize();
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
-        SkillManager.Instance.UseSkinSlotSkill();
-        mGameUIPage.RefreshShieldItemUI();
-        mNoteSystem.GameRestart();
-        mDoorSystem.GameRestart();
-        StartCoroutine(UpdateGamePlay());
-    }
-
     public void GameRevival(bool immediately = false)
     {
         mDoorSystem.GameRevival();
