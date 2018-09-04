@@ -122,6 +122,8 @@ public class GamePlayManager : MonoBehaviour
 
         FirstStart = true;
         ResetGame();
+        InGameEffect_Start.SetActive(true);
+
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem();
@@ -223,10 +225,11 @@ public class GamePlayManager : MonoBehaviour
         {
             if (FirstStart)
             {
-                yield return new WaitForSecondsRealtime(3.5f);
+                yield return new WaitForSecondsRealtime(3.5f);                
                 FirstStart = false;
+                InGameEffect_Start.SetActive(false);
             }
-                
+            
             if (IsGamePause)
             {
                 yield return null;
@@ -262,6 +265,9 @@ public class GamePlayManager : MonoBehaviour
     }
     public void ClickDoor(Door door)
     {
+        if (FirstStart)
+            return;
+
         if (IsGamePause)
             return;
 
