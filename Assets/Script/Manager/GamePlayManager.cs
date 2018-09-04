@@ -209,6 +209,7 @@ public class GamePlayManager : MonoBehaviour
     {
         mGameUIPage.GameOver();
         IsGamePause = true;
+        SettingManager.Instance.DoVibe();
         StartCoroutine(Co_GameOver(note));
     }
 
