@@ -21,33 +21,11 @@ public class NoteGroup : MonoBehaviour {
         }
     }
 
-    public bool IsAliveNote()
-    {
-        for (int i = 0; i < NoteList.Length; i++)
-        {
-            if (NoteList[i].NoteType == CommonData.NOTE_TYPE.NORMAL)
-                return true;
-        }
-
-        return false;
-    }
-
     public Note IsDoorOpenNote()
     {
         for (int i = 0; i < NoteList.Length; i++)
         {
             if (NoteList[i].NoteType != CommonData.NOTE_TYPE.NONE)
-                return NoteList[i];
-        }
-
-        return null;
-    }
-
-    public Note GetGameOverCheckNote()
-    {
-        for (int i = 0; i < NoteList.Length; i++)
-        {
-            if (NoteList[i].NoteType == CommonData.NOTE_TYPE.NORMAL)
                 return NoteList[i];
         }
 

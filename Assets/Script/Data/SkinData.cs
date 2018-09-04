@@ -24,10 +24,6 @@ public abstract class SkinData
     }
     public string GetSkillName()
     {
-        if (skill == "")
-            return "";
-
-        string skillName = string.Format("{0}_LV{1}", skill, 1);
-        return skillName;
+        return skill;
     }
 }
