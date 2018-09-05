@@ -59,7 +59,7 @@ public class GameCenterManager : MonoBehaviour {
     {
 #if UNITY_ANDROID
 
- 
+        Debug.Log("!!!!!! SignIn");
         PlayGamesPlatform.Instance.Authenticate((bool success) =>
         {
             if (success)
@@ -98,9 +98,31 @@ public class GameCenterManager : MonoBehaviour {
 
     public void ShowLeaderboardUI()
     {
-      
+
+        if (Social.localUser.authenticated == false)
+        {
+            Debug.Log("!!!!!! SignIn ShowLeaderboardUI");
+            Social.localUser.Authenticate((bool success) =>
+            {
+                if (success)
+                {
+                    // Sign In 성공
+                    // 바로 업적 UI 표시 요청
+                    Debug.Log("!!!!!! SignIn Suc");
+                    Social.ShowLeaderboardUI();
+                    return;
+                }
+                else
+                {
+                    Debug.Log("!!!!!! SignIn Fail");
+                    // Sign In 실패 처리
+                    return;
+                }
+            });
+        }
+
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ShowLeaderboardUI();
+        PlayGamesPlatform.Instance.ShowLeaderboardUI();
             Debug.Log("!!!!!! ShowLeaderboardUI 2");
 #elif UNITY_IOS
         GameCenterPlatform.ShowLeaderboardUI("Leaderboard_ID", UnityEngine.SocialPlatforms.TimeScope.AllTime);
