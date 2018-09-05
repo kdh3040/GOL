@@ -73,4 +73,18 @@ public class PopupManager : MonoBehaviour {
                 mShowPopup = null;
         }
     }
+
+    void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                DismissPopup();
+            }
+
+        }
+
+    }
+    
 }
