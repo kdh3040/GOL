@@ -77,7 +77,7 @@ public class PopupGameEnd : PopupUI {
 
         var noteData = DataManager.Instance.NoteDataDic[EndNoteId];
         CommonFunc.SetImageFile(noteData.img, ref EndingScene, false);
-        EndingDesc.text = noteData.GetEndDesc();
+        EndingDesc.text = noteData.GetEndDesc() + string.Format("\n플레이 시간 {0:f2}초", GamePlayManager.Instance.PlayTime);
 
         //var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
         //var endingGroupList = bgData.endingGroupList;
