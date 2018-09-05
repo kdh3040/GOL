@@ -210,7 +210,7 @@ public class GamePlayManager : MonoBehaviour
                 
         }
 
-        return true;
+        return false;
     }
 
     public void GameOver(Note note)
