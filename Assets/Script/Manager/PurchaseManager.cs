@@ -28,15 +28,6 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     private static IStoreController storeController;
     private static IExtensionProvider extensionProvider;
 
-    #region 상품ID
-    public const string productId1 = "1";
-    public const string productId2 = "2";
-    public const string productId3 = "3";
-    public const string productId4 = "4";
-    public const string productId5 = "5";
-    #endregion
-
-
     private UIPurchaseSlot mPurchaseSlot;
     void Start()
     {
@@ -45,6 +36,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
  
     private bool IsInitialized()
     {
+        Debug.Log("!!!!!!!! storeController" + storeController);
+        Debug.Log("!!!!!!!! extensionProvider" + extensionProvider);
         return (storeController != null && extensionProvider != null);
     }
 
@@ -58,31 +51,31 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
         ConfigurationBuilder builder = ConfigurationBuilder.Instance(module);
 
-        builder.AddProduct(productId1, ProductType.Consumable, new IDs
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[0], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[0], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[0], GooglePlay.Name },
         });
 
-        builder.AddProduct(productId2, ProductType.Consumable, new IDs
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[1], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[1], AppleAppStore.Name },
-            { CommonData.PURCHASE_ID_ARRAY[2], GooglePlay.Name }, }
+            { CommonData.PURCHASE_ID_ARRAY[1], GooglePlay.Name }, }
         );
 
-        builder.AddProduct(productId3, ProductType.Consumable, new IDs
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[2], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[2], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[2], GooglePlay.Name },
         });
 
-        builder.AddProduct(productId4, ProductType.Consumable, new IDs
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[3], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[3], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[3], GooglePlay.Name },
         });
 
-        builder.AddProduct(productId5, ProductType.Consumable, new IDs
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[4], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[4], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[4], GooglePlay.Name },
@@ -94,18 +87,20 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void BuyProductID(UIPurchaseSlot slot)
     {
+        Debug.Log("BuyProductID Enter");
         try
         {
+            Debug.Log("mPurchaseSlot.PurchaseID " + mPurchaseSlot.PurchaseID);
             if (IsInitialized())
             {
                 mPurchaseSlot = slot;
                 //Product p = storeController.products.WithID(productId);
                 Product p = storeController.products.WithID(mPurchaseSlot.PurchaseID);
-
+                Debug.Log("mPurchaseSlot.PurchaseID " + mPurchaseSlot.PurchaseID);
                 if (p != null && p.availableToPurchase)
                 {
                  
-                    Debug.Log(string.Format("Purchasing product asychronously: '{0}'", p.definition.id));
+                    Debug.Log("Purchasing product asychronously: '{0}'" +  p.definition.id);
                     storeController.InitiatePurchase(p);
                 }
                 else
@@ -166,8 +161,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
-        Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-
+        Debug.Log("ProcessPurchase: PASS. Product: '{0}'" + args.purchasedProduct.definition.id);
+        Debug.Log("mPurchaseSlot.Reward " + mPurchaseSlot.Reward);
         PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
 
         /*
