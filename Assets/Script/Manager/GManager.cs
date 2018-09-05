@@ -32,6 +32,7 @@ public class GManager : MonoBehaviour
         GameCenterManager.Instance.Init();
 
         PlayerData.Instance.Initialize();
+        PurchaseManager.Instance.InitializePurchasing();
 
         
         if (!FirebaseManager.Instance.SingedInFirebase())
