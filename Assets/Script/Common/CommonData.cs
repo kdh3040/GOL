@@ -44,4 +44,5 @@ public class CommonData : MonoBehaviour {
     public static float NOTE_GROUP_INTERVAL = 4.0f;
     public static int MAX_DDONG_COUNT = 5;
     public static float DDONG_VIEW_INTERVAL = 5f;
+    public static string[] NOTE_DELETE_MSG = { "Renewal/UI/icon_lock" };
 }

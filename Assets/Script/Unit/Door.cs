@@ -74,6 +74,25 @@ public class Door : MonoBehaviour
     {
         DoorCloseEffect.Rebind();
         DoorCloseEffect.SetTrigger("Close");
+
+        var obj = Instantiate(Resources.Load("Prefab/NoteDeleteMsg"), gameObject.transform) as GameObject;
+        SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
+        sprite.sprite = (Sprite)Resources.Load(CommonData.NOTE_DELETE_MSG[Random.Range(0, CommonData.NOTE_DELETE_MSG.Length)], typeof(Sprite));
+        obj.gameObject.transform.localPosition = new Vector3(0, -2, 0);
+        StartCoroutine(Co_DeleteNoteMsg(obj));
+    }
+
+    IEnumerator Co_DeleteNoteMsg(GameObject obj)
+    {
+        float time = 0.2f;
+        float saveTime = 0;
+        while (saveTime < time)
+        {
+            saveTime += Time.deltaTime;
+            obj.transform.localPosition = new Vector3(obj.transform.localPosition.x, obj.transform.localPosition.y + 0.2f, obj.transform.localPosition.z);
+            yield return null;
+        }
+        DestroyImmediate(obj);
     }
 
     public void SetEffect(string trigger)
