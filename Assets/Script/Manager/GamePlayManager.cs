@@ -67,6 +67,14 @@ public class GamePlayManager : MonoBehaviour
             return mNoteSystem.NoteSpeed;
         }
     }
+
+    public float PlayTime
+    {
+        get
+        {
+            return mNoteSystem.PlayTime;
+        }
+    }
     void Start()
     {
         DontDestroyOnLoad(this);
