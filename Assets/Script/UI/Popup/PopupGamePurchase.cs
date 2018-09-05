@@ -20,16 +20,16 @@ public class PopupGamePurchase : PopupUI
         SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.COIN, 1000, CommonData.POINT_TYPE.DDONG, 5);
         SlotList[0].SlotButton.onClick.AddListener(() => { OnClickPurchase(0); });
 
-        SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1, CommonData.POINT_TYPE.COIN, 1000);
+        SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1, CommonData.POINT_TYPE.COIN, 1000, CommonData.PURCHASE_ID_ARRAY[0]);
         SlotList[1].SlotButton.onClick.AddListener(() => { OnClickPurchase(1); });
 
-        SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 9, CommonData.POINT_TYPE.COIN, 9000);
+        SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 9, CommonData.POINT_TYPE.COIN, 9000, CommonData.PURCHASE_ID_ARRAY[1]);
         SlotList[2].SlotButton.onClick.AddListener(() => { OnClickPurchase(2); });
 
-        SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 19, CommonData.POINT_TYPE.COIN, 19000);
+        SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 19, CommonData.POINT_TYPE.COIN, 19000, CommonData.PURCHASE_ID_ARRAY[2]);
         SlotList[3].SlotButton.onClick.AddListener(() => { OnClickPurchase(3); });
 
-        SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 99, CommonData.POINT_TYPE.COIN, 99000);
+        SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 99, CommonData.POINT_TYPE.COIN, 99000, CommonData.PURCHASE_ID_ARRAY[3]);
         SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
     }
 
@@ -39,8 +39,9 @@ public class PopupGamePurchase : PopupUI
         {
             if(SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
             {
+                PurchaseManager.Instance.BuyProductID(SlotList[index]);
                 // 캐쉬로 구입
-                PlayerData.Instance.PlusCoin(SlotList[index].Reward);
+                
             }
             else if (SlotList[index].RewardType == CommonData.POINT_TYPE.DDONG)
             {

@@ -22,7 +22,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     
     PurchaseManager()
     {
-        InitializePurchasing();
+       
     }
 
     private static IStoreController storeController;
@@ -36,6 +36,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     public const string productId5 = "5";
     #endregion
 
+
+    private UIPurchaseSlot mPurchaseSlot;
     void Start()
     {
     }
@@ -58,48 +60,51 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
         builder.AddProduct(productId1, ProductType.Consumable, new IDs
         {
-            { productId1, AppleAppStore.Name },
-            { productId1, GooglePlay.Name },
+            { CommonData.PURCHASE_ID_ARRAY[0], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[0], GooglePlay.Name },
         });
 
         builder.AddProduct(productId2, ProductType.Consumable, new IDs
         {
-            { productId2, AppleAppStore.Name },
-            { productId2, GooglePlay.Name }, }
+            { CommonData.PURCHASE_ID_ARRAY[1], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[2], GooglePlay.Name }, }
         );
 
         builder.AddProduct(productId3, ProductType.Consumable, new IDs
         {
-            { productId3, AppleAppStore.Name },
-            { productId3, GooglePlay.Name },
+            { CommonData.PURCHASE_ID_ARRAY[2], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[2], GooglePlay.Name },
         });
 
         builder.AddProduct(productId4, ProductType.Consumable, new IDs
         {
-            { productId4, AppleAppStore.Name },
-            { productId4, GooglePlay.Name },
+            { CommonData.PURCHASE_ID_ARRAY[3], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[3], GooglePlay.Name },
         });
 
         builder.AddProduct(productId5, ProductType.Consumable, new IDs
         {
-            { productId5, AppleAppStore.Name },
-            { productId5, GooglePlay.Name },
+            { CommonData.PURCHASE_ID_ARRAY[4], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[4], GooglePlay.Name },
         });
 
         UnityPurchasing.Initialize(this, builder);
         
     }
 
-    public void BuyProductID(string productId)
+    public void BuyProductID(UIPurchaseSlot slot)
     {
         try
         {
             if (IsInitialized())
             {
-                Product p = storeController.products.WithID(productId);
+                mPurchaseSlot = slot;
+                //Product p = storeController.products.WithID(productId);
+                Product p = storeController.products.WithID(mPurchaseSlot.PurchaseID);
 
                 if (p != null && p.availableToPurchase)
                 {
+                 
                     Debug.Log(string.Format("Purchasing product asychronously: '{0}'", p.definition.id));
                     storeController.InitiatePurchase(p);
                 }
@@ -163,29 +168,32 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     {
         Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 
+        PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
+
+        /*
         switch (args.purchasedProduct.definition.id)
         {
             case productId1:
-                
+                PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
                 break;
 
             case productId2:
-
+                PlayerData.Instance.PlusCoin(SlotList[index].Reward);
                 break;
 
             case productId3:
-              
+                PlayerData.Instance.PlusCoin(SlotList[index].Reward);
                 break;
 
             case productId4:
-
+                PlayerData.Instance.PlusCoin(SlotList[index].Reward);
                 break;
 
             case productId5:
-
+                PlayerData.Instance.PlusCoin(SlotList[index].Reward);
                 break;
         }
-
+        */
         return PurchaseProcessingResult.Complete;
     }
 
