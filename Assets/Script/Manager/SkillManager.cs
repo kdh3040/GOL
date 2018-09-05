@@ -183,12 +183,6 @@ public class SkillManager
         return type;
     }
 
-    public string GetSkillDesc(string skillName)
-    {
-        SkillData skillData = DataManager.Instance.SkillDataList[skillName];
-        return LocalizeData.Instance.GetLocalizeString(skillData.desc);
-    }
-
     public SkillData GetSkillData(string skillName)
     {
         return DataManager.Instance.SkillDataList[skillName];

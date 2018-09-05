@@ -109,6 +109,10 @@ public class FirebaseManager {
 
     public void OnMessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e)
     {
+
+        if (SettingManager.Instance.GetNotiStatus() == false)
+            return;
+
         Debug.LogFormat("Received a new message from: " + e.Message.From);
 
         var notification = e.Message.Notification;

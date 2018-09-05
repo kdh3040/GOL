@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Skin level = "1" skill="BG_SKIN_SKILL_LV1" cost="0"/>
-	<Skin level = "2" skill="BG_SKIN_SKILL_LV2" cost="200"/>
-	<Skin level = "3" skill="BG_SKIN_SKILL_LV3" cost="300"/>
-	<Skin level = "4" skill="BG_SKIN_SKILL_LV4" cost="400"/>
-	<Skin level = "5" skill="BG_SKIN_SKILL_LV5" cost="500"/>
+	<Skin level = "1" skill="BG_SLOT_SKILL_LV1" cost="0"/>
+	<Skin level = "2" skill="BG_SLOT_SKILL_LV2" cost="100"/>
+	<Skin level = "3" skill="BG_SLOT_SKILL_LV3" cost="100"/>
+	<Skin level = "4" skill="BG_SLOT_SKILL_LV4" cost="100"/>
+	<Skin level = "5" skill="BG_SLOT_SKILL_LV5" cost="100"/>
+	<Skin level = "6" skill="BG_SLOT_SKILL_LV6" cost="100"/>
+	<Skin level = "7" skill="BG_SLOT_SKILL_LV7" cost="100"/>
+	<Skin level = "8" skill="BG_SLOT_SKILL_LV8" cost="100"/>
+	<Skin level = "9" skill="BG_SLOT_SKILL_LV9" cost="100"/>
+	<Skin level = "10" skill="BG_SLOT_SKILL_LV10" cost="100"/>
 </Datas>

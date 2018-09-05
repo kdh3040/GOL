@@ -20,7 +20,7 @@ public class NoteSystem
     private List<NoteCreateData> NoteItemCreatePercentList = new List<NoteCreateData>();
     private int NoteItemAllPercentValue = 0;
 
-    private float PlayTime = 0;
+    public float PlayTime = 0;
     private float NoteSpeedCheckTime = 0;
     private float ItemNoteCreatePercent = 0;
 
@@ -31,8 +31,8 @@ public class NoteSystem
         NoteGroupOpenPos = scene.NoteGroupOpenPos;
     }
     public void ResetSystem()
-    {
-        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
+    { 
+        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED + ConfigData.Instance.DEBUG_DEFAULT_SPEED;
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
@@ -174,10 +174,10 @@ public class NoteSystem
 
     private void UpdateNoteSpeed()
     {
-        if(NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL)
+        if (NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL + ConfigData.Instance.DEBUG_SPEED_UP_TIME)
         {
             NoteSpeedCheckTime = 0;
-            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP;
+            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP + ConfigData.Instance.DEBUG_SPEED_UP;
         }
     }
 
