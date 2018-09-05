@@ -20,7 +20,9 @@ public class UIPurchaseSlot : MonoBehaviour
     [System.NonSerialized]
     public int Reward;
 
-    public void SetPurchaseSlot(CommonData.POINT_TYPE costType, int cost, CommonData.POINT_TYPE rewardType, int reward)
+    public string PurchaseID;
+
+    public void SetPurchaseSlot(CommonData.POINT_TYPE costType, int cost, CommonData.POINT_TYPE rewardType, int reward, string purchaseID = "")
     {
         CostType = costType;
         Cost = cost;
@@ -30,6 +32,7 @@ public class UIPurchaseSlot : MonoBehaviour
         SetValue(costType, ref CostCount, cost);
         SetIcon(rewardType, ref RewardIcon);
         SetValue(rewardType, ref RewardCount, reward);
+        PurchaseID = purchaseID;
     }
 
     private void SetIcon(CommonData.POINT_TYPE type, ref Image icon)
