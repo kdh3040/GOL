@@ -435,9 +435,9 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state)
+    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state, bool closeMsg = true)
     {
-        mDoorSystem.SetDoorState(line, state);
+        mDoorSystem.SetDoorState(line, state, closeMsg);
     }
 
     public void PlayDoorSound(CommonData.NOTE_LINE line)

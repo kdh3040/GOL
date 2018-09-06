@@ -162,7 +162,7 @@ public class NoteSystem
                     if (GamePlayManager.Instance.IsAutoPlay())
                         NoteGroupList[i].DeleteNote(note.NoteLineType);
 
-                    GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE);
+                    GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE, false);
                     NoteGroupReset(i);
                 }
             }

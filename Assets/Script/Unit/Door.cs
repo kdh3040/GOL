@@ -29,10 +29,15 @@ public class Door : MonoBehaviour
         SetDoorState(DOOR_STATE.CLOSE);
     }
 
-    public void SetDoorState(DOOR_STATE type)
+    public void SetDoorState(DOOR_STATE type, bool closeMsg = true)
     {
         if (EffectPlay)
+        {
+            if(closeMsg && type == DOOR_STATE.CLOSE)
+                SetCloseEffect();
             return;
+        }
+            
 
         if (DoorState == type)
             return;
@@ -43,7 +48,8 @@ public class Door : MonoBehaviour
         {
             case DOOR_STATE.CLOSE:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.close_img, typeof(Sprite));
-                SetCloseEffect();
+                if(closeMsg)
+                    SetCloseEffect();
                 break;
             case DOOR_STATE.HALF_OPEN:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.halfopen_img, typeof(Sprite));

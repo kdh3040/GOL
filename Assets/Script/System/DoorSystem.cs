@@ -52,10 +52,10 @@ public class DoorSystem
         }
     }
 
-    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state)
+    public void SetDoorState(CommonData.NOTE_LINE line, Door.DOOR_STATE state, bool closeMsg = true)
     {
         var DoorNum = (int)line;
-        DoorList[DoorNum].SetDoorState(state);
+        DoorList[DoorNum].SetDoorState(state, closeMsg);
     }
 
     public void PlaySound(CommonData.NOTE_LINE line)
