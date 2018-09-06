@@ -27,6 +27,9 @@ public class GManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+
+        Application.targetFrameRate = 60;
+
         Screen.SetResolution(Screen.width, (Screen.width * 16) / 9, false);
 
         GameCenterManager.Instance.Init();
