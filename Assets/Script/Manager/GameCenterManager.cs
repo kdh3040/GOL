@@ -122,8 +122,9 @@ public class GameCenterManager : MonoBehaviour {
         }
 
 #if UNITY_ANDROID
-        PlayGamesPlatform.Instance.ShowLeaderboardUI();
-            Debug.Log("!!!!!! ShowLeaderboardUI 2");
+        ((PlayGamesPlatform)Social.Active).ShowLeaderboardUI(GPGSIds.leaderboard_score);
+        
+        Debug.Log("!!!!!! ShowLeaderboardUI 2");
 #elif UNITY_IOS
         GameCenterPlatform.ShowLeaderboardUI("Leaderboard_ID", UnityEngine.SocialPlatforms.TimeScope.AllTime);
 #endif
