@@ -26,15 +26,18 @@ public class Door : MonoBehaviour
         NoteLineType = type;
         EffectPlay = false;
         DoorState = DOOR_STATE.NONE;
-        SetDoorState(DOOR_STATE.CLOSE);
+        SetDoorState(DOOR_STATE.CLOSE, false);
     }
 
-    public void SetDoorState(DOOR_STATE type, bool closeMsg = true)
+    public void SetDoorState(DOOR_STATE type, bool closeEffect = true)
     {
         if (EffectPlay)
         {
-            if(closeMsg && type == DOOR_STATE.CLOSE)
+            if(closeEffect && type == DOOR_STATE.CLOSE)
+            {
                 SetCloseEffect();
+                SetCloseMsgEffect();
+            }
             return;
         }
             
@@ -48,8 +51,13 @@ public class Door : MonoBehaviour
         {
             case DOOR_STATE.CLOSE:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.close_img, typeof(Sprite));
-                if(closeMsg)
+                
+                if (closeEffect)
+                {
                     SetCloseEffect();
+                    SetCloseMsgEffect();
+                }
+                    
                 break;
             case DOOR_STATE.HALF_OPEN:
                 DoorSprite.sprite = (Sprite)Resources.Load(Data.halfopen_img, typeof(Sprite));
@@ -80,7 +88,10 @@ public class Door : MonoBehaviour
     {
         DoorCloseEffect.Rebind();
         DoorCloseEffect.SetTrigger("Close");
+    }
 
+    public void SetCloseMsgEffect()
+    {
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteMsg"), gameObject.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         sprite.sprite = (Sprite)Resources.Load(CommonData.NOTE_DELETE_MSG[Random.Range(0, CommonData.NOTE_DELETE_MSG.Length)], typeof(Sprite));
