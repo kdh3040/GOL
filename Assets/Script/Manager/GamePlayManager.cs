@@ -95,6 +95,7 @@ public class GamePlayManager : MonoBehaviour
         InGameEffect_Revive = scene.InGameEffect_Revive;
 
         InGameEffect_Start = scene.InGameEffect_Start;
+        
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
     }
@@ -130,7 +131,9 @@ public class GamePlayManager : MonoBehaviour
 
         FirstStart = true;
         ResetGame();
-        InGameEffect_Start.SetActive(true);
+        //InGameEffect_Start.SetActive(true);
+        Animator ani = InGameEffect_Start.GetComponent<Animator>();
+        ani.SetTrigger("Start");
 
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
@@ -244,7 +247,7 @@ public class GamePlayManager : MonoBehaviour
             {
                 yield return new WaitForSecondsRealtime(3.5f);                
                 FirstStart = false;
-                InGameEffect_Start.SetActive(false);
+                //InGameEffect_Start.SetActive(false);
             }
             
             if (IsGamePause)
