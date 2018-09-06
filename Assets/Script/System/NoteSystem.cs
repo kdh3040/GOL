@@ -39,6 +39,13 @@ public class NoteSystem
         NoteNormalCreateList.Clear();
 
         AllDeleteNote();
+
+        var endPos = NoteGroupEndPos.localPosition;
+        for (int i = 0; i < NoteGroupList.Count; i++)
+        {
+            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
+        }
+
         if (NoteItemCreatePercentList.Count <= 0)
         {
             NoteItemAllPercentValue = 0;
@@ -84,7 +91,7 @@ public class NoteSystem
                 }
             }
 
-            NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
+            //NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
             NoteGroupList[i].ResetNoteGroup();
         }
 
