@@ -12,6 +12,7 @@ public class Note : MonoBehaviour
     public int NoteId = 0;
     
     public SpriteRenderer NoteImage;
+    public SpriteRenderer ShadowImage;
     private NoteData NoteData = null;
     private ItemData ItemData = null;
 
@@ -23,6 +24,7 @@ public class Note : MonoBehaviour
         NoteData = null;
         ItemData = null;
         NoteImage.sprite = null;
+        ShadowImage.gameObject.SetActive(false);
         NoteId = 0;
         
         Anim.enabled = false;
@@ -63,7 +65,8 @@ public class Note : MonoBehaviour
         NoteId = id;
         NoteType = CommonData.NOTE_TYPE.NORMAL;
         NoteData = DataManager.Instance.NoteDataDic[id];
-        NoteImage.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));      
+        NoteImage.sprite = (Sprite)Resources.Load(NoteData.img, typeof(Sprite));
+        ShadowImage.gameObject.SetActive(true);
     }
 
     private void SetItemNote(int id)
@@ -72,5 +75,6 @@ public class Note : MonoBehaviour
         NoteType = CommonData.NOTE_TYPE.ITEM;
         ItemData = ItemManager.Instance.GetItemData(id);
         NoteImage.sprite = (Sprite)Resources.Load(ItemData.note_img, typeof(Sprite));
+        ShadowImage.gameObject.SetActive(true);
     }
 }
