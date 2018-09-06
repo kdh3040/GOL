@@ -28,7 +28,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     private static IStoreController storeController;
     private static IExtensionProvider extensionProvider;
 
-    private UIPurchaseSlot mPurchaseSlot;
+    private static UIPurchaseSlot mPurchaseSlot;
     void Start()
     {
     }
@@ -46,6 +46,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         
         if (IsInitialized())
             return;
+
+        Debug.Log("!!!!!!!! InitializePurchasing");
 
         var module = StandardPurchasingModule.Instance();
 
@@ -90,10 +92,11 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         Debug.Log("BuyProductID Enter");
         try
         {
-            Debug.Log("mPurchaseSlot.PurchaseID " + mPurchaseSlot.PurchaseID);
+          
             if (IsInitialized())
             {
                 mPurchaseSlot = slot;
+                Debug.Log("mPurchaseSlot.PurchaseID " + mPurchaseSlot.PurchaseID);
                 //Product p = storeController.products.WithID(productId);
                 Product p = storeController.products.WithID(mPurchaseSlot.PurchaseID);
                 Debug.Log("mPurchaseSlot.PurchaseID " + mPurchaseSlot.PurchaseID);
@@ -162,13 +165,14 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
         Debug.Log("ProcessPurchase: PASS. Product: '{0}'" + args.purchasedProduct.definition.id);
+        
         Debug.Log("mPurchaseSlot.Reward " + mPurchaseSlot.Reward);
         PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
 
         /*
         switch (args.purchasedProduct.definition.id)
         {
-            case productId1:
+            case CommonData.PURCHASE_ID_ARRAY[0]:
                 PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
                 break;
 
@@ -189,6 +193,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
                 break;
         }
         */
+        
         return PurchaseProcessingResult.Complete;
     }
 
