@@ -134,7 +134,7 @@ public class GamePlayManager : MonoBehaviour
 
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
-        UseGameShieldItem();
+        UseGameShieldItem(UseItemId);
         mGameUIPage.RefreshShieldItemUI();
         mNoteSystem.GameStart();
         mDoorSystem.GameStart();
@@ -209,6 +209,14 @@ public class GamePlayManager : MonoBehaviour
             }
                 
         }
+
+        return true;
+    }
+
+    public bool IsAutoPlay()
+    {
+        if (SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME) != null)
+            return true;
 
         return false;
     }
@@ -324,27 +332,25 @@ public class GamePlayManager : MonoBehaviour
         }
         else
         {
-            if(UseItemId == 0)
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
+            if (skill != null)
             {
-                var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
-                if (skill != null)
+                var shieldCount = skill.mCount;
+                if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
                 {
-                    var shieldCount = skill.mCount;
-                    if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
-                    {
-                        UseItemId = id;
-                        UseGameShieldItem();
-                        itemAdd = true;
-                    }
+                    UseGameShieldItem(id);
+                    itemAdd = true;
                 }
                 else
                 {
-                    UseItemId = id;
-                    UseGameShieldItem();
-                    itemAdd = true;
+                    itemAdd = false;
                 }
             }
-            
+            else
+            {
+                UseGameShieldItem(id);
+                itemAdd = true;
+            }
             
 
             if (itemAdd == false)
@@ -384,15 +390,15 @@ public class GamePlayManager : MonoBehaviour
         mAudio.Play();
     }
 
-    public void UseGameShieldItem()
+    public void UseGameShieldItem(int id)
     {
-        if (UseItemId == 0)
+        if (id == 0)
             return;
-        var itemData = DataManager.Instance.ItemDataDic[UseItemId];
+
+        var itemData = DataManager.Instance.ItemDataDic[id];
         if (itemData.slot_type == CommonData.ITEM_SLOT_TYPE.SHIELD)
         {
-            SkillManager.Instance.UseItemSkill(UseItemId);
-            UseItemId = 0;
+            SkillManager.Instance.UseItemSkill(id);
             mGameUIPage.RefreshShieldItemUI();
             mGameUIPage.RefreshItemUI();
         }

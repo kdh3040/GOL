@@ -136,15 +136,26 @@ public class NoteSystem
                     continue;
                 }
 
-                if (note.NoteType == CommonData.NOTE_TYPE.NORMAL && GamePlayManager.Instance.IsGameOver(note.NoteLineType))
+                if(note.NoteType == CommonData.NOTE_TYPE.NORMAL)
                 {
-                    GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
-                    GamePlayManager.Instance.GameOver(note);
+                    if (GamePlayManager.Instance.IsGameOver(note.NoteLineType))
+                    {
+                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
+                        GamePlayManager.Instance.GameOver(note);
+                    }
+                    else
+                    {
+                        GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE);
+                        NoteGroupList[i].DeleteNote(note.NoteLineType);
+                        NoteGroupReset(i);
+                    }
                 }
                 else
                 {
+                    if (GamePlayManager.Instance.IsAutoPlay())
+                        NoteGroupList[i].DeleteNote(note.NoteLineType);
+
                     GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE);
-                    NoteGroupList[i].DeleteNote(note.NoteLineType);
                     NoteGroupReset(i);
                 }
             }
