@@ -72,7 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteImage: {fileID: 212771324877359238}
-  NoteCollider: {fileID: 0}
   Anim: {fileID: 95039810330087200}
 --- !u!212 &212771324877359238
 SpriteRenderer:
@@ -109,14 +108,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f963e2840f6960e4e8836c41a7ac16d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 557916b19b7456b458a6848fd905259d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.52, y: 4.76}
+  m_Size: {x: 2.56, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
