@@ -9553,6 +9553,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
     type: 2}
   m_PrefabInternal: {fileID: 1415511919}
+--- !u!114 &1415511921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114095140597445510, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
+    type: 2}
+  m_PrefabInternal: {fileID: 1415511919}
+  m_Script: {fileID: 11500000, guid: 7f5f0caa0ac335843891c4baf681d0cc, type: 3}
 --- !u!1 &1417858771
 GameObject:
   m_ObjectHideFlags: 0
@@ -10935,6 +10941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8151cc3854f2574e947c54c57656125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Topbar: {fileID: 1415511921}
   SoundSettingButton: {fileID: 912785833}
   VibrationSettingButton: {fileID: 1930013208}
   AlarmSettingButton: {fileID: 1399966062}

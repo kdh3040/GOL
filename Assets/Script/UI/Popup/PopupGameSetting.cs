@@ -10,6 +10,7 @@ public class PopupGameSetting : PopupUI
         return PopupManager.POPUP_TYPE.GAME_SETTING;
     }
 
+    public UITopBar Topbar;
     public Button SoundSettingButton;
     public Button VibrationSettingButton;
     public Button AlarmSettingButton;
@@ -44,6 +45,7 @@ public class PopupGameSetting : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        Topbar.Initialize(true);
         SoundSettingCheck.SetActive(PlayerData.Instance.SoundSetting);
         VibrationSettingCheck.SetActive(PlayerData.Instance.VibrationSetting);
         AlarmSettingCheck.SetActive(PlayerData.Instance.AlarmSetting);
