@@ -126,8 +126,10 @@ public class PopupGameReady : PopupUI
         UpgradeButton.gameObject.SetActive(false);
         SkinChangeButton.gameObject.SetActive(false);
         ItemEquipButton.gameObject.SetActive(false);
+        DescCharIcon.gameObject.SetActive(false);
+        DescIcon.gameObject.SetActive(false);
 
-        if(SelectSkinSlot)
+        if (SelectSkinSlot)
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var skinData = PlayerData.Instance.GetUseSkinData(skinType);
@@ -135,13 +137,11 @@ public class PopupGameReady : PopupUI
             if (skinType != CommonData.SKIN_TYPE.CHAR)
             {
                 DescIcon.gameObject.SetActive(true);
-                DescCharIcon.gameObject.SetActive(false);
                 CommonFunc.SetImageFile(skinData.GetIcon(), ref DescIcon, false);
             }
             else
             {
                 var charData = skinData as CharData;
-                DescIcon.gameObject.SetActive(false);
                 DescCharIcon.gameObject.SetActive(true);
                 DescCharIconAnim.Rebind();
                 DescCharIconAnim.SetTrigger(charData.shopani_trigger);
@@ -181,6 +181,7 @@ public class PopupGameReady : PopupUI
         {
             var itemId = ItemSlotList[SelectSlotIndex].ItemId;
             var itemData = DataManager.Instance.ItemDataDic[itemId];
+            DescIcon.gameObject.SetActive(true);
             CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
