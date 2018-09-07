@@ -13,7 +13,7 @@ public class AdManager : MonoBehaviour {
         {
             if (_instance == null)
             {
-                _instance = new AdManager();
+                _instance = FindObjectOfType<AdManager>() as AdManager;
             }
             return _instance;
         }
@@ -25,9 +25,21 @@ public class AdManager : MonoBehaviour {
     private static InterstitialAd interstitialAd;
     private static RewardBasedVideoAd rewardBasedVideo;
 
+    private static int PROB_SELECT_ADVIEW = 0;
+    private static int PROB_MAX_ADVIEW = 10;
+
+    private static string adAppID_Android = "ca-app-pub-4020702622451243~9202373650";
+    private static string adAppID_Ios = "ca-app-pub-4020702622451243~6331311469";
+
+    private static string adInterstitial_Android = "ca-app-pub-4020702622451243/6018937389";
+    private static string adInterstitial_Ios = "ca-app-pub-4020702622451243/5620865023";
+
+    private static string adVideo_Android = "ca-app-pub-3940256099942544/5224354917";
+    private static string adVideo_Ios = "ca-app-pub-4020702622451243/1681620010";
+
     // Use this for initialization
     void Start () {
-
+        DontDestroyOnLoad(this);
     }
 	
 	// Update is called once per frame
@@ -40,14 +52,15 @@ public class AdManager : MonoBehaviour {
         string adUnitId = string.Empty;
 
 #if UNITY_ANDROID
-        adUnitId = "ca-app-pub-4020702622451243/6018937389";
+        adUnitId = adInterstitial_Android;
 #elif UNITY_IOS
-        adUnitId = "ca-app-pub-4020702622451243/5620865023";
+        adUnitId = adInterstitial_Ios;
 #endif
 
         interstitialAd = new InterstitialAd(adUnitId);
         AdRequest request = new AdRequest.Builder().Build();
 
+        
         interstitialAd.LoadAd(request);
 
         interstitialAd.OnAdClosed += HandleOnInterstitialAdClosed;
@@ -65,9 +78,10 @@ public class AdManager : MonoBehaviour {
 
     public void ShowInterstitialAd()
     {
-        UnityEngine.Random.Range(0, CommonData.PROB_MAX_ADVIEW);
+        
+        UnityEngine.Random.Range(0, PROB_MAX_ADVIEW);
 
-        if(UnityEngine.Random.Range(0, CommonData.PROB_MAX_ADVIEW) < CommonData.PROB_SELECT_ADVIEW)
+        if(UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
         {
             if (!interstitialAd.IsLoaded())
             {
@@ -86,20 +100,23 @@ public class AdManager : MonoBehaviour {
 #if UNITY_EDITOR
         string adUnitId = "unused";
 #elif UNITY_ANDROID
-        string adUnitId = "ca-app-pub-4020702622451243/2922549491";
+        string adUnitId = adVideo_Android;
+        MobileAds.Initialize(adAppID_Android);
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-4020702622451243/1681620010";
+        string adUnitId = adVideo_Ios;
+        MobileAds.Initialize(adAppID_Ios);
 #else
         string adUnitId = "unexpected_platform";
 #endif
 
-        RewardBasedVideoAd rewardBasedVideo = RewardBasedVideoAd.Instance;
+
+        rewardBasedVideo = RewardBasedVideoAd.Instance;
 
         AdRequest request = new AdRequest.Builder().Build();
         rewardBasedVideo.LoadAd(request, adUnitId);        
     }
 
-    private void ShowRewardVideo(RewardBasedVideoAd rewardBasedVideo)
+    public void ShowRewardVideo()
     {
         if (rewardBasedVideo.IsLoaded())
         {
@@ -107,10 +124,23 @@ public class AdManager : MonoBehaviour {
             rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
             rewardBasedVideo.Show();
         }
+        else
+        {
+            Debug.Log("!!!!!! Not Ready Reward");
+        }
     }
 
     private void HandleRewardBasedVideoRewarded(object sender, Reward e)
     {
-      //부활
+        Debug.Log("!!!!!! NotHandleRewardBasedVideoRewarded");
+        StartCoroutine(GameRevival());
     }
+
+    IEnumerator GameRevival()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        GamePlayManager.Instance.GameRevival(false);
+        PopupManager.Instance.DismissPopup();
+    }
+
 }

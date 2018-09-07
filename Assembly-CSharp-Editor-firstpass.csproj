@@ -349,17 +349,17 @@
     <Reference Include="Unity.Tasks">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="Google.IOSResolver_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.IOSResolver_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.88.0.dll</HintPath>
     </Reference>
-    <Reference Include="Google.JarResolver_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.JarResolver_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.88.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
-    <Reference Include="Google.VersionHandlerImpl_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.88.0.dll</HintPath>
     </Reference>
     <Reference Include="UDP">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>

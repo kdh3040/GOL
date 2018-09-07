@@ -61,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GoogleMobileAds\Editor\AdMobDependencies.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\ForceNoGpgsForIOS.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSAndroidSetupUI.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSDocsUI.cs" />
@@ -71,15 +70,16 @@
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUpgrader.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\GPGSUtil.cs" />
     <Compile Include="Assets\GooglePlayGames\Editor\NearbyConnectionUI.cs" />
-    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.84.0.txt" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPluginDependencies.xml" />
     <None Include="Assets\Firebase\Editor\FirebaseAuth_v5.2.1_manifest.txt" />
+    <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.88.0.txt" />
     <None Include="Assets\Firebase\Editor\FirebaseMessaging_v5.2.1_manifest.txt" />
     <None Include="Assets\GooglePlayGames\Editor\template-GameInfo.txt" />
     <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
     <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
     <None Include="Assets\Firebase\Editor\AuthDependencies.xml" />
     <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
+    <None Include="Assets\GoogleMobileAds\Editor\GoogleMobileAdsDependencies.xml" />
     <None Include="Assets\GooglePlayGames\Editor\m2repository\com\google\games\gpgs-plugin-support\maven-metadata.xml" />
     <None Include="Assets\GooglePlayGames\Editor\GooglePlayGamesPlugin_v0.9.50.txt" />
     <None Include="Assets\Firebase\Editor\MessagingDependencies.xml" />
@@ -365,17 +365,17 @@
     <Reference Include="Unity.Tasks">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="Google.IOSResolver_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.IOSResolver_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.88.0.dll</HintPath>
     </Reference>
-    <Reference Include="Google.JarResolver_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.JarResolver_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.JarResolver_v1.2.88.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
-    <Reference Include="Google.VersionHandlerImpl_v1.2.84.0">
-      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.84.0.dll</HintPath>
+    <Reference Include="Google.VersionHandlerImpl_v1.2.88.0">
+      <HintPath>D:/DoHoSoft/Unity/GOL/Assets/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.88.0.dll</HintPath>
     </Reference>
     <Reference Include="UDP">
       <HintPath>D:/DoHoSoft/Unity/GOL/Assets/Plugins/UDP/UDP.dll</HintPath>

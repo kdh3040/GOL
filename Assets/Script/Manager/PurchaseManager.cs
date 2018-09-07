@@ -53,6 +53,12 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
         ConfigurationBuilder builder = ConfigurationBuilder.Instance(module);
 
+        Debug.Log("!!!!!!!! CommonData.PURCHASE_ID_ARRAY[0]" + CommonData.PURCHASE_ID_ARRAY[0]);
+        Debug.Log("!!!!!!!! CommonData.PURCHASE_ID_ARRAY[1]" + CommonData.PURCHASE_ID_ARRAY[1]);
+        Debug.Log("!!!!!!!! CommonData.PURCHASE_ID_ARRAY[2]" + CommonData.PURCHASE_ID_ARRAY[2]);
+        Debug.Log("!!!!!!!! CommonData.PURCHASE_ID_ARRAY[3]" + CommonData.PURCHASE_ID_ARRAY[3]);
+        Debug.Log("!!!!!!!! CommonData.PURCHASE_ID_ARRAY[4]" + CommonData.PURCHASE_ID_ARRAY[4]);
+
         builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[0], ProductType.Consumable, new IDs
         {
             { CommonData.PURCHASE_ID_ARRAY[0], AppleAppStore.Name },
@@ -89,7 +95,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void BuyProductID(UIPurchaseSlot slot)
     {
-        Debug.Log("BuyProductID Enter");
+        Debug.Log("!!!!!!!! BuyProductID Enter");
         try
         {
           
@@ -127,7 +133,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         
         if (!IsInitialized())
         {
-            Debug.Log("RestorePurchases FAIL. Not initialized.");
+            Debug.Log("!!!!!!!! RestorePurchases FAIL. Not initialized.");
             return;
         }
 
@@ -151,7 +157,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void OnInitialized(IStoreController sc, IExtensionProvider ep)
     {
-        Debug.Log("OnInitialized : PASS");
+        Debug.Log("!!!!!!!! OnInitialized : PASS");
 
         storeController = sc;
         extensionProvider = ep;
@@ -159,7 +165,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
 
     public void OnInitializeFailed(InitializationFailureReason reason)
     {
-        Debug.Log("OnInitializeFailed InitializationFailureReason:" + reason);
+        Debug.Log("!!!!!!!! OnInitializeFailed InitializationFailureReason:" + reason);
     }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
