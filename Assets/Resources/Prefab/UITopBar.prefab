@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackButton: {fileID: 114849144848277410}
-  DdongPoint: {fileID: 114568921839649778}
-  CoinPoint: {fileID: 114908684188049776}
+  DdongPoint: {fileID: 114908684188049776}
+  CoinPoint: {fileID: 114568921839649778}
 --- !u!114 &114174781986044272
 MonoBehaviour:
   m_ObjectHideFlags: 1
