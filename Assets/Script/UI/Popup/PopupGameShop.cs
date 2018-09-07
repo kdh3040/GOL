@@ -301,7 +301,7 @@ public class PopupGameShop : PopupUI
             {
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);
                 RefreshUI();
-                ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_BUY_SKIN"));
+                ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_BUY_SKIN", skinData.GetLocalizeName()));
             }
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);

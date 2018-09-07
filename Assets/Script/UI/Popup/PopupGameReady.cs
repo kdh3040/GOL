@@ -226,7 +226,7 @@ public class PopupGameReady : PopupUI
         if (CommonFunc.UseCoin(itemData.cost))
         {
             PlayerData.Instance.PlusItem_Count(id);
-            ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_BUY_ITEM"));
+            ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_BUY_ITEM", itemData.GetLocalizeName()));
         }
             
 
@@ -241,8 +241,12 @@ public class PopupGameReady : PopupUI
 
     public void OnClickItemEquip()
     {
-        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM"));
         EquipItemSlotIndex = SelectSlotIndex;
+
+        var id = ItemSlotList[EquipItemSlotIndex].ItemId;
+        var itemData = DataManager.Instance.ItemDataDic[id];
+        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", itemData.GetLocalizeName()));
+
         RefreshUI();
     }
 
@@ -275,7 +279,7 @@ public class PopupGameReady : PopupUI
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
                 {
                     ItemManager.Instance.ItemLevelUp(itemId);
-                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_ITEM"));
+                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_ITEM", itemData.GetLocalizeName()));
                 }
 
                 RefreshUI();
