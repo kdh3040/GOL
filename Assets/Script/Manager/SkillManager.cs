@@ -35,6 +35,9 @@ public class SkillManager
 
     public void ResetGame()
     {
+        var enumerator = mUseSkillList.GetEnumerator();
+        while (enumerator.MoveNext())
+            enumerator.Current.Value.EndSkill();
         mUseSkillList.Clear();
     }
     public void UseSkinSlotSkill()
