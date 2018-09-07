@@ -98,6 +98,9 @@ public class GamePlayManager : MonoBehaviour
         
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
+        AdManager.Instance.RequestInterstitialAd();
+        AdManager.Instance.RequestRewardBasedVideo();
+        
     }
 
     public void ResetGame()
@@ -229,6 +232,7 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage.GameOver();
         IsGamePause = true;
         SettingManager.Instance.DoVibe();
+        AdManager.Instance.ShowInterstitialAd();
         StartCoroutine(Co_GameOver(note));
     }
 
