@@ -99,6 +99,8 @@ public class GamePlayManager : MonoBehaviour
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
         AdManager.Instance.RequestInterstitialAd();
+        AdManager.Instance.RequestRewardBasedVideo();
+        
     }
 
     public void ResetGame()

@@ -23,9 +23,10 @@ public class AdManager : MonoBehaviour {
     public string ios_interstitial_id;
     
     private static InterstitialAd interstitialAd;
+    private static RewardBasedVideoAd rewardBasedVideo;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
     }
 	
@@ -36,8 +37,6 @@ public class AdManager : MonoBehaviour {
 
     public void RequestInterstitialAd()
     {
-
-
         string adUnitId = string.Empty;
 
 #if UNITY_ANDROID
@@ -80,5 +79,38 @@ public class AdManager : MonoBehaviour {
                 interstitialAd.Show();
             }
         }       
-    }    
+    }
+
+    public void RequestRewardBasedVideo()
+    {
+#if UNITY_EDITOR
+        string adUnitId = "unused";
+#elif UNITY_ANDROID
+        string adUnitId = "ca-app-pub-4020702622451243/2922549491";
+#elif UNITY_IPHONE
+        string adUnitId = "ca-app-pub-4020702622451243/1681620010";
+#else
+        string adUnitId = "unexpected_platform";
+#endif
+
+        RewardBasedVideoAd rewardBasedVideo = RewardBasedVideoAd.Instance;
+
+        AdRequest request = new AdRequest.Builder().Build();
+        rewardBasedVideo.LoadAd(request, adUnitId);        
+    }
+
+    private void ShowRewardVideo(RewardBasedVideoAd rewardBasedVideo)
+    {
+        if (rewardBasedVideo.IsLoaded())
+        {
+            //Subscribe to Ad event
+            rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
+            rewardBasedVideo.Show();
+        }
+    }
+
+    private void HandleRewardBasedVideoRewarded(object sender, Reward e)
+    {
+      //부활
+    }
 }
