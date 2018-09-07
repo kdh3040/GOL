@@ -41,6 +41,8 @@ public class PopupGameShop : PopupUI
     public List<UISkinSlot> SkinSlotList = new List<UISkinSlot>();
     public List<UIShopSkinSlot> ShopSkinList = new List<UIShopSkinSlot>();
 
+    public GameObject ToastPos;
+
     private CommonData.SKIN_TYPE SelectSkinType = CommonData.SKIN_TYPE.NONE;
     private int SelectSlotIndex = 0;
     private bool SelectLIst = false;
@@ -299,6 +301,7 @@ public class PopupGameShop : PopupUI
             {
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);
                 RefreshUI();
+                ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_BUY_SKIN"));
             }
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
@@ -321,11 +324,20 @@ public class PopupGameShop : PopupUI
             if (CommonFunc.UseCoin(data.cost))
             {
                 PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
+                ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_UPGRADE_SKIN_SLOT"));
             }
 
             RefreshUI();
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+    }
+
+    public void ShowToastMsg(string msg)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
+        var slot = obj.GetComponent<UIToastMsg>();
+        slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
+        slot.SetMsg(msg);
     }
 }

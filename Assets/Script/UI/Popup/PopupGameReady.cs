@@ -30,6 +30,8 @@ public class PopupGameReady : PopupUI
 
     public Button StartButton;
 
+    public GameObject ToastPos;
+
     private bool SelectSkinSlot = false;
     private int SelectSlotIndex = 0;
     private int EquipItemSlotIndex = -1;
@@ -72,7 +74,7 @@ public class PopupGameReady : PopupUI
             if(PlayerData.Instance.LastEquipItemId == itemEnumerator.Current.Key)
             {
                 OnClickItem(index);
-                OnClickItemEquip();
+                FirstItemEquip();
             }
         }
 
@@ -222,13 +224,24 @@ public class PopupGameReady : PopupUI
         var id = ItemSlotList[SelectSlotIndex].ItemId;
         var itemData = DataManager.Instance.ItemDataDic[id];
         if (CommonFunc.UseCoin(itemData.cost))
+        {
             PlayerData.Instance.PlusItem_Count(id);
+            ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_BUY_ITEM"));
+        }
+            
 
+        RefreshUI();
+    }
+
+    public void FirstItemEquip()
+    {
+        EquipItemSlotIndex = SelectSlotIndex;
         RefreshUI();
     }
 
     public void OnClickItemEquip()
     {
+        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM"));
         EquipItemSlotIndex = SelectSlotIndex;
         RefreshUI();
     }
@@ -245,6 +258,7 @@ public class PopupGameReady : PopupUI
                 if (CommonFunc.UseCoin(data.cost))
                 {
                     PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
+                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_SKIN_SLOT"));
                 }
 
                 RefreshUI();
@@ -261,6 +275,7 @@ public class PopupGameReady : PopupUI
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
                 {
                     ItemManager.Instance.ItemLevelUp(itemId);
+                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_ITEM"));
                 }
 
                 RefreshUI();
@@ -323,5 +338,13 @@ public class PopupGameReady : PopupUI
             PopupManager.Instance.DismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
+    }
+
+    public void ShowToastMsg(string msg)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
+        var slot = obj.GetComponent<UIToastMsg>();
+        slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
+        slot.SetMsg(msg);
     }
 }
