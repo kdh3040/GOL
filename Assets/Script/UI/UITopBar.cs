@@ -23,10 +23,10 @@ public class UITopBar : MonoBehaviour
       //      CoinPoint.gameObject.transform.localPosition = new Vector3(20, 0);
       //  }
        // else
-        {
-            DdongPoint.gameObject.transform.localPosition = new Vector3(-171, 0);
-            CoinPoint.gameObject.transform.localPosition = new Vector3(213, 0);
-        }
+        //{
+        //    DdongPoint.gameObject.transform.localPosition = new Vector3(-171, 0);
+        //    CoinPoint.gameObject.transform.localPosition = new Vector3(213, 0);
+        //}
 
         DdongPoint.Initialize(CommonData.POINT_TYPE.DDONG);
         CoinPoint.Initialize(CommonData.POINT_TYPE.COIN);

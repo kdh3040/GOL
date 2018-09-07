@@ -142,6 +142,7 @@ public class GamePlayManager : MonoBehaviour
         SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem(UseItemId);
         mGameUIPage.RefreshShieldItemUI();
+        mGameUIPage.RefreshItemSkillUI();
         mNoteSystem.GameStart();
         mDoorSystem.GameStart();
         StartCoroutine(UpdateGamePlay());
