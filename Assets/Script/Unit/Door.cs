@@ -95,7 +95,7 @@ public class Door : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteMsg"), gameObject.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         sprite.sprite = (Sprite)Resources.Load(CommonData.NOTE_DELETE_MSG[Random.Range(0, CommonData.NOTE_DELETE_MSG.Length)], typeof(Sprite));
-        obj.gameObject.transform.localPosition = new Vector3(0, -2, -2);
+        obj.gameObject.transform.localPosition = new Vector3(0, -2, -4);
         StartCoroutine(Co_DeleteNoteMsg(obj));
     }
 

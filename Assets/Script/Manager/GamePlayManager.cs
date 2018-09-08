@@ -458,7 +458,7 @@ public class GamePlayManager : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteAni"), NoteDeleteObj.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         //sprite.gameObject.transform.SetParent(NoteDeleteObj.transform);
-        obj.gameObject.transform.localPosition = note.transform.position;
+        obj.gameObject.transform.localPosition = new Vector3(note.transform.position.x, note.transform.position.y, 0);
 
         switch (note.NoteType)
         {
