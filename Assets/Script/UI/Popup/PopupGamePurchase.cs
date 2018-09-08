@@ -32,7 +32,7 @@ public class PopupGamePurchase : PopupUI
         SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 99, CommonData.POINT_TYPE.COIN, 99000, CommonData.PURCHASE_ID_ARRAY[3]);
         SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
 
-        PurchaseManager.Instance.InitializePurchasing();
+        //PurchaseManager.Instance.InitializePurchasing();
 
     }
 

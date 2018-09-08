@@ -6,7 +6,7 @@ using UnityEngine.Purchasing;
 
 public class PurchaseManager : MonoBehaviour, IStoreListener
 {
-    
+
     public static PurchaseManager _instance = null;
     public static PurchaseManager Instance
     {
@@ -14,12 +14,12 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         {
             if (_instance == null)
             {
-                _instance = new PurchaseManager();
+                _instance = FindObjectOfType<PurchaseManager>() as PurchaseManager;
             }
             return _instance;
         }
     }
-    
+
     PurchaseManager()
     {
        
@@ -31,6 +31,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     private static UIPurchaseSlot mPurchaseSlot;
     void Start()
     {
+        InitializePurchasing();
+        DontDestroyOnLoad(this);
     }
 
  
