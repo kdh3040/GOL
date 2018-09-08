@@ -77,25 +77,25 @@ public class PopupGameSetting : PopupUI
         {
             // 기본 속도
             if (up)
-                ConfigData.Instance.DEBUG_DEFAULT_SPEED += 0.1f;
+                ConfigData.Instance.DEBUG_DEFAULT_SPEED += 0.01f;
             else
-                ConfigData.Instance.DEBUG_DEFAULT_SPEED -= 0.1f;
+                ConfigData.Instance.DEBUG_DEFAULT_SPEED -= 0.01f;
         }
         else if (type == 2)
         {
             // 속도 증가 시간
             if (up)
-                ConfigData.Instance.DEBUG_SPEED_UP_TIME += 0.1f;
+                ConfigData.Instance.DEBUG_SPEED_UP_TIME += 0.01f;
             else
-                ConfigData.Instance.DEBUG_SPEED_UP_TIME -= 0.1f;
+                ConfigData.Instance.DEBUG_SPEED_UP_TIME -= 0.01f;
         }
         else if (type == 3)
         {
             // 속도 증가 폭
             if (up)
-                ConfigData.Instance.DEBUG_SPEED_UP += 0.1f;
+                ConfigData.Instance.DEBUG_SPEED_UP += 0.01f;
             else
-                ConfigData.Instance.DEBUG_SPEED_UP -= 0.1f;
+                ConfigData.Instance.DEBUG_SPEED_UP -= 0.01f;
         }
 
         RefreshDebugData();
