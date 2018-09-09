@@ -32,7 +32,7 @@ public class GManager : MonoBehaviour
 
         Screen.SetResolution(Screen.width, (Screen.width * 16) / 9, false);
 
-        GameCenterManager.Instance.Init();
+   
 
         PlayerData.Instance.Initialize();
       //  PurchaseManager.Instance.InitializePurchasing();
@@ -46,7 +46,7 @@ public class GManager : MonoBehaviour
         Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
         Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
         
-        GameCenterManager.Instance.SignIn();
+     
 
 
         StartCoroutine(UpdateGame());
