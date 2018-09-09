@@ -41,7 +41,7 @@ public class CommonData : MonoBehaviour {
 
     public static int SHIELD_ITEM_ID = 2;
     public static int NOTE_GROUP_NOTE_COUNT = 3;
-    public static float NOTE_GROUP_INTERVAL = 4.0f;
+    public static float NOTE_GROUP_INTERVAL = 3.0f;
     public static int MAX_DDONG_COUNT = 5;
     public static float DDONG_VIEW_INTERVAL = 5f;
     public static string[] PURCHASE_ID_ARRAY = { "coin_1", "coin_2", "coin_3", "coin_4", "coin_5" };

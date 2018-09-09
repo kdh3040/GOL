@@ -187,8 +187,12 @@ public class PopupGameReady : PopupUI
             CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
-            ItemBuyButton.gameObject.SetActive(true);
-            ItemBuyCost.SetValue(itemData.cost);
+            if(GamePlayManager.Instance.GameOriginalMode)
+            {
+                ItemBuyButton.gameObject.SetActive(true);
+                ItemBuyCost.SetValue(itemData.cost);
+            }
+            
             if (ItemManager.Instance.IsItemLevelUp(itemId))
             {
                 UpgradeButton.gameObject.SetActive(true);

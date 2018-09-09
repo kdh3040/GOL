@@ -50,6 +50,9 @@ public class UIItemSlot : MonoBehaviour
     {
         var level = PlayerData.Instance.GetItemLevel(ItemId);
         Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
-        Count.SetValue(PlayerData.Instance.GetItemCount(ItemId).ToString(), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.YELLOW);
+        if (GamePlayManager.Instance.GameOriginalMode)
+            Count.SetValue(PlayerData.Instance.GetItemCount(ItemId).ToString(), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.YELLOW);
+        else
+            Count.gameObject.SetActive(false);
     }
 }

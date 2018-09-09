@@ -24,6 +24,9 @@ public class NoteSystem
     private float NoteSpeedCheckTime = 0;
     private float ItemNoteCreatePercent = 0;
 
+    private CommonData.NOTE_LINE ChainCreateNoteLine = CommonData.NOTE_LINE.INDEX_1;
+    private int ChainCreateNoteCount = 0;
+
     public void Initialize(PlayScene scene)
     {
         NoteGroupList = scene.NoteGroupList;
@@ -31,7 +34,8 @@ public class NoteSystem
         NoteGroupOpenPos = scene.NoteGroupOpenPos;
     }
     public void ResetSystem()
-    { 
+    {
+        ChainCreateNoteCount = 0;
         NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED + ConfigData.Instance.DEBUG_DEFAULT_SPEED;
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
@@ -149,6 +153,7 @@ public class NoteSystem
                     {
                         GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
                         GamePlayManager.Instance.GameOver(note);
+                        break;
                     }
                     else
                     {
@@ -216,10 +221,29 @@ public class NoteSystem
             while (true)
             {
                 createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3 + 1);
-                if(createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
+
+                if (ChainCreateNoteLine == (CommonData.NOTE_LINE)createNoteLine)
+                {
+                    if (ChainCreateNoteCount >= 2)
+                        continue;
+
+                    ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+                    ChainCreateNoteCount++;
                     break;
+                }
+                else if (ChainCreateNoteLine != (CommonData.NOTE_LINE)createNoteLine)
+                {
+                    ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+                    ChainCreateNoteCount = 0;
+                    break;
+                }
+
+                //if (createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
+                //    break;
             }
-            
+
+            ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+            ChainCreateNoteCount++;
 
             var createNoteId = 0;
             var createNoteType = CommonData.NOTE_TYPE.NORMAL;
@@ -275,7 +299,7 @@ public class NoteSystem
         {
 
             if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
-                return NoteGroupList[i].DeleteNote(door.NoteLineType);
+                NoteGroupList[i].DeleteNote(door.NoteLineType);
 
             //float distance = (NoteGroupList[i].transform.position.y - NoteGroupOpenPos.localPosition.y);
             //if (minDistance > distance)
