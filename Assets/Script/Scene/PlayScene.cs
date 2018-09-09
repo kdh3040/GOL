@@ -9,6 +9,7 @@ public class PlayScene : MonoBehaviour
     public List<NoteGroup> NoteGroupList = new List<NoteGroup>();
     public Transform NoteGroupEndPos;
     public Transform NoteGroupOpenPos;
+    public Transform NoteGroupEndViewPos;
     public PageGameUI UIPage;
     public PlayerChar PlayerCharObj;
 

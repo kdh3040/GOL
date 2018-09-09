@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: df4bf5b05b984aadafe24fec95a29557
 labels:
 - gvh
-- gvh_linuxlibname-FirebaseCppApp-5.2.1
+- gvh_linuxlibname-FirebaseCppApp
 - gvh_version-5.2.1
 PluginImporter:
   externalObjects: {}

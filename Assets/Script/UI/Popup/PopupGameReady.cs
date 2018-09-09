@@ -30,6 +30,8 @@ public class PopupGameReady : PopupUI
 
     public Button StartButton;
 
+    public GameObject ToastPos;
+
     private bool SelectSkinSlot = false;
     private int SelectSlotIndex = 0;
     private int EquipItemSlotIndex = -1;
@@ -72,7 +74,7 @@ public class PopupGameReady : PopupUI
             if(PlayerData.Instance.LastEquipItemId == itemEnumerator.Current.Key)
             {
                 OnClickItem(index);
-                OnClickItemEquip();
+                FirstItemEquip();
             }
         }
 
@@ -185,8 +187,13 @@ public class PopupGameReady : PopupUI
             CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
-            ItemBuyButton.gameObject.SetActive(true);
-            ItemBuyCost.SetValue(itemData.cost);
+            if(GamePlayManager.Instance.GameOriginalMode)
+            {
+                ItemBuyButton.gameObject.SetActive(true);
+                ItemBuyCost.SetValue(itemData.cost);
+                ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
+            }
+
             if (ItemManager.Instance.IsItemLevelUp(itemId))
             {
                 UpgradeButton.gameObject.SetActive(true);
@@ -195,7 +202,7 @@ public class PopupGameReady : PopupUI
             else
                 UpgradeButton.gameObject.SetActive(false);
 
-            ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
+            
 
             var skillName = ItemManager.Instance.GetItemSkill(itemId);
             var skillData = SkillManager.Instance.GetSkillData(skillName);
@@ -222,14 +229,29 @@ public class PopupGameReady : PopupUI
         var id = ItemSlotList[SelectSlotIndex].ItemId;
         var itemData = DataManager.Instance.ItemDataDic[id];
         if (CommonFunc.UseCoin(itemData.cost))
+        {
             PlayerData.Instance.PlusItem_Count(id);
+            ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_BUY_ITEM", itemData.GetLocalizeName()));
+        }
+            
 
+        RefreshUI();
+    }
+
+    public void FirstItemEquip()
+    {
+        EquipItemSlotIndex = SelectSlotIndex;
         RefreshUI();
     }
 
     public void OnClickItemEquip()
     {
         EquipItemSlotIndex = SelectSlotIndex;
+
+        var id = ItemSlotList[EquipItemSlotIndex].ItemId;
+        var itemData = DataManager.Instance.ItemDataDic[id];
+        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", itemData.GetLocalizeName()));
+
         RefreshUI();
     }
 
@@ -245,6 +267,7 @@ public class PopupGameReady : PopupUI
                 if (CommonFunc.UseCoin(data.cost))
                 {
                     PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
+                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_SKIN_SLOT"));
                 }
 
                 RefreshUI();
@@ -261,6 +284,7 @@ public class PopupGameReady : PopupUI
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
                 {
                     ItemManager.Instance.ItemLevelUp(itemId);
+                    ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_ITEM", itemData.GetLocalizeName()));
                 }
 
                 RefreshUI();
@@ -295,20 +319,27 @@ public class PopupGameReady : PopupUI
         }
         else
         {
-            var itemId = ItemSlotList[EquipItemSlotIndex].ItemId;
-            if (PlayerData.Instance.GetItemCount(itemId) <= 0)
+            if (GamePlayManager.Instance.GameOriginalMode)
             {
-                UnityAction yesAction = () =>
+                var itemId = ItemSlotList[EquipItemSlotIndex].ItemId;
+                if (PlayerData.Instance.GetItemCount(itemId) <= 0)
                 {
+                    UnityAction yesAction = () =>
+                    {
+                        GameStart();
+                    };
+                    var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+                }
+                else
+                {
+                    PlayerData.Instance.SetUseItemId(itemId);
+                    PlayerData.Instance.MinusItem_Count(itemId);
                     GameStart();
-                };
-                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+                }
             }
             else
             {
-                PlayerData.Instance.SetUseItemId(itemId);
-                PlayerData.Instance.MinusItem_Count(itemId);
                 GameStart();
             }
         }
@@ -323,5 +354,13 @@ public class PopupGameReady : PopupUI
             PopupManager.Instance.DismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
+    }
+
+    public void ShowToastMsg(string msg)
+    {
+        var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
+        var slot = obj.GetComponent<UIToastMsg>();
+        slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
+        slot.SetMsg(msg);
     }
 }

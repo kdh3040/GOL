@@ -175,10 +175,22 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
-        if(CommonFunc.UseCoin(ConfigData.Instance.REVIVAL_COST))
+
+#if UNITY_EDITOR
+        GamePlayManager.Instance.GameRevival();
+        PopupManager.Instance.DismissPopup();
+#elif UNITY_ANDROID
+       AdManager.Instance.ShowRewardVideo();
+#elif UNITY_IPHONE
+         AdManager.Instance.ShowRewardVideo();
+#endif
+        
+        /*
+        if (CommonFunc.UseCoin(ConfigData.Instance.REVIVAL_COST))
         {
             GamePlayManager.Instance.GameRevival();
             PopupManager.Instance.DismissPopup();
         }
+        */
     }
 }

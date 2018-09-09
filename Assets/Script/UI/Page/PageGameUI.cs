@@ -14,7 +14,7 @@ public class PageGameUI : MonoBehaviour
     public Transform SkillProgressStartPos;
     public Button GamePauseButton;
     public UICountImgFont GameResumeCount;
-    public List<Button> DoorButtons = new List<Button>();
+    
 
     public GameObject CharMsgObj;
     public Text CharMsg;
@@ -22,16 +22,43 @@ public class PageGameUI : MonoBehaviour
 
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
+    public GameObject DoorButtons_1;
+    public List<Button> DoorButtonsList_1 = new List<Button>();
+    public GameObject DoorButtons_2;
+    public List<Button> DoorButtonsList_2 = new List<Button>();
+
 
     void Awake()
     {
-        ItemButton.onClick.AddListener(OnClickItem);
+        if (GamePlayManager.Instance.GameOriginalMode)
+            ItemButton.onClick.AddListener(OnClickItem);
+        else
+        {
+            ItemImg.gameObject.SetActive(false);
+            ItemButton.gameObject.SetActive(false);
+        }
+            
         GamePauseButton.onClick.AddListener(OnClickPause);
 
-        for (int i = 0; i < DoorButtons.Count; i++)
+        if (GamePlayManager.Instance.GameOriginalMode)
         {
-            int index = i;
-            DoorButtons[i].onClick.AddListener(() => { OnClickDoorButton(index); });
+            DoorButtons_1.gameObject.SetActive(true);
+            DoorButtons_2.gameObject.SetActive(false);
+            for (int i = 0; i < DoorButtonsList_1.Count; i++)
+            {
+                int index = i;
+                DoorButtonsList_1[i].onClick.AddListener(() => { OnClickDoorButton(index); });
+            }
+        }
+        else if (GamePlayManager.Instance.GameOriginalMode == false)
+        {
+            DoorButtons_1.gameObject.SetActive(false);
+            DoorButtons_2.gameObject.SetActive(true);
+            for (int i = 0; i < DoorButtonsList_2.Count; i++)
+            {
+                int index = i;
+                DoorButtonsList_2[i].onClick.AddListener(() => { OnClickDoorButton(index); });
+            }
         }
     }
 
@@ -50,16 +77,19 @@ public class PageGameUI : MonoBehaviour
 
     public void RefreshItemUI()
     {
-        int ItemId = GamePlayManager.Instance.UseItemId;
-        if (ItemId != 0)
+        if(GamePlayManager.Instance.GameOriginalMode)
         {
-            ItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
-            ItemImg.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            ItemImg.color = new Color(1, 1, 1, 0);
-            ItemImg.sprite = null;
+            int ItemId = GamePlayManager.Instance.UseItemId;
+            if (ItemId != 0)
+            {
+                ItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
+                ItemImg.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                ItemImg.color = new Color(1, 1, 1, 0);
+                ItemImg.sprite = null;
+            }
         }
     }
 
@@ -87,6 +117,7 @@ public class PageGameUI : MonoBehaviour
             {
                 DestroyImmediate(mSkillProgressBarList[i].gameObject);
                 mSkillProgressBarList.RemoveAt(i);
+                UpdateSkillProgressBar();
             }
             else
                 mSkillProgressBarList[i].UpdateSkillProgress();
@@ -109,8 +140,17 @@ public class PageGameUI : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), SkillProgressStartPos) as GameObject;
         var progressBar = obj.GetComponent<UISkillProgressBar>();
         progressBar.SetItemSkill(itemId, skill.mSkillType);
-        progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
+        //progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
         mSkillProgressBarList.Add(progressBar);
+        UpdateSkillProgressBar();
+    }
+
+    public void UpdateSkillProgressBar()
+    {
+        for (int i = 0; i < mSkillProgressBarList.Count; i++)
+        {
+            mSkillProgressBarList[i].gameObject.transform.localPosition = new Vector3(0, i * 80);
+        }
     }
 
     public void GameResume()

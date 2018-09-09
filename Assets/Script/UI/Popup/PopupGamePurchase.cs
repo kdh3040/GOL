@@ -31,6 +31,9 @@ public class PopupGamePurchase : PopupUI
 
         SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 99, CommonData.POINT_TYPE.COIN, 99000, CommonData.PURCHASE_ID_ARRAY[3]);
         SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
+
+        //PurchaseManager.Instance.InitializePurchasing();
+
     }
 
     public void OnClickPurchase(int index)
@@ -39,6 +42,7 @@ public class PopupGamePurchase : PopupUI
         {
             if(SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
             {
+             
                 PurchaseManager.Instance.BuyProductID(SlotList[index]);
                 // 캐쉬로 구입
                 

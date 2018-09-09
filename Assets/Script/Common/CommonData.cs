@@ -41,9 +41,9 @@ public class CommonData : MonoBehaviour {
 
     public static int SHIELD_ITEM_ID = 2;
     public static int NOTE_GROUP_NOTE_COUNT = 3;
-    public static float NOTE_GROUP_INTERVAL = 4.0f;
+    public static float NOTE_GROUP_INTERVAL = 3.0f;
     public static int MAX_DDONG_COUNT = 5;
     public static float DDONG_VIEW_INTERVAL = 5f;
-    public static string[] PURCHASE_ID_ARRAY = { "COIN_1", "COIN_2", "COIN_3", "COIN_4", "COIN_5"};
+    public static string[] PURCHASE_ID_ARRAY = { "coin_1", "coin_2", "coin_3", "coin_4", "coin_5" };
     public static string[] NOTE_DELETE_MSG = { "Renewal/UI/text_door", "Renewal/UI/text_smell", "Renewal/UI/text_what", "Renewal/UI/text_who" };
 }

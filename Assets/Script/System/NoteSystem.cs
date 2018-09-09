@@ -14,6 +14,7 @@ public class NoteSystem
     private List<NoteGroup> NoteGroupList = new List<NoteGroup>();
     private Transform NoteGroupEndPos;
     private Transform NoteGroupOpenPos;
+    private Transform NoteGroupEndViewPos;
     public float NoteSpeed { get; set; }
     private List<NoteCreateData> NoteNormalCreateList = new List<NoteCreateData>();
     private int NoteNormalAllPercentValue = 0;
@@ -24,14 +25,19 @@ public class NoteSystem
     private float NoteSpeedCheckTime = 0;
     private float ItemNoteCreatePercent = 0;
 
+    private CommonData.NOTE_LINE ChainCreateNoteLine = CommonData.NOTE_LINE.INDEX_1;
+    private int ChainCreateNoteCount = 0;
+
     public void Initialize(PlayScene scene)
     {
         NoteGroupList = scene.NoteGroupList;
         NoteGroupEndPos = scene.NoteGroupEndPos;
         NoteGroupOpenPos = scene.NoteGroupOpenPos;
+        NoteGroupEndViewPos = scene.NoteGroupEndViewPos;
     }
     public void ResetSystem()
-    { 
+    {
+        ChainCreateNoteCount = 0;
         NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED + ConfigData.Instance.DEBUG_DEFAULT_SPEED;
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
@@ -79,7 +85,6 @@ public class NoteSystem
 
     public void AllDeleteNote(bool deleteAni = false)
     {
-        var endPos = NoteGroupEndPos.localPosition;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
             if(deleteAni)
@@ -147,8 +152,10 @@ public class NoteSystem
                 {
                     if (GamePlayManager.Instance.IsGameOver(note.NoteLineType))
                     {
+                        NoteGroupList[i].gameObject.transform.localPosition = NoteGroupEndViewPos.localPosition;
                         GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.OPEN);
                         GamePlayManager.Instance.GameOver(note);
+                        break;
                     }
                     else
                     {
@@ -216,10 +223,29 @@ public class NoteSystem
             while (true)
             {
                 createNoteLine = Random.Range((int)CommonData.NOTE_LINE.INDEX_1, (int)CommonData.NOTE_LINE.INDEX_3 + 1);
-                if(createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
+
+                if (ChainCreateNoteLine == (CommonData.NOTE_LINE)createNoteLine)
+                {
+                    if (ChainCreateNoteCount >= 2)
+                        continue;
+
+                    ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+                    ChainCreateNoteCount++;
                     break;
+                }
+                else if (ChainCreateNoteLine != (CommonData.NOTE_LINE)createNoteLine)
+                {
+                    ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+                    ChainCreateNoteCount = 0;
+                    break;
+                }
+
+                //if (createNoteList[createNoteLine].Key == CommonData.NOTE_TYPE.NONE)
+                //    break;
             }
-            
+
+            ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
+            ChainCreateNoteCount++;
 
             var createNoteId = 0;
             var createNoteType = CommonData.NOTE_TYPE.NORMAL;
@@ -269,24 +295,18 @@ public class NoteSystem
 
     public bool NoteDeleteCheck(Door door)
     {
-        //float minDistance = float.MaxValue;
-        //var minDistanceIndex = 0;
+        bool deleteEnable = false;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-
             if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
-                return NoteGroupList[i].DeleteNote(door.NoteLineType);
-
-            //float distance = (NoteGroupList[i].transform.position.y - NoteGroupOpenPos.localPosition.y);
-            //if (minDistance > distance)
-            //{
-            //    minDistance = distance;
-            //    minDistanceIndex = i;
-            //}   
+            {
+                if(deleteEnable == false)
+                    deleteEnable = NoteGroupList[i].DeleteNote(door.NoteLineType);
+                else
+                    NoteGroupList[i].DeleteNote(door.NoteLineType);
+            }
         }
-        //if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
-        //    return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 
-        return false;
+        return deleteEnable;
     }
 }

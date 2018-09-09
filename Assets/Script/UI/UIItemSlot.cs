@@ -39,17 +39,28 @@ public class UIItemSlot : MonoBehaviour
     }
     public void SetEquip(bool enable)
     {
-        Equip = enable;
-        if (Equip)
-            CommonFunc.SetImageFile("Renewal/UI/slot_bg_4", ref BackgroudImg, false);
+        if(GamePlayManager.Instance.GameOriginalMode)
+        {
+            Equip = enable;
+            if (Equip)
+                CommonFunc.SetImageFile("Renewal/UI/slot_bg_4", ref BackgroudImg, false);
+            else
+                CommonFunc.SetImageFile("Renewal/UI/slot_bg_1", ref BackgroudImg, false);
+        }
         else
+        {
             CommonFunc.SetImageFile("Renewal/UI/slot_bg_1", ref BackgroudImg, false);
+        }
+        
     }
 
     public void RefreshUI()
     {
         var level = PlayerData.Instance.GetItemLevel(ItemId);
         Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
-        Count.SetValue(PlayerData.Instance.GetItemCount(ItemId).ToString(), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.YELLOW);
+        if (GamePlayManager.Instance.GameOriginalMode)
+            Count.SetValue(PlayerData.Instance.GetItemCount(ItemId).ToString(), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.YELLOW);
+        else
+            Count.gameObject.SetActive(false);
     }
 }

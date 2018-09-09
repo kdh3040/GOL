@@ -37,15 +37,20 @@ public class GamePlayManager : MonoBehaviour
         private set;
     }
     private PlayerChar mPlayerChar = null;
+    [System.NonSerialized]
     public bool IsGamePause = false;
     private NoteSystem mNoteSystem = new NoteSystem();
+    [System.NonSerialized]
     public DoorSystem mDoorSystem = new DoorSystem();
     private PageGameUI mGameUIPage;
+    [System.NonSerialized]
     public GameObject NoteDeleteObj;
 
     private AudioSource mAudio;
+    [System.NonSerialized]
     public AudioClip[] mClip = new AudioClip[3];
 
+    [System.NonSerialized]
     public int UseItemId = 0;
 
     private GameObject DDongViewObj;
@@ -59,6 +64,10 @@ public class GamePlayManager : MonoBehaviour
     
     private GameObject InGameEffect_Start;
     private bool FirstStart = true;
+
+    public bool GameOriginalMode = false;
+    private bool Click = false;
+    private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
 
     public float NoteSpeed
     {
@@ -98,11 +107,14 @@ public class GamePlayManager : MonoBehaviour
         
         mAudio = scene.gameObject.AddComponent<AudioSource>();
 
+        AdManager.Instance.RequestInterstitialAd();
+        AdManager.Instance.RequestRewardBasedVideo();
+        
     }
 
     public void ResetGame()
     {
-    
+        Click = false;
         UseItemId = PlayerData.Instance.GetUseItemId();
         PlayerData.Instance.SetUseItemId(0);
         StopAllCoroutines();
@@ -139,6 +151,7 @@ public class GamePlayManager : MonoBehaviour
         SkillManager.Instance.UseSkinSlotSkill();
         UseGameShieldItem(UseItemId);
         mGameUIPage.RefreshShieldItemUI();
+        mGameUIPage.RefreshItemSkillUI();
         mNoteSystem.GameStart();
         mDoorSystem.GameStart();
         StartCoroutine(UpdateGamePlay());
@@ -229,6 +242,7 @@ public class GamePlayManager : MonoBehaviour
         mGameUIPage.GameOver();
         IsGamePause = true;
         SettingManager.Instance.DoVibe();
+        AdManager.Instance.ShowInterstitialAd();
         StartCoroutine(Co_GameOver(note));
     }
 
@@ -258,6 +272,16 @@ public class GamePlayManager : MonoBehaviour
 
             var time = Time.deltaTime;
 
+            if(Click)
+            {
+                var door = mDoorSystem.DoorList[(int)ClickLine];
+                var delete = mNoteSystem.NoteDeleteCheck(door);
+                mPlayerChar.ActionDoorClose(door);
+                SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE, delete);
+                PlayDoorSound(door.NoteLineType);
+            }
+
+            Click = false;
             if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
             {
                 var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN) as GameSkill_SpeedDown;
@@ -291,13 +315,16 @@ public class GamePlayManager : MonoBehaviour
         if (IsGamePause)
             return;
 
-        mNoteSystem.NoteDeleteCheck(door);
-        // 라인타입
-        mPlayerChar.ActionDoorClose(door);
+        Click = true;
+        ClickLine = door.NoteLineType;
 
-        SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE);
+        //    mNoteSystem.NoteDeleteCheck(door);
+        //// 라인타입
+        //mPlayerChar.ActionDoorClose(door);
 
-        PlayDoorSound(door.NoteLineType);
+        //SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE);
+
+        //PlayDoorSound(door.NoteLineType);
     }
     
     public void PlusScore(int score)
@@ -330,7 +357,10 @@ public class GamePlayManager : MonoBehaviour
             else
             {
                 UseItemId = id;
-                mGameUIPage.RefreshItemUI();
+                if (GamePlayManager.Instance.GameOriginalMode)
+                    mGameUIPage.RefreshItemUI();
+                else
+                    UseGameNormalItem();
             }
         }
         else
@@ -354,10 +384,12 @@ public class GamePlayManager : MonoBehaviour
                 UseGameShieldItem(id);
                 itemAdd = true;
             }
-            
 
-            if (itemAdd == false)
-                PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+            if (GamePlayManager.Instance.GameOriginalMode)
+            {
+                if (itemAdd == false)
+                    PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
+            }
         }
 
         PlayGetItemSound();
@@ -453,7 +485,7 @@ public class GamePlayManager : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteAni"), NoteDeleteObj.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         //sprite.gameObject.transform.SetParent(NoteDeleteObj.transform);
-        obj.gameObject.transform.localPosition = note.transform.position;
+        obj.gameObject.transform.localPosition = new Vector3(note.transform.position.x, note.transform.position.y, 0);
 
         switch (note.NoteType)
         {
