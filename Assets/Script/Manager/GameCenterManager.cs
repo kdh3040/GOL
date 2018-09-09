@@ -15,7 +15,7 @@ public class GameCenterManager : MonoBehaviour {
         {
             if (_instance == null)
             {
-                _instance = new GameCenterManager();
+                _instance = FindObjectOfType<GameCenterManager>() as GameCenterManager;
             }
             return _instance;
         }
@@ -27,8 +27,10 @@ public class GameCenterManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        DontDestroyOnLoad(this);
+        Init();
+        SignIn();
+    }
 	
 	// Update is called once per frame
 	void Update () {
