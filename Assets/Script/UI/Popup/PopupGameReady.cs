@@ -191,8 +191,9 @@ public class PopupGameReady : PopupUI
             {
                 ItemBuyButton.gameObject.SetActive(true);
                 ItemBuyCost.SetValue(itemData.cost);
+                ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
             }
-            
+
             if (ItemManager.Instance.IsItemLevelUp(itemId))
             {
                 UpgradeButton.gameObject.SetActive(true);
@@ -201,7 +202,7 @@ public class PopupGameReady : PopupUI
             else
                 UpgradeButton.gameObject.SetActive(false);
 
-            ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
+            
 
             var skillName = ItemManager.Instance.GetItemSkill(itemId);
             var skillData = SkillManager.Instance.GetSkillData(skillName);
@@ -318,20 +319,27 @@ public class PopupGameReady : PopupUI
         }
         else
         {
-            var itemId = ItemSlotList[EquipItemSlotIndex].ItemId;
-            if (PlayerData.Instance.GetItemCount(itemId) <= 0)
+            if (GamePlayManager.Instance.GameOriginalMode)
             {
-                UnityAction yesAction = () =>
+                var itemId = ItemSlotList[EquipItemSlotIndex].ItemId;
+                if (PlayerData.Instance.GetItemCount(itemId) <= 0)
                 {
+                    UnityAction yesAction = () =>
+                    {
+                        GameStart();
+                    };
+                    var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+                }
+                else
+                {
+                    PlayerData.Instance.SetUseItemId(itemId);
+                    PlayerData.Instance.MinusItem_Count(itemId);
                     GameStart();
-                };
-                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+                }
             }
             else
             {
-                PlayerData.Instance.SetUseItemId(itemId);
-                PlayerData.Instance.MinusItem_Count(itemId);
                 GameStart();
             }
         }

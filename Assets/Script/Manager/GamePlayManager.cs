@@ -275,12 +275,9 @@ public class GamePlayManager : MonoBehaviour
             if(Click)
             {
                 var door = mDoorSystem.DoorList[(int)ClickLine];
-                mNoteSystem.NoteDeleteCheck(door);
-                // 라인타입
+                var delete = mNoteSystem.NoteDeleteCheck(door);
                 mPlayerChar.ActionDoorClose(door);
-
-                SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE);
-
+                SetDoorState(door.NoteLineType, Door.DOOR_STATE.CLOSE, delete);
                 PlayDoorSound(door.NoteLineType);
             }
 

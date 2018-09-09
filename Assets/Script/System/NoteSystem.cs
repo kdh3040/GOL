@@ -295,24 +295,18 @@ public class NoteSystem
 
     public bool NoteDeleteCheck(Door door)
     {
-        //float minDistance = float.MaxValue;
-        //var minDistanceIndex = 0;
+        bool deleteEnable = false;
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
-
             if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
-                NoteGroupList[i].DeleteNote(door.NoteLineType);
-
-            //float distance = (NoteGroupList[i].transform.position.y - NoteGroupOpenPos.localPosition.y);
-            //if (minDistance > distance)
-            //{
-            //    minDistance = distance;
-            //    minDistanceIndex = i;
-            //}   
+            {
+                if(deleteEnable == false)
+                    deleteEnable = NoteGroupList[i].DeleteNote(door.NoteLineType);
+                else
+                    NoteGroupList[i].DeleteNote(door.NoteLineType);
+            }
         }
-        //if (minDistance < CommonData.NOTE_TOUCH_DELETE_INTERVAL)
-        //    return NoteGroupList[minDistanceIndex].DeleteNote(door.NoteLineType);
 
-        return false;
+        return deleteEnable;
     }
 }

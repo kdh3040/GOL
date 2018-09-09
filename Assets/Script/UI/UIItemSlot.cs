@@ -39,11 +39,19 @@ public class UIItemSlot : MonoBehaviour
     }
     public void SetEquip(bool enable)
     {
-        Equip = enable;
-        if (Equip)
-            CommonFunc.SetImageFile("Renewal/UI/slot_bg_4", ref BackgroudImg, false);
+        if(GamePlayManager.Instance.GameOriginalMode)
+        {
+            Equip = enable;
+            if (Equip)
+                CommonFunc.SetImageFile("Renewal/UI/slot_bg_4", ref BackgroudImg, false);
+            else
+                CommonFunc.SetImageFile("Renewal/UI/slot_bg_1", ref BackgroudImg, false);
+        }
         else
+        {
             CommonFunc.SetImageFile("Renewal/UI/slot_bg_1", ref BackgroudImg, false);
+        }
+        
     }
 
     public void RefreshUI()

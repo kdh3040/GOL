@@ -117,6 +117,7 @@ public class PageGameUI : MonoBehaviour
             {
                 DestroyImmediate(mSkillProgressBarList[i].gameObject);
                 mSkillProgressBarList.RemoveAt(i);
+                UpdateSkillProgressBar();
             }
             else
                 mSkillProgressBarList[i].UpdateSkillProgress();
@@ -139,8 +140,17 @@ public class PageGameUI : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), SkillProgressStartPos) as GameObject;
         var progressBar = obj.GetComponent<UISkillProgressBar>();
         progressBar.SetItemSkill(itemId, skill.mSkillType);
-        progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
+        //progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
         mSkillProgressBarList.Add(progressBar);
+        UpdateSkillProgressBar();
+    }
+
+    public void UpdateSkillProgressBar()
+    {
+        for (int i = 0; i < mSkillProgressBarList.Count; i++)
+        {
+            mSkillProgressBarList[i].gameObject.transform.localPosition = new Vector3(0, i * 80);
+        }
     }
 
     public void GameResume()
