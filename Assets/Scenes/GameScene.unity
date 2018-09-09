@@ -1643,7 +1643,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1181702256}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &888950184
 Prefab:
@@ -1682,7 +1682,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4996560675560622, guid: c960690b080196f4aa85954b08edb8e7, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c960690b080196f4aa85954b08edb8e7, type: 2}
@@ -2054,7 +2054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1181702256}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147167361
 GameObject:
@@ -2214,6 +2214,7 @@ Transform:
   - {fileID: 981528371}
   - {fileID: 824222477}
   - {fileID: 1446476435}
+  - {fileID: 1865775607}
   - {fileID: 1262165614}
   - {fileID: 1383261316}
   - {fileID: 888950185}
@@ -2255,7 +2256,7 @@ Transform:
   - {fileID: 1631741096}
   - {fileID: 1476171668}
   m_Father: {fileID: 1181702256}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263139339
 GameObject:
@@ -2489,6 +2490,7 @@ MonoBehaviour:
   - {fileID: 1476171669}
   NoteGroupEndPos: {fileID: 1446476435}
   NoteGroupOpenPos: {fileID: 824222477}
+  NoteGroupEndViewPos: {fileID: 1865775607}
   UIPage: {fileID: 1338794524}
   PlayerCharObj: {fileID: 888950186}
   Background_Back: {fileID: 1263139341}
@@ -2902,7 +2904,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1181702256}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1383261317
 SpriteRenderer:
@@ -4433,6 +4435,34 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1848044249}
   m_Script: {fileID: 11500000, guid: 7d405e57ca5d6c249953867f20751c5a, type: 3}
+--- !u!1 &1865775606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865775607}
+  m_Layer: 0
+  m_Name: NoteEndViewPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865775607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1865775606}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1181702256}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878160783
 GameObject:
   m_ObjectHideFlags: 0

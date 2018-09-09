@@ -226,7 +226,7 @@ public class GamePlayManager : MonoBehaviour
                 
         }
 
-        return false;
+        return true;
     }
 
     public bool IsAutoPlay()
