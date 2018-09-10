@@ -347,6 +347,9 @@ public class GamePlayManager : MonoBehaviour
         if (id == 0)
             return;
 
+        if (IsAutoPlay())
+            return;
+
         var itemData = DataManager.Instance.ItemDataDic[id];
         if(itemData.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
