@@ -37,6 +37,8 @@ public class PopupGameEnd : PopupUI {
     private int PlusCoinValue = 0;
     private int EndNoteId = 0;
 
+    private bool EffectStart = false;
+
     void Awake()
     {
         GameExitButton.onClick.AddListener(OnClickGameExit);
@@ -81,31 +83,14 @@ public class PopupGameEnd : PopupUI {
         CommonFunc.SetImageFile(noteData.img, ref EndingScene, false);
         EndingDesc.text = noteData.GetEndDesc() + string.Format("\n플레이 시간 {0:f2}초", GamePlayManager.Instance.PlayTime);
 
-        //var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
-        //var endingGroupList = bgData.endingGroupList;
-        //for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
-        //{
-        //    var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
-        //    for (int index_2 = 0; index_2 < endingList.Count; index_2++)
-        //    {
-        //        var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
-        //        if (endingData.IsOpenEnding(CoinValue, ScoreValue) || PlayerData.Instance.HasEnding(endingData.id))
-        //            EndingSceneId = endingData.id;
-        //    }
-        //}
-
-        //var endingViewData = DataManager.Instance.EndingDataList[EndingSceneId];
-        //CommonFunc.SetImageFile(endingViewData.img, ref EndingScene, false);
-        //EndingDesc.text = endingViewData.GetLocalizeDesc();
-
         StartCoroutine(Co_ScoreCoinEffect());
     }
 
     IEnumerator Co_ScoreCoinEffect()
     {
+        EffectStart = true;
         yield return null;
         PlayerData.Instance.PlusCoin(CoinValue + PlusCoinValue);
-       
 
         yield return new WaitForSeconds(0.3f);
         float saveTime = 0;
@@ -159,16 +144,72 @@ public class PopupGameEnd : PopupUI {
         }
 
         yield return null;
+
+        EndResultScoreCoinEffect();
+    }
+
+    private void EndResultScoreCoinEffect()
+    {
+        EffectStart = false;
+        StopAllCoroutines();
+
+        Score.text = CommonFunc.ConvertNumber(ScoreValue);
+
+        if (PlusScoreValue > 0)
+        {
+            Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber(PlusScoreValue));
+        }
+
+        Coin.text = CommonFunc.ConvertNumber(CoinValue);
+
+        if (PlusCoinValue > 0)
+        {
+            Coin.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(CoinValue), CommonFunc.ConvertNumber(PlusCoinValue));
+        }
+
+
+        var EndingSceneGroupId = 0;
+        var EndingSceneId = 0;
+        var bgData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
+        var endingGroupList = bgData.endingGroupList;
+        for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
+        {
+            var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
+            EndingSceneGroupId = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].id;
+            for (int index_2 = 0; index_2 < endingList.Count; index_2++)
+            {
+                var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
+                if (endingData.IsOpenEnding(CoinValue, ScoreValue) && PlayerData.Instance.HasEnding(endingData.id) == false)
+                    EndingSceneId = endingData.id;
+            }
+        }
+
+        if(EndingSceneId != 0)
+        {
+            PlayerData.Instance.AddEnding(EndingSceneId);
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, new PopupGameEndingScene.PopupData(EndingSceneGroupId, EndingSceneId));
+        }
     }
 
     void OnClickGameExit()
     {
+        if(EffectStart)
+        {
+            EndResultScoreCoinEffect();
+            return;
+        }
         GamePlayManager.Instance.GameExit();
         PopupManager.Instance.DismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
     void OnClickGameRestart()
     {
+        if (EffectStart)
+        {
+            EndResultScoreCoinEffect();
+            return;
+        }
+
         if (PlayerData.Instance.IsPlayEnable())
         {
             GamePlayManager.Instance.GameStart();
@@ -177,6 +218,12 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
+        if (EffectStart)
+        {
+            EndResultScoreCoinEffect();
+            return;
+        }
+
         if (GamePlayManager.Instance.ContinueCount > 0)
         {
             GamePlayManager.Instance.ContinueCount--;

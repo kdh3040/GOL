@@ -13,9 +13,11 @@ public class PopupGameEndingScene : PopupUI
     public class PopupData : PopupUIData
     {
         public int EndingGroupId;
-        public PopupData(int endingGroupId)
+        public int EndingId;
+        public PopupData(int endingGroupId, int endingId = 0)
         {
             EndingGroupId = endingGroupId;
+            EndingId = endingId;
         }
     }
     public Text Title;
@@ -27,6 +29,7 @@ public class PopupGameEndingScene : PopupUI
     public Button Next;
 
     private int EndingGroupId;
+    private int EndingId;
     private List<EndingData> EndingSceneList = new List<EndingData>();
     private int SelectIndex = 0;
 
@@ -41,6 +44,7 @@ public class PopupGameEndingScene : PopupUI
     {
         var popupData = data as PopupData;
         EndingGroupId = popupData.EndingGroupId;
+        EndingId = popupData.EndingId;
         SelectIndex = 0;
 
         var groupData = DataManager.Instance.EndingGroupDataList[EndingGroupId];
@@ -51,6 +55,9 @@ public class PopupGameEndingScene : PopupUI
         {
             var enddingData = DataManager.Instance.EndingDataList[groupData.ending_list[i]];
             EndingSceneList.Add(enddingData);
+
+            if (EndingId != 0 && EndingId == enddingData.id)
+                SelectIndex = i;
         }
 
         SetEndingScene();
