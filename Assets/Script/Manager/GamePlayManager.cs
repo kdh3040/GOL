@@ -65,7 +65,6 @@ public class GamePlayManager : MonoBehaviour
     private GameObject InGameEffect_Start;
     private bool FirstStart = true;
 
-    public bool GameOriginalMode = false;
     private bool Click = false;
     private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
 
@@ -115,8 +114,6 @@ public class GamePlayManager : MonoBehaviour
     public void ResetGame()
     {
         Click = false;
-        UseItemId = PlayerData.Instance.GetUseItemId();
-        PlayerData.Instance.SetUseItemId(0);
         StopAllCoroutines();
         Score = 0;
         IsGamePause = false;
@@ -149,7 +146,6 @@ public class GamePlayManager : MonoBehaviour
 
         SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
-        UseGameShieldItem(UseItemId);
         mGameUIPage.RefreshShieldItemUI();
         mGameUIPage.RefreshItemSkillUI();
         mNoteSystem.GameStart();
@@ -346,53 +342,24 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlusItem(int id)
     {
-        var data = ItemManager.Instance.GetItemData(id);
-        bool itemAdd = false;
-        if (data.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
+        if (id == 0)
+            return;
+
+        var itemData = DataManager.Instance.ItemDataDic[id];
+        if(itemData.slot_type == CommonData.ITEM_SLOT_TYPE.NORMAL)
         {
-            if (UseItemId != 0)
-            {
-                PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
-            }
-            else
-            {
-                UseItemId = id;
-                if (GamePlayManager.Instance.GameOriginalMode)
-                    mGameUIPage.RefreshItemUI();
-                else
-                    UseGameNormalItem();
-            }
+            var skill = SkillManager.Instance.UseItemSkill(itemData.id);
+            mGameUIPage.UseItemSkill(itemData.id, skill);
+            mDoorSystem.StartSkillEffect(skill);
+            ViewInGameEffect(skill);
         }
         else
         {
-            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.DAMAGE_SHIELD_COUNT);
-            if (skill != null)
-            {
-                var shieldCount = skill.mCount;
-                if (shieldCount < ConfigData.Instance.MAX_USE_SHIELD_ITEM)
-                {
-                    UseGameShieldItem(id);
-                    itemAdd = true;
-                }
-                else
-                {
-                    itemAdd = false;
-                }
-            }
-            else
-            {
-                UseGameShieldItem(id);
-                itemAdd = true;
-            }
-
-            if (GamePlayManager.Instance.GameOriginalMode)
-            {
-                if (itemAdd == false)
-                    PlusScore(ConfigData.Instance.NOTE_ITEM_SCORE);
-            }
+            SkillManager.Instance.UseItemSkill(id);
+            mGameUIPage.RefreshShieldItemUI();
         }
 
-        PlayGetItemSound();
+        PlayUseItemSound();
     }
 
     public void PlayGetItemSound()
@@ -401,42 +368,10 @@ public class GamePlayManager : MonoBehaviour
         mAudio.Play();
     }
 
-    public void UseGameNormalItem()
-    {
-        if (UseItemId == 0)
-            return;
-
-        var itemData = DataManager.Instance.ItemDataDic[UseItemId];
-        var skill = SkillManager.Instance.UseItemSkill(itemData.id);
-        mGameUIPage.UseItemSkill(itemData.id, skill);
-        mDoorSystem.StartSkillEffect(skill);
-        ViewInGameEffect(skill);
-
-        UseItemId = 0;
-        mGameUIPage.RefreshItemUI();
-        PlayUseItemSound();
-    }
-    
-  
-
     public void PlayUseItemSound()
     {
         mAudio.clip = mClip[2];
         mAudio.Play();
-    }
-
-    public void UseGameShieldItem(int id)
-    {
-        if (id == 0)
-            return;
-
-        var itemData = DataManager.Instance.ItemDataDic[id];
-        if (itemData.slot_type == CommonData.ITEM_SLOT_TYPE.SHIELD)
-        {
-            SkillManager.Instance.UseItemSkill(id);
-            mGameUIPage.RefreshShieldItemUI();
-            mGameUIPage.RefreshItemUI();
-        }
     }
 
     public void EndSkill(GameSkill skill)
@@ -604,11 +539,6 @@ public class GamePlayManager : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
-        }
-        else if (Input.GetKey(KeyCode.Q))
-        {
-            UseGameNormalItem();
-            //GamePlayManager.Instance.ClickDoor(mDoorSystem.DoorList[2]);
         }
 
         else if (Input.GetKey(KeyCode.Z))

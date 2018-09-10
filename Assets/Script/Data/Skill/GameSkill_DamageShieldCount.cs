@@ -27,4 +27,10 @@ public class GameSkill_DamageShieldCount : GameSkill
 
         return false;
     }
+
+    public override void PlusSameSkill(GameSkill data)
+    {
+        if(mCount <= ConfigData.Instance.MAX_USE_SHIELD_ITEM)
+            mCount += data.mCount;
+    }
 }

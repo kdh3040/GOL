@@ -18,12 +18,9 @@ public class PopupGameReady : PopupUI
     public Image DescCharIcon;
     public Animator DescCharIconAnim;
     public Text Desc;
-    public Button ItemBuyButton;
-    public UIPointValue ItemBuyCost;
     public Button UpgradeButton;
     public UIPointValue UpgradeCost;
     public Button SkinChangeButton;
-    public Button ItemEquipButton;
 
     public List<UISkinSlot> SkinSlotList = new List<UISkinSlot>();
     public List<UIItemSlot> ItemSlotList = new List<UIItemSlot>();
@@ -34,14 +31,11 @@ public class PopupGameReady : PopupUI
 
     private bool SelectSkinSlot = false;
     private int SelectSlotIndex = 0;
-    private int EquipItemSlotIndex = -1;
 
     public void Awake()
     {
-        ItemBuyButton.onClick.AddListener(OnClickItemBuy);
         UpgradeButton.onClick.AddListener(OnClickUpgrade);
         SkinChangeButton.onClick.AddListener(OnClickSkinChange);
-        ItemEquipButton.onClick.AddListener(OnClickItemEquip);
         StartButton.onClick.AddListener(OnClickGameStart);
     }
 
@@ -49,9 +43,7 @@ public class PopupGameReady : PopupUI
     {
         SelectSkinSlot = false;
         SelectSlotIndex = 0;
-        EquipItemSlotIndex = -1;
         Topbar.Initialize(true);
-        PlayerData.Instance.SetUseItemId(0);
 
         SkinSlotList[0].SetSkinSlot(CommonData.SKIN_TYPE.CHAR);
         SkinSlotList[0].SlotButton.onClick.AddListener(() => { OnClickSkinSlot(0); });
@@ -70,14 +62,8 @@ public class PopupGameReady : PopupUI
             ItemSlotList[itemIndex].SetItemSlot(itemEnumerator.Current.Key);
             ItemSlotList[itemIndex].SlotButton.onClick.AddListener(() => { OnClickItem(index); });
             itemIndex++;
-
-            if(PlayerData.Instance.LastEquipItemId == itemEnumerator.Current.Key)
-            {
-                OnClickItem(index);
-                FirstItemEquip();
-            }
         }
-
+        OnClickItem(0);
         RefreshUI();
     }
 
@@ -92,7 +78,6 @@ public class PopupGameReady : PopupUI
         for (int i = 0; i < ItemSlotList.Count; i++)
         {
             ItemSlotList[i].SetSelect(false);
-            ItemSlotList[i].SetEquip(false);
             ItemSlotList[i].RefreshUI();
         }
 
@@ -104,9 +89,6 @@ public class PopupGameReady : PopupUI
         {
             ItemSlotList[SelectSlotIndex].SetSelect(true);
         }
-
-        if(EquipItemSlotIndex > -1)
-            ItemSlotList[EquipItemSlotIndex].SetEquip(true);
     }
 
     public void OnClickSkinSlot(int index)
@@ -124,10 +106,8 @@ public class PopupGameReady : PopupUI
 
     public void RefreshDesc()
     {
-        ItemBuyButton.gameObject.SetActive(false);
         UpgradeButton.gameObject.SetActive(false);
         SkinChangeButton.gameObject.SetActive(false);
-        ItemEquipButton.gameObject.SetActive(false);
         DescCharIcon.gameObject.SetActive(false);
         DescIcon.gameObject.SetActive(false);
 
@@ -187,13 +167,6 @@ public class PopupGameReady : PopupUI
             CommonFunc.SetImageFile(itemData.icon, ref DescIcon, false);
             Desc.text = LocalizeData.Instance.GetLocalizeString(itemData.desc);
 
-            if(GamePlayManager.Instance.GameOriginalMode)
-            {
-                ItemBuyButton.gameObject.SetActive(true);
-                ItemBuyCost.SetValue(itemData.cost);
-                ItemEquipButton.gameObject.SetActive(EquipItemSlotIndex != SelectSlotIndex);
-            }
-
             if (ItemManager.Instance.IsItemLevelUp(itemId))
             {
                 UpgradeButton.gameObject.SetActive(true);
@@ -222,37 +195,6 @@ public class PopupGameReady : PopupUI
     {
         RefreshDesc();
         RefreshSlot();
-    }
-
-    public void OnClickItemBuy()
-    {
-        var id = ItemSlotList[SelectSlotIndex].ItemId;
-        var itemData = DataManager.Instance.ItemDataDic[id];
-        if (CommonFunc.UseCoin(itemData.cost))
-        {
-            PlayerData.Instance.PlusItem_Count(id);
-            ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_BUY_ITEM", itemData.GetLocalizeName()));
-        }
-            
-
-        RefreshUI();
-    }
-
-    public void FirstItemEquip()
-    {
-        EquipItemSlotIndex = SelectSlotIndex;
-        RefreshUI();
-    }
-
-    public void OnClickItemEquip()
-    {
-        EquipItemSlotIndex = SelectSlotIndex;
-
-        var id = ItemSlotList[EquipItemSlotIndex].ItemId;
-        var itemData = DataManager.Instance.ItemDataDic[id];
-        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", itemData.GetLocalizeName()));
-
-        RefreshUI();
     }
 
     public void OnClickUpgrade()
@@ -307,50 +249,13 @@ public class PopupGameReady : PopupUI
 
     public void OnClickGameStart()
     {
-        if (EquipItemSlotIndex < 0)
-        {
-            UnityAction yesAction = () =>
-            {
-                GameStart();
-            };
-
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_EQUIP"), yesAction);
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
-        }
-        else
-        {
-            if (GamePlayManager.Instance.GameOriginalMode)
-            {
-                var itemId = ItemSlotList[EquipItemSlotIndex].ItemId;
-                if (PlayerData.Instance.GetItemCount(itemId) <= 0)
-                {
-                    UnityAction yesAction = () =>
-                    {
-                        GameStart();
-                    };
-                    var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_ENABLE_ITEM_COUNT"), yesAction);
-                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
-                }
-                else
-                {
-                    PlayerData.Instance.SetUseItemId(itemId);
-                    PlayerData.Instance.MinusItem_Count(itemId);
-                    GameStart();
-                }
-            }
-            else
-            {
-                GameStart();
-            }
-        }
+        GameStart();
     }
 
     public void GameStart()
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
-            if(EquipItemSlotIndex >= 0)
-                PlayerData.Instance.SetLastEquipItemId(ItemSlotList[EquipItemSlotIndex].ItemId);
             PopupManager.Instance.DismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }

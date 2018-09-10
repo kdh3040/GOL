@@ -8,8 +8,6 @@ public class PageGameUI : MonoBehaviour
 {
     public UICountImgFont Score;
     public Text Info;
-    public Button ItemButton;
-    public Image ItemImg;
     public List<Image> ShieldIconList = new List<Image>();
     public Transform SkillProgressStartPos;
     public Button GamePauseButton;
@@ -22,50 +20,24 @@ public class PageGameUI : MonoBehaviour
 
     private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
-    public GameObject DoorButtons_1;
-    public List<Button> DoorButtonsList_1 = new List<Button>();
-    public GameObject DoorButtons_2;
-    public List<Button> DoorButtonsList_2 = new List<Button>();
+    public GameObject DoorButtons;
+    public List<Button> DoorButtonsList = new List<Button>();
 
 
     void Awake()
     {
-        if (GamePlayManager.Instance.GameOriginalMode)
-            ItemButton.onClick.AddListener(OnClickItem);
-        else
-        {
-            ItemImg.gameObject.SetActive(false);
-            ItemButton.gameObject.SetActive(false);
-        }
-            
         GamePauseButton.onClick.AddListener(OnClickPause);
 
-        if (GamePlayManager.Instance.GameOriginalMode)
+        for (int i = 0; i < DoorButtonsList.Count; i++)
         {
-            DoorButtons_1.gameObject.SetActive(true);
-            DoorButtons_2.gameObject.SetActive(false);
-            for (int i = 0; i < DoorButtonsList_1.Count; i++)
-            {
-                int index = i;
-                DoorButtonsList_1[i].onClick.AddListener(() => { OnClickDoorButton(index); });
-            }
-        }
-        else if (GamePlayManager.Instance.GameOriginalMode == false)
-        {
-            DoorButtons_1.gameObject.SetActive(false);
-            DoorButtons_2.gameObject.SetActive(true);
-            for (int i = 0; i < DoorButtonsList_2.Count; i++)
-            {
-                int index = i;
-                DoorButtonsList_2[i].onClick.AddListener(() => { OnClickDoorButton(index); });
-            }
+            int index = i;
+            DoorButtonsList[i].onClick.AddListener(() => { OnClickDoorButton(index); });
         }
     }
 
     public void ResetUI()
     {
         CharMsgViewInterval = ConfigData.Instance.CHAR_MSG_VIEW_INTERVAL;
-        RefreshItemUI();
         RefreshShieldItemUI();
         Score.SetValue("0", UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
     }
@@ -73,24 +45,6 @@ public class PageGameUI : MonoBehaviour
     public void RefreshUI()
     {
         Score.SetValue(GamePlayManager.Instance.Score.ToString(), UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
-    }
-
-    public void RefreshItemUI()
-    {
-        if(GamePlayManager.Instance.GameOriginalMode)
-        {
-            int ItemId = GamePlayManager.Instance.UseItemId;
-            if (ItemId != 0)
-            {
-                ItemImg.sprite = ItemManager.Instance.GetItemIcon(ItemId);
-                ItemImg.color = new Color(1, 1, 1, 1);
-            }
-            else
-            {
-                ItemImg.color = new Color(1, 1, 1, 0);
-                ItemImg.sprite = null;
-            }
-        }
     }
 
     public void RefreshShieldItemUI()
@@ -122,11 +76,6 @@ public class PageGameUI : MonoBehaviour
             else
                 mSkillProgressBarList[i].UpdateSkillProgress();
         }
-    }
-
-    public void OnClickItem()
-    {
-        GamePlayManager.Instance.UseGameNormalItem();
     }
 
     public void UseItemSkill(int itemId, GameSkill skill)
