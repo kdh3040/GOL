@@ -96,8 +96,8 @@ public class PlayerData
             PlayerData.Instance.HaveItem_LevelCount = HaveItem_LevelCount;
             PlayerData.Instance.HaveEnding = HaveEnding;
             PlayerData.Instance.MyCoin = MyCoin;
-            PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
+            PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.SoundSetting = SoundSetting;
             PlayerData.Instance.VibrationSetting = VibrationSetting;
             PlayerData.Instance.AlarmSetting = AlarmSetting;
@@ -115,13 +115,18 @@ public class PlayerData
         get { return Myddong; }
         private set
         {
-            if (value <= 0)
+            if (value >= CommonData.MAX_DDONG_COUNT)
             {
-                Myddong = 0;
-                NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+                NextDDongRefilTime = DateTime.MinValue;
+                Myddong = value;
             }
             else
+            {
+                if(NextDDongRefilTime == DateTime.MinValue)
+                    NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
                 Myddong = value;
+                SaveFile();
+            }
         }
     }
     private DateTime NextDDongRefilTime;
@@ -174,7 +179,7 @@ public class PlayerData
 
             MyCoin = 1000;
             MyDDong = CommonData.MAX_DDONG_COUNT;
-            NextDDongRefilTime = DateTime.MaxValue;
+            NextDDongRefilTime = DateTime.MinValue;
             SaveFile();
         }
     }
@@ -203,24 +208,21 @@ public class PlayerData
 
     public void UpdatePlayerData(float time)
     {
+        if (NextDDongRefilTime <= DateTime.MinValue)
+            return;
+
         if (NextDDongRefilTime <= CommonFunc.GetCurrentTime())
         {
-            var spanTime = CommonFunc.GetCurrentTime() - NextDDongRefilTime;
-            var refileCount = 1 + (int)(spanTime.TotalSeconds / ConfigData.Instance.DDONG_REFIL_TIME);
-
-            PlusDDong(refileCount);
-            if (MyDDong >= CommonData.MAX_DDONG_COUNT)
-                NextDDongRefilTime = DateTime.MaxValue;
-            else
-            {
-                NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
-                SaveFile();
-            }
+            NextDDongRefilTime = DateTime.MinValue;
+            PlusDDong(1);
         }
     }
 
     public TimeSpan GetNextDDongRefileTime()
     {
+        if (NextDDongRefilTime <= DateTime.MinValue)
+            return TimeSpan.Zero;
+
         return NextDDongRefilTime - CommonFunc.GetCurrentTime();
     }
 

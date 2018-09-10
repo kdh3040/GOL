@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,20 +42,11 @@ public class UIPoint : MonoBehaviour {
         switch (mPointType)
         {
             case CommonData.POINT_TYPE.DDONG:
-                if (mTempSaveValue == PlayerData.Instance.MyDDong)
-                    break;
-
-                if (PlayerData.Instance.MyDDong > 0)
-                {
-                    mTempSaveValue = PlayerData.Instance.MyDDong;
+                var time = PlayerData.Instance.GetNextDDongRefileTime();
+                if (time == TimeSpan.Zero)
                     PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT));
-                }
                 else
-                {
-                    mTempSaveValue = -1;
-                    var time = PlayerData.Instance.GetNextDDongRefileTime();
-                    PointText.text = string.Format("{0}:{1}", time.Minutes, time.Seconds);
-                }
+                    PointText.text = string.Format("{0}/{1} ({2}:{3})", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT), time.Minutes, time.Seconds);
                 break;
             case CommonData.POINT_TYPE.COIN:
                 if (mTempSaveValue == PlayerData.Instance.MyCoin)
