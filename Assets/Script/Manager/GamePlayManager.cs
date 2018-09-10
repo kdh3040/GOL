@@ -67,6 +67,8 @@ public class GamePlayManager : MonoBehaviour
 
     private bool Click = false;
     private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
+    [System.NonSerialized]
+    public int ContinueCount = 0;
 
     public float NoteSpeed
     {
@@ -137,7 +139,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameStart()
     {
-
+        ContinueCount = CommonData.GAME_CONTINUE_MAX_COUNT;
         FirstStart = true;
         ResetGame();
         //InGameEffect_Start.SetActive(true);

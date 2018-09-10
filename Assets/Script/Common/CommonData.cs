@@ -46,4 +46,5 @@ public class CommonData : MonoBehaviour {
     public static float DDONG_VIEW_INTERVAL = 5f;
     public static string[] PURCHASE_ID_ARRAY = { "coin_1", "coin_2", "coin_3", "coin_4", "coin_5" };
     public static string[] NOTE_DELETE_MSG = { "Renewal/UI/text_door", "Renewal/UI/text_smell", "Renewal/UI/text_what", "Renewal/UI/text_who" };
+    public static int GAME_CONTINUE_MAX_COUNT = 3;
 }

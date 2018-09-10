@@ -26,8 +26,9 @@ public class PopupGameEnd : PopupUI {
     public Text Score;
     public Text Coin;
     public Button GameRestartButton;
+    public UIPointValue GameRestartCost;
     public Button GameRevivalButton;
-    public UIPointValue GameRevivalCost;
+    public Text GameRevivalText;
     public Button GameExitButton;
 
     private int ScoreValue = 0;
@@ -52,7 +53,8 @@ public class PopupGameEnd : PopupUI {
         PlusScoreValue = 0;
         PlusCoinValue = 0;
         TopBar.Initialize(false);
-        GameRevivalCost.SetValue(ConfigData.Instance.REVIVAL_COST);
+        GameRestartCost.SetValue(1);
+        GameRevivalText.text = LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_CONTINUE_COUNT", GamePlayManager.Instance.ContinueCount, CommonData.GAME_CONTINUE_MAX_COUNT);
 
         // 스킬로 추가 획득
         if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS))
@@ -175,22 +177,21 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
-
+        if (GamePlayManager.Instance.ContinueCount > 0)
+        {
+            GamePlayManager.Instance.ContinueCount--;
 #if UNITY_EDITOR
-        GamePlayManager.Instance.GameRevival();
-        PopupManager.Instance.DismissPopup();
+            GamePlayManager.Instance.GameRevival();
+            PopupManager.Instance.DismissPopup();
 #elif UNITY_ANDROID
        AdManager.Instance.ShowRewardVideo();
 #elif UNITY_IPHONE
          AdManager.Instance.ShowRewardVideo();
 #endif
-        
-        /*
-        if (CommonFunc.UseCoin(ConfigData.Instance.REVIVAL_COST))
-        {
-            GamePlayManager.Instance.GameRevival();
-            PopupManager.Instance.DismissPopup();
         }
-        */
+        else
+        {
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_NOT_CONTINUE")));
+        }
     }
 }
