@@ -11,7 +11,6 @@ public class ItemData
     public string skill;
     public string icon;
     public string note_img;
-    public int cost;
     public int levelup_cost;
     public int create_probability;
     public CommonData.ITEM_SLOT_TYPE slot_type;
@@ -24,7 +23,6 @@ public class ItemData
         skill = node.Attributes.GetNamedItem("skill").Value;
         icon = node.Attributes.GetNamedItem("icon").Value;
         note_img = node.Attributes.GetNamedItem("note_img").Value;
-        cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         levelup_cost = int.Parse(node.Attributes.GetNamedItem("levelup_cost").Value);
         create_probability = int.Parse(node.Attributes.GetNamedItem("create_probability").Value);
 
