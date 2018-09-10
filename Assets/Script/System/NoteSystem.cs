@@ -132,7 +132,7 @@ public class NoteSystem
     public void NoteUpdate(float time, float speedTime)
     {
         PlayTime += time;
-        NoteSpeedCheckTime += time;
+        
         for (int i = 0; i < NoteGroupList.Count; i++)
         {
             var pos = NoteGroupList[i].gameObject.transform.localPosition;
@@ -183,7 +183,7 @@ public class NoteSystem
         }
 
 
-        UpdateNoteSpeed();
+        UpdateNoteSpeed(time);
     }
 
     private void NoteGroupReset(int index)
@@ -197,8 +197,16 @@ public class NoteSystem
         AllocateNoteGroup(index);
     }
 
-    private void UpdateNoteSpeed()
+    private void UpdateNoteSpeed(float time)
     {
+        if (SkillManager.Instance.IsSkillEnable(SkillManager.SKILL_TYPE.SPEED_DOWN))
+        {
+            var skill = SkillManager.Instance.GetGameSkill(SkillManager.SKILL_TYPE.SPEED_DOWN) as GameSkill_SpeedDown;
+            if (skill != null)
+                return;
+        }
+
+        NoteSpeedCheckTime += time;
         if (NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL + ConfigData.Instance.DEBUG_SPEED_UP_TIME)
         {
             NoteSpeedCheckTime = 0;
