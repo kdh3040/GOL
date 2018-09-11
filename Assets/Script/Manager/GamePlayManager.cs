@@ -510,7 +510,7 @@ public class GamePlayManager : MonoBehaviour
             if (DDongViewList.Count <= 10)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
-                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), -8.5);
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), -8.5f);
                 DDongViewList.Add(obj);
             }
             else
