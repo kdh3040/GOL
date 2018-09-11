@@ -30,16 +30,16 @@
 	<Skill id = "127" name="DOOR_SLOT_SKILL_LV8" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="17"/>
 	<Skill id = "128" name="DOOR_SLOT_SKILL_LV9" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="18"/>
 	<Skill id = "129" name="DOOR_SLOT_SKILL_LV10" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="20"/>
-	<Skill id = "200" name="DAMAGE_SHIELD_TIME_LV1" skilltype="DAMAGE_SHIELD_TIME" time="10" count="0" percent="0"/>
-	<Skill id = "201" name="DAMAGE_SHIELD_TIME_LV2" skilltype="DAMAGE_SHIELD_TIME" time="12" count="0" percent="0"/>
-	<Skill id = "202" name="DAMAGE_SHIELD_TIME_LV3" skilltype="DAMAGE_SHIELD_TIME" time="13" count="0" percent="0"/>
-	<Skill id = "203" name="DAMAGE_SHIELD_TIME_LV4" skilltype="DAMAGE_SHIELD_TIME" time="13" count="0" percent="0"/>
-	<Skill id = "204" name="DAMAGE_SHIELD_TIME_LV5" skilltype="DAMAGE_SHIELD_TIME" time="14" count="0" percent="0"/>
-	<Skill id = "205" name="DAMAGE_SHIELD_TIME_LV6" skilltype="DAMAGE_SHIELD_TIME" time="15" count="0" percent="0"/>
-	<Skill id = "206" name="DAMAGE_SHIELD_TIME_LV7" skilltype="DAMAGE_SHIELD_TIME" time="16" count="0" percent="0"/>
-	<Skill id = "207" name="DAMAGE_SHIELD_TIME_LV8" skilltype="DAMAGE_SHIELD_TIME" time="17" count="0" percent="0"/>
-	<Skill id = "208" name="DAMAGE_SHIELD_TIME_LV9" skilltype="DAMAGE_SHIELD_TIME" time="18" count="0" percent="0"/>
-	<Skill id = "209" name="DAMAGE_SHIELD_TIME_LV10" skilltype="DAMAGE_SHIELD_TIME" time="20" count="0" percent="0"/>
+	<Skill id = "200" name="DAMAGE_SHIELD_TIME_LV1" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "201" name="DAMAGE_SHIELD_TIME_LV2" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "202" name="DAMAGE_SHIELD_TIME_LV3" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "203" name="DAMAGE_SHIELD_TIME_LV4" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "204" name="DAMAGE_SHIELD_TIME_LV5" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "205" name="DAMAGE_SHIELD_TIME_LV6" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "206" name="DAMAGE_SHIELD_TIME_LV7" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "207" name="DAMAGE_SHIELD_TIME_LV8" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "208" name="DAMAGE_SHIELD_TIME_LV9" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
+	<Skill id = "209" name="DAMAGE_SHIELD_TIME_LV10" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
 	<Skill id = "210" name="DAMAGE_SHIELD_COUNT_LV1" skilltype="DAMAGE_SHIELD_COUNT" time="0" count="1" percent="0"/>
 	<Skill id = "220" name="SCORE_UP_LV1" skilltype="SCORE_UP" time="10" count="0" percent="100"/>
 	<Skill id = "221" name="SCORE_UP_LV2" skilltype="SCORE_UP" time="12" count="0" percent="100"/>
@@ -51,14 +51,14 @@
 	<Skill id = "227" name="SCORE_UP_LV8" skilltype="SCORE_UP" time="17" count="0" percent="100"/>
 	<Skill id = "228" name="SCORE_UP_LV9" skilltype="SCORE_UP" time="18" count="0" percent="100"/>
 	<Skill id = "229" name="SCORE_UP_LV10" skilltype="SCORE_UP" time="20" count="0" percent="100"/>
-	<Skill id = "230" name="SPEED_DOWN_LV1" skilltype="SPEED_DOWN" time="10" count="0" percent="50"/>
-	<Skill id = "231" name="SPEED_DOWN_LV2" skilltype="SPEED_DOWN" time="12" count="0" percent="60"/>
-	<Skill id = "232" name="SPEED_DOWN_LV3" skilltype="SPEED_DOWN" time="13" count="0" percent="65"/>
-	<Skill id = "233" name="SPEED_DOWN_LV4" skilltype="SPEED_DOWN" time="13" count="0" percent="65"/>
-	<Skill id = "234" name="SPEED_DOWN_LV5" skilltype="SPEED_DOWN" time="14" count="0" percent="70"/>
-	<Skill id = "235" name="SPEED_DOWN_LV6" skilltype="SPEED_DOWN" time="15" count="0" percent="75"/>
-	<Skill id = "236" name="SPEED_DOWN_LV7" skilltype="SPEED_DOWN" time="16" count="0" percent="80"/>
-	<Skill id = "237" name="SPEED_DOWN_LV8" skilltype="SPEED_DOWN" time="17" count="0" percent="85"/>
+	<Skill id = "230" name="SPEED_DOWN_LV1" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "231" name="SPEED_DOWN_LV2" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "232" name="SPEED_DOWN_LV3" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "233" name="SPEED_DOWN_LV4" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "234" name="SPEED_DOWN_LV5" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "235" name="SPEED_DOWN_LV6" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "236" name="SPEED_DOWN_LV7" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
+	<Skill id = "237" name="SPEED_DOWN_LV8" skilltype="SPEED_DOWN" time="3" count="0" percent="20"/>
 	<Skill id = "300" name="CHAR_SKLL_1" skilltype="ITEM_CREATE" time="0" count="0" percent="15"/>
 	<Skill id = "301" name="CHAR_SKLL_2" skilltype="DAMAGE_SHIELD_COUNT" time="0" count="1" percent="0"/>
 	<Skill id = "302" name="CHAR_SKLL_3" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="5"/>
