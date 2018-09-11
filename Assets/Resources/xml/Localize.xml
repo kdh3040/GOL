@@ -69,10 +69,12 @@
 	<Localize id="CHAR_DESC_BG" kr="여기서 싸라고?"/>
 	<Localize id="CHAR_DESC_DG" kr="나도 이런 짓을?"/>
 	<Localize id="CHAR_DESC_HP" kr="급똥이다 급똥!"/>
-	<Localize id="BG_NAME_SEA" kr="잠수함"/>
+  <Localize id="BG_NAME_APART" kr="아파트"/>
+  <Localize id="BG_NAME_SEA" kr="잠수함"/>
 	<Localize id="BG_NAME_DESERT" kr="피라미드"/>
 	<Localize id="BG_NAME_SPACE" kr="우주선"/>
-	<Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
+  <Localize id="BG_DESC_APART" kr="급똥이다! 급똥"/>
+  <Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
 	<Localize id="BG_DESC_DESERT" kr="여기에 왜 피라미드가 있는거야?? 급하니까 미안.."/>
 	<Localize id="BG_DESC_SPACE" kr="우주까지 와서 쌀빠엔 집에 가야지.."/>
 	<Localize id="DOOR_NAME_SEA_1" kr="잠수함문 1"/>
@@ -153,4 +155,24 @@
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_12_2" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_12_3" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_1" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_2" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_3" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_4" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_5" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_6" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_7" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_8" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_9" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_10" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_11" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_12" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_13" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_14" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_15" kr="누고?"/>
+  <Localize id="ENDING_NOTE_DESC_16" kr="누고?"/>
+  <Localize id="END_TITLE_1" kr="아파트 이야기"/>
+  <Localize id="END_TITLE_2" kr="우주선 이야기"/>
+  <Localize id="END_TITLE_3" kr="피라미드 이야기"/>
+  <Localize id="END_TITLE_4" kr="잠수함 이야기"/>
 </Datas>
