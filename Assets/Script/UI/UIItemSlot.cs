@@ -38,6 +38,12 @@ public class UIItemSlot : MonoBehaviour
     public void RefreshUI()
     {
         var level = PlayerData.Instance.GetItemLevel(ItemId);
-        Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
+        if (level == 1)
+            Level.gameObject.SetActive(false);
+        else
+        {
+            Level.gameObject.SetActive(true);
+            Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
+        }
     }
 }

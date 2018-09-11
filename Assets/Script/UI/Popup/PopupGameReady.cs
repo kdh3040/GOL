@@ -147,7 +147,10 @@ public class PopupGameReady : PopupUI
             var skinSkillName = skinData.GetSkillName();
 
             StringBuilder desc = new StringBuilder();
-            desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level);
+            if (level == 1)
+                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName());
+            else
+                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(slotSkillData.GetDesc());
@@ -175,12 +178,15 @@ public class PopupGameReady : PopupUI
             else
                 UpgradeButton.gameObject.SetActive(false);
 
-            
 
+            var level = PlayerData.Instance.GetItemLevel(itemId);
             var skillName = ItemManager.Instance.GetItemSkill(itemId);
             var skillData = SkillManager.Instance.GetSkillData(skillName);
             StringBuilder desc = new StringBuilder();
-            desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName());
+            if (level == 1)
+                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName());
+            else
+                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(itemData.GetLocalizeDesc());

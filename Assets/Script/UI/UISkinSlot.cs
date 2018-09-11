@@ -30,7 +30,13 @@ public class UISkinSlot : MonoBehaviour
     public void RefreshUI()
     {
         var level = PlayerData.Instance.GetSkinSlotLevel(SkinType);
-        Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
+        if (level == 1)
+            Level.gameObject.SetActive(false);
+        else
+        {
+            Level.gameObject.SetActive(true);
+            Level.SetValue(string.Format("+{0}", level - 1), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
+        }
         SkinData skinData = PlayerData.Instance.GetUseSkinData(SkinType);
         CommonFunc.SetImageFile(skinData.GetIcon(), ref SkinIcon, false);
     }
