@@ -427,7 +427,10 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlayDoorSound(CommonData.NOTE_LINE line)
     {
-        mDoorSystem.PlaySound(line);
+        if (PlayerData.Instance.GetSoundSetting())
+        {
+            mDoorSystem.PlaySound(line);
+        }
     } 
 
     public void DeleteNoteAni(Note note)
