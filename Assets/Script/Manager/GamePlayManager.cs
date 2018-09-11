@@ -284,9 +284,8 @@ public class GamePlayManager : MonoBehaviour
                     GamePause();
                     PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
                 }
-
             }
-
+            
             if (FirstStart)
             {
                 yield return new WaitForSecondsRealtime(3.5f);                
@@ -373,7 +372,7 @@ public class GamePlayManager : MonoBehaviour
             Score += score;
 
         mGameUIPage.RefreshUI();
-        PlayGetItemSound();
+        //PlayGetItemSound();
     }
 
     public void PlusItem(int id)
@@ -395,11 +394,12 @@ public class GamePlayManager : MonoBehaviour
             mGameUIPage.RefreshShieldItemUI();
         }
 
-        PlayUseItemSound();
+        //PlayUseItemSound();
     }
 
     public void PlayGetItemSound()
     {
+        
         if (PlayerData.Instance.GetSoundSetting())
         {
             mAudio.clip = mClip[0];
@@ -410,11 +410,13 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlayUseItemSound()
     {
+         
         if (PlayerData.Instance.GetSoundSetting())
         {
             mAudio.clip = mClip[2];
             mAudio.Play();
         }
+        
     }
 
     public void EndSkill(GameSkill skill)

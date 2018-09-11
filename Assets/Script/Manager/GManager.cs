@@ -38,13 +38,7 @@ public class GManager : MonoBehaviour
       //  PurchaseManager.Instance.InitializePurchasing();
 
         
-        if (!FirebaseManager.Instance.SingedInFirebase())
-        {
-            FirebaseManager.Instance.LogIn();
-        }
 
-        Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
-        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
         
      
 
