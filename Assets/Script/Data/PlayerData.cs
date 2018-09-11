@@ -223,7 +223,8 @@ public class PlayerData
 
     public TimeSpan GetNextDDongRefileTime()
     {
-        if (NextDDongRefilTime <= DateTime.MinValue)
+        if (NextDDongRefilTime <= DateTime.MinValue ||
+            NextDDongRefilTime - CommonFunc.GetCurrentTime() <= TimeSpan.Zero)
             return TimeSpan.Zero;
 
         return NextDDongRefilTime - CommonFunc.GetCurrentTime();
@@ -384,6 +385,13 @@ public class PlayerData
     {
         var level = GetSkinSlotLevel(type);
         var data = DataManager.Instance.SkinSlotLevelDataList[type][level - 1];
+        return data.skill;
+    }
+
+    public string GetSkinSkill(CommonData.SKIN_TYPE type)
+    {
+        var data = GetUseSkinData(type);
+        data.GetSkillName();
         return data.skill;
     }
 

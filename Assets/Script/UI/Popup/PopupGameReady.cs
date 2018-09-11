@@ -144,7 +144,7 @@ public class PopupGameReady : PopupUI
 
             var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(skinType);
             var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
-            var skinSkillName = skinData.GetSkillName();
+            var skinSkillData = SkillManager.Instance.GetSkillData(skinData.GetSkillName());
 
             StringBuilder desc = new StringBuilder();
             if (level == 1)
@@ -153,12 +153,17 @@ public class PopupGameReady : PopupUI
                 desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetLocalizeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
-            desc.AppendFormat(slotSkillData.GetDesc());
-            if(skinSkillName != "")
+            if(slotSkillData.skilltype == skinSkillData.skilltype)
             {
-                desc.AppendLine();
-                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
-                desc.AppendFormat(skinSkillData.GetDesc());
+                if(slotSkillData.GetPlusSkillDesc(skinSkillData) != "")
+                    desc.AppendFormat(slotSkillData.GetPlusSkillDesc(skinSkillData));
+            }
+            else
+            {
+                if(slotSkillData.GetDesc() != "")
+                    desc.AppendFormat(slotSkillData.GetDesc());
+                if(skinSkillData.GetDesc() != "")
+                    desc.AppendFormat(skinSkillData.GetDesc());
             }
             Desc.text = desc.ToString();
         }

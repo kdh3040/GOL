@@ -19,6 +19,7 @@ public class DoorData : SkinData
         close_img = node.Attributes.GetNamedItem("close_img").Value;
         halfopen_img = node.Attributes.GetNamedItem("halfopen_img").Value;
         open_img = node.Attributes.GetNamedItem("open_img").Value;
+        skill = node.Attributes.GetNamedItem("skill").Value;
     }
 
     public override string GetIcon()

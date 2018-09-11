@@ -146,7 +146,6 @@ public class GamePlayManager : MonoBehaviour
         Animator ani = InGameEffect_Start.GetComponent<Animator>();
         ani.SetTrigger("Start");
 
-        SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
         SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
         mGameUIPage.RefreshItemSkillUI();
@@ -166,7 +165,6 @@ public class GamePlayManager : MonoBehaviour
             IsGamePause = true;
             mGameUIPage.GameResume();
             SkillManager.Instance.ResetGame();
-            SkillManager.Instance.UseCharSkill(PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.CHAR));
             SkillManager.Instance.UseSkinSlotSkill();
         }
 

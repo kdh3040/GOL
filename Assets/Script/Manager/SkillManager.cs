@@ -45,14 +45,11 @@ public class SkillManager
         AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.CHAR));
         AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.BACKGROUND));
         AddUseSkill(PlayerData.Instance.GetSkinSlotSkill(CommonData.SKIN_TYPE.DOOR));
+        AddUseSkill(PlayerData.Instance.GetSkinSkill(CommonData.SKIN_TYPE.CHAR));
+        AddUseSkill(PlayerData.Instance.GetSkinSkill(CommonData.SKIN_TYPE.BACKGROUND));
+        AddUseSkill(PlayerData.Instance.GetSkinSkill(CommonData.SKIN_TYPE.DOOR));
     }
-    public GameSkill UseCharSkill(int charId)
-    {
-        var charData = DataManager.Instance.CharDataDic[charId];
-        var skill = AddUseSkill(charData.GetSkillName());
 
-        return skill;
-    }
     public GameSkill UseItemSkill(int itemId)
     {
         var skillName = ItemManager.Instance.GetItemSkill(itemId);

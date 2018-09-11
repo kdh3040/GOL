@@ -19,6 +19,7 @@ public class BackgroundData : SkinData
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         img_front = node.Attributes.GetNamedItem("img_front").Value;
         img_back = node.Attributes.GetNamedItem("img_back").Value;
+        skill = node.Attributes.GetNamedItem("skill").Value;
 
         var noteListString = node.Attributes.GetNamedItem("note_list").Value;
         var noteListStringArr = noteListString.Split(',');

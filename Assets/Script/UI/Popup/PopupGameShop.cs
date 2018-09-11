@@ -154,6 +154,7 @@ public class PopupGameShop : PopupUI
             }
 
             var skinSkillName = data.GetSkillName();
+            var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
 
             StringBuilder desc = new StringBuilder();
             desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetLocalizeName());
@@ -162,12 +163,8 @@ public class PopupGameShop : PopupUI
             desc.AppendFormat(data.GetLocalizeDesc());
             desc.AppendLine();
             desc.AppendLine();
-            if (skinSkillName != "")
-            {
-                desc.AppendLine();
-                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
+            if (skinSkillData.GetDesc() != "")
                 desc.AppendFormat(skinSkillData.GetDesc());
-            }
             Desc.text = desc.ToString();
         }
         else
@@ -183,7 +180,7 @@ public class PopupGameShop : PopupUI
 
             var slotSkillName = PlayerData.Instance.GetSkinSlotSkill(SelectSkinType);
             var slotSkillData = SkillManager.Instance.GetSkillData(slotSkillName);
-            var skinSkillName = data.GetSkillName();
+            var skinSkillData = SkillManager.Instance.GetSkillData(data.GetSkillName());
 
             StringBuilder desc = new StringBuilder();
             if (level == 1)
@@ -195,12 +192,17 @@ public class PopupGameShop : PopupUI
             desc.AppendFormat(data.GetLocalizeDesc());
             desc.AppendLine();
             desc.AppendLine();
-            desc.AppendFormat(slotSkillData.GetDesc());
-            if (skinSkillName != "")
+            if (slotSkillData.skilltype == skinSkillData.skilltype)
             {
-                desc.AppendLine();
-                var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
-                desc.AppendFormat(skinSkillData.GetDesc());
+                if(slotSkillData.GetPlusSkillDesc(skinSkillData) != "")
+                    desc.AppendFormat(slotSkillData.GetPlusSkillDesc(skinSkillData));
+            }
+            else
+            {
+                if(slotSkillData.GetDesc() != "")
+                    desc.AppendFormat(slotSkillData.GetDesc());
+                if(skinSkillData.GetDesc() != "")
+                    desc.AppendFormat(skinSkillData.GetDesc());
             }
             Desc.text = desc.ToString();
         }

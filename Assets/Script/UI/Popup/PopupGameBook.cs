@@ -266,6 +266,7 @@ public class PopupGameBook : PopupUI
         }
         SkinData data = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
         var skinSkillName = data.GetSkillName();
+        var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
 
         StringBuilder desc = new StringBuilder();
         desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetLocalizeName());
@@ -274,12 +275,8 @@ public class PopupGameBook : PopupUI
         desc.AppendFormat(data.GetLocalizeDesc());
         desc.AppendLine();
         desc.AppendLine();
-        if (skinSkillName != "")
-        {
-            desc.AppendLine();
-            var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
+        if (skinSkillData.GetDesc() != "")
             desc.AppendFormat(skinSkillData.GetDesc());
-        }
         SkinDesc.text = desc.ToString();
 
         if (SelectSkinType != CommonData.SKIN_TYPE.CHAR)
