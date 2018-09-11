@@ -258,6 +258,35 @@ public class GamePlayManager : MonoBehaviour
     {
         while(true)
         {
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (Input.GetKey(KeyCode.Escape))
+                {
+                    GamePause();
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                }
+
+            }
+            else if (Application.platform == RuntimePlatform.Android)
+            {
+                if (Input.GetKey(KeyCode.Home))
+                {
+                    GamePause();
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                }
+
+            }
+            else if (Application.platform == RuntimePlatform.Android)
+            {
+                if (Input.GetKey(KeyCode.Menu))
+                {
+                    GamePause();
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                }
+
+            }
+
             if (FirstStart)
             {
                 yield return new WaitForSecondsRealtime(3.5f);                
@@ -301,6 +330,8 @@ public class GamePlayManager : MonoBehaviour
             mGameUIPage.RefreshCharMsgUI(time);
             GetUserTouchEvent();
             ShowDDong(time);
+
+          
             yield return null;
         }
     }
@@ -348,9 +379,6 @@ public class GamePlayManager : MonoBehaviour
     public void PlusItem(int id)
     {
         if (id == 0)
-            return;
-
-        if (IsAutoPlay())
             return;
 
         var itemData = DataManager.Instance.ItemDataDic[id];

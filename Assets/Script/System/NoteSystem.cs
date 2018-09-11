@@ -160,14 +160,14 @@ public class NoteSystem
                     else
                     {
                         GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE);
-                        NoteGroupList[i].DeleteNote(note.NoteLineType);
+                        NoteGroupList[i].DeleteNote(note.NoteLineType, false);
                         NoteGroupReset(i);
                     }
                 }
                 else
                 {
                     if (GamePlayManager.Instance.IsAutoPlay())
-                        NoteGroupList[i].DeleteNote(note.NoteLineType);
+                        NoteGroupList[i].DeleteNote(note.NoteLineType, false);
 
                     GamePlayManager.Instance.SetDoorState(note.NoteLineType, Door.DOOR_STATE.CLOSE, false);
                     NoteGroupReset(i);
@@ -309,9 +309,9 @@ public class NoteSystem
             if(NoteGroupList[i].transform.position.y < NoteGroupOpenPos.localPosition.y)
             {
                 if(deleteEnable == false)
-                    deleteEnable = NoteGroupList[i].DeleteNote(door.NoteLineType);
+                    deleteEnable = NoteGroupList[i].DeleteNote(door.NoteLineType, true);
                 else
-                    NoteGroupList[i].DeleteNote(door.NoteLineType);
+                    NoteGroupList[i].DeleteNote(door.NoteLineType, true);
             }
         }
 
