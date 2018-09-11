@@ -187,9 +187,9 @@ public class PopupGameShop : PopupUI
 
             StringBuilder desc = new StringBuilder();
             if (level == 1)
-                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetSkinSlotTypeName());
+                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetLocalizeName());
             else
-                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetSkinSlotTypeName(), level - 1);
+                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_DESC_NAME"), data.GetLocalizeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(data.GetLocalizeDesc());

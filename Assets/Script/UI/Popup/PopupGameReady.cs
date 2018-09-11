@@ -148,9 +148,9 @@ public class PopupGameReady : PopupUI
 
             StringBuilder desc = new StringBuilder();
             if (level == 1)
-                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName());
+                desc.AppendFormat("{0}{1}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetLocalizeName());
             else
-                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetSkinSlotTypeName(), level - 1);
+                desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), skinData.GetLocalizeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(slotSkillData.GetDesc());
