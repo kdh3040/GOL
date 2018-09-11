@@ -31,6 +31,14 @@ public class FirebaseManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+
+        if (!SingedInFirebase())
+        {
+           LogIn();
+        }
+
+        Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseManager.Instance.OnTokenReceived;
+        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseManager.Instance.OnMessageReceived;
     }
 
     // Update is called once per frame
