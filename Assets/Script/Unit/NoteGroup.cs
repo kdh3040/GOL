@@ -32,7 +32,7 @@ public class NoteGroup : MonoBehaviour {
         return null;
     }
 
-    public bool DeleteNote(CommonData.NOTE_LINE type)
+    public bool DeleteNote(CommonData.NOTE_LINE type, bool touchDelete = true)
     {
         var note = NoteList[(int)type];
         var noteType = note.NoteType;
@@ -47,7 +47,8 @@ public class NoteGroup : MonoBehaviour {
                     GamePlayManager.Instance.PlusScore(noteData.Score);
                     break;
                 case CommonData.NOTE_TYPE.ITEM:
-                    GamePlayManager.Instance.PlusItem(noteId);
+                    if(touchDelete)
+                        GamePlayManager.Instance.PlusItem(noteId);
                     break;
                 default:
                     break;
