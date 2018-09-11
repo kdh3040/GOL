@@ -256,7 +256,7 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
-            PopupManager.Instance.DismissPopup();
+            PopupManager.Instance.AllDismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
     }

@@ -74,6 +74,17 @@ public class PopupManager : MonoBehaviour {
         }
     }
 
+    public void AllDismissPopup()
+    {
+        for (int i = 0; i < mShowPopupList.Count; i++)
+        {
+            mShowPopupList[i].DismissPopup();
+            mShowPopupList[i].gameObject.SetActive(false);
+        }
+        mShowPopupList.Clear();
+        mShowPopup = null;
+    }
+
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)

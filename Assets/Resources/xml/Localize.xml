@@ -35,25 +35,25 @@
 	<Localize id="GAME_END_POPUP_CONTINUE_COUNT" kr="광고 보기 ({0}/{1})"/>
 	<Localize id="GAME_END_POPUP_NOT_CONTINUE" kr="부활 하기 횟수를 전부 소진 하였습니다."/>
 	<Localize id="POPUP_GAME_READY_DESC_NAME" kr="이름 : "/>
-	<Localize id="SKILL_DESC_DAMAGE_SHIELD_TIME" kr="{0}초 동안 주민들이 밖으로 나오지 못하게 막아줍니다."/>
-	<Localize id="SKILL_DESC_DAMAGE_SHIELD_COUNT" kr="주민들이 밖으로 나올때 1번 막아 줍니다."/>
-	<Localize id="SKILL_DESC_SCORE_UP" kr="{0}초 동안 {1}%추가점수를 획득 합니다."/>
-	<Localize id="SKILL_DESC_SPEED_DOWN" kr="{0}초 동안 주민들의 속도를 늦춰 줍니다."/>
+	<Localize id="SKILL_DESC_DAMAGE_SHIELD_TIME" kr="{0}초 동안 문을 열지 못하게 막아줍니다."/>
+	<Localize id="SKILL_DESC_DAMAGE_SHIELD_COUNT" kr="문이 열릴때 1번 막아 줍니다."/>
+	<Localize id="SKILL_DESC_SCORE_UP" kr="{0}초 동안 {1}% 추가점수를 획득 합니다."/>
+	<Localize id="SKILL_DESC_SPEED_DOWN" kr="{0}초 동안 게임 속도를 늦춰 줍니다."/>
 	<Localize id="SKILL_DESC_RESURRECTION" kr="{0}%확률로 부활을 합니다."/>
-	<Localize id="SKILL_DESC_GAME_OVER_SCORE_BONUS" kr="게임종료후 {0}%추가점수를 얻습니다."/>
-	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="게임종료후 {0}%추가코인을 얻습니다."/>
+	<Localize id="SKILL_DESC_GAME_OVER_SCORE_BONUS" kr="게임종료후 {0}% 추가점수를 얻습니다."/>
+	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="게임종료후 {0}% 추가코인을 얻습니다."/>
 	<Localize id="SKILL_DESC_ITEM_CREATE" kr="게임중 아이템 생성 확률을 {0}% 올려줍니다."/>
-	<Localize id="INVINCIBILITY_ITEM" kr="철컹철컹 철문"/>
-	<Localize id="INVINCIBILITY_ITEM_DESC" kr="철컹철컹 이거 왜 안열려!!"/>
-	<Localize id="SHIELD_ITEM" kr="바사삭 쉴드"/>
-	<Localize id="SHIELD_ITEM_DESC" kr="문밖에서 바사삭 거리는 소리를 들은것 같은데?"/>
-	<Localize id="SCORE_DOUBLE_ITEM" kr="점프점프 점수"/>
-	<Localize id="SCORE_DOUBLE_ITEM_DESC" kr="점수가 쭉쭉 올라가는구나!!"/>
-	<Localize id="NOTE_SPEED_DOWN" kr="느릿느릿 달팽이"/>
-	<Localize id="NOTE_SPEED_DOWN_DESC" kr="어휴 속터져!"/>
-	<Localize id="SKIN_SLOT_CHAR" kr="캐릭터 스킨 슬롯"/>
-	<Localize id="SKIN_SLOT_DOOR" kr="문 스킨 슬롯"/>
-	<Localize id="SKIN_SLOT_BG" kr="배경 스킨 슬롯"/>
+	<Localize id="INVINCIBILITY_ITEM" kr="철문"/>
+	<Localize id="INVINCIBILITY_ITEM_DESC" kr="머꼬! 밖에 문이 안열린다"/>
+	<Localize id="SHIELD_ITEM" kr="방패"/>
+	<Localize id="SHIELD_ITEM_DESC" kr="쫌! 한번만 막아주라!"/>
+	<Localize id="SCORE_DOUBLE_ITEM" kr="더블"/>
+	<Localize id="SCORE_DOUBLE_ITEM_DESC" kr="아싸! 점수 더블찬스"/>
+	<Localize id="NOTE_SPEED_DOWN" kr="슬로"/>
+	<Localize id="NOTE_SPEED_DOWN_DESC" kr="쫌! 천천히 나온나"/>
+	<Localize id="SKIN_SLOT_CHAR" kr="캐릭터 슬롯"/>
+	<Localize id="SKIN_SLOT_DOOR" kr="문 슬롯"/>
+	<Localize id="SKIN_SLOT_BG" kr="배경 슬롯"/>
 	<Localize id="POPUP_GAME_SHOP_DESC_NAME" kr="이름 : "/>
 	<Localize id="POPUP_GAME_READY_EQUIP_ITEM" kr="{0}을(를) 장착 하였습니다."/>
 	<Localize id="POPUP_GAME_READY_BUY_ITEM" kr="{0}을(를) 구입 하였습니다."/>
@@ -61,17 +61,17 @@
 	<Localize id="POPUP_GAME_READY_UPGRADE_SKIN_SLOT" kr="스킨 슬롯을 강화 하였습니다."/>
 	<Localize id="POPUP_GAME_SHOP_BUY_SKIN" kr="{0}을(를) 구매 하였습니다."/>
 	<Localize id="POPUP_GAME_SHOP_UPGRADE_SKIN_SLOT" kr="스킨 슬롯을 강화 하였습니다."/>
-	<Localize id="CHAR_NAME_DT" kr="기본 동털"/>
-	<Localize id="CHAR_NAME_BG" kr="기본 바깡"/>
-	<Localize id="CHAR_NAME_DG" kr="기본 대꿍"/>
-	<Localize id="CHAR_NAME_HP" kr="기본 호팔"/>
-	<Localize id="CHAR_DESC_DT" kr="으윽! 어데고?? 똥싸는 곳이"/>
-	<Localize id="CHAR_DESC_BG" kr="쓰흡! 배가 살살 아픈데?"/>
-	<Localize id="CHAR_DESC_DG" kr="어헙! 슬슬 위험한데.."/>
-	<Localize id="CHAR_DESC_HP" kr="아앗! 위험하다 위험해!"/>
+	<Localize id="CHAR_NAME_DT" kr="동털"/>
+	<Localize id="CHAR_NAME_BG" kr="바깡"/>
+	<Localize id="CHAR_NAME_DG" kr="대꿍"/>
+	<Localize id="CHAR_NAME_HP" kr="호팔"/>
+	<Localize id="CHAR_DESC_DT" kr="에라 모르겠다!"/>
+	<Localize id="CHAR_DESC_BG" kr="여기서 싸라고?"/>
+	<Localize id="CHAR_DESC_DG" kr="나도 이런 짓을?"/>
+	<Localize id="CHAR_DESC_HP" kr="급똥이다 급똥!"/>
 	<Localize id="BG_NAME_SEA" kr="잠수함"/>
 	<Localize id="BG_NAME_DESERT" kr="피라미드"/>
-	<Localize id="BG_NAME_SPACE" kr="우주"/>
+	<Localize id="BG_NAME_SPACE" kr="우주선"/>
 	<Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
 	<Localize id="BG_DESC_DESERT" kr="여기에 왜 피라미드가 있는거야?? 급하니까 미안.."/>
 	<Localize id="BG_DESC_SPACE" kr="우주까지 와서 쌀빠엔 집에 가야지.."/>

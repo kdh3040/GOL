@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirebaseManager {
-
-
+public class FirebaseManager : MonoBehaviour
+{
     public static FirebaseManager _instance = null;
     public static FirebaseManager Instance
     {
@@ -12,25 +11,26 @@ public class FirebaseManager {
         {
             if (_instance == null)
             {
-                _instance = new FirebaseManager();
+                _instance = FindObjectOfType<FirebaseManager>() as FirebaseManager;
             }
             return _instance;
         }
     }
-    
+
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
     FirebaseManager()
     {
        
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        
     }
 
     // Use this for initialization
     public void Start()
     {
-      
+        DontDestroyOnLoad(this);
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
     }
 
     // Update is called once per frame
@@ -110,7 +110,7 @@ public class FirebaseManager {
     public void OnMessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e)
     {
 
-        if (SettingManager.Instance.GetNotiStatus() == false)
+        if (PlayerData.Instance.GetAlarmSetting() == false)
             return;
 
         Debug.LogFormat("Received a new message from: " + e.Message.From);
