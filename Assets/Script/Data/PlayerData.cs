@@ -180,6 +180,9 @@ public class PlayerData
             MyCoin = 1000;
             MyDDong = CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MinValue;
+            SoundSetting = true;
+            VibrationSetting = true;
+            AlarmSetting = true;
             SaveFile();
         }
     }
