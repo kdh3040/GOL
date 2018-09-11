@@ -239,7 +239,10 @@ public class GamePlayManager : MonoBehaviour
     {
         mGameUIPage.GameOver();
         IsGamePause = true;
-        SettingManager.Instance.DoVibe();
+        if(PlayerData.Instance.GetVibrationSetting())
+        {
+            Handheld.Vibrate();
+        }        
         AdManager.Instance.ShowInterstitialAd();
         StartCoroutine(Co_GameOver(note));
     }
@@ -369,14 +372,21 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlayGetItemSound()
     {
-        mAudio.clip = mClip[0];
-        mAudio.Play();
+        if (PlayerData.Instance.GetSoundSetting())
+        {
+            mAudio.clip = mClip[0];
+            mAudio.Play();
+        }
+        
     }
 
     public void PlayUseItemSound()
     {
-        mAudio.clip = mClip[2];
-        mAudio.Play();
+        if (PlayerData.Instance.GetSoundSetting())
+        {
+            mAudio.clip = mClip[2];
+            mAudio.Play();
+        }
     }
 
     public void EndSkill(GameSkill skill)
