@@ -40,7 +40,7 @@ public class PopupGamePause : PopupUI
     public void OnClickExit()
     {
         GamePlayManager.Instance.GameExit();
-        PopupManager.Instance.DismissPopup();
+        PopupManager.Instance.AllDismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
 }
