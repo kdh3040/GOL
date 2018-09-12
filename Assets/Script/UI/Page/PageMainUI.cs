@@ -67,6 +67,7 @@ public class PageMainUI : MonoBehaviour
     {
         SkinData mSkin =  PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.CHAR);
         var charData = mSkin as CharData;
+        Anim_Char.Rebind();
         Anim_Char.SetTrigger(charData.shopani_trigger);
     }
 }
