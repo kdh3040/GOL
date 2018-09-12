@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class PopupManager : MonoBehaviour {
 
     public enum POPUP_TYPE
     {
+        NONE,
         GAME_END,
         GAME_PAUSE,
         GAME_SHOP,
@@ -85,18 +87,38 @@ public class PopupManager : MonoBehaviour {
         mShowPopup = null;
     }
 
+    public POPUP_TYPE CurrentPopupType()
+    {
+        if (mShowPopup == null)
+            return POPUP_TYPE.NONE;
+
+        return mShowPopup.GetPopupType();
+    }
+
     void Update()
     {
-        /*
+        Array allKeyCodes;
+        allKeyCodes = System.Enum.GetValues(typeof(KeyCode));
+
+        foreach (KeyCode tempKey in allKeyCodes)
+        {
+            if (Input.GetKeyDown(tempKey))
+            {
+                Debug.Log("!!!!!!!!!!! Pressed: KeyCode." + tempKey);
+            }
+        }
+
+
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape))
             {
+                if (GamePlayManager.Instance.IsGamePause)
+                    return;
+
                 DismissPopup();
             }
-
         }
-        */
     }
     
 }

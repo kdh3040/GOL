@@ -256,41 +256,30 @@ public class GamePlayManager : MonoBehaviour
     {
         while(true)
         {
-
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                if (Input.GetKey(KeyCode.Escape))
-                {
-                    GamePause();
-                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
-                }
-
-            }
-            else if (Application.platform == RuntimePlatform.Android)
-            {
-                if (Input.GetKey(KeyCode.Home))
-                {
-                    GamePause();
-                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
-                }
-
-            }
-            else if (Application.platform == RuntimePlatform.Android)
-            {
-                if (Input.GetKey(KeyCode.Menu))
-                {
-                    GamePause();
-                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
-                }
-            }
-            
             if (FirstStart)
             {
                 yield return new WaitForSecondsRealtime(3.5f);                
                 FirstStart = false;
                 //InGameEffect_Start.SetActive(false);
             }
-            
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
+                {
+                    if (PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PAUSE && Input.GetKeyUp(KeyCode.Escape))
+                    {
+                        GameResumeCountStart();
+                        PopupManager.Instance.DismissPopup();
+                    }
+                    else
+                    {
+                        GamePause();
+                        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                    }
+                }
+            }
+
             if (IsGamePause)
             {
                 yield return null;
@@ -636,5 +625,17 @@ public class GamePlayManager : MonoBehaviour
 #endif
 
 
+    }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (FirstStart)
+            return;
+
+        if (pause)
+        {
+            GamePause();
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+        }
     }
 }
