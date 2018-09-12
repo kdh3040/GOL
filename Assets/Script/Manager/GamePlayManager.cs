@@ -69,6 +69,7 @@ public class GamePlayManager : MonoBehaviour
     private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
     [System.NonSerialized]
     public int ContinueCount = 0;
+    private bool InGame = false;
 
     public float NoteSpeed
     {
@@ -115,6 +116,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void ResetGame()
     {
+        InGame = true;
         Click = false;
         StopAllCoroutines();
         Score = 0;
@@ -134,6 +136,7 @@ public class GamePlayManager : MonoBehaviour
     public void GameExit()
     {
         ResetGame();
+        InGame = false;
         mNoteSystem.GameExit();
         mDoorSystem.GameExit();
     }
@@ -629,6 +632,9 @@ public class GamePlayManager : MonoBehaviour
 
     void OnApplicationPause(bool pause)
     {
+        if (InGame == false)
+            return;
+
         if (FirstStart)
             return;
 
