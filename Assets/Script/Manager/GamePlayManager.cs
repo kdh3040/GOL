@@ -638,6 +638,10 @@ public class GamePlayManager : MonoBehaviour
         if (FirstStart)
             return;
 
+        if (IsGamePause)
+            return;
+
+
         if (pause)
         {
             GamePause();
