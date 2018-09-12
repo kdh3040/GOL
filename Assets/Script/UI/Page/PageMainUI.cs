@@ -14,6 +14,9 @@ public class PageMainUI : MonoBehaviour
     public Button GameSetting;
     public Button GameBook;
 
+    public GameObject Img_BackGround;
+    public Animator Anim_Char;
+
     void Awake()
     {
         GamePlay.onClick.AddListener(OnClickGamePlay);
@@ -26,11 +29,13 @@ public class PageMainUI : MonoBehaviour
     void Start()
     {
         TopBar.Initialize(false);
+        SetBackGroundImg();
+        SetCharAnim();
     }
 
     public void OnClickGamePlay()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(SetBackGroundImg));
     }
 
     public void OnClickGameShop()
@@ -48,5 +53,21 @@ public class PageMainUI : MonoBehaviour
     public void OnClickGameBook()
     {
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
+    }
+
+    private void SetBackGroundImg()
+    {
+        SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
+        var backgoundData = mSkin as BackgroundData;
+        SpriteRenderer sprite = Img_BackGround.GetComponent<SpriteRenderer>();
+        sprite.sprite = (Sprite)Resources.Load(backgoundData.img_main, typeof(Sprite));        
+    }
+
+    private void SetCharAnim()
+    {
+        SkinData mSkin =  PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.CHAR);
+        var charData = mSkin as CharData;
+        Anim_Char.Rebind();
+        Anim_Char.SetTrigger(charData.shopani_trigger);
     }
 }

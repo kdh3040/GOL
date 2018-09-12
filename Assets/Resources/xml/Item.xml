@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
-	<Item id = "1" name="INVINCIBILITY_ITEM" desc="INVINCIBILITY_ITEM_DESC" skill="DAMAGE_SHIELD_TIME" icon="Renewal/UI/icon_item_invincibilty" note_img="Renewal/Note/item_note_invincibilty" levelup_cost="1000" create_probability="10" slot_type="normal"/>
-	<Item id = "2" name="SHIELD_ITEM" desc="SHIELD_ITEM_DESC" skill="DAMAGE_SHIELD_COUNT" icon="Renewal/UI/icon_item_shield" note_img="Renewal/Note/item_note_shield" levelup_cost="1000" create_probability="10" slot_type="shield"/>
-	<Item id = "3" name="SCORE_DOUBLE_ITEM" desc="SCORE_DOUBLE_ITEM_DESC" skill="SCORE_UP" icon="Renewal/UI/icon_item_score" note_img="Renewal/Note/item_note_score" levelup_cost="1000" create_probability="10" slot_type="normal"/>
-	<Item id = "4" name="NOTE_SPEED_DOWN" desc="NOTE_SPEED_DOWN_DESC" skill="SPEED_DOWN" icon="Renewal/UI/icon_item_slow" note_img="Renewal/Note/item_note_slow" levelup_cost="1000" create_probability="10" slot_type="normal"/>
+	<Item id = "1" name="INVINCIBILITY_ITEM" desc="INVINCIBILITY_ITEM_DESC" skill="DAMAGE_SHIELD_TIME" icon="Renewal/UI/icon_item_invincibilty" note_img="Renewal/Note/item_note_invincibilty" levelup_cost="300" create_probability="10" slot_type="normal"/>
+	<Item id = "2" name="SHIELD_ITEM" desc="SHIELD_ITEM_DESC" skill="DAMAGE_SHIELD_COUNT" icon="Renewal/UI/icon_item_shield" note_img="Renewal/Note/item_note_shield" levelup_cost="0" create_probability="10" slot_type="shield"/>
+	<Item id = "3" name="SCORE_DOUBLE_ITEM" desc="SCORE_DOUBLE_ITEM_DESC" skill="SCORE_UP" icon="Renewal/UI/icon_item_score" note_img="Renewal/Note/item_note_score" levelup_cost="400" create_probability="10" slot_type="normal"/>
+	<Item id = "4" name="NOTE_SPEED_DOWN" desc="NOTE_SPEED_DOWN_DESC" skill="SPEED_DOWN" icon="Renewal/UI/icon_item_slow" note_img="Renewal/Note/item_note_slow" levelup_cost="300" create_probability="10" slot_type="normal"/>
 </Datas>

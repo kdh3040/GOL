@@ -7,6 +7,7 @@ public class BackgroundData : SkinData
 {
     public string img_back;
     public string img_front;
+    public string img_main;
     public List<int> noteList = new List<int>();
     public List<int> endingGroupList = new List<int>();
 
@@ -19,6 +20,7 @@ public class BackgroundData : SkinData
         cost = int.Parse(node.Attributes.GetNamedItem("cost").Value);
         img_front = node.Attributes.GetNamedItem("img_front").Value;
         img_back = node.Attributes.GetNamedItem("img_back").Value;
+        img_main = node.Attributes.GetNamedItem("img_main").Value;
         skill = node.Attributes.GetNamedItem("skill").Value;
 
         var noteListString = node.Attributes.GetNamedItem("note_list").Value;
@@ -32,7 +34,11 @@ public class BackgroundData : SkinData
         var endingListStringArr = endingListString.Split(',');
         for (int i = 0; i < endingListStringArr.Length; i++)
         {
-            endingGroupList.Add(int.Parse(endingListStringArr[i]));
+            int id = int.Parse(endingListStringArr[i]);
+            if (id == 0)
+                continue;
+
+            endingGroupList.Add(id);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIEndingBookSlot : MonoBehaviour {
@@ -68,13 +69,34 @@ public class UIEndingBookSlot : MonoBehaviour {
         if (EndingBuyCost <= 0)
             return;
 
-        // 엔딩 구매 팝업
+        UnityAction yesAction = () =>
+        {
+            if (CommonFunc.UseCoin(EndingBuyCost))
+            {
+                for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
+                {
+                    PlayerData.Instance.AddEnding(EndingGroupData.ending_list[i]);
+                }
+                BuyCostValue.gameObject.SetActive(false);
+                EndingComplete.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_ALL_HAVE");
+                Refresh();
+            }
+        };
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ENDING_TITLE"), yesAction);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 
     public void OnClickEnding()
     {
-        // 엔딩 팝업
         var data = new PopupGameEndingScene.PopupData(EndingGroupData.id);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, data);
+    }
+
+    public void Refresh()
+    {
+        for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
+        {
+            EndingSceneSlotList[i].SetData(EndingGroupData.ending_list[i]);
+        }
     }
 }

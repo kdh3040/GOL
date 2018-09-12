@@ -13,6 +13,15 @@ public class PopupGameReady : PopupUI
         return PopupManager.POPUP_TYPE.GAME_READY;
     }
 
+    public class PopupData : PopupUIData
+    {
+        public UnityAction EndAction;
+        public PopupData(UnityAction endAction)
+        {
+            EndAction = endAction;
+        }
+    }
+
     public UITopBar Topbar;
     public Image DescIcon;
     public Image DescCharIcon;
@@ -31,6 +40,7 @@ public class PopupGameReady : PopupUI
 
     private bool SelectSkinSlot = false;
     private int SelectSlotIndex = 0;
+    private UnityAction EndAction = null;
 
     public void Awake()
     {
@@ -41,6 +51,12 @@ public class PopupGameReady : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        var popupData = data as PopupData;
+        if (popupData != null)
+            EndAction = popupData.EndAction;
+        else
+            EndAction = null;
+
         SelectSkinSlot = false;
         SelectSlotIndex = 0;
         Topbar.Initialize(true);
@@ -65,6 +81,13 @@ public class PopupGameReady : PopupUI
         }
         OnClickItem(0);
         RefreshUI();
+    }
+
+    public override void DismissPopup()
+    {
+        base.DismissPopup();
+        if (EndAction != null)
+            EndAction();
     }
 
     public void RefreshSlot()
