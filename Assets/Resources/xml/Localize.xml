@@ -8,6 +8,7 @@
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
 	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?"/>
 	<Localize id="BUY_SKIN_TITLE" kr="스킨을 구매하시겠습니까?"/>
+	<Localize id="BUY_ENDING_TITLE" kr="엔딩을 구매하시겠습니까?"/>
 	<Localize id="UPGRADE_SKIN_TITLE" kr="스킨을 강화하시겠습니까?"/>
 	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉찼습니다."/>
 	<Localize id="EQUIP_ITEM_NONE" kr="아이템이 없습니다."/>
