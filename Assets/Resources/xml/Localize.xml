@@ -71,38 +71,38 @@
 	<Localize id="CHAR_DESC_BG" kr="여기서 싸라고?"/>
 	<Localize id="CHAR_DESC_DG" kr="나도 이런 짓을?"/>
 	<Localize id="CHAR_DESC_HP" kr="급똥이다 급똥!"/>
-  <Localize id="BG_NAME_APART" kr="아파트"/>
-  <Localize id="BG_NAME_SEA" kr="잠수함"/>
+	<Localize id="BG_NAME_APART" kr="아파트"/>
+	<Localize id="BG_NAME_SEA" kr="잠수함"/>
 	<Localize id="BG_NAME_DESERT" kr="피라미드"/>
 	<Localize id="BG_NAME_SPACE" kr="우주선"/>
-  <Localize id="BG_DESC_APART" kr="급똥이다! 급똥"/>
-  <Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
+	<Localize id="BG_DESC_APART" kr="급똥이다! 급똥"/>
+	<Localize id="BG_DESC_SEA" kr="잠수함에서 싸면 냄새는 어쩌지??"/>
 	<Localize id="BG_DESC_DESERT" kr="여기에 왜 피라미드가 있는거야?? 급하니까 미안.."/>
 	<Localize id="BG_DESC_SPACE" kr="우주까지 와서 쌀빠엔 집에 가야지.."/>
-	<Localize id="DOOR_NAME_SEA_1" kr="잠수함문 1"/>
-	<Localize id="DOOR_NAME_SEA_2" kr="잠수함문 2"/>
-	<Localize id="DOOR_NAME_SEA_3" kr="잠수함문 3"/>
-	<Localize id="DOOR_NAME_SPACE_1" kr="우주문 1"/>
-	<Localize id="DOOR_NAME_SPACE_2" kr="우주문 2"/>
-	<Localize id="DOOR_NAME_SPACE_3" kr="우주문 3"/>
-	<Localize id="DOOR_NAME_APART_1" kr="아파트문 1"/>
-	<Localize id="DOOR_NAME_APART_2" kr="아파트문 2"/>
-	<Localize id="DOOR_NAME_APART_3" kr="아파트문 3"/>
-	<Localize id="DOOR_NAME_DESERT_1" kr="피라미드문 1"/>
-	<Localize id="DOOR_NAME_DESERT_2" kr="피라미드문 2"/>
-	<Localize id="DOOR_NAME_DESERT_3" kr="피라미드문 3"/>
-	<Localize id="DOOR_DESC_SEA_1" kr="문이 너무 무겁다!"/>
-	<Localize id="DOOR_DESC_SEA_2" kr="문이 너무 무겁다!"/>
-	<Localize id="DOOR_DESC_SEA_3" kr="문이 너무 무겁다!"/>
-	<Localize id="DOOR_DESC_DESERT_1" kr="문이 너무 뜨겁다!"/>
-	<Localize id="DOOR_DESC_DESERT_2" kr="문이 너무 뜨겁다!"/>
-	<Localize id="DOOR_DESC_DESERT_3" kr="문이 너무 뜨겁다!"/>
-	<Localize id="DOOR_DESC_SPACE_1" kr="문이 자동문이네??"/>
-	<Localize id="DOOR_DESC_SPACE_2" kr="문이 자동문이네??"/>
-	<Localize id="DOOR_DESC_SPACE_3" kr="문이 자동문이네??"/>
-	<Localize id="DOOR_DESC_APART_1" kr="역시 아파트문이 착착 감기지"/>
-	<Localize id="DOOR_DESC_APART_2" kr="역시 아파트문이 착착 감기지"/>
-	<Localize id="DOOR_DESC_APART_3" kr="역시 아파트문이 착착 감기지"/>
+	<Localize id="DOOR_NAME_SEA_1" kr="평범한 잠수함문"/>
+	<Localize id="DOOR_NAME_SEA_2" kr="금고같은 잠수함문"/>
+	<Localize id="DOOR_NAME_SEA_3" kr="함장실 잠수함문"/>
+	<Localize id="DOOR_NAME_SPACE_1" kr="푸싱푸싱 우주문"/>
+	<Localize id="DOOR_NAME_SPACE_2" kr="주우앙! 우주문"/>
+	<Localize id="DOOR_NAME_SPACE_3" kr="철컹! 우주문"/>
+	<Localize id="DOOR_NAME_APART_1" kr="평범한 아파트문"/>
+	<Localize id="DOOR_NAME_APART_2" kr="갈색 아파트문"/>
+	<Localize id="DOOR_NAME_APART_3" kr="현대식 아파트문"/>
+	<Localize id="DOOR_NAME_DESERT_1" kr="투명 피라이드문"/>
+	<Localize id="DOOR_NAME_DESERT_2" kr="하얀 피라미드문"/>
+	<Localize id="DOOR_NAME_DESERT_3" kr="평범한 피라미드문"/>
+	<Localize id="DOOR_DESC_SEA_1" kr="문이 무거워 보인다"/>
+	<Localize id="DOOR_DESC_SEA_2" kr="금고 문 같지만 잠수함 문이다!"/>
+	<Localize id="DOOR_DESC_SEA_3" kr="함장실 앞에서 죄송합니다."/>
+	<Localize id="DOOR_DESC_DESERT_1" kr="안쪽에서 밖이 안보여야 할텐데.."/>
+	<Localize id="DOOR_DESC_DESERT_2" kr="밖에서는 절대 못열것 같은 문"/>
+	<Localize id="DOOR_DESC_DESERT_3" kr="문이 열리면 사람이 아닌 다른게 나올것 같다"/>
+	<Localize id="DOOR_DESC_SPACE_1" kr="푸싱푸싱!!"/>
+	<Localize id="DOOR_DESC_SPACE_2" kr="주우우우우우우우앙!!!!"/>
+	<Localize id="DOOR_DESC_SPACE_3" kr="철컹철컹!!"/>
+	<Localize id="DOOR_DESC_APART_1" kr="어느집이나 있을법한 문"/>
+	<Localize id="DOOR_DESC_APART_2" kr="안방문 같지만 아파트 문이다!"/>
+	<Localize id="DOOR_DESC_APART_3" kr="최신식 비밀번호 문"/>
 	<Localize id="ENDING_CONDITION_CHAR_SLOT_LEVEL" kr="캐릭터 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_DOOR_SLOT_LEVEL" kr="문 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_BG_SLOT_LEVEL" kr="배경 스킨 슬롯 레벨 {0}이상"/>
@@ -120,12 +120,13 @@
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="싼드아!"/>
 	<Localize id="CHAR_MSG_3" kr="바지에 묻으면 안되는데.."/>
-	<Localize id="CHAR_MSG_4" kr="이런.."/>
-	<Localize id="NOTE_ENDING_DESC_1_1" kr="누고?"/>
-	<Localize id="NOTE_ENDING_DESC_1_2" kr="누고?"/>
-	<Localize id="NOTE_ENDING_DESC_1_3" kr="누고?"/>
-	<Localize id="NOTE_ENDING_DESC_2_1" kr="누고?"/>
-	<Localize id="NOTE_ENDING_DESC_2_2" kr="누고?"/>
+	<Localize id="CHAR_MSG_4" kr="팔에 힘이 빠진다.."/>
+	<Localize id="CHAR_MSG_5" kr="다리가 저려간다.."/>
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="누가 여기서 "/>
+	<Localize id="NOTE_ENDING_DESC_1_2" kr="냄새난다"/>
+	<Localize id="NOTE_ENDING_DESC_1_3" kr="아이고 허리야"/>
+	<Localize id="NOTE_ENDING_DESC_2_1" kr="에그머니나!"/>
+	<Localize id="NOTE_ENDING_DESC_2_2" kr="엄마 시장 다녀올께~"/>
 	<Localize id="NOTE_ENDING_DESC_2_3" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_3_1" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_3_2" kr="누고?"/>
@@ -157,24 +158,6 @@
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_12_2" kr="누고?"/>
 	<Localize id="NOTE_ENDING_DESC_12_3" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_1" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_2" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_3" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_4" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_5" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_6" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_7" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_8" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_9" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_10" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_11" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_12" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_13" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_14" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_15" kr="누고?"/>
-  <Localize id="ENDING_NOTE_DESC_16" kr="누고?"/>
-  <Localize id="END_TITLE_1" kr="아파트 이야기"/>
-  <Localize id="END_TITLE_2" kr="우주선 이야기"/>
-  <Localize id="END_TITLE_3" kr="피라미드 이야기"/>
-  <Localize id="END_TITLE_4" kr="잠수함 이야기"/>
+	<Localize id="END_TITLE_1" kr="아파트 이야기"/>
+	<Localize id="END_TITLE_2" kr="우주선 이야기"/>
 </Datas>
