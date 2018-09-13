@@ -264,23 +264,6 @@ public class GamePlayManager : MonoBehaviour
                 continue;
             }
 
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
-                {
-                    if (PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PAUSE && Input.GetKeyUp(KeyCode.Escape))
-                    {
-                        GameResumeCountStart();
-                        PopupManager.Instance.DismissPopup();
-                    }
-                    else
-                    {
-                        GamePause();
-                        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
-                    }
-                }
-            }
-
             var time = Time.deltaTime;
 
             if(Click)
