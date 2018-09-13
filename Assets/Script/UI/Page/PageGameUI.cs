@@ -23,6 +23,7 @@ public class PageGameUI : MonoBehaviour
     public GameObject DoorButtons;
     public List<Button> DoorButtonsList = new List<Button>();
 
+    public AudioSource mFX;
 
     void Awake()
     {
@@ -128,6 +129,7 @@ public class PageGameUI : MonoBehaviour
 
     public void OnClickPause()
     {
+        PlayFXSound();
         GamePlayManager.Instance.GamePause();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
     }
@@ -173,5 +175,13 @@ public class PageGameUI : MonoBehaviour
     public void OnClickDoorButton(int index)
     {
         GamePlayManager.Instance.ClickDoorButton(index);
+    }
+
+    private void PlayFXSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            mFX.Play();
+        }
     }
 }

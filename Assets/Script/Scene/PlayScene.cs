@@ -25,6 +25,9 @@ public class PlayScene : MonoBehaviour
 
     public GameObject InGameEffect_Start;
 
+    public AudioSource mAudio;
+    public AudioClip[] mClip = new AudioClip[4];
+
     void Start()
     {
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
@@ -35,5 +38,20 @@ public class PlayScene : MonoBehaviour
         GamePlayManager.Instance.Initialize(this);
         // 게임시작
         GamePlayManager.Instance.GameStart();
+
+        PlayBGM();
+    }
+
+    public void PlayBGM()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+
+            SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
+            var backgoundData = mSkin as BackgroundData;
+
+            mAudio.clip = mClip[backgoundData.id - 1];
+            mAudio.Play();
+        }
     }
 }
