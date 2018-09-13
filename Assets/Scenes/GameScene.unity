@@ -3667,6 +3667,7 @@ GameObject:
   - component: {fileID: 1451450154}
   - component: {fileID: 1451450153}
   - component: {fileID: 1451450155}
+  - component: {fileID: 1451450156}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -3767,6 +3768,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1451450156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451450151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1476171667
 GameObject:
   m_ObjectHideFlags: 0

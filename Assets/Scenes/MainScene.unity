@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 345196182}
   - component: {fileID: 345196181}
   - component: {fileID: 345196180}
+  - component: {fileID: 345196184}
   m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
@@ -340,6 +341,17 @@ RectTransform:
   m_AnchoredPosition: {x: 470, y: 850}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &345196184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 345196179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &361495652
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +837,7 @@ GameObject:
   - component: {fileID: 893447569}
   - component: {fileID: 893447568}
   - component: {fileID: 893447567}
+  - component: {fileID: 893447570}
   m_Layer: 5
   m_Name: Rank
   m_TagString: Untagged
@@ -900,6 +913,17 @@ RectTransform:
   m_AnchoredPosition: {x: 393, y: -815}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &893447570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 893447566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969873092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,8 +1133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1174073798}
   - component: {fileID: 1174073797}
-  - component: {fileID: 1174073796}
   - component: {fileID: 1174073795}
+  - component: {fileID: 1174073796}
   m_Layer: 5
   m_Name: Book
   m_TagString: Untagged
@@ -1153,7 +1177,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1174073796}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -1167,25 +1191,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174073794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d3d8878fad32cc84c806fade87aefcb9, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &1174073797
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1210,9 +1218,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -815}
+  m_AnchoredPosition: {x: 0, y: -890}
   m_SizeDelta: {x: 250, y: 250}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.2}
 --- !u!1 &1227964034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1301,7 @@ GameObject:
   - component: {fileID: 1419182728}
   - component: {fileID: 1419182726}
   - component: {fileID: 1419182727}
+  - component: {fileID: 1419182730}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1463,6 +1472,17 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -538}
   m_SizeDelta: {x: 600, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1419182730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419182725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1517970383
 Prefab:
   m_ObjectHideFlags: 0
@@ -1560,32 +1580,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224364122035787214, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 224425876068055738, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -160
-      objectReference: {fileID: 0}
-    - target: {fileID: 224979470246422476, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: 224195246013818900, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 220
-      objectReference: {fileID: 0}
-    - target: {fileID: 114956360471535152, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 3e474e2cbfc4b0a4b81d275abd1c5602,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7daf9bbb89a90c43a32f4a6cdacf538, type: 2}
   m_IsPrefabAsset: 0
@@ -1668,6 +1662,7 @@ GameObject:
   - component: {fileID: 1746983713}
   - component: {fileID: 1746983712}
   - component: {fileID: 1746983711}
+  - component: {fileID: 1746983714}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -1743,6 +1738,17 @@ RectTransform:
   m_AnchoredPosition: {x: -393, y: -816}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1746983714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1746983710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b440b6b4205f8a48a2110eec8655555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756338714
 GameObject:
   m_ObjectHideFlags: 0
