@@ -60,6 +60,17 @@ public class UIPoint : MonoBehaviour {
 
     public void OnClickCharge()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE);
+        if(PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PURCHASE)
+            PopupManager.Instance.DismissPopup();
+
+        switch (mPointType)
+        {
+            case CommonData.POINT_TYPE.DDONG:
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE, new PopupGamePurchase.PopupData(CommonData.POINT_TYPE.DDONG));
+                break;
+            case CommonData.POINT_TYPE.COIN:
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE, new PopupGamePurchase.PopupData(CommonData.POINT_TYPE.COIN));
+                break;
+        }
     }
 }
