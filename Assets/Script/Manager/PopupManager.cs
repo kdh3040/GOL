@@ -37,7 +37,7 @@ public class PopupManager : MonoBehaviour {
     private PopupUI mShowPopup = null;
     private List<PopupUI> mShowPopupList = new List<PopupUI>();
     public GameObject PopupRoot;
-
+    
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -52,6 +52,7 @@ public class PopupManager : MonoBehaviour {
 
     public void ShowPopup(POPUP_TYPE type, PopupUIData data = null)
     {
+        PlayClickSound();
         var popup = mPopupUIList[type];
         if (mShowPopup != null && mShowPopup.GetPopupType() == popup.GetPopupType())
             return;
@@ -66,6 +67,7 @@ public class PopupManager : MonoBehaviour {
     {
         if(mShowPopup != null)
         {
+            //PlayClickSound();
             mShowPopupList.Remove(mShowPopup);
 
             mShowPopup.gameObject.SetActive(false);
@@ -135,5 +137,14 @@ public class PopupManager : MonoBehaviour {
             }
         }
     }
-    
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            if (GetComponent<AudioSource>().isPlaying) return;
+            else GetComponent<AudioSource>().Play();
+        }
+    }
+
 }

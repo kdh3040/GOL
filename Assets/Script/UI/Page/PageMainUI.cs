@@ -19,9 +19,7 @@ public class PageMainUI : MonoBehaviour
     public Animator Anim_Char;
 
     public AudioSource mBGM;
-    public AudioSource mFX;
     public AudioClip mClip;
-    public AudioClip mClickClip;
 
     void Awake()
     {
@@ -41,28 +39,23 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGamePlay()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(Refresh));
     }
 
     public void OnClickGameShop()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
     }
     public void OnClickGameRank()
     {
-        PlayClickSound();
         GameCenterManager.Instance.ShowLeaderboardUI();
     }
     public void OnClickGameSetting()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
     public void OnClickGameBook()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
 
@@ -97,11 +90,19 @@ public class PageMainUI : MonoBehaviour
         }
     }
 
-    public void PlayClickSound()
+    void Update()
     {
-        if (PlayerData.Instance.GetSoundSetting() == true)
+        if (Application.platform == RuntimePlatform.Android)
         {
-            mFX.Play();
+            if (Input.GetKeyUp(KeyCode.Escape) && PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.NONE)
+            {
+                UnityAction yesAction = () =>
+                {
+                    Application.Quit();
+                };
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+            }
         }
     }
 }

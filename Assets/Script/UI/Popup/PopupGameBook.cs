@@ -304,7 +304,8 @@ public class PopupGameBook : PopupUI
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
-            GetComponent<AudioSource>().Play();
+            if (GetComponent<AudioSource>().isPlaying) return;
+            else GetComponent<AudioSource>().Play();
         }
     }
 }
