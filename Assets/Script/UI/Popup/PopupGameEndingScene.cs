@@ -23,6 +23,7 @@ public class PopupGameEndingScene : PopupUI
     public Text Title;
     public GameObject LockObj;
     public Image EndingScene;
+    public GameObject DescObj;
     public Text Desc;
     public Button Prev;
     public Button OK;
@@ -69,14 +70,15 @@ public class PopupGameEndingScene : PopupUI
         {
             LockObj.gameObject.SetActive(false);
             EndingScene.gameObject.SetActive(true);
+            DescObj.gameObject.SetActive(false);
 
-            Desc.text = EndingSceneList[SelectIndex].GetLocalizeDesc();
             CommonFunc.SetImageFile(EndingSceneList[SelectIndex].img, ref EndingScene, false);
         }
         else
         {
             LockObj.gameObject.SetActive(true);
             EndingScene.gameObject.SetActive(false);
+            DescObj.gameObject.SetActive(true);
 
             Desc.text = EndingSceneList[SelectIndex].GetConditionDesc();
         }
