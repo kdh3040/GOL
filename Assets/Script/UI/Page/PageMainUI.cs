@@ -18,6 +18,9 @@ public class PageMainUI : MonoBehaviour
     public GameObject Img_BackGround;
     public Animator Anim_Char;
 
+    public AudioSource mAudio;
+    public AudioClip mClip;
+
     void Awake()
     {
         GamePlay.onClick.AddListener(OnClickGamePlay);
@@ -59,6 +62,7 @@ public class PageMainUI : MonoBehaviour
     {
         SetBackGroundImg();
         SetCharAnim();
+        PlayBGM();
     }
 
 
@@ -77,7 +81,14 @@ public class PageMainUI : MonoBehaviour
         Anim_Char.Rebind();
         Anim_Char.SetTrigger(charData.shopani_trigger);
     }
-
+    
+    public void PlayBGM()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            mAudio.Play();
+        }
+    }
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)

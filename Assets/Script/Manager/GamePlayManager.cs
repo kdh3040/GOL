@@ -47,10 +47,7 @@ public class GamePlayManager : MonoBehaviour
     public GameObject NoteDeleteObj;
 
     private AudioSource mAudio;
-    [System.NonSerialized]
-    public AudioClip[] mClip = new AudioClip[3];
-
-    [System.NonSerialized]
+    public AudioClip[] mClip = new AudioClip[4];
     public int UseItemId = 0;
 
     private GameObject DDongViewObj;
@@ -111,7 +108,8 @@ public class GamePlayManager : MonoBehaviour
 
         AdManager.Instance.RequestInterstitialAd();
         AdManager.Instance.RequestRewardBasedVideo();
-        
+
+        PlayBGM();
     }
 
     public void ResetGame()
@@ -387,14 +385,18 @@ public class GamePlayManager : MonoBehaviour
         //PlayUseItemSound();
     }
 
-    public void PlayGetItemSound()
+    public void PlayBGM()
     {
-        
-        if (PlayerData.Instance.GetSoundSetting())
+        if(PlayerData.Instance.GetSoundSetting() == true)
         {
-            mAudio.clip = mClip[0];
+
+            SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
+            var backgoundData = mSkin as BackgroundData;
+
+            mAudio.clip = mClip[backgoundData.id - 1];
             mAudio.Play();
         }
+
         
     }
 
