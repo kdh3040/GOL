@@ -84,9 +84,6 @@ public class PageMainUI : MonoBehaviour
     
     public void PlayBGM()
     {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
             mBGM.Play();
-        }
     }
 }
