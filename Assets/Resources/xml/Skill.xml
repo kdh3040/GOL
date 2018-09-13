@@ -29,16 +29,16 @@
 	<Skill id = "20010" name="DOOR_SLOT_SKILL_LV11" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="10"/>
 	<Skill id = "20100" name="DOOR_SKLL_1" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="0"/>
 	<Skill id = "20200" name="DOOR_SKLL_2" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="3"/>
-	<Skill id = "20300" name="DOOR_SKLL_3" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="6"/>
-	<Skill id = "20400" name="DOOR_SKLL_4" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="9"/>
-	<Skill id = "20500" name="DOOR_SKLL_5" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="12"/>
-	<Skill id = "20600" name="DOOR_SKLL_6" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="15"/>
-	<Skill id = "20700" name="DOOR_SKLL_7" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="18"/>
-	<Skill id = "20800" name="DOOR_SKLL_8" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="21"/>
-	<Skill id = "20900" name="DOOR_SKLL_9" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="24"/>
-	<Skill id = "21000" name="DOOR_SKLL_10" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="27"/>
-	<Skill id = "21100" name="DOOR_SKLL_11" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="30"/>
-	<Skill id = "21200" name="DOOR_SKLL_12" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="33"/>
+	<Skill id = "20300" name="DOOR_SKLL_3" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="3"/>
+	<Skill id = "20400" name="DOOR_SKLL_4" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="6"/>
+	<Skill id = "20500" name="DOOR_SKLL_5" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="6"/>
+	<Skill id = "20600" name="DOOR_SKLL_6" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="6"/>
+	<Skill id = "20700" name="DOOR_SKLL_7" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="12"/>
+	<Skill id = "20800" name="DOOR_SKLL_8" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="12"/>
+	<Skill id = "20900" name="DOOR_SKLL_9" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="12"/>
+	<Skill id = "21000" name="DOOR_SKLL_10" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="20"/>
+	<Skill id = "21100" name="DOOR_SKLL_11" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="20"/>
+	<Skill id = "21200" name="DOOR_SKLL_12" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="20"/>
 	
 	
 	<Skill id = "30000" name="BG_SLOT_SKILL_LV1" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="0"/>
