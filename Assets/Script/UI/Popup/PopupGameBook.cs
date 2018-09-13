@@ -59,6 +59,7 @@ public class PopupGameBook : PopupUI
     public override void ShowPopup(PopupUIData data)
     {
         TopBar.Initialize(true);
+        SelectBookType = BOOK_TYPE.NONE;
         OnClickBook(BOOK_TYPE.ENDING);
     }
 
