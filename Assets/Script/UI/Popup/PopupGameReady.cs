@@ -124,7 +124,7 @@ public class PopupGameReady : PopupUI
     }
     public void OnClickItem(int index)
     {
-        PlayClickSound();
+       // PlayClickSound();
 
         SelectSkinSlot = false;
         SelectSlotIndex = index;
@@ -237,7 +237,6 @@ public class PopupGameReady : PopupUI
 
     public void OnClickUpgrade()
     {
-        PlayClickSound();
         if (SelectSkinSlot)
         {
             UnityAction yesAction = () =>
@@ -279,7 +278,6 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
-        PlayClickSound();
         if (SelectSkinSlot)
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
@@ -316,7 +314,8 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
-            GetComponent<AudioSource>().Play();
+            if (GetComponent<AudioSource>().isPlaying) return;
+            else GetComponent<AudioSource>().Play();
         }
     }
 }

@@ -285,8 +285,7 @@ public class PopupGameShop : PopupUI
     }
 
     public void OnClickSkin(int index)
-    {
-        PlayClickSound();
+    {        
         SelectLIst = true;
         SelectSlotIndex = index;
         RefreshUI();
@@ -302,7 +301,6 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinBuy()
     {
-        PlayClickSound();
         UnityAction yesAction = () =>
         {
             PlayClickSound();
@@ -328,7 +326,6 @@ public class PopupGameShop : PopupUI
     }
     public void OnClickSkinUpgrade()
     {
-        PlayClickSound();
         UnityAction yesAction = () =>
         {
             PlayClickSound();
@@ -359,7 +356,8 @@ public class PopupGameShop : PopupUI
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
-            GetComponent<AudioSource>().Play();
+            if (GetComponent<AudioSource>().isPlaying) return;
+            else GetComponent<AudioSource>().Play();
         }
     }
 }

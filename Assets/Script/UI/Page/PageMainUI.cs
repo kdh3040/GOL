@@ -19,9 +19,7 @@ public class PageMainUI : MonoBehaviour
     public Animator Anim_Char;
 
     public AudioSource mBGM;
-    public AudioSource mFX;
     public AudioClip mClip;
-    public AudioClip mClickClip;
 
     void Awake()
     {
@@ -41,28 +39,23 @@ public class PageMainUI : MonoBehaviour
 
     public void OnClickGamePlay()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(Refresh));
     }
 
     public void OnClickGameShop()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
     }
     public void OnClickGameRank()
     {
-        PlayClickSound();
         GameCenterManager.Instance.ShowLeaderboardUI();
     }
     public void OnClickGameSetting()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
     public void OnClickGameBook()
     {
-        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
 
@@ -94,14 +87,6 @@ public class PageMainUI : MonoBehaviour
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
             mBGM.Play();
-        }
-    }
-
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            mFX.Play();
         }
     }
 
