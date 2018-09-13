@@ -81,14 +81,14 @@ public class PageMainUI : MonoBehaviour
         Anim_Char.Rebind();
         Anim_Char.SetTrigger(charData.shopani_trigger);
     }
-
-<<<<<<< HEAD
+    
     public void PlayBGM()
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
-        {           
+        {
             mAudio.Play();
-=======
+        }
+    }
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -102,7 +102,6 @@ public class PageMainUI : MonoBehaviour
                 var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
             }
->>>>>>> f70f611a1cfa18913435bed8ff67b75029f438d3
         }
     }
 }
