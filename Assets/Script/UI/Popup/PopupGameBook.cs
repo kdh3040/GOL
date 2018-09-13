@@ -133,7 +133,7 @@ public class PopupGameBook : PopupUI
             slot.SetData(BackgroundEndingGroupList[i].Key, BackgroundEndingGroupList[i].Value);
         }
 
-        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, EndingBookSlotList.Count * 366);
+        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, EndingBookSlotList.Count * 420);
     }
 
     public void ShowSkinBook()
