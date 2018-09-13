@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
 	<Localize id="COMMON_BUY" kr="구매"/>
 	<Localize id="COMBO_COUNT" kr="COMBO : {0}"/>
@@ -131,9 +131,9 @@
 	<Localize id="NOTE_ENDING_DESC_7_1" kr="우주선 1"/>
 	<Localize id="NOTE_ENDING_DESC_8_1" kr="우주선 2"/>
 	<Localize id="NOTE_ENDING_DESC_9_1" kr="우주선 3"/>
-	<Localize id="NOTE_ENDING_DESC_10_1" kr="아파트 1"/>
-	<Localize id="NOTE_ENDING_DESC_11_1" kr="아파트 2"/>
-	<Localize id="NOTE_ENDING_DESC_12_1" kr="아파트 3"/>
+	<Localize id="어디서 구수한 된장 냄새가 나네~" kr="아파트 1"/>
+	<Localize id="마 여기서 뭐하노? x싸나?" kr="아파트 2"/>
+	<Localize id="삐익삐익!!!" kr="아파트 3"/>
 	<Localize id="END_TITLE_1" kr="우주선에서 급똥처리"/>
 	<Localize id="END_TITLE_2" kr="피라미드 탄생 설화"/>
 </Datas>
