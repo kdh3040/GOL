@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -81,11 +82,27 @@ public class PageMainUI : MonoBehaviour
         Anim_Char.SetTrigger(charData.shopani_trigger);
     }
 
+<<<<<<< HEAD
     public void PlayBGM()
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {           
             mAudio.Play();
+=======
+    void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                UnityAction yesAction = () =>
+                {
+                    Application.Quit();
+                };
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+            }
+>>>>>>> f70f611a1cfa18913435bed8ff67b75029f438d3
         }
     }
 }

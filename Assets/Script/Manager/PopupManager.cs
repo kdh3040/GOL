@@ -97,18 +97,6 @@ public class PopupManager : MonoBehaviour {
 
     void Update()
     {
-        Array allKeyCodes;
-        allKeyCodes = System.Enum.GetValues(typeof(KeyCode));
-
-        foreach (KeyCode tempKey in allKeyCodes)
-        {
-            if (Input.GetKeyDown(tempKey))
-            {
-                Debug.Log("!!!!!!!!!!! Pressed: KeyCode." + tempKey);
-            }
-        }
-
-
         if (Application.platform == RuntimePlatform.Android)
         {
             if (Input.GetKeyUp(KeyCode.Escape))

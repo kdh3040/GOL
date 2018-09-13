@@ -33,11 +33,6 @@ public class ConfigData {
     public int CHAR_MSG_VIEW_PERCENT;
     public int CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT;
 
-    public float DEBUG_DEFAULT_SPEED = 0;
-    public float DEBUG_SPEED_UP_TIME = 0;
-    public float DEBUG_SPEED_UP = 0;
-
-
     public void Initialize(XmlNodeList list)
     {
         foreach (XmlNode node in list)

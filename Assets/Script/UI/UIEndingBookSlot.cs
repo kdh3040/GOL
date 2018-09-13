@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class UIEndingBookSlot : MonoBehaviour {
 
     public Button Slot;
+    public GameObject EndingObj;
     public Text EndingTitle;
-    public Text EndingBackgroundTitle;
     public Button BuyButton;
     public UIPointValue BuyCostValue;
     public Text EndingComplete;
     public GridLayoutGroup EndingSlotGrid;
+
+    public Text UpdateDesc;
 
     private int EndingBuyCost = 0;
     private EndingGroupData EndingGroupData = null;
@@ -30,12 +32,25 @@ public class UIEndingBookSlot : MonoBehaviour {
         {
             DestroyImmediate(EndingSceneSlotList[i].gameObject);
         }
+        EndingSceneSlotList.Clear();
+
+        if(endingGroupId == 0)
+        {
+            EndingGroupData = null;
+            EndingObj.gameObject.SetActive(false);
+            UpdateDesc.gameObject.SetActive(true);
+            return;
+        }
+        else
+        {
+            EndingObj.gameObject.SetActive(true);
+            UpdateDesc.gameObject.SetActive(false);
+        }
 
 
         EndingGroupData = DataManager.Instance.EndingGroupDataList[endingGroupId];
         EndingTitle.text = LocalizeData.Instance.GetLocalizeString(EndingGroupData.name);
         var backgroudData = DataManager.Instance.BackGroundDataDic[backgroundId];
-        EndingBackgroundTitle.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_BG", LocalizeData.Instance.GetLocalizeString(backgroudData.name));
 
         EndingBuyCost = 0;
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
@@ -88,6 +103,9 @@ public class UIEndingBookSlot : MonoBehaviour {
 
     public void OnClickEnding()
     {
+        if (EndingGroupData == null)
+            return;
+
         var data = new PopupGameEndingScene.PopupData(EndingGroupData.id);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, data);
     }

@@ -38,7 +38,7 @@ public class NoteSystem
     public void ResetSystem()
     {
         ChainCreateNoteCount = 0;
-        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED + ConfigData.Instance.DEBUG_DEFAULT_SPEED;
+        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
@@ -207,10 +207,10 @@ public class NoteSystem
         }
 
         NoteSpeedCheckTime += time;
-        if (NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL + ConfigData.Instance.DEBUG_SPEED_UP_TIME)
+        if (NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL)
         {
             NoteSpeedCheckTime = 0;
-            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP + ConfigData.Instance.DEBUG_SPEED_UP;
+            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP;
         }
     }
 
