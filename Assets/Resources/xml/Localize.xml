@@ -62,6 +62,7 @@
 	<Localize id="POPUP_GAME_READY_UPGRADE_SKIN_SLOT" kr="스킨 슬롯을 강화 하였습니다."/>
 	<Localize id="POPUP_GAME_SHOP_BUY_SKIN" kr="{0}을(를) 구매 하였습니다."/>
 	<Localize id="POPUP_GAME_SHOP_UPGRADE_SKIN_SLOT" kr="스킨 슬롯을 강화 하였습니다."/>
+	<Localize id="POPUP_GAME_END" kr="게임을 종료 하시겠습니까?"/>
 	<Localize id="CHAR_NAME_DT" kr="동털"/>
 	<Localize id="CHAR_NAME_BG" kr="바깡"/>
 	<Localize id="CHAR_NAME_DG" kr="대꿍"/>

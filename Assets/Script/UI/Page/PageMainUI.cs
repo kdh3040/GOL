@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -75,5 +76,21 @@ public class PageMainUI : MonoBehaviour
         var charData = mSkin as CharData;
         Anim_Char.Rebind();
         Anim_Char.SetTrigger(charData.shopani_trigger);
+    }
+
+    void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                UnityAction yesAction = () =>
+                {
+                    Application.Quit();
+                };
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+            }
+        }
     }
 }
