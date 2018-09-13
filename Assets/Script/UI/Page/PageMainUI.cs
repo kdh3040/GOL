@@ -93,7 +93,7 @@ public class PageMainUI : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape) && PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.NONE)
             {
                 UnityAction yesAction = () =>
                 {
