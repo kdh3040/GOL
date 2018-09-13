@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PopupManager : MonoBehaviour {
 
@@ -95,14 +96,40 @@ public class PopupManager : MonoBehaviour {
         return mShowPopup.GetPopupType();
     }
 
+    public PopupUI GetCurrentPopup()
+    {
+        return mShowPopup;
+    }
+
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
-                if (GamePlayManager.Instance.IsGamePause)
+                if (CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_END)
+                {
+                    var endPopup = GetCurrentPopup() as PopupGameEnd;
+                    if (endPopup == null)
+                        return;
+
+                    endPopup.OnClickGameExit();
                     return;
+                }
+
+                if (GamePlayManager.Instance.InGame)
+                    return;
+
+                if (mShowPopup == null)
+                {
+                    UnityAction yesAction = () =>
+                    {
+                        Application.Quit();
+                    };
+                    var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
+                    ShowPopup(POPUP_TYPE.MSG_POPUP, msgPopupData);
+                    return;
+                }
 
                 DismissPopup();
             }

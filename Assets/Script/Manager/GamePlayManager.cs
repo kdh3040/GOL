@@ -64,7 +64,7 @@ public class GamePlayManager : MonoBehaviour
     private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
     [System.NonSerialized]
     public int ContinueCount = 0;
-    private bool InGame = false;
+    public bool InGame = false;
 
     public float NoteSpeed
     {
@@ -258,6 +258,11 @@ public class GamePlayManager : MonoBehaviour
                 FirstStart = false;
                 //InGameEffect_Start.SetActive(false);
             }
+            if (IsGamePause)
+            {
+                yield return null;
+                continue;
+            }
 
             if (Application.platform == RuntimePlatform.Android)
             {
@@ -274,12 +279,6 @@ public class GamePlayManager : MonoBehaviour
                         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
                     }
                 }
-            }
-
-            if (IsGamePause)
-            {
-                yield return null;
-                continue;
             }
 
             var time = Time.deltaTime;
@@ -617,6 +616,38 @@ public class GamePlayManager : MonoBehaviour
         {
             GamePause();
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+        }
+    }
+
+    void Update()
+    {
+        if (InGame == false)
+            return;
+
+        if (FirstStart)
+            return;
+
+        
+
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
+            {
+                if (PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PAUSE && Input.GetKeyUp(KeyCode.Escape))
+                {
+                    GameResumeCountStart();
+                    PopupManager.Instance.DismissPopup();
+                }
+                else
+                {
+                    if (IsGamePause)
+                        return;
+
+                    GamePause();
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                }
+            }
         }
     }
 }

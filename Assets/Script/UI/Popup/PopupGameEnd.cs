@@ -191,7 +191,7 @@ public class PopupGameEnd : PopupUI {
         }
     }
 
-    void OnClickGameExit()
+    public void OnClickGameExit()
     {
         PlayClickSound();
 

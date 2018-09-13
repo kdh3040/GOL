@@ -104,20 +104,4 @@ public class PageMainUI : MonoBehaviour
             mFX.Play();
         }
     }
-
-    void Update()
-    {
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            if (Input.GetKeyUp(KeyCode.Escape) && PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.NONE)
-            {
-                UnityAction yesAction = () =>
-                {
-                    Application.Quit();
-                };
-                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
-            }
-        }
-    }
 }
