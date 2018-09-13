@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIEndingSceneSlot : MonoBehaviour {
+    public Button SlotButton;
     public GameObject LockObj;
     public Image EnddingScene;
 
-    public void SetData(int endingId)
+    [System.NonSerialized]
+    private int EndingGroupId;
+    [System.NonSerialized]
+    private int EndingId;
+
+    public void SetData(int endingGroupId, int endingId)
     {
+        EndingGroupId = endingGroupId;
+        EndingId = endingId;
         var data = DataManager.Instance.EndingDataList[endingId];
         if (PlayerData.Instance.HasEnding(endingId))
         {

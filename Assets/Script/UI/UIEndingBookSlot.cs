@@ -55,6 +55,7 @@ public class UIEndingBookSlot : MonoBehaviour {
         EndingBuyCost = 0;
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
+            int groupId = EndingGroupData.id;
             int id = EndingGroupData.ending_list[i];
             var endingData = DataManager.Instance.EndingDataList[id];
             if (PlayerData.Instance.HasEnding(id) == false)
@@ -63,7 +64,8 @@ public class UIEndingBookSlot : MonoBehaviour {
             var obj = Instantiate(Resources.Load("Prefab/UIEndingSceneSlot"), EndingSlotGrid.gameObject.transform) as GameObject;
             var slot = obj.GetComponent<UIEndingSceneSlot>();
             EndingSceneSlotList.Add(slot);
-            slot.SetData(endingData.id);
+            slot.SlotButton.onClick.AddListener(() => { OnClickEnding(groupId, id); });
+            slot.SetData(EndingGroupData.id, endingData.id);
         }
 
         if(EndingBuyCost > 0)
@@ -106,7 +108,7 @@ public class UIEndingBookSlot : MonoBehaviour {
         if (EndingGroupData == null)
             return;
 
-        var data = new PopupGameEndingScene.PopupData(EndingGroupData.id);
+        var data = new PopupGameEndingScene.PopupData(EndingGroupData.id, EndingGroupData.ending_list[0], Refresh);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, data);
     }
 
@@ -114,7 +116,16 @@ public class UIEndingBookSlot : MonoBehaviour {
     {
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
-            EndingSceneSlotList[i].SetData(EndingGroupData.ending_list[i]);
+            int groupId = EndingGroupData.id;
+            int id = EndingGroupData.ending_list[i];
+            EndingSceneSlotList[i].SlotButton.onClick.AddListener(() => { OnClickEnding(groupId, id); });
+            EndingSceneSlotList[i].SetData(EndingGroupData.id, EndingGroupData.ending_list[i]);
         }
+    }
+
+    public void OnClickEnding(int endingGroupId, int endingId)
+    {
+        var data = new PopupGameEndingScene.PopupData(endingGroupId, endingId, Refresh);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, data);
     }
 }
