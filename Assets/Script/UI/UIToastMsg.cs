@@ -18,7 +18,7 @@ public class UIToastMsg : MonoBehaviour {
     IEnumerator Co_ToastMsg()
     {
         float time = 0f;
-        while (time < 0.5f)
+        while (time < 1f)
         {
             time += Time.deltaTime;
             yield return null;
