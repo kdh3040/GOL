@@ -66,9 +66,11 @@ public class PopupGamePurchase : PopupUI
 
     public void OnClickPurchase(int index)
     {
+        PlayClickSound();
         UnityAction yesAction = () =>
         {
-            if(SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
+            PlayClickSound();
+            if (SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
             {
              
                 PurchaseManager.Instance.BuyProductID(SlotList[index]);
@@ -95,4 +97,13 @@ public class PopupGamePurchase : PopupUI
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
 }

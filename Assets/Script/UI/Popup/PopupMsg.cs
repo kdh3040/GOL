@@ -85,14 +85,24 @@ public class PopupMsg : PopupUI
 
     private void OnClickYes()
     {
+        PlayClickSound();
         PopupManager.Instance.DismissPopup();
         if (mPopupData.YesAction != null)
             mPopupData.YesAction();
     }
     private void OnClickNo()
     {
+        PlayClickSound();
         PopupManager.Instance.DismissPopup();
         if (mPopupData.NoAction != null)
             mPopupData.NoAction();
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

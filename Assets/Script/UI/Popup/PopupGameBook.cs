@@ -64,6 +64,8 @@ public class PopupGameBook : PopupUI
 
     public void OnClickBook(BOOK_TYPE type)
     {
+        PlayClickSound();
+
         if (SelectBookType == type)
             return;
 
@@ -221,6 +223,8 @@ public class PopupGameBook : PopupUI
 
     public void OnClickSkinSlot(CommonData.SKIN_TYPE type, int index)
     {
+        PlayClickSound();
+
         if (SelectSkinType == type && SelectIndex == index)
             return;
 
@@ -292,6 +296,14 @@ public class PopupGameBook : PopupUI
             SkinCharIcon.gameObject.SetActive(true);
             SkinCharIconAnim.Rebind();
             SkinCharIconAnim.SetTrigger(charData.shopani_trigger);
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 }

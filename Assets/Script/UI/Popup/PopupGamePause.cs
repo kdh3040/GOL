@@ -24,6 +24,7 @@ public class PopupGamePause : PopupUI
 
     public void OnClickRestart()
     {
+        PlayClickSound();
         if (PlayerData.Instance.IsPlayEnable())
         {
             GamePlayManager.Instance.GameStart();
@@ -33,14 +34,24 @@ public class PopupGamePause : PopupUI
 
     public void OnClickResume()
     {
+        PlayClickSound();
         GamePlayManager.Instance.GameResumeCountStart();
         PopupManager.Instance.DismissPopup();
     }
 
     public void OnClickExit()
     {
+        PlayClickSound();
         GamePlayManager.Instance.GameExit();
         PopupManager.Instance.AllDismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

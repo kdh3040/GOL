@@ -112,11 +112,14 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickOk()
     {
+        PlayClickSound();
         PopupManager.Instance.DismissPopup();
     }
 
     public void OnClickPrev()
     {
+        PlayClickSound();
+
         SelectIndex--;
         if (SelectIndex < 0)
             SelectIndex = 0;
@@ -126,6 +129,8 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickNext()
     {
+        PlayClickSound();
+
         SelectIndex++;
 
         if (SelectIndex >= EndingSceneList.Count)
@@ -136,6 +141,7 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickEndingBuy()
     {
+        PlayClickSound();
         UnityAction yesAction = () =>
         {
             if (CommonFunc.UseCoin(EndingSceneList[SelectIndex].cost))
@@ -148,5 +154,13 @@ public class PopupGameEndingScene : PopupUI
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ENDING_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }
