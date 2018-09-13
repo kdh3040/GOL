@@ -35,9 +35,6 @@ public class BackgroundData : SkinData
         for (int i = 0; i < endingListStringArr.Length; i++)
         {
             int id = int.Parse(endingListStringArr[i]);
-            if (id == 0)
-                continue;
-
             endingGroupList.Add(id);
         }
     }
