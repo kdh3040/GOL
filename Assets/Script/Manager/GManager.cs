@@ -27,6 +27,7 @@ public class GManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         Application.targetFrameRate = 60;
 

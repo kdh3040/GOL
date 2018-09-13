@@ -662,12 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c22b38162b06c0429d19cda91b04a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mClip:
-  - {fileID: 8300000, guid: fbeff12d94c68dd45b723775e006cee3, type: 3}
-  - {fileID: 8300000, guid: bc31c73c47ae9ac429779fba8b93c75b, type: 3}
-  - {fileID: 8300000, guid: df302b259e62ec440820f89556ff2d53, type: 3}
-  - {fileID: 8300000, guid: fbeff12d94c68dd45b723775e006cee3, type: 3}
   UseItemId: 0
+  InGame: 0
 --- !u!4 &1039198955
 Transform:
   m_ObjectHideFlags: 0

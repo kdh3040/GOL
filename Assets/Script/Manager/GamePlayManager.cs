@@ -84,6 +84,7 @@ public class GamePlayManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        AudioListener.pause =! PlayerData.Instance.GetSoundSetting();
     }
 
     public void Initialize(PlayScene scene)
@@ -104,7 +105,8 @@ public class GamePlayManager : MonoBehaviour
 
         AdManager.Instance.RequestInterstitialAd();
         AdManager.Instance.RequestRewardBasedVideo();
-        
+
+      
     }
 
     public void ResetGame()

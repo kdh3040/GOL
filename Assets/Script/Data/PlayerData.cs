@@ -430,6 +430,9 @@ public class PlayerData
     public void SetSoundSetting(bool enable)
     {
         SoundSetting = enable;
+
+        AudioListener.pause =! enable;
+        
         SaveFile();
     }
 
