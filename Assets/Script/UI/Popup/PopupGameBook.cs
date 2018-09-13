@@ -59,11 +59,14 @@ public class PopupGameBook : PopupUI
     public override void ShowPopup(PopupUIData data)
     {
         TopBar.Initialize(true);
+        SelectBookType = BOOK_TYPE.NONE;
         OnClickBook(BOOK_TYPE.ENDING);
     }
 
     public void OnClickBook(BOOK_TYPE type)
     {
+        PlayClickSound();
+
         if (SelectBookType == type)
             return;
 
@@ -133,7 +136,7 @@ public class PopupGameBook : PopupUI
             slot.SetData(BackgroundEndingGroupList[i].Key, BackgroundEndingGroupList[i].Value);
         }
 
-        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, EndingBookSlotList.Count * 366);
+        ScrollRect.content.sizeDelta = new Vector2(ScrollRect.content.sizeDelta.x, EndingBookSlotList.Count * 420);
     }
 
     public void ShowSkinBook()
@@ -221,6 +224,8 @@ public class PopupGameBook : PopupUI
 
     public void OnClickSkinSlot(CommonData.SKIN_TYPE type, int index)
     {
+        PlayClickSound();
+
         if (SelectSkinType == type && SelectIndex == index)
             return;
 
@@ -292,6 +297,14 @@ public class PopupGameBook : PopupUI
             SkinCharIcon.gameObject.SetActive(true);
             SkinCharIconAnim.Rebind();
             SkinCharIconAnim.SetTrigger(charData.shopani_trigger);
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 }

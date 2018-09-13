@@ -193,7 +193,9 @@ public class PopupGameEnd : PopupUI {
 
     void OnClickGameExit()
     {
-        if(EffectStart)
+        PlayClickSound();
+
+        if (EffectStart)
         {
             EndResultScoreCoinEffect();
             return;
@@ -204,6 +206,8 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRestart()
     {
+        PlayClickSound();
+
         if (EffectStart)
         {
             EndResultScoreCoinEffect();
@@ -218,6 +222,8 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
+        PlayClickSound();
+
         if (EffectStart)
         {
             EndResultScoreCoinEffect();
@@ -239,6 +245,14 @@ public class PopupGameEnd : PopupUI {
         else
         {
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_NOT_CONTINUE")));
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 }

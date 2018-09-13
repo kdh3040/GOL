@@ -46,8 +46,6 @@ public class GamePlayManager : MonoBehaviour
     [System.NonSerialized]
     public GameObject NoteDeleteObj;
 
-    private AudioSource mAudio;
-    public AudioClip[] mClip = new AudioClip[4];
     public int UseItemId = 0;
 
     private GameObject DDongViewObj;
@@ -103,13 +101,10 @@ public class GamePlayManager : MonoBehaviour
         InGameEffect_Revive = scene.InGameEffect_Revive;
 
         InGameEffect_Start = scene.InGameEffect_Start;
-        
-        mAudio = scene.gameObject.AddComponent<AudioSource>();
 
         AdManager.Instance.RequestInterstitialAd();
         AdManager.Instance.RequestRewardBasedVideo();
-
-        PlayBGM();
+        
     }
 
     public void ResetGame()
@@ -384,33 +379,7 @@ public class GamePlayManager : MonoBehaviour
 
         //PlayUseItemSound();
     }
-
-    public void PlayBGM()
-    {
-        if(PlayerData.Instance.GetSoundSetting() == true)
-        {
-
-            SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
-            var backgoundData = mSkin as BackgroundData;
-
-            mAudio.clip = mClip[backgoundData.id - 1];
-            mAudio.Play();
-        }
-
-        
-    }
-
-    public void PlayUseItemSound()
-    {
-         
-        if (PlayerData.Instance.GetSoundSetting())
-        {
-            mAudio.clip = mClip[2];
-            mAudio.Play();
-        }
-        
-    }
-
+    
     public void EndSkill(GameSkill skill)
     {
         mDoorSystem.EndSkillEffect(skill);

@@ -116,12 +116,16 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinSlot(int index)
     {
+        PlayClickSound();
+
         SelectSkinSlot = true;
         SelectSlotIndex = index;
         RefreshUI();
     }
     public void OnClickItem(int index)
     {
+        PlayClickSound();
+
         SelectSkinSlot = false;
         SelectSlotIndex = index;
         RefreshUI();
@@ -233,10 +237,12 @@ public class PopupGameReady : PopupUI
 
     public void OnClickUpgrade()
     {
+        PlayClickSound();
         if (SelectSkinSlot)
         {
             UnityAction yesAction = () =>
             {
+                PlayClickSound();
                 var skinType = SkinSlotList[SelectSlotIndex].SkinType;
                 var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
                 var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
@@ -255,6 +261,7 @@ public class PopupGameReady : PopupUI
         {
             UnityAction yesAction = () =>
             {
+                PlayClickSound();
                 var itemId = ItemSlotList[SelectSlotIndex].ItemId;
                 var itemData = DataManager.Instance.ItemDataDic[itemId];
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
@@ -272,6 +279,7 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
+        PlayClickSound();
         if (SelectSkinSlot)
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
@@ -283,6 +291,7 @@ public class PopupGameReady : PopupUI
 
     public void OnClickGameStart()
     {
+        PlayClickSound();
         GameStart();
     }
 
@@ -301,5 +310,13 @@ public class PopupGameReady : PopupUI
         var slot = obj.GetComponent<UIToastMsg>();
         slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
         slot.SetMsg(msg);
+    }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

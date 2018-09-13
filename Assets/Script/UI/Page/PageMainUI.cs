@@ -18,8 +18,10 @@ public class PageMainUI : MonoBehaviour
     public GameObject Img_BackGround;
     public Animator Anim_Char;
 
-    public AudioSource mAudio;
+    public AudioSource mBGM;
+    public AudioSource mFX;
     public AudioClip mClip;
+    public AudioClip mClickClip;
 
     void Awake()
     {
@@ -33,36 +35,41 @@ public class PageMainUI : MonoBehaviour
     void Start()
     {
         TopBar.Initialize(false);
+        PlayBGM();
         Refresh(); 
     }
 
     public void OnClickGamePlay()
     {
+        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(Refresh));
     }
 
     public void OnClickGameShop()
     {
+        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP);
     }
     public void OnClickGameRank()
     {
+        PlayClickSound();
         GameCenterManager.Instance.ShowLeaderboardUI();
     }
     public void OnClickGameSetting()
     {
+        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
     public void OnClickGameBook()
     {
+        PlayClickSound();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
 
     private void Refresh()
     {
         SetBackGroundImg();
-        SetCharAnim();
-        PlayBGM();
+        SetCharAnim();       
     }
 
 
@@ -86,9 +93,18 @@ public class PageMainUI : MonoBehaviour
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
-            mAudio.Play();
+            mBGM.Play();
         }
     }
+
+    public void PlayClickSound()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            mFX.Play();
+        }
+    }
+
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)

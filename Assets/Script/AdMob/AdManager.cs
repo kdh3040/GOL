@@ -34,7 +34,7 @@ public class AdManager : MonoBehaviour {
     private static string adInterstitial_Android = "ca-app-pub-4020702622451243/6018937389";
     private static string adInterstitial_Ios = "ca-app-pub-4020702622451243/5620865023";
 
-    private static string adVideo_Android = "ca-app-pub-3940256099942544/5224354917";
+    private static string adVideo_Android = "ca-app-pub-4020702622451243/2922549491";
     private static string adVideo_Ios = "ca-app-pub-4020702622451243/1681620010";
 
     // Use this for initialization
@@ -126,7 +126,7 @@ public class AdManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("!!!!!! Not Ready Reward");
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("동영상 준비중입니다"));
         }
     }
 
