@@ -29,13 +29,12 @@ public class PageMainUI : MonoBehaviour
     void Start()
     {
         TopBar.Initialize(false);
-        SetBackGroundImg();
-        SetCharAnim();
+        Refresh(); 
     }
 
     public void OnClickGamePlay()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(SetBackGroundImg));
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_READY, new PopupGameReady.PopupData(Refresh));
     }
 
     public void OnClickGameShop()
@@ -54,6 +53,13 @@ public class PageMainUI : MonoBehaviour
     {
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
     }
+
+    private void Refresh()
+    {
+        SetBackGroundImg();
+        SetCharAnim();
+    }
+
 
     private void SetBackGroundImg()
     {
