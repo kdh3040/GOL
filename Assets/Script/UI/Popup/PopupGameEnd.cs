@@ -81,7 +81,7 @@ public class PopupGameEnd : PopupUI {
 
         var noteData = DataManager.Instance.NoteDataDic[EndNoteId];
         CommonFunc.SetImageFile(noteData.img, ref EndingScene, false);
-        EndingDesc.text = noteData.GetEndDesc() + string.Format("\n플레이 시간 {0:f2}초", GamePlayManager.Instance.PlayTime);
+        EndingDesc.text = noteData.GetEndDesc();// + string.Format("\n플레이 시간 {0:f2}초", GamePlayManager.Instance.PlayTime);
 
         StartCoroutine(Co_ScoreCoinEffect());
     }
@@ -193,7 +193,7 @@ public class PopupGameEnd : PopupUI {
 
     public void OnClickGameExit()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {
@@ -206,7 +206,7 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRestart()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {
@@ -222,7 +222,7 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {
@@ -245,15 +245,6 @@ public class PopupGameEnd : PopupUI {
         else
         {
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_NOT_CONTINUE")));
-        }
-    }
-
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
         }
     }
 }

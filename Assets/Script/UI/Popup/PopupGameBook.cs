@@ -65,7 +65,7 @@ public class PopupGameBook : PopupUI
 
     public void OnClickBook(BOOK_TYPE type)
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (SelectBookType == type)
             return;
@@ -224,7 +224,7 @@ public class PopupGameBook : PopupUI
 
     public void OnClickSkinSlot(CommonData.SKIN_TYPE type, int index)
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (SelectSkinType == type && SelectIndex == index)
             return;
@@ -300,12 +300,4 @@ public class PopupGameBook : PopupUI
         }
     }
 
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
-        }
-    }
 }

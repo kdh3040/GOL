@@ -68,7 +68,7 @@ public class PopupGamePurchase : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            PlayClickSound();
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             if (SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
             {
              
@@ -94,15 +94,6 @@ public class PopupGamePurchase : PopupUI
         {
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_DDONG_BUY_MSG"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
-        }
-    }
-
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
         }
     }
 

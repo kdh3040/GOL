@@ -24,7 +24,7 @@ public class PageGameUI : MonoBehaviour
     public List<Button> DoorButtonsList = new List<Button>();
 
     public AudioSource mFX;
-
+    public int soundFX;
     void Awake()
     {
         GamePauseButton.onClick.AddListener(OnClickPause);
@@ -34,6 +34,9 @@ public class PageGameUI : MonoBehaviour
             int index = i;
             DoorButtonsList[i].onClick.AddListener(() => { OnClickDoorButton(index); });
         }
+
+        soundFX = AudioCenter.loadSound("Sound/click");
+
     }
 
     public void ResetUI()
@@ -181,7 +184,9 @@ public class PageGameUI : MonoBehaviour
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
-            mFX.Play();
+            
+           // AudioCenter.playSound(soundFX);
+            //mFX.Play();
         }
     }
 }

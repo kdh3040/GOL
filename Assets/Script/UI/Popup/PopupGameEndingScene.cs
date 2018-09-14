@@ -112,13 +112,13 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickOk()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PopupManager.Instance.DismissPopup();
     }
 
     public void OnClickPrev()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         SelectIndex--;
         if (SelectIndex < 0)
@@ -129,7 +129,7 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickNext()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         SelectIndex++;
 
@@ -141,7 +141,7 @@ public class PopupGameEndingScene : PopupUI
 
     public void OnClickEndingBuy()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         UnityAction yesAction = () =>
         {
             if (CommonFunc.UseCoin(EndingSceneList[SelectIndex].cost))
@@ -155,13 +155,5 @@ public class PopupGameEndingScene : PopupUI
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ENDING_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
-
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
-        }
-    }
+   
 }
