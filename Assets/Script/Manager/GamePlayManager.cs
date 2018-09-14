@@ -233,6 +233,8 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameOver(Note note)
     {
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_END);
+
         mGameUIPage.GameOver();
         IsGamePause = true;
         if(PlayerData.Instance.GetVibrationSetting())

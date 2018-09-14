@@ -247,6 +247,7 @@ public class PopupGameReady : PopupUI
                 var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
                 if (CommonFunc.UseCoin(data.cost))
                 {
+                    SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
                     PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
                     ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_SKIN_SLOT"));
                 }
@@ -265,6 +266,7 @@ public class PopupGameReady : PopupUI
                 var itemData = DataManager.Instance.ItemDataDic[itemId];
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
                 {
+                    SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
                     ItemManager.Instance.ItemLevelUp(itemId);
                     ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_UPGRADE_ITEM", itemData.GetLocalizeName()));
                 }

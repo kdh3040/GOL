@@ -146,6 +146,7 @@ public class PopupGameEndingScene : PopupUI
         {
             if (CommonFunc.UseCoin(EndingSceneList[SelectIndex].cost))
             {
+                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUY);
                 PlayerData.Instance.AddEnding(EndingSceneList[SelectIndex].id);
                 SetEndingScene();
                 if (EndAction != null)

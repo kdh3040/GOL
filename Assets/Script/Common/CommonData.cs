@@ -43,6 +43,9 @@ public class CommonData : MonoBehaviour {
     {
         BUTTON,
         DOOR,
+        BUY,
+        LEVEL,
+        GAME_END,
     }
 
     public enum DOOR_EFFECT_SOUND_TYPE

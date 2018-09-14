@@ -306,6 +306,7 @@ public class PopupGameShop : PopupUI
             var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
             if(CommonFunc.UseCoin(skinData.cost))
             {
+                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUY);
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);
                 RefreshUI();
                 ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_BUY_SKIN", skinData.GetLocalizeName()));
@@ -332,6 +333,7 @@ public class PopupGameShop : PopupUI
             var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
             if (CommonFunc.UseCoin(data.cost))
             {
+                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
                 PlayerData.Instance.SetSkinSlotLevel(skinType, level + 1);
                 ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_UPGRADE_SKIN_SLOT"));
             }
