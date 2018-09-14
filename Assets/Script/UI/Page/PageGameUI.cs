@@ -26,6 +26,8 @@ public class PageGameUI : MonoBehaviour
     public AudioSource mFX;
     void Awake()
     {
+        PopupManager.Instance.AllDismissPopup();
+
         GamePauseButton.onClick.AddListener(OnClickPause);
 
         for (int i = 0; i < DoorButtonsList.Count; i++)

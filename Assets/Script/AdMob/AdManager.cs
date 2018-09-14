@@ -40,6 +40,7 @@ public class AdManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
+        RequestRewardBasedVideo();
     }
 	
 	// Update is called once per frame
