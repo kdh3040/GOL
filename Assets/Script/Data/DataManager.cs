@@ -32,9 +32,9 @@ public class DataManager {
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
-    public IEnumerator LoadingData(Slider loadingSlider)
+    public IEnumerator LoadingData(Slider loadingSlider, float WaitTime)
     {
-        if(LoadingDataXmlList.Count <= 0)
+        if (LoadingDataXmlList.Count <= 0)
         {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Door", "Doors"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("Note", "Notes"));
@@ -250,7 +250,7 @@ public class DataManager {
             yield return null;
         }
 
-        yield return null;
+        yield return new WaitForSeconds(WaitTime);
     }
 
     public XmlNodeList GetXmlNodeList(string fileName, string key)
