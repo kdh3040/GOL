@@ -97,11 +97,11 @@ public class PlayerData
             PlayerData.Instance.HaveEnding = HaveEnding;
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
-            PlayerData.Instance.MyDDong = MyDDong;
             PlayerData.Instance.SoundSetting = SoundSetting;
             PlayerData.Instance.VibrationSetting = VibrationSetting;
             PlayerData.Instance.AlarmSetting = AlarmSetting;
             PlayerData.Instance.BestScore = BestScore;
+            PlayerData.Instance.MyDDong = MyDDong;
         }
     }
 
