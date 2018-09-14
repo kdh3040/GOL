@@ -43,7 +43,7 @@ public class UIItemSlot : MonoBehaviour
         else
         {
             Level.gameObject.SetActive(true);
-            Level.SetValue(string.Format("+{0}", level), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
+            Level.SetValue(string.Format("+{0}", level - 1), UICountImgFont.IMG_RANGE.RIGHT, UICountImgFont.IMG_TYPE.GREEN);
         }
     }
 }
