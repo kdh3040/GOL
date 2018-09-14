@@ -31,6 +31,6 @@ public class GameSkill_SpeedDown : GameSkill
         if (mEnable == false && mTime <= 0)
             return time;
 
-        return time * mPercent;
+        return time - (time * mPercent);
     }
 }
