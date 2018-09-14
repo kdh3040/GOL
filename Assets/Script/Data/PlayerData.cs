@@ -27,7 +27,7 @@ public class PlayerData
         public Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
         public Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
         public Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
-        public Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+        public Dictionary<int, int> HaveItem_LevelCount = new Dictionary<int, int>();
         private List<int> HaveEnding = new List<int>();
         public int MyCoin;
         public int MyDDong;
@@ -86,7 +86,7 @@ public class PlayerData
                 SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
             }
             if (HaveItem_LevelCount == null)
-                HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+                HaveItem_LevelCount = new Dictionary<int, int>();
             if (HaveEnding == null)
                 HaveEnding = new List<int>();
 
@@ -107,7 +107,7 @@ public class PlayerData
     private Dictionary<CommonData.SKIN_TYPE, List<int>> HaveSkin = new Dictionary<CommonData.SKIN_TYPE, List<int>>();
     private Dictionary<CommonData.SKIN_TYPE, int> UseSkin = new Dictionary<CommonData.SKIN_TYPE, int>();
     private Dictionary<CommonData.SKIN_TYPE, int> SkinSlotLevel = new Dictionary<CommonData.SKIN_TYPE, int>();
-    private Dictionary<int, KeyValuePair<int, int>> HaveItem_LevelCount = new Dictionary<int, KeyValuePair<int, int>>();
+    private Dictionary<int, int> HaveItem_LevelCount = new Dictionary<int, int>();
     private List<int> HaveEnding = new List<int>();
     public int MyCoin { get; private set; }
     private int Myddong;
@@ -231,49 +231,13 @@ public class PlayerData
         return NextDDongRefilTime - CommonFunc.GetCurrentTime();
     }
 
-    public void PlusItem_Count(int id)
-    {
-        if (HaveItem_LevelCount.ContainsKey(id) == false)
-            HaveItem_LevelCount.Add(id, new KeyValuePair<int, int>(1, 1));
-        else
-        {
-            var key = HaveItem_LevelCount[id].Key;
-            var value = HaveItem_LevelCount[id].Value + 1;
-            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
-        }
-
-        SaveFile();
-    }
-
-    public void MinusItem_Count(int id)
-    {
-        if (HaveItem_LevelCount.ContainsKey(id))
-        {
-            var key = HaveItem_LevelCount[id].Key;
-            var value = HaveItem_LevelCount[id].Value > 0 ? HaveItem_LevelCount[id].Value - 1 : 0;
-            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
-        }
-
-        SaveFile();
-    }
-
-    public int GetItemCount(int id)
-    {
-        if (HaveItem_LevelCount.ContainsKey(id))
-            return HaveItem_LevelCount[id].Value;
-
-        return 0;
-    }
-
     public void PlusItem_Level(int id)
     {
         if (HaveItem_LevelCount.ContainsKey(id) == false)
-            HaveItem_LevelCount.Add(id, new KeyValuePair<int, int>(1, 1));
+            HaveItem_LevelCount.Add(id, 1);
         else
         {
-            var key = HaveItem_LevelCount[id].Key + 1;
-            var value = HaveItem_LevelCount[id].Value;
-            HaveItem_LevelCount[id] = new KeyValuePair<int, int>(key, value);
+            HaveItem_LevelCount[id] += 1;
         }
 
         SaveFile();
@@ -282,9 +246,11 @@ public class PlayerData
     public int GetItemLevel(int id)
     {
         if (HaveItem_LevelCount.ContainsKey(id))
-            return HaveItem_LevelCount[id].Key;
+            return HaveItem_LevelCount[id];
 
-        return 1;
+        HaveItem_LevelCount.Add(id, 1);
+
+        return HaveItem_LevelCount[id];
     }
 
     public void PlusDDong(int count)
