@@ -174,6 +174,9 @@ public class PopupGameEnd : PopupUI {
         var endingGroupList = bgData.endingGroupList;
         for (int index_1 = 0; index_1 < endingGroupList.Count; index_1++)
         {
+            if (endingGroupList[index_1] == 0)
+                continue;
+
             var endingList = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].ending_list;
             EndingSceneGroupId = DataManager.Instance.EndingGroupDataList[endingGroupList[index_1]].id;
             for (int index_2 = 0; index_2 < endingList.Count; index_2++)
