@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PageLoadingUI : MonoBehaviour
 {
-    public Text LoadingText;
+    public Slider ProgressBar;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class PageLoadingUI : MonoBehaviour
 
     IEnumerator LoadingData()
     {
-        yield return DataManager.Instance.LoadingData(LoadingText);
+        yield return DataManager.Instance.LoadingData(ProgressBar);
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         SceneManager.LoadScene("PopupUIScene", LoadSceneMode.Additive);
     }
