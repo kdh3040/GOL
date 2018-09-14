@@ -32,7 +32,7 @@ public class DataManager {
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
 
-    public IEnumerator LoadingData(Text loadingCount)
+    public IEnumerator LoadingData(Slider loadingSlider)
     {
         if(LoadingDataXmlList.Count <= 0)
         {
@@ -246,7 +246,7 @@ public class DataManager {
                 }
             }
 
-            loadingCount.text = string.Format("데이터 로딩중 입니다.({0} / {1})", i, LoadingDataXmlList.Count);
+            loadingSlider.value = (i + 1) / (float)LoadingDataXmlList.Count;
             yield return null;
         }
 
