@@ -114,21 +114,7 @@ public class PlayerData
     private int Myddong;
     public int MyDDong {
         get { return Myddong; }
-        private set
-        {
-            if (value >= CommonData.MAX_DDONG_COUNT)
-            {
-                NextDDongRefilTime = DateTime.MinValue;
-                Myddong = value;
-            }
-            else
-            {
-                if(NextDDongRefilTime == DateTime.MinValue)
-                    NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
-                Myddong = value;
-                SaveFile();
-            }
-        }
+        private set { Myddong = value; }
     }
     private DateTime NextDDongRefilTime;
 
@@ -258,13 +244,13 @@ public class PlayerData
 
     public void PlusDDong(int count)
     {
-        MyDDong += count;
+        SetDDong(MyDDong + count);
         SaveFile();
     }
 
     public void MinusDDong()
     {
-        MyDDong -= 1;
+        SetDDong(MyDDong - 1);
         SaveFile();
     }
 
@@ -431,5 +417,21 @@ public class PlayerData
     public bool GetAlarmSetting()
     {
         return AlarmSetting;
+    }
+
+    public void SetDDong(int value)
+    {
+        if (value >= CommonData.MAX_DDONG_COUNT)
+        {
+            NextDDongRefilTime = DateTime.MinValue;
+            Myddong = value;
+        }
+        else
+        {
+            if (NextDDongRefilTime == DateTime.MinValue)
+                NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
+            Myddong = value;
+            SaveFile();
+        }
     }
 }
