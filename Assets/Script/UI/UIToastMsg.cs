@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIToastMsg : MonoBehaviour {
 
     public Text Msg;
     public CanvasGroup Group;
+    public bool Empty = true;
 
     public void SetMsg(string msg)
     {
+        Empty = false;
         Msg.text = msg;
 
+        Group.alpha = Mathf.Lerp(1f, 1f, 1f);
         StartCoroutine(Co_ToastMsg());
     }
 
@@ -34,6 +38,9 @@ public class UIToastMsg : MonoBehaviour {
             yield return null;
         }
 
-        DestroyImmediate(this.gameObject);
+        gameObject.SetActive(false);
+        Empty = true;
+
+        //DestroyImmediate(this.gameObject);
     }
 }

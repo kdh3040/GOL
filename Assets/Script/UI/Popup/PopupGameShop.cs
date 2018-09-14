@@ -47,6 +47,7 @@ public class PopupGameShop : PopupUI
     private int SelectSlotIndex = 0;
     private bool SelectLIst = false;
     private UnityAction EndAction = null;
+    private List<UIToastMsg> ToastMsgList = new List<UIToastMsg>();
 
     public void Awake()
     {
@@ -69,7 +70,25 @@ public class PopupGameShop : PopupUI
             SelectSkinType = CommonData.SKIN_TYPE.CHAR;
         }
 
-        
+        for (int i = 0; i < ToastMsgList.Count; i++)
+        {
+            DestroyImmediate(ToastMsgList[i].gameObject);
+        }
+        ToastMsgList.Clear();
+
+        if (ToastMsgList.Count <= 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
+                var slot = obj.GetComponent<UIToastMsg>();
+                slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
+                slot.gameObject.SetActive(false);
+                ToastMsgList.Add(slot);
+            }
+        }
+
+
         SelectSlotIndex = 0;
         SelectLIst = false;
 
@@ -343,9 +362,15 @@ public class PopupGameShop : PopupUI
 
     public void ShowToastMsg(string msg)
     {
-        var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
-        var slot = obj.GetComponent<UIToastMsg>();
-        slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
-        slot.SetMsg(msg);
+        for (int i = 0; i < ToastMsgList.Count; i++)
+        {
+            if(ToastMsgList[i].Empty)
+            {
+                ToastMsgList[i].gameObject.SetActive(true);
+                ToastMsgList[i].gameObject.transform.localPosition = ToastPos.transform.localPosition;
+                ToastMsgList[i].SetMsg(msg);
+                break;
+            }
+        }
     }
 }
