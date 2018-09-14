@@ -1226,6 +1226,11 @@ Prefab:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114515448977714688, guid: 6ebe13e566e8c5b48bac5022419e3e0f,
+        type: 2}
+      propertyPath: mEffectAudio.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 957615495325dca419d9bb33c118fc90, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ebe13e566e8c5b48bac5022419e3e0f, type: 2}
   m_IsPrefabAsset: 0
@@ -1487,6 +1492,11 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 1.26
       objectReference: {fileID: 0}
+    - target: {fileID: 114515448977714688, guid: 6ebe13e566e8c5b48bac5022419e3e0f,
+        type: 2}
+      propertyPath: mEffectAudio.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 957615495325dca419d9bb33c118fc90, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ebe13e566e8c5b48bac5022419e3e0f, type: 2}
   m_IsPrefabAsset: 0
@@ -2187,6 +2197,11 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0.33
       objectReference: {fileID: 0}
+    - target: {fileID: 114515448977714688, guid: 6ebe13e566e8c5b48bac5022419e3e0f,
+        type: 2}
+      propertyPath: mEffectAudio.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 957615495325dca419d9bb33c118fc90, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ebe13e566e8c5b48bac5022419e3e0f, type: 2}
   m_IsPrefabAsset: 0
