@@ -103,8 +103,8 @@ public class GamePlayManager : MonoBehaviour
 
         InGameEffect_Start = scene.InGameEffect_Start;
 
-        AdManager.Instance.RequestInterstitialAd();
-        AdManager.Instance.RequestRewardBasedVideo();
+       // AdManager.Instance.RequestInterstitialAd();
+       // AdManager.Instance.RequestRewardBasedVideo();
 
       
     }

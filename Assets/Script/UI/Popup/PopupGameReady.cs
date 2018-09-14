@@ -314,8 +314,10 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
+            EndAction = null;
+
             SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_PLAY);
-            PopupManager.Instance.AllDismissPopup();
+           
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
     }
