@@ -27,16 +27,8 @@ public class UITopBar : MonoBehaviour
 
     public void OnClickBack()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PopupManager.Instance.DismissPopup();
-    }
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
-        }
     }
 
     IEnumerator UpdateTopBar()
