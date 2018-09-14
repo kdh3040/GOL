@@ -20,6 +20,9 @@ public class Door : MonoBehaviour
     public Animator DoorCloseEffect;
     public bool EffectPlay = false;
 
+    public AudioClip[] mEffectAudio = new AudioClip[2];
+    private AudioSource mAudio;
+
     public void SetData(CommonData.NOTE_LINE type)
     {
         Data = DataManager.Instance.DoorDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.DOOR)];
@@ -81,7 +84,20 @@ public class Door : MonoBehaviour
 
     public void PlaySound()
     {
-        GetComponent<AudioSource>().Play();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.DOOR);
+    }
+
+    public void PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE type)
+    {
+        mAudio = GetComponent<AudioSource>();
+        mAudio.clip = mEffectAudio[(int)type];
+        mAudio.Play();
+    }
+
+    public void StopEffectSound()
+    {
+        mAudio = GetComponent<AudioSource>();
+        mAudio.Stop();
     }
 
     public void SetCloseEffect()
@@ -120,13 +136,16 @@ public class Door : MonoBehaviour
         switch (trigger)
         {        
             case "INVINCIBILITY":
-                EffectPlay = true;                
+                EffectPlay = true;
+                PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE.IRONDOOR);
                 break;
             case "SHIELD":
-                EffectPlay = false;                
+                EffectPlay = false;
+                PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE.SHIELD);
                 break;
             default:
-                EffectPlay = false;                
+                EffectPlay = false;
+                StopEffectSound();
                 break;
         } 
     }
