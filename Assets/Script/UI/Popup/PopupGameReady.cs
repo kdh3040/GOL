@@ -241,9 +241,12 @@ public class PopupGameReady : PopupUI
                 desc.AppendFormat("{0}{1} +{2}", LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_NAME"), itemData.GetLocalizeName(), level - 1);
             desc.AppendLine();
             desc.AppendLine();
-            desc.AppendFormat(itemData.GetLocalizeDesc());
-            desc.AppendLine();
-            desc.AppendLine();
+            if(itemData.GetLocalizeDesc() != "")
+            {
+                desc.AppendFormat(itemData.GetLocalizeDesc());
+                desc.AppendLine();
+                desc.AppendLine();
+            }
             desc.AppendFormat(skillData.GetDesc());
             Desc.text = desc.ToString();
         }
