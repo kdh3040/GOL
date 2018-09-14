@@ -644,7 +644,7 @@ MonoBehaviour:
   Img_BackGround: {fileID: 35168945}
   Anim_Char: {fileID: 2102498689}
   mBGM: {fileID: 649674983}
-  mClip: {fileID: 8300000, guid: 702dcf93451cdb04187b79aa4722e55e, type: 3}
+  mClip: {fileID: 8300000, guid: 2d607340884db224b88bf023721dae3c, type: 3}
 --- !u!114 &694190008
 MonoBehaviour:
   m_ObjectHideFlags: 0
