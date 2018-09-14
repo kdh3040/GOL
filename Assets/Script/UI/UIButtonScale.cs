@@ -12,7 +12,7 @@ public class UIButtonScale : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        this.gameObject.transform.localScale = new Vector3(OriginalScale.x * 0.8f, OriginalScale.y * 0.8f, OriginalScale.z * 0.8f);
+        this.gameObject.transform.localScale = new Vector3(OriginalScale.x * 0.9f, OriginalScale.y * 0.9f, OriginalScale.z * 0.9f);
     }
 
     public void OnPointerUp(PointerEventData eventData)
