@@ -239,14 +239,14 @@ public class PopupGameEnd : PopupUI {
 
         if (GamePlayManager.Instance.ContinueCount > 0)
         {
-            GamePlayManager.Instance.ContinueCount--;
 #if UNITY_EDITOR
+            GamePlayManager.Instance.ContinueCount--;
             GamePlayManager.Instance.GameRevival();
             PopupManager.Instance.DismissPopup();
 #elif UNITY_ANDROID
-       AdManager.Instance.ShowRewardVideo();
+            AdManager.Instance.ShowRewardVideo();
 #elif UNITY_IPHONE
-         AdManager.Instance.ShowRewardVideo();
+            AdManager.Instance.ShowRewardVideo();
 #endif
         }
         else
