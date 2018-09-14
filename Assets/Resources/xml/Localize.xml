@@ -84,7 +84,7 @@
 	<Localize id="DOOR_NAME_SEA_3" kr="원자로 문"/>
 	<Localize id="DOOR_NAME_SPACE_1" kr="복도 문"/>
 	<Localize id="DOOR_NAME_SPACE_2" kr="식당 문"/>
-	<Localize id="DOOR_NAME_SPACE_3" kr="캡틴 방 문"/>
+	<Localize id="DOOR_NAME_SPACE_3" kr="함장실 문"/>
 	<Localize id="DOOR_NAME_APART_1" kr="녹슨 문"/>
 	<Localize id="DOOR_NAME_APART_2" kr="리모델링 문"/>
 	<Localize id="DOOR_NAME_APART_3" kr="모던 문"/>
@@ -122,8 +122,8 @@
 	<Localize id="CHAR_MSG_3" kr="바지에 묻으면 안되는데.."/>
 	<Localize id="CHAR_MSG_4" kr="팔에 힘이 빠진다.."/>
 	<Localize id="CHAR_MSG_5" kr="더이상은 힘들다!"/>
-	<Localize id="NOTE_ENDING_DESC_1_1" kr="밖에서 x싸는 건 당연한거지.왈왈!"/>
-	<Localize id="NOTE_ENDING_DESC_2_1" kr="너도 나처럼 무덤을 지키고 있는가?"/>
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 x싸는 건 당연한거지.왈왈!"/>
+	<Localize id="NOTE_ENDING_DESC_2_1" kr="너도 나처럼 무덤 아니 x을 지키고 있는가?"/>
 	<Localize id="NOTE_ENDING_DESC_3_1" kr="호호호..왕은 이런 냄새를 좋아하지"/>
 	<Localize id="NOTE_ENDING_DESC_4_1" kr="음..척추를 반으로 접어줄까?"/>
 	<Localize id="NOTE_ENDING_DESC_5_1" kr="전대원 x청소 시작!"/>
