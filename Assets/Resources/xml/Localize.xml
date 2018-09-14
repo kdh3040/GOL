@@ -134,6 +134,7 @@
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
 	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 게임하는데 방해할래?"/>
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익!"/>
+	<Localize id="ENDING_OPEN_TITLE" kr="{0}이 열렸습니다!"/>
 	<Localize id="END_TITLE_1" kr="시크릿 카툰 1-1"/>
 	<Localize id="END_TITLE_2" kr="시크릿 카툰 1-2"/>
   <Localize id="ENDING_NOTE_NAME_1" kr="시크릿 카툰 1-1 1편"/>

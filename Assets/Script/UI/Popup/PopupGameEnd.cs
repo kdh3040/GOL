@@ -195,7 +195,7 @@ public class PopupGameEnd : PopupUI {
         if(EndingSceneId != 0)
         {
             PlayerData.Instance.AddEnding(EndingSceneId);
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, new PopupGameEndingScene.PopupData(EndingSceneGroupId, EndingSceneId));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, new PopupGameEndingScene.PopupData(EndingSceneGroupId, EndingSceneId, null, true));
             return true;
         }
 
