@@ -148,7 +148,7 @@ public class PopupGameEnd : PopupUI {
         EndResultScoreCoinEffect();
     }
 
-    private void EndResultScoreCoinEffect()
+    private bool EndResultScoreCoinEffect()
     {
         EffectStart = false;
         StopAllCoroutines();
@@ -191,7 +191,10 @@ public class PopupGameEnd : PopupUI {
         {
             PlayerData.Instance.AddEnding(EndingSceneId);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_ENDING_SCENE, new PopupGameEndingScene.PopupData(EndingSceneGroupId, EndingSceneId));
+            return true;
         }
+
+        return false;
     }
 
     public void OnClickGameExit()
@@ -199,8 +202,9 @@ public class PopupGameEnd : PopupUI {
 
         if (EffectStart)
         {
-            EndResultScoreCoinEffect();
-            return;
+            bool endEnable = EndResultScoreCoinEffect();
+            if(endEnable)
+                return;
         }
         GamePlayManager.Instance.GameExit();
         PopupManager.Instance.AllDismissPopup();
@@ -211,8 +215,9 @@ public class PopupGameEnd : PopupUI {
 
         if (EffectStart)
         {
-            EndResultScoreCoinEffect();
-            return;
+            bool endEnable = EndResultScoreCoinEffect();
+            if (endEnable)
+                return;
         }
 
         if (PlayerData.Instance.IsPlayEnable())
@@ -227,8 +232,9 @@ public class PopupGameEnd : PopupUI {
 
         if (EffectStart)
         {
-            EndResultScoreCoinEffect();
-            return;
+            bool endEnable = EndResultScoreCoinEffect();
+            if (endEnable)
+                return;
         }
 
         if (GamePlayManager.Instance.ContinueCount > 0)
