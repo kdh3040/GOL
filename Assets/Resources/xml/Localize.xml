@@ -136,4 +136,12 @@
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익!"/>
 	<Localize id="END_TITLE_1" kr="시크릿 카툰 1-1"/>
 	<Localize id="END_TITLE_2" kr="시크릿 카툰 1-2"/>
+  <Localize id="ENDING_NOTE_NAME_1" kr="시크릿 카툰 1-1 1편"/>
+  <Localize id="ENDING_NOTE_NAME_2" kr="시크릿 카툰 1-1 2편"/>
+  <Localize id="ENDING_NOTE_NAME_3" kr="시크릿 카툰 1-1 3편"/>
+  <Localize id="ENDING_NOTE_NAME_4" kr="시크릿 카툰 1-1 4편"/>
+  <Localize id="ENDING_NOTE_NAME_5" kr="시크릿 카툰 1-2 1편"/>
+  <Localize id="ENDING_NOTE_NAME_6" kr="시크릿 카툰 1-2 2편"/>
+  <Localize id="ENDING_NOTE_NAME_7" kr="시크릿 카툰 1-2 3편"/>
+  <Localize id="ENDING_NOTE_NAME_8" kr="시크릿 카툰 1-2 4편"/>
 </Datas>
