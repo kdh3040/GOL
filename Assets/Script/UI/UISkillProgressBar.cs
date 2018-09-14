@@ -11,6 +11,8 @@ public class UISkillProgressBar : MonoBehaviour {
 
     [System.NonSerialized]
     public int mItemId = 0;
+    [System.NonSerialized]
+    public bool SkillEnable = false;
     private SkillManager.SKILL_TYPE mSkillType = SkillManager.SKILL_TYPE.NONE;
 
     public void SetItemSkill(int itemId, SkillManager.SKILL_TYPE skillType)
@@ -23,11 +25,18 @@ public class UISkillProgressBar : MonoBehaviour {
     public void UpdateSkillProgress()
     {
         var skill = GetUISkillData();
-        if(skill != null && skill.mTime > 0)
+        if (skill != null && skill.mTime > 0)
         {
+            SkillEnable = true;
             // TODO 환웅 시간 관련 스킬인지 알아야함
             ProgressBar.value = skill.mTime / skill.mMaxTime;
             Time.text = string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_CHECK_TYPE_TIME_REMAIN"), skill.mTime);
+        }
+        else
+        {
+            mItemId = 0;
+            mSkillType = SkillManager.SKILL_TYPE.NONE;
+            SkillEnable = false;
         }
     }
 

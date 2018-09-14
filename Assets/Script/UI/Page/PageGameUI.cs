@@ -18,7 +18,7 @@ public class PageGameUI : MonoBehaviour
     public Text CharMsg;
     private float CharMsgViewInterval;
 
-    private List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
+    public List<UISkillProgressBar> mSkillProgressBarList = new List<UISkillProgressBar>();
 
     public GameObject DoorButtons;
     public List<Button> DoorButtonsList = new List<Button>();
@@ -43,6 +43,7 @@ public class PageGameUI : MonoBehaviour
         CharMsgViewInterval = ConfigData.Instance.CHAR_MSG_VIEW_INTERVAL;
         RefreshShieldItemUI();
         Score.SetValue("0", UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.YELLOW);
+        UpdateSkillProgressBar();
     }
 
     public void RefreshUI()
@@ -70,15 +71,10 @@ public class PageGameUI : MonoBehaviour
     {
         for (int i = mSkillProgressBarList.Count - 1; i >= 0 ; --i)
         {
-            if(mSkillProgressBarList[i].GetUISkillData() == null)
-            {
-                DestroyImmediate(mSkillProgressBarList[i].gameObject);
-                mSkillProgressBarList.RemoveAt(i);
-                UpdateSkillProgressBar();
-            }
-            else
-                mSkillProgressBarList[i].UpdateSkillProgress();
+            mSkillProgressBarList[i].UpdateSkillProgress();
         }
+
+        UpdateSkillProgressBar();
     }
 
     public void UseItemSkill(int itemId, GameSkill skill)
@@ -89,19 +85,38 @@ public class PageGameUI : MonoBehaviour
                 return;
         }
 
-        var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), SkillProgressStartPos) as GameObject;
-        var progressBar = obj.GetComponent<UISkillProgressBar>();
-        progressBar.SetItemSkill(itemId, skill.mSkillType);
-        //progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
-        mSkillProgressBarList.Add(progressBar);
+        for (int i = 0; i < mSkillProgressBarList.Count; i++)
+        {
+            if (mSkillProgressBarList[i].SkillEnable == false)
+            {
+                mSkillProgressBarList[i].SetItemSkill(itemId, skill.mSkillType);
+                break;
+            }
+        }
+
+        //var obj = Instantiate(Resources.Load("Prefab/UISkillProgressBar"), SkillProgressStartPos) as GameObject;
+        //var progressBar = obj.GetComponent<UISkillProgressBar>();
+        //progressBar.SetItemSkill(itemId, skill.mSkillType);
+        ////progressBar.gameObject.transform.localPosition = new Vector3(0, mSkillProgressBarList.Count * 80);
+        //mSkillProgressBarList.Add(progressBar);
+
         UpdateSkillProgressBar();
     }
 
     public void UpdateSkillProgressBar()
     {
+        int viewCount = 0;
         for (int i = 0; i < mSkillProgressBarList.Count; i++)
         {
-            mSkillProgressBarList[i].gameObject.transform.localPosition = new Vector3(0, i * 80);
+            mSkillProgressBarList[i].UpdateSkillProgress();
+            if (mSkillProgressBarList[i].SkillEnable)
+            {
+                mSkillProgressBarList[i].gameObject.SetActive(true);
+                mSkillProgressBarList[i].gameObject.transform.localPosition = new Vector3(0, viewCount * 80);
+                viewCount++;
+            }
+            else
+                mSkillProgressBarList[i].gameObject.SetActive(false);
         }
     }
 
