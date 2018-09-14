@@ -337,8 +337,12 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinEquip()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.EQUIP);
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.EQUIP);        
         var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+        var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
+        ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", skinData.GetLocalizeName()));
+
+
         PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
         RefreshUI();
     }
