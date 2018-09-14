@@ -42,6 +42,7 @@ public class PopupGameReady : PopupUI
     private int SelectSlotIndex = 0;
     private UnityAction EndAction = null;
     private List<UIToastMsg> ToastMsgList = new List<UIToastMsg>();
+    private bool ShopPopupEnable = false;
 
     public void Awake()
     {
@@ -58,6 +59,7 @@ public class PopupGameReady : PopupUI
             EndAction = popupData.EndAction;
         else
             EndAction = null;
+        ShopPopupEnable = false;
 
         for (int i = 0; i < ToastMsgList.Count; i++)
         {
@@ -107,7 +109,7 @@ public class PopupGameReady : PopupUI
     public override void DismissPopup()
     {
         base.DismissPopup();
-        if (EndAction != null)
+        if (ShopPopupEnable == false && EndAction != null)
             EndAction();
     }
 
@@ -296,13 +298,20 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinChange()
     {
+        ShopPopupEnable = true;
         if (SelectSkinSlot)
         {
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI, skinType));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(ShopPopupEnd, skinType));
         }
         else
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(RefreshUI));    
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SHOP, new PopupGameShop.PopupData(ShopPopupEnd));    
+    }
+
+    public void ShopPopupEnd()
+    {
+        RefreshUI();
+        ShopPopupEnable = false;
     }
 
     public void OnClickGameStart()

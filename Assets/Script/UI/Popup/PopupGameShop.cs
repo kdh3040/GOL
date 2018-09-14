@@ -371,6 +371,7 @@ public class PopupGameShop : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
+            EndAction = null;
             SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_PLAY);
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
