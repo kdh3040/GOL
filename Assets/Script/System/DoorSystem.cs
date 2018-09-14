@@ -20,7 +20,7 @@ public class DoorSystem
 
     public void ResetSystem()
     {
-        SetAllDoorState(Door.DOOR_STATE.CLOSE);
+        SetAllDoorState(Door.DOOR_STATE.CLOSE, false);
         SetDoorEffect("IDLE");
     }
 
@@ -41,14 +41,14 @@ public class DoorSystem
 
     public void GameRevival()
     {
-        SetAllDoorState(Door.DOOR_STATE.CLOSE);
+        SetAllDoorState(Door.DOOR_STATE.CLOSE, false);
     }
 
-    public void SetAllDoorState(Door.DOOR_STATE state)
+    public void SetAllDoorState(Door.DOOR_STATE state, bool closeEffect = true)
     {
         for (int i = 0; i < DoorList.Count; i++)
         {
-            DoorList[i].SetDoorState(state);
+            DoorList[i].SetDoorState(state, closeEffect);
         }
     }
 
