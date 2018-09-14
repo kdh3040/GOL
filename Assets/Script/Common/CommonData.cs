@@ -42,6 +42,13 @@ public class CommonData : MonoBehaviour {
     public enum SOUND_TYPE
     {
         BUTTON,
+        DOOR,
+    }
+
+    public enum DOOR_EFFECT_SOUND_TYPE
+    {
+        SHIELD,
+        IRONDOOR,
     }
 
     public static int SHIELD_ITEM_ID = 2;
