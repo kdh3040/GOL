@@ -68,9 +68,7 @@ public class DoorSystem
     {
         if (skill.mSkillType == SkillManager.SKILL_TYPE.DAMAGE_SHIELD_TIME)
         {
-            for (int DoorNum = 0; DoorNum < 3; DoorNum++)
-                DoorList[DoorNum].SetDoorState(Door.DOOR_STATE.CLOSE);
-
+            SetAllDoorState(Door.DOOR_STATE.CLOSE, false);
             SetDoorEffect("INVINCIBILITY");
         }
     }
