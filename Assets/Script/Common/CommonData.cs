@@ -39,6 +39,11 @@ public class CommonData : MonoBehaviour {
         COIN,
     }
 
+    public enum SOUND_TYPE
+    {
+        BUTTON,
+    }
+
     public static int SHIELD_ITEM_ID = 2;
     public static int NOTE_GROUP_NOTE_COUNT = 3;
     public static float NOTE_GROUP_INTERVAL = 3.0f;

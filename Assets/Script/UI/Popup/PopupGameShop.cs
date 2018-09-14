@@ -48,8 +48,6 @@ public class PopupGameShop : PopupUI
     private bool SelectLIst = false;
     private UnityAction EndAction = null;
 
-    public AudioClip mFX;
-
     public void Awake()
     {
         SkinBuyButton.onClick.AddListener(OnClickSkinBuy);
@@ -277,7 +275,7 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinSlot(int index)
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         SelectLIst = false;
         SelectSlotIndex = index;
         SelectSkinType = SkinSlotList[index].SkinType;
@@ -303,7 +301,7 @@ public class PopupGameShop : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            PlayClickSound();
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             var skinId = ShopSkinList[SelectSlotIndex].SkinId;
             var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
             if(CommonFunc.UseCoin(skinData.cost))
@@ -319,7 +317,7 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinEquip()
     {
-        PlayClickSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         var skinId = ShopSkinList[SelectSlotIndex].SkinId;
         PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
         RefreshUI();
@@ -328,7 +326,7 @@ public class PopupGameShop : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            PlayClickSound();
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
             var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
@@ -350,14 +348,5 @@ public class PopupGameShop : PopupUI
         var slot = obj.GetComponent<UIToastMsg>();
         slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
         slot.SetMsg(msg);
-    }
-
-    public void PlayClickSound()
-    {
-        if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-            if (GetComponent<AudioSource>().isPlaying) return;
-            else GetComponent<AudioSource>().Play();
-        }
     }
 }

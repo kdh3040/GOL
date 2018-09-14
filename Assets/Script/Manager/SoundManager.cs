@@ -19,11 +19,13 @@ public class SoundManager : MonoBehaviour {
     }
 
     private int soundFX;
-
+    public AudioClip[] mFxSound = new AudioClip[5];
+    private AudioSource mFxAudio;
+ 
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
-        soundFX = AudioCenter.loadSound("Sound/click");
+        mFxAudio = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -31,13 +33,13 @@ public class SoundManager : MonoBehaviour {
 		
 	}
 
-    public void PlayFXSound()
+    public void PlayFXSound(CommonData.SOUND_TYPE type)
     {
         if (PlayerData.Instance.GetSoundSetting() == true)
-        {
-
-            AudioCenter.playSound(soundFX);
-            //mFX.Play();
+        {            
+            mFxAudio.clip = mFxSound[(int)type];
+            mFxAudio.Play();
         }
     }
+
 }
