@@ -41,8 +41,7 @@ public class PlayerData
         public bool VibrationSetting = true;
         public bool AlarmSetting = true;
 
-        // 사용 안함
-        public int LastEquipItemId = 1;
+        public int BestScore = 0;
 
         public void Save()
         {
@@ -57,6 +56,7 @@ public class PlayerData
             SoundSetting = PlayerData.Instance.SoundSetting;
             VibrationSetting = PlayerData.Instance.VibrationSetting;
             AlarmSetting = PlayerData.Instance.AlarmSetting;
+            BestScore = PlayerData.Instance.BestScore;
         }
 
         public void Load()
@@ -101,6 +101,7 @@ public class PlayerData
             PlayerData.Instance.SoundSetting = SoundSetting;
             PlayerData.Instance.VibrationSetting = VibrationSetting;
             PlayerData.Instance.AlarmSetting = AlarmSetting;
+            PlayerData.Instance.BestScore = BestScore;
         }
     }
 
@@ -136,6 +137,7 @@ public class PlayerData
     public bool SoundSetting { get; private set; }
     public bool VibrationSetting { get; private set; }
     public bool AlarmSetting { get; private set; }
+    public int BestScore = 0;
 
     public void SaveFile()
     {
@@ -178,12 +180,13 @@ public class PlayerData
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
 
             //MyCoin = 100000000;
-            MyCoin = 10000;
+            MyCoin = 2000000;
             MyDDong = CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MinValue;
             SoundSetting = true;
             VibrationSetting = true;
             AlarmSetting = true;
+            BestScore = 0;
             SaveFile();
         }
     }

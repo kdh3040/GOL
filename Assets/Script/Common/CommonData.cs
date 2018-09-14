@@ -28,7 +28,6 @@ public class CommonData : MonoBehaviour {
         NONE,
         CHAR,
         DOOR,
-        ENDDING, // 사용 하지 않음
         BACKGROUND,
     }
 

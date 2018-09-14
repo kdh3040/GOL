@@ -24,6 +24,7 @@ public class PopupGameEnd : PopupUI {
     public Image EndingScene;
     public Text EndingDesc;
     public Text Score;
+    public Image NewRecord;
     public Text Coin;
     public Button GameRestartButton;
     public UIPointValue GameRestartCost;
@@ -55,6 +56,7 @@ public class PopupGameEnd : PopupUI {
         PlusScoreValue = 0;
         PlusCoinValue = 0;
         TopBar.Initialize(false);
+        NewRecord.gameObject.SetActive(false);
         GameRestartCost.SetValue(1);
         GameRevivalText.text = LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_CONTINUE_COUNT", GamePlayManager.Instance.ContinueCount, CommonData.GAME_CONTINUE_MAX_COUNT);
 
@@ -159,6 +161,9 @@ public class PopupGameEnd : PopupUI {
         {
             Score.text = string.Format("{0} +{1}", CommonFunc.ConvertNumber(ScoreValue), CommonFunc.ConvertNumber(PlusScoreValue));
         }
+
+        NewRecord.gameObject.SetActive(PlayerData.Instance.BestScore < ScoreValue + PlusScoreValue);
+        PlayerData.Instance.BestScore = ScoreValue + PlusScoreValue;
 
         Coin.text = CommonFunc.ConvertNumber(CoinValue);
 
