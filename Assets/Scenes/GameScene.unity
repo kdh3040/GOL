@@ -2723,7 +2723,6 @@ MonoBehaviour:
   - {fileID: 1880027001}
   - {fileID: 1405684408}
   mFX: {fileID: 1338794525}
-  soundFX: 0
 --- !u!82 &1338794525
 AudioSource:
   m_ObjectHideFlags: 0

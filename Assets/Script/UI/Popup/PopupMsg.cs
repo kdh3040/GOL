@@ -85,14 +85,12 @@ public class PopupMsg : PopupUI
 
     private void OnClickYes()
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PopupManager.Instance.DismissPopup();
         if (mPopupData.YesAction != null)
             mPopupData.YesAction();
     }
     private void OnClickNo()
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PopupManager.Instance.DismissPopup();
         if (mPopupData.NoAction != null)
             mPopupData.NoAction();

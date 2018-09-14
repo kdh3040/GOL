@@ -68,7 +68,6 @@ public class PopupGamePurchase : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             if (SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
             {
              

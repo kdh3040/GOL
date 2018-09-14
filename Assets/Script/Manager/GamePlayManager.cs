@@ -136,7 +136,7 @@ public class GamePlayManager : MonoBehaviour
         mDoorSystem.GameExit();
     }
     public void GameStart()
-    {
+    {        
         ContinueCount = CommonData.GAME_CONTINUE_MAX_COUNT;
         FirstStart = true;
         ResetGame();
@@ -155,6 +155,8 @@ public class GamePlayManager : MonoBehaviour
 
     public void GameRevival(bool immediately = false)
     {
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.REVIVAL);
+
         mDoorSystem.GameRevival();
         mNoteSystem.GameRevival();
 

@@ -27,7 +27,6 @@ public class UITopBar : MonoBehaviour
 
     public void OnClickBack()
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PopupManager.Instance.DismissPopup();
     }
 

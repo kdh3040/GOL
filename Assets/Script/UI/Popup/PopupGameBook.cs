@@ -224,7 +224,6 @@ public class PopupGameBook : PopupUI
 
     public void OnClickSkinSlot(CommonData.SKIN_TYPE type, int index)
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (SelectSkinType == type && SelectIndex == index)
             return;

@@ -116,7 +116,6 @@ public class PopupGameReady : PopupUI
 
     public void OnClickSkinSlot(int index)
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         SelectSkinSlot = true;
         SelectSlotIndex = index;
@@ -124,7 +123,6 @@ public class PopupGameReady : PopupUI
     }
     public void OnClickItem(int index)
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         SelectSkinSlot = false;
         SelectSlotIndex = index;
         RefreshUI();
@@ -240,7 +238,6 @@ public class PopupGameReady : PopupUI
         {
             UnityAction yesAction = () =>
             {
-                //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
                 var skinType = SkinSlotList[SelectSlotIndex].SkinType;
                 var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
                 var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
@@ -260,7 +257,6 @@ public class PopupGameReady : PopupUI
         {
             UnityAction yesAction = () =>
             {
-                //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
                 var itemId = ItemSlotList[SelectSlotIndex].ItemId;
                 var itemData = DataManager.Instance.ItemDataDic[itemId];
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
@@ -290,7 +286,6 @@ public class PopupGameReady : PopupUI
 
     public void OnClickGameStart()
     {
-        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         GameStart();
     }
 
@@ -298,7 +293,7 @@ public class PopupGameReady : PopupUI
     {
         if (PlayerData.Instance.IsPlayEnable())
         {
-            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_START);
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_PLAY);
             PopupManager.Instance.AllDismissPopup();
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
