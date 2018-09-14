@@ -123,6 +123,7 @@ public class AdManager : MonoBehaviour {
             //Subscribe to Ad event
             rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
             rewardBasedVideo.Show();
+            GamePlayManager.Instance.ContinueCount--;
         }
         else
         {

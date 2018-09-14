@@ -34,6 +34,7 @@ public class PopupGameShop : PopupUI
     public Button UpgradeSlotButton;
     public UIPointValue UpgradeSlotCost;
     public Button SkinEquipButton;
+    public Button StartButton;
 
     public GridLayoutGroup SkinSlotGrid;
     public ScrollRect ScrollRect;
@@ -54,6 +55,7 @@ public class PopupGameShop : PopupUI
         SkinBuyButton.onClick.AddListener(OnClickSkinBuy);
         UpgradeSlotButton.onClick.AddListener(OnClickSkinUpgrade);
         SkinEquipButton.onClick.AddListener(OnClickSkinEquip);
+        StartButton.onClick.AddListener(OnClickGameStart);
     }
 
     public override void ShowPopup(PopupUIData data)
@@ -358,6 +360,21 @@ public class PopupGameShop : PopupUI
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+    }
+
+    public void OnClickGameStart()
+    {
+        GameStart();
+    }
+
+    public void GameStart()
+    {
+        if (PlayerData.Instance.IsPlayEnable())
+        {
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_PLAY);
+            PopupManager.Instance.AllDismissPopup();
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        }
     }
 
     public void ShowToastMsg(string msg)
