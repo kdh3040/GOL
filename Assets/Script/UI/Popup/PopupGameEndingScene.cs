@@ -16,12 +16,13 @@ public class PopupGameEndingScene : PopupUI
         public int EndingGroupId;
         public int EndingId;
         public UnityAction EndAction = null;
-
-        public PopupData(int endingGroupId, int endingId = 0, UnityAction endAction = null)
+        public bool NewOpen = false;
+        public PopupData(int endingGroupId, int endingId = 0, UnityAction endAction = null, bool newOpen = false)
         {
             EndingGroupId = endingGroupId;
             EndingId = endingId;
             EndAction = endAction;
+            NewOpen = newOpen;
         }
     }
     public Text Title;
@@ -58,7 +59,10 @@ public class PopupGameEndingScene : PopupUI
         SelectIndex = 0;
 
         var groupData = DataManager.Instance.EndingGroupDataList[EndingGroupId];
-        Title.text = LocalizeData.Instance.GetLocalizeString(groupData.name);
+        if(popupData.NewOpen)
+            Title.text = LocalizeData.Instance.GetLocalizeString("ENDING_OPEN_TITLE", LocalizeData.Instance.GetLocalizeString(groupData.name));
+        else
+            Title.text = LocalizeData.Instance.GetLocalizeString(groupData.name);
 
         EndingSceneList.Clear();
         for (int i = 0; i < groupData.ending_list.Count; i++)
