@@ -35,21 +35,21 @@ public class PopupGameSetting : PopupUI
 
     public void OnClickSoundSetting()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PlayerData.Instance.SetSoundSetting(!PlayerData.Instance.SoundSetting);
         SoundSettingCheck.SetActive(PlayerData.Instance.SoundSetting);
     }
 
     public void OnClickVibrationSetting()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PlayerData.Instance.SetVibrationSetting(!PlayerData.Instance.VibrationSetting);
         VibrationSettingCheck.SetActive(PlayerData.Instance.VibrationSetting);
     }
 
     public void OnClickAlarmSetting()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         PlayerData.Instance.SetAlarmSetting(!PlayerData.Instance.AlarmSetting);
         AlarmSettingCheck.SetActive(PlayerData.Instance.AlarmSetting);
     }

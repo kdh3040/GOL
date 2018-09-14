@@ -621,6 +621,7 @@ public class GamePlayManager : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
             {
+                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
                 if (PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PAUSE && Input.GetKeyUp(KeyCode.Escape))
                 {
                     GameResumeCountStart();

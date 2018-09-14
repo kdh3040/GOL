@@ -275,7 +275,7 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinSlot(int index)
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         SelectLIst = false;
         SelectSlotIndex = index;
         SelectSkinType = SkinSlotList[index].SkinType;
@@ -283,7 +283,8 @@ public class PopupGameShop : PopupUI
     }
 
     public void OnClickSkin(int index)
-    {        
+    {
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         SelectLIst = true;
         SelectSlotIndex = index;
         RefreshUI();
@@ -301,7 +302,7 @@ public class PopupGameShop : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+            //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             var skinId = ShopSkinList[SelectSlotIndex].SkinId;
             var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
             if(CommonFunc.UseCoin(skinData.cost))
@@ -318,7 +319,7 @@ public class PopupGameShop : PopupUI
 
     public void OnClickSkinEquip()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.EQUIP);
         var skinId = ShopSkinList[SelectSlotIndex].SkinId;
         PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
         RefreshUI();
@@ -327,7 +328,7 @@ public class PopupGameShop : PopupUI
     {
         UnityAction yesAction = () =>
         {
-            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+            //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
             var skinType = SkinSlotList[SelectSlotIndex].SkinType;
             var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
             var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];

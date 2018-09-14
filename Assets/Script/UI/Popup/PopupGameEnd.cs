@@ -193,7 +193,7 @@ public class PopupGameEnd : PopupUI {
 
     public void OnClickGameExit()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {
@@ -206,7 +206,7 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRestart()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {
@@ -222,7 +222,7 @@ public class PopupGameEnd : PopupUI {
     }
     void OnClickGameRevival()
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+        //SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
 
         if (EffectStart)
         {

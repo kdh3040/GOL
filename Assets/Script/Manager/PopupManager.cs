@@ -52,7 +52,7 @@ public class PopupManager : MonoBehaviour {
 
     public void ShowPopup(POPUP_TYPE type, PopupUIData data = null)
     {
-        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+//        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         var popup = mPopupUIList[type];
         if (mShowPopup != null && mShowPopup.GetPopupType() == popup.GetPopupType())
             return;
@@ -108,6 +108,7 @@ public class PopupManager : MonoBehaviour {
         {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
+                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
                 if (CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_END)
                 {
                     var endPopup = GetCurrentPopup() as PopupGameEnd;

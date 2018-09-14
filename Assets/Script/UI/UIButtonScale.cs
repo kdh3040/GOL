@@ -12,6 +12,7 @@ public class UIButtonScale : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     public void OnPointerDown(PointerEventData eventData)
     {
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         this.gameObject.transform.localScale = new Vector3(OriginalScale.x * 0.9f, OriginalScale.y * 0.9f, OriginalScale.z * 0.9f);
     }
 
