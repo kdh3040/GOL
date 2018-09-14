@@ -45,13 +45,13 @@
 	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="게임종료후 {0}% 추가코인을 얻습니다."/>
 	<Localize id="SKILL_DESC_ITEM_CREATE" kr="게임중 아이템 생성 확률을 {0}% 올려줍니다."/>
 	<Localize id="INVINCIBILITY_ITEM" kr="철문"/>
-	<Localize id="INVINCIBILITY_ITEM_DESC" kr="일정시간 동안 문이 철문으로 바뀝니다"/>
+	<Localize id="INVINCIBILITY_ITEM_DESC" kr=""/>
 	<Localize id="SHIELD_ITEM" kr="방패"/>
-	<Localize id="SHIELD_ITEM_DESC" kr="문이 열리지 않게 한번 막아줍니다."/>
+	<Localize id="SHIELD_ITEM_DESC" kr=""/>
 	<Localize id="SCORE_DOUBLE_ITEM" kr="더블"/>
-	<Localize id="SCORE_DOUBLE_ITEM_DESC" kr="획득 점수를 2배로 올려줍니다"/>
+	<Localize id="SCORE_DOUBLE_ITEM_DESC" kr=""/>
 	<Localize id="NOTE_SPEED_DOWN" kr="슬로"/>
-	<Localize id="NOTE_SPEED_DOWN_DESC" kr="일정시간 동안 게임 속도를 느리게 합니다"/>
+	<Localize id="NOTE_SPEED_DOWN_DESC" kr=""/>
 	<Localize id="SKIN_SLOT_CHAR" kr="캐릭터 슬롯"/>
 	<Localize id="SKIN_SLOT_DOOR" kr="문 슬롯"/>
 	<Localize id="SKIN_SLOT_BG" kr="배경 슬롯"/>

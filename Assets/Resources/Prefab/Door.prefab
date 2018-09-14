@@ -144,9 +144,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -282,8 +282,8 @@ MonoBehaviour:
   DoorCloseEffect: {fileID: 95983857177532706}
   EffectPlay: 0
   mEffectAudio:
-  - {fileID: 8300000, guid: 41d5b98437d1ac043a4584fbfafe8ed1, type: 3}
-  - {fileID: 8300000, guid: 221d9c103a8136646ba8c41f5428ffd0, type: 3}
+  - {fileID: 8300000, guid: 4fcc13c4e0e0a114bbcb4ee9a891d1ba, type: 3}
+  - {fileID: 8300000, guid: 2607ae81f7e0cfc41be46b1b456f09ea, type: 3}
 --- !u!212 &212471433284457316
 SpriteRenderer:
   m_ObjectHideFlags: 1

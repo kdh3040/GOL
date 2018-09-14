@@ -137,10 +137,12 @@ public class Door : MonoBehaviour
         {        
             case "INVINCIBILITY":
                 EffectPlay = true;
+                mAudio.loop = true;
                 PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE.IRONDOOR);
                 break;
             case "SHIELD":
                 EffectPlay = false;
+                mAudio.loop = false;
                 PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE.SHIELD);
                 break;
             default:
