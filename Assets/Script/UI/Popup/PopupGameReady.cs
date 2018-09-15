@@ -262,11 +262,15 @@ public class PopupGameReady : PopupUI
     {
         if (SelectSkinSlot)
         {
+            var skinType = SkinSlotList[SelectSlotIndex].SkinType;
+            var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
+            var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
+            SkinSlotLevelData levelUpdata = null;
+            if (DataManager.Instance.SkinSlotLevelDataList[skinType].Count > level + 1)
+                levelUpdata = DataManager.Instance.SkinSlotLevelDataList[skinType][level + 1];
+
             UnityAction yesAction = () =>
             {
-                var skinType = SkinSlotList[SelectSlotIndex].SkinType;
-                var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
-                var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
                 if (CommonFunc.UseCoin(data.cost))
                 {
                     SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
@@ -276,15 +280,18 @@ public class PopupGameReady : PopupUI
 
                 RefreshUI();
             };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
+
+            var skillData = SkillManager.Instance.GetSkillData(levelUpdata.skill);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
         {
+            var itemId = ItemSlotList[SelectSlotIndex].ItemId;
+            var itemData = DataManager.Instance.ItemDataDic[itemId];
+
             UnityAction yesAction = () =>
             {
-                var itemId = ItemSlotList[SelectSlotIndex].ItemId;
-                var itemData = DataManager.Instance.ItemDataDic[itemId];
                 if (CommonFunc.UseCoin(itemData.levelup_cost))
                 {
                     SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
@@ -294,7 +301,14 @@ public class PopupGameReady : PopupUI
 
                 RefreshUI();
             };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE"), yesAction);
+
+            var nextSkill = ItemManager.Instance.GetNextItemLevelSkill(itemId);
+            if (nextSkill == "")
+                return;
+
+            var skillData = SkillManager.Instance.GetSkillData(nextSkill);
+
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE", skillData.GetDesc()), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }

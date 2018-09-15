@@ -37,6 +37,17 @@ public class ItemManager
         return skillName;
     }
 
+    public string GetNextItemLevelSkill(int id)
+    {
+        if (IsItemLevelUp(id) == false)
+            return "";
+
+        var data = GetItemData(id);
+        // 아이템 레벨에 맞는 스킬 반환
+        string skillName = string.Format("{0}_LV{1}", data.skill, PlayerData.Instance.GetItemLevel(id) + 1);
+        return skillName;
+    }
+
     public bool IsItemLevelUp(int id)
     {
         var data = GetItemData(id);

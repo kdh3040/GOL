@@ -359,11 +359,15 @@ public class PopupGameShop : PopupUI
     }
     public void OnClickSkinUpgrade()
     {
+        var skinType = SkinSlotList[SelectSlotIndex].SkinType;
+        var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
+        var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
+        SkinSlotLevelData levelUpdata = null;
+        if (DataManager.Instance.SkinSlotLevelDataList[skinType].Count > level + 1)
+            levelUpdata = DataManager.Instance.SkinSlotLevelDataList[skinType][level + 1];
+
         UnityAction yesAction = () =>
         {
-            var skinType = SkinSlotList[SelectSlotIndex].SkinType;
-            var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
-            var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
             if (CommonFunc.UseCoin(data.cost))
             {
                 SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
@@ -373,7 +377,9 @@ public class PopupGameShop : PopupUI
 
             RefreshUI();
         };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE"), yesAction);
+
+        var skillData = SkillManager.Instance.GetSkillData(levelUpdata.skill);
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()), yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 
