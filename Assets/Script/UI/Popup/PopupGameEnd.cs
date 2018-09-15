@@ -163,7 +163,7 @@ public class PopupGameEnd : PopupUI {
         }
 
         NewRecord.gameObject.SetActive(PlayerData.Instance.BestScore < ScoreValue + PlusScoreValue);
-        PlayerData.Instance.BestScore = ScoreValue + PlusScoreValue;
+        PlayerData.Instance.SetBestScore(ScoreValue + PlusScoreValue);
 
         Coin.text = CommonFunc.ConvertNumber(CoinValue);
 
