@@ -186,6 +186,9 @@ public class PopupGameShop : PopupUI
             var skinSkillName = data.GetSkillName();
             var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
             StringBuilder desc = new StringBuilder();
+            desc.AppendFormat(data.GetLocalizeDesc());
+            desc.AppendLine();
+            desc.AppendLine();
             desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SKIN_SKILL", skinSkillData.GetDesc()));
             Desc.text = desc.ToString();
 
