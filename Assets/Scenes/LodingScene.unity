@@ -270,18 +270,18 @@ MonoBehaviour:
   mFxSound:
   - {fileID: 8300000, guid: 7e7686abf104ae7408bf17785b69d83f, type: 3}
   - {fileID: 8300000, guid: ade998b0a68b6b84b96db28dfd89a901, type: 3}
-  - {fileID: 8300000, guid: eb1f1ffd6f69df348851ce17d898efc3, type: 3}
-  - {fileID: 8300000, guid: 2b5163373653615459266b0387bbfa0a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 5adaa2db10bd42546a1f1046a3f7f838, type: 3}
-  - {fileID: 8300000, guid: 2bba921ddc8781f43a376dcf07b189a9, type: 3}
-  - {fileID: 8300000, guid: e12ce3a3d72715e48bf425d5b8d2daa6, type: 3}
-  - {fileID: 8300000, guid: d696985452ad8a04da5b61347ec17fe5, type: 3}
-  - {fileID: 8300000, guid: 855377222c61e5f449705a352860120b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: ade998b0a68b6b84b96db28dfd89a901, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 8300000, guid: 26924e84e55d127419264cd41837a356, type: 3}
-  - {fileID: 8300000, guid: 2bba921ddc8781f43a376dcf07b189a9, type: 3}
+  - {fileID: 0}
 --- !u!4 &693667829
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
   DDongViewTime: 1
   DDongMinScale: 0.5
   DDongMaxScale: 0.7
-  NoteChainCount: 1
+  NoteChainCount: 2
 --- !u!4 &1039198955
 Transform:
   m_ObjectHideFlags: 0
