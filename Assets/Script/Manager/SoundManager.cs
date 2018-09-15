@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     private int soundFX;
-    public AudioClip[] mFxSound = new AudioClip[10];
+    public AudioClip[] mFxSound = new AudioClip[14];
     private AudioSource mFxAudio;
  
     // Use this for initialization
@@ -38,6 +38,15 @@ public class SoundManager : MonoBehaviour {
         if (PlayerData.Instance.GetSoundSetting() == true)
         {
             mFxAudio.clip = mFxSound[(int)type];
+            mFxAudio.Play();
+        }
+    }
+
+    public void PlayFXSound(AudioClip clip)
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            mFxAudio.clip = clip;
             mFxAudio.Play();
         }
     }
