@@ -69,6 +69,7 @@ public class GamePlayManager : MonoBehaviour
     public float DDongViewTime = 1f;
     public float DDongMinScale = 0.2f;
     public float DDongMaxScale = 0.5f;
+    public int NoteChainCount = 1;
 
     public float NoteSpeed
     {

@@ -234,7 +234,7 @@ public class NoteSystem
 
                 if (ChainCreateNoteLine == (CommonData.NOTE_LINE)createNoteLine)
                 {
-                    if (ChainCreateNoteCount >= 2)
+                    if (ChainCreateNoteCount >= GamePlayManager.Instance.NoteChainCount)
                         continue;
 
                     ChainCreateNoteLine = (CommonData.NOTE_LINE)createNoteLine;
