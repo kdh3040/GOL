@@ -86,7 +86,7 @@ public class DoorSystem
 
     public void SetDoorEffect(CommonData.NOTE_LINE line, string trigger)
     {
-        DoorList[(int)line].SetEffect(trigger);
+        DoorList[(int)line].SetEffect(trigger); 
     }
 
     public void SetDoorEffect(string trigger)
