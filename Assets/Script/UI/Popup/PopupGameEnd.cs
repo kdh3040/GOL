@@ -212,7 +212,7 @@ public class PopupGameEnd : PopupUI {
                 return;
         }
         GamePlayManager.Instance.GameExit();
-        PopupManager.Instance.AllDismissPopup();
+        //PopupManager.Instance.AllDismissPopup();
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
     void OnClickGameRestart()

@@ -32,6 +32,7 @@ public class PageMainUI : MonoBehaviour
 
     void Start()
     {
+        PopupManager.Instance.AllDismissPopup();
         TopBar.Initialize(false);
         PlayBGM();
         Refresh(); 

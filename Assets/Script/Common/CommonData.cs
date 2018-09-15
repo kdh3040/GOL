@@ -49,10 +49,6 @@ public class CommonData : MonoBehaviour {
         GAME_START,
         GAME_PLAY,
         REVIVAL,
-        APART_DOOR,
-        DESERT_DOOR,
-        SEA_DOOR,
-        SPACE_DOOR,
     }
 
     public enum DOOR_EFFECT_SOUND_TYPE
