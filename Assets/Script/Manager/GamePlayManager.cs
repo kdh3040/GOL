@@ -490,11 +490,15 @@ public class GamePlayManager : MonoBehaviour
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
                 obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), -8.5f);
+                var scale = Random.Range(0.2f, 0.5f);
+                obj.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewList.Add(obj);
             }
             else
             {
                 DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-4.5f, -7f), 0);
+                var scale = Random.Range(0.2f, 0.5f);
+                DDongViewList[DDongViewPosChangeIndex].transform.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewPosChangeIndex++;
 
                 if (DDongViewPosChangeIndex >= 10)
