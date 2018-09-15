@@ -307,10 +307,16 @@ public class PopupGameShop : PopupUI
         SelectLIst = true;
         SelectSlotIndex = index;
         var skinId = ShopSkinList[SelectSlotIndex].SkinId;
-        if(PlayerData.Instance.HasSkin(SelectSkinType, skinId))
-            OnClickSkinEquip();
+        if(GamePlayManager.Instance.SkinShopImmEquipMode)
+        {
+            if (PlayerData.Instance.HasSkin(SelectSkinType, skinId))
+                OnClickSkinEquip();
+            else
+                RefreshUI();
+        }
         else
             RefreshUI();
+
     }
 
     public void RefreshUI()

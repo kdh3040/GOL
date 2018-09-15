@@ -70,6 +70,7 @@ public class GamePlayManager : MonoBehaviour
     public float DDongMinScale = 0.2f;
     public float DDongMaxScale = 0.5f;
     public int NoteChainCount = 1;
+    public bool SkinShopImmEquipMode = false;
 
     public float NoteSpeed
     {
