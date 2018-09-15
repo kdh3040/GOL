@@ -102,7 +102,7 @@
 	<Localize id="DOOR_DESC_SPACE_3" kr="철컹철컹!!"/>
 	<Localize id="DOOR_DESC_APART_1" kr="20년이상 오래된 문. 녹물이 떨어지는 군요."/>
 	<Localize id="DOOR_DESC_APART_2" kr="녹슨 문에 주황색 페인트를 칠했습니다. 몇년은 버티겠는데요?"/>
-	<Localize id="DOOR_DESC_APART_3" kr="오! 열쇠가 아니라 비번으로 여는군요?" 비번은 자주 바꾸세요./>
+	<Localize id="DOOR_DESC_APART_3" kr="오! 열쇠가 아니라 비번으로 여는군요? 비번은 자주 바꾸세요."/>
 	<Localize id="ENDING_CONDITION_CHAR_SLOT_LEVEL" kr="캐릭터 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_DOOR_SLOT_LEVEL" kr="문 스킨 슬롯 레벨 {0}이상"/>
 	<Localize id="ENDING_CONDITION_BG_SLOT_LEVEL" kr="배경 스킨 슬롯 레벨 {0}이상"/>
@@ -137,12 +137,12 @@
 	<Localize id="ENDING_OPEN_TITLE" kr="{0}이 열렸습니다!"/>
 	<Localize id="END_TITLE_1" kr="시크릿 카툰 1-1"/>
 	<Localize id="END_TITLE_2" kr="시크릿 카툰 1-2"/>
-  <Localize id="ENDING_NOTE_NAME_1" kr="시크릿 카툰 1-1 1편"/>
-  <Localize id="ENDING_NOTE_NAME_2" kr="시크릿 카툰 1-1 2편"/>
-  <Localize id="ENDING_NOTE_NAME_3" kr="시크릿 카툰 1-1 3편"/>
-  <Localize id="ENDING_NOTE_NAME_4" kr="시크릿 카툰 1-1 4편"/>
-  <Localize id="ENDING_NOTE_NAME_5" kr="시크릿 카툰 1-2 1편"/>
-  <Localize id="ENDING_NOTE_NAME_6" kr="시크릿 카툰 1-2 2편"/>
-  <Localize id="ENDING_NOTE_NAME_7" kr="시크릿 카툰 1-2 3편"/>
-  <Localize id="ENDING_NOTE_NAME_8" kr="시크릿 카툰 1-2 4편"/>
+	<Localize id="ENDING_NOTE_NAME_1" kr="시크릿 카툰 1-1 1편"/>
+	<Localize id="ENDING_NOTE_NAME_2" kr="시크릿 카툰 1-1 2편"/>
+	<Localize id="ENDING_NOTE_NAME_3" kr="시크릿 카툰 1-1 3편"/>
+	<Localize id="ENDING_NOTE_NAME_4" kr="시크릿 카툰 1-1 4편"/>
+	<Localize id="ENDING_NOTE_NAME_5" kr="시크릿 카툰 1-2 1편"/>
+	<Localize id="ENDING_NOTE_NAME_6" kr="시크릿 카툰 1-2 2편"/>
+	<Localize id="ENDING_NOTE_NAME_7" kr="시크릿 카툰 1-2 3편"/>
+	<Localize id="ENDING_NOTE_NAME_8" kr="시크릿 카툰 1-2 4편"/>
 </Datas>
