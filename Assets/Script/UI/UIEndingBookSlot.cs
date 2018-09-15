@@ -52,15 +52,11 @@ public class UIEndingBookSlot : MonoBehaviour {
         EndingTitle.text = LocalizeData.Instance.GetLocalizeString(EndingGroupData.name);
         var backgroudData = DataManager.Instance.BackGroundDataDic[backgroundId];
 
-        EndingBuyCost = 0;
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
             int groupId = EndingGroupData.id;
             int id = EndingGroupData.ending_list[i];
             var endingData = DataManager.Instance.EndingDataList[id];
-            if (PlayerData.Instance.HasEnding(id) == false)
-                EndingBuyCost += endingData.cost;
-
             var obj = Instantiate(Resources.Load("Prefab/UIEndingSceneSlot"), EndingSlotGrid.gameObject.transform) as GameObject;
             var slot = obj.GetComponent<UIEndingSceneSlot>();
             EndingSceneSlotList.Add(slot);
@@ -68,17 +64,7 @@ public class UIEndingBookSlot : MonoBehaviour {
             slot.SetData(EndingGroupData.id, endingData.id);
         }
 
-        if(EndingBuyCost > 0)
-        {
-            BuyCostValue.gameObject.SetActive(true);
-            BuyCostValue.SetValue(EndingBuyCost);
-            EndingComplete.text = "";
-        }
-        else
-        {
-            BuyCostValue.gameObject.SetActive(false);
-            EndingComplete.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_ALL_HAVE");
-        }
+        Refresh();
     }
 
     public void OnClickEndingBuy()
@@ -114,12 +100,29 @@ public class UIEndingBookSlot : MonoBehaviour {
 
     public void Refresh()
     {
+        EndingBuyCost = 0;
         for (int i = 0; i < EndingGroupData.ending_list.Count; i++)
         {
             int groupId = EndingGroupData.id;
             int id = EndingGroupData.ending_list[i];
+            var endingData = DataManager.Instance.EndingDataList[id];
+            if (PlayerData.Instance.HasEnding(id) == false)
+                EndingBuyCost += endingData.cost;
+
             EndingSceneSlotList[i].SlotButton.onClick.AddListener(() => { OnClickEnding(groupId, id); });
             EndingSceneSlotList[i].SetData(EndingGroupData.id, EndingGroupData.ending_list[i]);
+        }
+
+        if (EndingBuyCost > 0)
+        {
+            BuyCostValue.gameObject.SetActive(true);
+            BuyCostValue.SetValue(EndingBuyCost);
+            EndingComplete.text = "";
+        }
+        else
+        {
+            BuyCostValue.gameObject.SetActive(false);
+            EndingComplete.text = LocalizeData.Instance.GetLocalizeString("POPUP_ENDING_SLOT_ALL_HAVE");
         }
     }
 
