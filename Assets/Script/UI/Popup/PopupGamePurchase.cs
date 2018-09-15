@@ -24,6 +24,7 @@ public class PopupGamePurchase : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        this.SetBackGroundImg();
         PopupData popupData = data as PopupData;
 
         TopBar.Initialize(true);

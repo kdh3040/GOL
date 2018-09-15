@@ -6,12 +6,10 @@
 	<Localize id="GAME_PLAY_LACK_DDONG" kr="X이 부족합니다."/>
 	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?
-	다음효과 {0}"/>
+	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?&#10;다음효과 {0}"/>
 	<Localize id="BUY_SKIN_TITLE" kr="스킨을 구매하시겠습니까?"/>
 	<Localize id="BUY_ENDING_TITLE" kr="엔딩을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_SKIN_TITLE" kr="스킨을 강화하시겠습니까?
-	다음효과 {0}"/>
+	<Localize id="UPGRADE_SKIN_TITLE" kr="슬롯을 강화하시겠습니까?&#10;다음효과 {0}"/>
 	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉 찼습니다."/>
 	<Localize id="EQUIP_ITEM_NONE" kr="아이템이 없습니다."/>
 	<Localize id="INVINCIBILITY_SKILL_DESC" kr="3초간 무적"/>
@@ -38,13 +36,16 @@
 	<Localize id="GAME_END_POPUP_CONTINUE_COUNT" kr="광고 보기 ({0}/{1})"/>
 	<Localize id="GAME_END_POPUP_NOT_CONTINUE" kr="부활 하기 횟수를 전부 소진 하였습니다."/>
 	<Localize id="POPUP_GAME_READY_DESC_NAME" kr="이름 : "/>
+	<Localize id="POPUP_GAME_READY_DESC_SLOT_CURR_SKIN" kr="스킨 : {0} "/>
+	<Localize id="POPUP_GAME_READY_DESC_SLOT_SKILL" kr="슬롯 능력 : {0} "/>
+	<Localize id="POPUP_GAME_READY_DESC_SKIN_SKILL" kr="스킨 능력 : {0} "/>
 	<Localize id="SKILL_DESC_DAMAGE_SHIELD_TIME" kr="{0}초 동안 문을 열지 못하게 막아줍니다."/>
 	<Localize id="SKILL_DESC_DAMAGE_SHIELD_COUNT" kr="문이 열리지 않게 1번 막아 줍니다."/>
 	<Localize id="SKILL_DESC_SCORE_UP" kr="{0}초 동안 {1}% 추가점수를 획득 합니다."/>
 	<Localize id="SKILL_DESC_SPEED_DOWN" kr="{0}초 동안 게임 속도를 늦춰 줍니다."/>
-	<Localize id="SKILL_DESC_RESURRECTION" kr="{0}%확률로 부활을 합니다."/>
-	<Localize id="SKILL_DESC_GAME_OVER_SCORE_BONUS" kr="게임종료후 {0}% 추가점수를 얻습니다."/>
-	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="게임종료후 {0}% 추가코인을 얻습니다."/>
+	<Localize id="SKILL_DESC_RESURRECTION" kr="{0}% 부활확률"/>
+	<Localize id="SKILL_DESC_GAME_OVER_SCORE_BONUS" kr="{0}% 추가점수"/>
+	<Localize id="SKILL_DESC_GAME_OVER_COIN_BONUS" kr="{0}% 추가코인"/>
 	<Localize id="SKILL_DESC_ITEM_CREATE" kr="게임중 아이템 생성 확률을 {0}% 올려줍니다."/>
 	<Localize id="INVINCIBILITY_ITEM" kr="철문"/>
 	<Localize id="INVINCIBILITY_ITEM_DESC" kr=""/>
@@ -147,4 +148,6 @@
 	<Localize id="ENDING_NOTE_NAME_6" kr="시크릿 카툰 1-2 2편"/>
 	<Localize id="ENDING_NOTE_NAME_7" kr="시크릿 카툰 1-2 3편"/>
 	<Localize id="ENDING_NOTE_NAME_8" kr="시크릿 카툰 1-2 4편"/>
+	<Localize id="SKIN_SLOT_UPGRADE_TITLE" kr="슬롯 강화"/>
+	<Localize id="NORMAL_UPGRADE_TITLE" kr="강화"/>
 </Datas>

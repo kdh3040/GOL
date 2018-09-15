@@ -36,40 +36,13 @@ public class SkillData
             case SkillManager.SKILL_TYPE.SPEED_DOWN:
                 return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_SPEED_DOWN"), time);
             case SkillManager.SKILL_TYPE.RESURRECTION:
-                if (percent == 0)
-                    return "";
                 return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_RESURRECTION"), percent);
             case SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS:
-                if (percent == 0)
-                    return "";
                 return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_GAME_OVER_SCORE_BONUS"), percent);
             case SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS:
-                if (percent == 0)
-                    return "";
                 return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_GAME_OVER_COIN_BONUS"), percent);
             case SkillManager.SKILL_TYPE.ITEM_CREATE:
                 return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_ITEM_CREATE"), percent);
-            default:
-                break;
-        }
-
-        return "";
-    }
-
-    public string GetPlusSkillDesc(SkillData data)
-    {
-        SkillManager.SKILL_TYPE type = SkillManager.Instance.ConvertSkillType(skilltype);
-        if (percent + data.percent == 0)
-            return "";
-
-        switch (type)
-        {
-            case SkillManager.SKILL_TYPE.RESURRECTION:
-                return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_RESURRECTION"), percent + data.percent);
-            case SkillManager.SKILL_TYPE.GAME_OVER_SCORE_BONUS:
-                return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_GAME_OVER_SCORE_BONUS"), percent + data.percent);
-            case SkillManager.SKILL_TYPE.GAME_OVER_COIN_BONUS:
-                return string.Format(LocalizeData.Instance.GetLocalizeString("SKILL_DESC_GAME_OVER_COIN_BONUS"), percent + data.percent);
             default:
                 break;
         }

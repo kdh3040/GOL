@@ -15,7 +15,7 @@ public class PageMainUI : MonoBehaviour
     public Button GameSetting;
     public Button GameBook;
 
-    public GameObject Img_BackGround;
+    public Image Img_BackGround;
     public Animator Anim_Char;
 
     public AudioSource mBGM;
@@ -49,15 +49,11 @@ public class PageMainUI : MonoBehaviour
     }
     public void OnClickGameRank()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.TEST);
-
-
-        //GameCenterManager.Instance.ShowLeaderboardUI();
+        GameCenterManager.Instance.ShowLeaderboardUI();
     }
     public void OnClickGameSetting()
     {
-        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.TEST1);
-        //PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
+        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_SETTING);
     }
     public void OnClickGameBook()
     {
@@ -75,8 +71,7 @@ public class PageMainUI : MonoBehaviour
     {
         SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
         var backgoundData = mSkin as BackgroundData;
-        SpriteRenderer sprite = Img_BackGround.GetComponent<SpriteRenderer>();
-        sprite.sprite = (Sprite)Resources.Load(backgoundData.img_main, typeof(Sprite));        
+        Img_BackGround.sprite = (Sprite)Resources.Load(backgoundData.img_main, typeof(Sprite));        
     }
 
     private void SetCharAnim()

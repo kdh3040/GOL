@@ -27,6 +27,7 @@ public class PopupGameSetting : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        this.SetBackGroundImg();
         Topbar.Initialize(true);
         SoundSettingCheck.SetActive(PlayerData.Instance.SoundSetting);
         VibrationSettingCheck.SetActive(PlayerData.Instance.VibrationSetting);
