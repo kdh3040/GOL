@@ -278,8 +278,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d696985452ad8a04da5b61347ec17fe5, type: 3}
   - {fileID: 8300000, guid: 855377222c61e5f449705a352860120b, type: 3}
   - {fileID: 8300000, guid: ade998b0a68b6b84b96db28dfd89a901, type: 3}
-  - {fileID: 8300000, guid: 79dbb0e7069ef98469f170042bfc0980, type: 3}
-  - {fileID: 8300000, guid: 25faf177f1ee5de4197552d9de32c15e, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 26924e84e55d127419264cd41837a356, type: 3}
   - {fileID: 8300000, guid: 2bba921ddc8781f43a376dcf07b189a9, type: 3}
 --- !u!4 &693667829
@@ -869,6 +869,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseItemId: 0
   InGame: 0
+  DDongViewTime: 1
+  DDongMinScale: 0.5
+  DDongMaxScale: 0.7
+  NoteChainCount: 1
 --- !u!4 &1039198955
 Transform:
   m_ObjectHideFlags: 0
