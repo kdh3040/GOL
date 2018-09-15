@@ -282,8 +282,8 @@ MonoBehaviour:
   DoorCloseEffect: {fileID: 95983857177532706}
   EffectPlay: 0
   mEffectAudio:
-  - {fileID: 8300000, guid: 4fcc13c4e0e0a114bbcb4ee9a891d1ba, type: 3}
-  - {fileID: 8300000, guid: 2607ae81f7e0cfc41be46b1b456f09ea, type: 3}
+  - {fileID: 8300000, guid: d154dd3086b003c4f90991bf47032f38, type: 3}
+  - {fileID: 8300000, guid: 957615495325dca419d9bb33c118fc90, type: 3}
 --- !u!212 &212471433284457316
 SpriteRenderer:
   m_ObjectHideFlags: 1
