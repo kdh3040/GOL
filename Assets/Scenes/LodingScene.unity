@@ -270,17 +270,17 @@ MonoBehaviour:
   mFxSound:
   - {fileID: 8300000, guid: 7e7686abf104ae7408bf17785b69d83f, type: 3}
   - {fileID: 8300000, guid: ade998b0a68b6b84b96db28dfd89a901, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 38cb74af1f4bce04e8ae4ab1158ecc94, type: 3}
+  - {fileID: 8300000, guid: 82444df6b3ff31447b70af72ba47dac0, type: 3}
   - {fileID: 8300000, guid: 5adaa2db10bd42546a1f1046a3f7f838, type: 3}
+  - {fileID: 8300000, guid: 393696d5628453145a1ec54cc8f3da22, type: 3}
+  - {fileID: 8300000, guid: c5896f7d14777e04f86ce27c97238d87, type: 3}
+  - {fileID: 8300000, guid: a202fbc91613c7645a8829b777603758, type: 3}
+  - {fileID: 8300000, guid: cb9c93fe4cf1936419740b89baf85497, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 8300000, guid: ade998b0a68b6b84b96db28dfd89a901, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 26924e84e55d127419264cd41837a356, type: 3}
   - {fileID: 0}
 --- !u!4 &693667829
 Transform:
