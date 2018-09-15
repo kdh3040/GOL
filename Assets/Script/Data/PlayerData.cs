@@ -123,7 +123,7 @@ public class PlayerData
     public bool SoundSetting { get; private set; }
     public bool VibrationSetting { get; private set; }
     public bool AlarmSetting { get; private set; }
-    public int BestScore = 0;
+    public int BestScore { get; private set; }
 
     public void SaveFile()
     {
@@ -431,6 +431,15 @@ public class PlayerData
             if (NextDDongRefilTime == DateTime.MinValue)
                 NextDDongRefilTime = DateTime.Now.AddSeconds(ConfigData.Instance.DDONG_REFIL_TIME);
             Myddong = value;
+            SaveFile();
+        }
+    }
+
+    public void SetBestScore(int score)
+    {
+        if(score > BestScore)
+        {
+            BestScore = score;
             SaveFile();
         }
     }
