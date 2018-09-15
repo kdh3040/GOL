@@ -327,8 +327,8 @@ public class PopupGameShop : PopupUI
             {
                 SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUY);
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);
-                RefreshUI();
                 ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_SHOP_BUY_SKIN", skinData.GetLocalizeName()));
+                OnClickSkinEquip();
             }
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
