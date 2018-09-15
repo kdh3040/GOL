@@ -66,6 +66,10 @@ public class GamePlayManager : MonoBehaviour
     public int ContinueCount = 0;
     public bool InGame = false;
 
+    public float DDongViewTime = 1f;
+    public float DDongMinScale = 0.2f;
+    public float DDongMaxScale = 0.5f;
+
     public float NoteSpeed
     {
         get
@@ -484,20 +488,20 @@ public class GamePlayManager : MonoBehaviour
         DDongViewTimeSave -= time;
         if(DDongViewTimeSave < 0)
         {
-            DDongViewTimeSave = CommonData.DDONG_VIEW_INTERVAL;
+            DDongViewTimeSave = DDongViewTime;// CommonData.DDONG_VIEW_INTERVAL;
 
             if (DDongViewList.Count <= 10)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
                 obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), -8.5f);
-                var scale = Random.Range(0.2f, 0.5f);
+                var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 obj.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewList.Add(obj);
             }
             else
             {
                 DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-4.5f, -7f), 0);
-                var scale = Random.Range(0.2f, 0.5f);
+                var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 DDongViewList[DDongViewPosChangeIndex].transform.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewPosChangeIndex++;
 
