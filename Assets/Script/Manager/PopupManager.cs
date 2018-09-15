@@ -31,6 +31,8 @@ public class PopupManager : MonoBehaviour {
         GAME_SETTING,
         GAME_PURCHASE,
         MSG_POPUP,
+        TEST,
+        TEST1,
     }
 
     private Dictionary<POPUP_TYPE, PopupUI> mPopupUIList = new Dictionary<POPUP_TYPE, PopupUI>();
