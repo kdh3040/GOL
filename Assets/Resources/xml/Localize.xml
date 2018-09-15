@@ -6,12 +6,10 @@
 	<Localize id="GAME_PLAY_LACK_DDONG" kr="X이 부족합니다."/>
 	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?
-	다음효과 {0}"/>
+	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?&#10;다음효과 {0}"/>
 	<Localize id="BUY_SKIN_TITLE" kr="스킨을 구매하시겠습니까?"/>
 	<Localize id="BUY_ENDING_TITLE" kr="엔딩을 구매하시겠습니까?"/>
-	<Localize id="UPGRADE_SKIN_TITLE" kr="스킨을 강화하시겠습니까?
-	다음효과 {0}"/>
+	<Localize id="UPGRADE_SKIN_TITLE" kr="슬롯을 강화하시겠습니까?&#10;다음효과 {0}"/>
 	<Localize id="EQUIP_ITEM_FULL" kr="장착 슬롯이 꽉 찼습니다."/>
 	<Localize id="EQUIP_ITEM_NONE" kr="아이템이 없습니다."/>
 	<Localize id="INVINCIBILITY_SKILL_DESC" kr="3초간 무적"/>

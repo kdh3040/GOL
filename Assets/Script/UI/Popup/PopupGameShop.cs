@@ -360,7 +360,7 @@ public class PopupGameShop : PopupUI
         var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
         SkinSlotLevelData levelUpdata = null;
         if (DataManager.Instance.SkinSlotLevelDataList[skinType].Count > level + 1)
-            levelUpdata = DataManager.Instance.SkinSlotLevelDataList[skinType][level + 1];
+            levelUpdata = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
 
         UnityAction yesAction = () =>
         {
