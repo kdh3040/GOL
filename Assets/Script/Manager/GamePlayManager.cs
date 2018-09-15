@@ -502,22 +502,22 @@ public class GamePlayManager : MonoBehaviour
         {
             DDongViewTimeSave = DDongViewTime;// CommonData.DDONG_VIEW_INTERVAL;
 
-            if (DDongViewList.Count <= 10)
+            if (DDongViewList.Count < 5)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
-                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6f, -9f), -8.5f);
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6.5f, -7.5f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 obj.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewList.Add(obj);
             }
             else
             {
-                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-4.5f, -7f), -8.5f);
+                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6.5f, -7.5f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 DDongViewList[DDongViewPosChangeIndex].transform.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewPosChangeIndex++;
 
-                if (DDongViewPosChangeIndex >= 10)
+                if (DDongViewPosChangeIndex >= 5)
                     DDongViewPosChangeIndex = 0;
             }
         }
