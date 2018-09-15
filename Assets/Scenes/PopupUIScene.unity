@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10526604a6299914d962ec6f9a197b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
   TopBar: {fileID: 2086796149}
   EndingScene: {fileID: 1572236301}
   EndingDesc: {fileID: 378430751}
@@ -1274,6 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ff736fb5b94394c9912d10e22914ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
   YesButton: {fileID: 1644530110}
   NoButton: {fileID: 656023832}
   Title: {fileID: 1026068461}
@@ -8553,6 +8555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1ae8e00fff52240a8b20d0f1a77461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 1537260461}
   Topbar: {fileID: 522910554}
   DescTitle: {fileID: 1092125704}
   DescIcon: {fileID: 862582196}
@@ -10057,6 +10060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4ea4691f2e0ad41915f82dd4b5896d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
   Title: {fileID: 1412201362}
   LockObj: {fileID: 1032837643}
   EndingScene: {fileID: 1190231592}
@@ -10540,6 +10544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645dcdbde86fd6b44b1ce5d7fdfd4e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
   RestartButton: {fileID: 1936980112}
   ResumeButton: {fileID: 1415395135}
   ExitButton: {fileID: 736106734}
@@ -10916,6 +10921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb1c000376079249807c9c88901a43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 1860036392}
   TopBar: {fileID: 461623337}
   SlotList:
   - {fileID: 1431548596}
@@ -12152,6 +12158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8151cc3854f2574e947c54c57656125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 1757247882}
   Topbar: {fileID: 1089677732}
   SoundSettingButton: {fileID: 912785833}
   VibrationSettingButton: {fileID: 1930013208}
@@ -12725,6 +12732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b492664cfddf744bbc07bc41e0afe37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 1796768284}
   Topbar: {fileID: 2082965064}
   DescTitle: {fileID: 207801103}
   DescItemSlot: {fileID: 597347940}
@@ -13192,6 +13200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba98a01017836c468da92710556fbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 1990301283}
   TopBar: {fileID: 230536814}
   EndingBookTab: {fileID: 1110041397}
   SkinBookTab: {fileID: 1335548279}

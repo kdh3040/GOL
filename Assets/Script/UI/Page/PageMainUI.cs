@@ -15,7 +15,7 @@ public class PageMainUI : MonoBehaviour
     public Button GameSetting;
     public Button GameBook;
 
-    public GameObject Img_BackGround;
+    public Image Img_BackGround;
     public Animator Anim_Char;
 
     public AudioSource mBGM;
@@ -71,8 +71,7 @@ public class PageMainUI : MonoBehaviour
     {
         SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND);
         var backgoundData = mSkin as BackgroundData;
-        SpriteRenderer sprite = Img_BackGround.GetComponent<SpriteRenderer>();
-        sprite.sprite = (Sprite)Resources.Load(backgoundData.img_main, typeof(Sprite));        
+        Img_BackGround.sprite = (Sprite)Resources.Load(backgoundData.img_main, typeof(Sprite));        
     }
 
     private void SetCharAnim()

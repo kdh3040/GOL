@@ -54,7 +54,7 @@ public class PopupGameReady : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
-
+        SetBackGroundImg();
         var popupData = data as PopupData;
         if (popupData != null)
             EndAction = popupData.EndAction;
@@ -298,6 +298,7 @@ public class PopupGameReady : PopupUI
 
     public void ShopPopupEnd()
     {
+        SetBackGroundImg();
         RefreshUI();
         ShopPopupEnable = false;
     }

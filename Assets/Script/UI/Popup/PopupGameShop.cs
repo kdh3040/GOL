@@ -62,6 +62,7 @@ public class PopupGameShop : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+        this.SetBackGroundImg();
         var popupData = data as PopupData;
         if (popupData != null)
         {
@@ -332,6 +333,7 @@ public class PopupGameShop : PopupUI
                 ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", skinData.GetLocalizeName()));
                 PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
                 RefreshUI();
+                SetBackGroundImg();
             }
         };
         var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
@@ -344,10 +346,9 @@ public class PopupGameShop : PopupUI
         var skinId = ShopSkinList[SelectSlotIndex].SkinId;
         var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
         ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", skinData.GetLocalizeName()));
-
-
         PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
         RefreshUI();
+        SetBackGroundImg();
     }
     public void OnClickSkinUpgrade()
     {
