@@ -240,6 +240,8 @@ public class GamePlayManager : MonoBehaviour
     public void GameOver(Note note)
     {
         SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_END);
+        mDoorSystem.StopDoorEffect();
+        StopGameEffect();
 
         mGameUIPage.GameOver();
         IsGamePause = true;
@@ -483,6 +485,14 @@ public class GamePlayManager : MonoBehaviour
         DestroyImmediate(obj);
     }
 
+    public void StopGameEffect()
+    {
+        InGameEffect_Double.SetActive(false);
+        InGameEffect_Revive.SetActive(false);
+        InGameEffect_Slow.SetActive(false);
+        InGameEffect_Start.SetActive(false);
+    }
+
     private void ShowDDong(float time)
     {
         DDongViewTimeSave -= time;
@@ -511,6 +521,7 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
+   
     private void GetUserTouchEvent()
     {
         //if (Input.GetMouseButtonDown(0))

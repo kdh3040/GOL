@@ -97,4 +97,12 @@ public class DoorSystem
             SetDoorEffect(type, trigger);
         }
     }
+
+    public void StopDoorEffect()
+    {
+        for (int i = 0; i < DoorList.Count; i++)
+        {
+            DoorList[i].StopEffectSound();
+        }
+    }
 }
