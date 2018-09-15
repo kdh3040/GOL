@@ -44,7 +44,12 @@ public class UIPoint : MonoBehaviour {
             case CommonData.POINT_TYPE.DDONG:
                 var time = PlayerData.Instance.GetNextDDongRefileTime();
                 if (time == TimeSpan.Zero)
-                    PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT));
+                {
+                    if (PlayerData.Instance.MyDDong < CommonData.MAX_DDONG_COUNT)
+                        PointText.text = string.Format("{0}/{1} ({2}:{3})", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT), time.Minutes, time.Seconds);
+                    else
+                        PointText.text = string.Format("{0}/{1}", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT));
+                }    
                 else
                     PointText.text = string.Format("{0}/{1} ({2}:{3})", CommonFunc.ConvertNumber(PlayerData.Instance.MyDDong), CommonFunc.ConvertNumber(CommonData.MAX_DDONG_COUNT), time.Minutes, time.Seconds);
                 break;
