@@ -179,13 +179,13 @@ public class GameCenterManager : MonoBehaviour {
         {
             if (success)
             {
-                Debug.Log("!!!!!! ReportScore 1");
+                //Debug.Log("!!!!!! ReportScore 1");
                 // Report 성공
                 // 그에 따른 처리
             }
             else
             {
-                Debug.Log("!!!!!! ReportScore 2");
+                //Debug.Log("!!!!!! ReportScore 2");
                 // Report 실패
                 // 그에 따른 처리
             }
