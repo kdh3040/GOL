@@ -115,11 +115,11 @@
 	<Localize id="ENDING_CONDITION_CHAR_SKIN" kr="{0} 캐릭터 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_DOOR_SKIN" kr="{0} 문 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_BG_SKIN" kr="{0} 배경 스킨 장착"/>
-	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}원"/>
+	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}$"/>
 	<Localize id="PURCHASE_SLOT_COST_DDONG" kr="{0}개"/>
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
-	<Localize id="PURCHASE_COIN_BUY_MSG" kr="{0}코인을 구매 하시겠습니까?"/>
-	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 {0}개 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_COIN_BUY_MSG" kr="코인을 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 구매 하시겠습니까?"/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
@@ -131,7 +131,7 @@
 	<Localize id="NOTE_ENDING_DESC_4_1" kr="(우드득,우드득)혼이 좀 나야겠군. 제군?"/>
 	<Localize id="NOTE_ENDING_DESC_5_1" kr="모든대원은 대청소를 시작하라!"/>
 	<Localize id="NOTE_ENDING_DESC_6_1" kr="오마이갓! 크레이지맨! 유 데드!"/>
-	<Localize id="NOTE_ENDING_DESC_7_1" kr="억! 이 내..냄새는 우..주복을 통과하네? "/>
+	<Localize id="NOTE_ENDING_DESC_7_1" kr="악! 우주복을 입어도 X냄새가 나다니! "/>
 	<Localize id="NOTE_ENDING_DESC_8_1" kr="끼이륵!케케켁!쿨럭쿨럭!"/>
 	<Localize id="NOTE_ENDING_DESC_9_1" kr="내 광선검 맛을 봐야겠구나?"/>
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
