@@ -19,6 +19,8 @@ public class PopupGameSetting : PopupUI
     public GameObject AlarmSettingCheck;
 
     public List<InputField> Test = new List<InputField>();
+    public List<InputField> Test_2 = new List<InputField>();
+    public InputField Test_3;
 
     public void Awake()
     {
@@ -38,6 +40,13 @@ public class PopupGameSetting : PopupUI
         Test[0].text = string.Format("{0:F2}", ConfigData.Instance.DEFAULT_NOTE_SPEED);
         Test[1].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP_INTERVAL);
         Test[2].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP);
+
+        Test_2[0].text = string.Format("{0}", DataManager.Instance.ItemDataDic[1].create_probability);
+        Test_2[1].text = string.Format("{0}", DataManager.Instance.ItemDataDic[2].create_probability);
+        Test_2[2].text = string.Format("{0}", DataManager.Instance.ItemDataDic[3].create_probability);
+        Test_2[3].text = string.Format("{0}", DataManager.Instance.ItemDataDic[4].create_probability);
+
+        Test_3.text = string.Format("{0}", ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT);
     }
 
     public override void DismissPopup()
@@ -46,6 +55,13 @@ public class PopupGameSetting : PopupUI
         ConfigData.Instance.DEFAULT_NOTE_SPEED = float.Parse(Test[0].text);
         ConfigData.Instance.NOTE_SPEED_UP_INTERVAL = float.Parse(Test[1].text);
         ConfigData.Instance.NOTE_SPEED_UP = float.Parse(Test[2].text);
+
+        DataManager.Instance.ItemDataDic[1].create_probability = int.Parse(Test_2[0].text);
+        DataManager.Instance.ItemDataDic[2].create_probability = int.Parse(Test_2[1].text);
+        DataManager.Instance.ItemDataDic[3].create_probability = int.Parse(Test_2[2].text);
+        DataManager.Instance.ItemDataDic[4].create_probability = int.Parse(Test_2[3].text);
+
+        ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT = float.Parse(Test_3.text);
     }
 
     public void OnClickSoundSetting()

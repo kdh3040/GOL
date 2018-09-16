@@ -52,19 +52,17 @@ public class NoteSystem
             NoteGroupList[i].gameObject.transform.localPosition = new Vector3(0, endPos.y + (i * CommonData.NOTE_GROUP_INTERVAL));
         }
 
-        if (NoteItemCreatePercentList.Count <= 0)
+        NoteItemCreatePercentList.Clear();
+        NoteItemAllPercentValue = 0;
+        var enumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
+        while (enumerator.MoveNext())
         {
-            NoteItemAllPercentValue = 0;
-            var enumerator = DataManager.Instance.ItemDataDic.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                NoteCreateData createData = new NoteCreateData();
-                createData.Percent = NoteItemAllPercentValue + enumerator.Current.Value.create_probability;
-                createData.OriginalPercent = enumerator.Current.Value.create_probability;
-                createData.Id = enumerator.Current.Key;
-                NoteItemAllPercentValue += enumerator.Current.Value.create_probability;
-                NoteItemCreatePercentList.Add(createData);
-            }
+            NoteCreateData createData = new NoteCreateData();
+            createData.Percent = NoteItemAllPercentValue + enumerator.Current.Value.create_probability;
+            createData.OriginalPercent = enumerator.Current.Value.create_probability;
+            createData.Id = enumerator.Current.Key;
+            NoteItemAllPercentValue += enumerator.Current.Value.create_probability;
+            NoteItemCreatePercentList.Add(createData);
         }
 
         var backgroundData = DataManager.Instance.BackGroundDataDic[PlayerData.Instance.GetUseSkin(CommonData.SKIN_TYPE.BACKGROUND)];
