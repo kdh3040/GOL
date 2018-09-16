@@ -86,6 +86,6 @@ public class CommonFunc
 
     static public int ConvertCoin(int score)
     {
-        return score / 10;
+        return score / 100;
     }
 }

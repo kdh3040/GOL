@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
 	<Skin level = "1" skill="CHAR_SLOT_SKILL_LV1" cost="0"/>
-	<Skin level = "2" skill="CHAR_SLOT_SKILL_LV2" cost="1000"/>
-	<Skin level = "3" skill="CHAR_SLOT_SKILL_LV3" cost="2000"/>
-	<Skin level = "4" skill="CHAR_SLOT_SKILL_LV4" cost="3000"/>
-	<Skin level = "5" skill="CHAR_SLOT_SKILL_LV5" cost="4000"/>
-	<Skin level = "6" skill="CHAR_SLOT_SKILL_LV6" cost="5000"/>
-	<Skin level = "7" skill="CHAR_SLOT_SKILL_LV7" cost="6000"/>
-	<Skin level = "8" skill="CHAR_SLOT_SKILL_LV8" cost="7000"/>
-	<Skin level = "9" skill="CHAR_SLOT_SKILL_LV9" cost="8000"/>
-	<Skin level = "10" skill="CHAR_SLOT_SKILL_LV10" cost="9000"/>
-	<Skin level = "11" skill="CHAR_SLOT_SKILL_LV11" cost="10000"/>
+	<Skin level = "2" skill="CHAR_SLOT_SKILL_LV2" cost="100"/>
+	<Skin level = "3" skill="CHAR_SLOT_SKILL_LV3" cost="200"/>
+	<Skin level = "4" skill="CHAR_SLOT_SKILL_LV4" cost="300"/>
+	<Skin level = "5" skill="CHAR_SLOT_SKILL_LV5" cost="400"/>
+	<Skin level = "6" skill="CHAR_SLOT_SKILL_LV6" cost="500"/>
+	<Skin level = "7" skill="CHAR_SLOT_SKILL_LV7" cost="600"/>
+	<Skin level = "8" skill="CHAR_SLOT_SKILL_LV8" cost="700"/>
+	<Skin level = "9" skill="CHAR_SLOT_SKILL_LV9" cost="800"/>
+	<Skin level = "10" skill="CHAR_SLOT_SKILL_LV10" cost="900"/>
+	<Skin level = "11" skill="CHAR_SLOT_SKILL_LV11" cost="1000"/>
 </Datas>
