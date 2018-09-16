@@ -277,7 +277,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c5896f7d14777e04f86ce27c97238d87, type: 3}
   - {fileID: 8300000, guid: a202fbc91613c7645a8829b777603758, type: 3}
   - {fileID: 8300000, guid: cb9c93fe4cf1936419740b89baf85497, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: f4fcd024ad850354db771d330cb489ab, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -873,6 +873,7 @@ MonoBehaviour:
   DDongMinScale: 0.5
   DDongMaxScale: 0.7
   NoteChainCount: 2
+  SkinShopImmEquipMode: 0
 --- !u!4 &1039198955
 Transform:
   m_ObjectHideFlags: 0
