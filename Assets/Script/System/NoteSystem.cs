@@ -28,6 +28,10 @@ public class NoteSystem
     private CommonData.NOTE_LINE ChainCreateNoteLine = CommonData.NOTE_LINE.INDEX_1;
     private int ChainCreateNoteCount = 0;
 
+    private float NoteSpeed_default;
+    private float NoteSpeed_interval;
+    private float NoteSpeed_up;
+
     public void Initialize(PlayScene scene)
     {
         NoteGroupList = scene.NoteGroupList;
@@ -38,13 +42,19 @@ public class NoteSystem
     public void ResetSystem()
     {
         ChainCreateNoteCount = 0;
-        NoteSpeed = ConfigData.Instance.DEFAULT_NOTE_SPEED;
         PlayTime = 0;
         NoteSpeedCheckTime = 0;
         ItemNoteCreatePercent = ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT;
         NoteNormalCreateList.Clear();
 
         AllDeleteNote();
+
+        var bgData = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.BACKGROUND) as BackgroundData;
+        NoteSpeed_default = bgData.speed_default;
+        NoteSpeed_interval = bgData.speed_interval;
+        NoteSpeed_up = bgData.speed_up;
+        NoteSpeed = NoteSpeed_default;
+
 
         var endPos = NoteGroupEndPos.localPosition;
         for (int i = 0; i < NoteGroupList.Count; i++)
@@ -205,10 +215,10 @@ public class NoteSystem
         }
 
         NoteSpeedCheckTime += time;
-        if (NoteSpeedCheckTime > ConfigData.Instance.NOTE_SPEED_UP_INTERVAL)
+        if (NoteSpeedCheckTime > NoteSpeed_interval)
         {
             NoteSpeedCheckTime = 0;
-            NoteSpeed += ConfigData.Instance.NOTE_SPEED_UP;
+            NoteSpeed += NoteSpeed_up;
         }
     }
 

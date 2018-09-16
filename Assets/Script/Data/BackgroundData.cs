@@ -10,6 +10,9 @@ public class BackgroundData : SkinData
     public string img_main;
     public List<int> noteList = new List<int>();
     public List<int> endingGroupList = new List<int>();
+    public float speed_default;
+    public float speed_interval;
+    public float speed_up;
 
     public BackgroundData(XmlNode node)
     {
@@ -21,6 +24,9 @@ public class BackgroundData : SkinData
         img_front = node.Attributes.GetNamedItem("img_front").Value;
         img_back = node.Attributes.GetNamedItem("img_back").Value;
         img_main = node.Attributes.GetNamedItem("img_main").Value;
+        speed_default = float.Parse(node.Attributes.GetNamedItem("speed_default").Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
+        speed_interval = float.Parse(node.Attributes.GetNamedItem("speed_interval").Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
+        speed_up = float.Parse(node.Attributes.GetNamedItem("speed_up").Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
         skill = node.Attributes.GetNamedItem("skill").Value;
 
         var noteListString = node.Attributes.GetNamedItem("note_list").Value;
