@@ -118,8 +118,8 @@
 	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}원"/>
 	<Localize id="PURCHASE_SLOT_COST_DDONG" kr="{0}개"/>
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
-	<Localize id="PURCHASE_COIN_BUY_MSG" kr="코인을 구매 하시겠습니까?"/>
-	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_COIN_BUY_MSG" kr="{0}코인을 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 {0}개 구매 하시겠습니까?"/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
