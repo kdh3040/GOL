@@ -440,6 +440,7 @@ public class PlayerData
         if(score > BestScore)
         {
             BestScore = score;
+            SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.NEW_RECORD);
             SaveFile();
         }
     }
