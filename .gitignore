@@ -47,6 +47,8 @@ ExportedObj/
 # OS generated #
  
 # ============ #
+
+PlayerData.ini
  
 .DS_Store
  
@@ -70,6 +72,6 @@ ProjectSettings.asset
  
 ProjectVersion.txt
 
-PlayerData.ini
+
 
 
