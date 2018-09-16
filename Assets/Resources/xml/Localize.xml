@@ -82,18 +82,18 @@
 	<Localize id="BG_DESC_SEA" kr="잠수함의 선원들을 막아야 합니다. 스트롱맨들입니다."/>
 	<Localize id="BG_DESC_DESERT" kr="고대 이집트의 왕과 부하들을 막아야합니다.저주를 받을지도 모릅니다."/>
 	<Localize id="BG_DESC_SPACE" kr="우주라고 해도 급하면 싸야됩니다. 우주인과 외계인들을 막으십시요."/>
-	<Localize id="DOOR_NAME_SEA_1" kr="식당 문"/>
-	<Localize id="DOOR_NAME_SEA_2" kr="함장실 문"/>
-	<Localize id="DOOR_NAME_SEA_3" kr="원자로 문"/>
+	<Localize id="DOOR_NAME_SEA_1" kr="잠수함 식당 문"/>
+	<Localize id="DOOR_NAME_SEA_2" kr="잠수함 함장실 문"/>
+	<Localize id="DOOR_NAME_SEA_3" kr="잠수함 원자로 문"/>
 	<Localize id="DOOR_NAME_SPACE_1" kr="구식 우주선 문"/>
 	<Localize id="DOOR_NAME_SPACE_2" kr="22세기 우주선 문"/>
 	<Localize id="DOOR_NAME_SPACE_3" kr="별들의 전쟁 문"/>
-	<Localize id="DOOR_NAME_APART_1" kr="녹슨 철문"/>
-	<Localize id="DOOR_NAME_APART_2" kr="리모델링 문"/>
-	<Localize id="DOOR_NAME_APART_3" kr="모던 문"/>
-	<Localize id="DOOR_NAME_DESERT_1" kr="철제창살 문"/>
-	<Localize id="DOOR_NAME_DESERT_2" kr="왕의 침실 문"/>
-	<Localize id="DOOR_NAME_DESERT_3" kr="피라미드 원조 문"/>
+	<Localize id="DOOR_NAME_APART_1" kr="아파트 녹슨 철문"/>
+	<Localize id="DOOR_NAME_APART_2" kr="아파트 리모델링 문"/>
+	<Localize id="DOOR_NAME_APART_3" kr="아파트 모던 문"/>
+	<Localize id="DOOR_NAME_DESERT_1" kr="피라미드 철제창살 문"/>
+	<Localize id="DOOR_NAME_DESERT_2" kr="피라미드 왕의 침실 문"/>
+	<Localize id="DOOR_NAME_DESERT_3" kr="5천년 전통 원조 피라미드 문"/>
 	<Localize id="DOOR_DESC_SEA_1" kr="잠수함 대원들이 식사하는 곳에서 실례를 해서 죄송합니다."/>
 	<Localize id="DOOR_DESC_SEA_2" kr="큰일났습니다. 함장문 앞에서도 실례를... 싸울 준비 되셨습니까?"/>
 	<Localize id="DOOR_DESC_SEA_3" kr="방사능보다 X냄새가 싫어하는 스트롱맨들이 원자로까지 쫓아오고 있습니다."/>
@@ -115,11 +115,11 @@
 	<Localize id="ENDING_CONDITION_CHAR_SKIN" kr="{0} 캐릭터 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_DOOR_SKIN" kr="{0} 문 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_BG_SKIN" kr="{0} 배경 스킨 장착"/>
-	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}원"/>
+	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}$"/>
 	<Localize id="PURCHASE_SLOT_COST_DDONG" kr="{0}개"/>
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
-	<Localize id="PURCHASE_COIN_BUY_MSG" kr="{0}코인을 구매 하시겠습니까?"/>
-	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 {0}개 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_COIN_BUY_MSG" kr="코인을 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 구매 하시겠습니까?"/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
