@@ -103,7 +103,7 @@
 	<Localize id="DOOR_DESC_SPACE_1" kr="문이 낡아서 파리가 날아와도 열려버리는군요!"/>
 	<Localize id="DOOR_DESC_SPACE_2" kr="파리는 파리라고 인식을 하는 군요. 많이 발전했네요! "/>
 	<Localize id="DOOR_DESC_SPACE_3" kr="열리면 광선검을 든 제따이가 나올 것 같군요!"/>
-	<Localize id="DOOR_DESC_APART_1" kr="20년이상 오래된 문. 녹물이 떨어지는 군요."/>
+	<Localize id="DOOR_DESC_APART_1" kr="20년이상 오래된 문. 녹물이 떨어지는군요."/>
 	<Localize id="DOOR_DESC_APART_2" kr="녹슨 문에 주황색 페인트를 칠했습니다. 몇년은 버티겠는데요?"/>
 	<Localize id="DOOR_DESC_APART_3" kr="오! 열쇠가 아니라 비번으로 여는군요? 비번은 자주 바꾸세요."/>
 	<Localize id="ENDING_CONDITION_CHAR_SLOT_LEVEL" kr="캐릭터 스킨 슬롯 레벨 {0}이상"/>
