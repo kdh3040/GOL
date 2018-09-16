@@ -31,19 +31,19 @@ public class PopupGamePurchase : PopupUI
 
         if(popupData.BuyType == CommonData.POINT_TYPE.COIN)
         {
-            SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1000, CommonData.POINT_TYPE.COIN, 15000, CommonData.PURCHASE_ID_ARRAY[0]);
+            SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1100, CommonData.POINT_TYPE.COIN, 15000, CommonData.PURCHASE_ID_ARRAY[0]);
             SlotList[0].SlotButton.onClick.AddListener(() => { OnClickPurchase(0); });
 
-            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5000, CommonData.POINT_TYPE.COIN, 75000, CommonData.PURCHASE_ID_ARRAY[1]);
+            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5500, CommonData.POINT_TYPE.COIN, 75000, CommonData.PURCHASE_ID_ARRAY[1]);
             SlotList[1].SlotButton.onClick.AddListener(() => { OnClickPurchase(1); });
 
-            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 10000, CommonData.POINT_TYPE.COIN, 150000, CommonData.PURCHASE_ID_ARRAY[2]);
+            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 11000, CommonData.POINT_TYPE.COIN, 150000, CommonData.PURCHASE_ID_ARRAY[2]);
             SlotList[2].SlotButton.onClick.AddListener(() => { OnClickPurchase(2); });
 
-            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 50000, CommonData.POINT_TYPE.COIN, 750000, CommonData.PURCHASE_ID_ARRAY[3]);
+            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 55000, CommonData.POINT_TYPE.COIN, 750000, CommonData.PURCHASE_ID_ARRAY[3]);
             SlotList[3].SlotButton.onClick.AddListener(() => { OnClickPurchase(3); });
 
-            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 100000, CommonData.POINT_TYPE.COIN, 1500000, CommonData.PURCHASE_ID_ARRAY[4]);
+            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 110000, CommonData.POINT_TYPE.COIN, 1500000, CommonData.PURCHASE_ID_ARRAY[4]);
             SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
         }
         else
@@ -87,12 +87,12 @@ public class PopupGamePurchase : PopupUI
 
         if (SlotList[index].RewardType == CommonData.POINT_TYPE.COIN)
         {
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_COIN_BUY_MSG"), yesAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_COIN_BUY_MSG", CommonFunc.ConvertNumber(SlotList[index].Reward)), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else if (SlotList[index].RewardType == CommonData.POINT_TYPE.DDONG)
         {
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_DDONG_BUY_MSG"), yesAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_DDONG_BUY_MSG", SlotList[index].Reward), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }
