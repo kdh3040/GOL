@@ -237,7 +237,7 @@ public class PopupGameReady : PopupUI
             var level = PlayerData.Instance.GetSkinSlotLevel(skinType);
             var data = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
             SkinSlotLevelData levelUpdata = null;
-            if (DataManager.Instance.SkinSlotLevelDataList[skinType].Count > level + 1)
+            if (DataManager.Instance.SkinSlotLevelDataList[skinType].Count > level)
                 levelUpdata = DataManager.Instance.SkinSlotLevelDataList[skinType][level];
 
             UnityAction yesAction = () =>
