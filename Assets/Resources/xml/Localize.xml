@@ -138,8 +138,8 @@
 	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 형 게임하는데 방해할래?"/>
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익! 너..너 뭐야?"/>
 	<Localize id="ENDING_OPEN_TITLE" kr="{0}가 열렸습니다!"/>
-	<Localize id="END_TITLE_1" kr="피라미드의 비밀-1"/>
-	<Localize id="END_TITLE_2" kr="피라미드의 비밀-2"/>
+	<Localize id="END_TITLE_1" kr="피라미드의 비밀 상편"/>
+	<Localize id="END_TITLE_2" kr="피라미드의 비밀 하편"/>
 	<Localize id="ENDING_NOTE_NAME_1" kr="피라미드의 비밀 1화"/>
 	<Localize id="ENDING_NOTE_NAME_2" kr="피라미드의 비밀 2화"/>
 	<Localize id="ENDING_NOTE_NAME_3" kr="피라미드의 비밀 3화"/>
