@@ -85,9 +85,9 @@
 	<Localize id="DOOR_NAME_SEA_1" kr="복도 문"/>
 	<Localize id="DOOR_NAME_SEA_2" kr="식당 문"/>
 	<Localize id="DOOR_NAME_SEA_3" kr="원자로 문"/>
-	<Localize id="DOOR_NAME_SPACE_1" kr="복도 문"/>
-	<Localize id="DOOR_NAME_SPACE_2" kr="식당 문"/>
-	<Localize id="DOOR_NAME_SPACE_3" kr="함장실 문"/>
+	<Localize id="DOOR_NAME_SPACE_1" kr="구식 우주선 문"/>
+	<Localize id="DOOR_NAME_SPACE_2" kr="22세기 우주선 문"/>
+	<Localize id="DOOR_NAME_SPACE_3" kr="별들의 전쟁 문"/>
 	<Localize id="DOOR_NAME_APART_1" kr="녹슨 철문"/>
 	<Localize id="DOOR_NAME_APART_2" kr="리모델링 문"/>
 	<Localize id="DOOR_NAME_APART_3" kr="모던 문"/>
@@ -99,10 +99,10 @@
 	<Localize id="DOOR_DESC_SEA_3" kr="함장실 앞에서 죄송합니다."/>
 	<Localize id="DOOR_DESC_DESERT_1" kr="노예를 가두는 문입니다. 잘못하면 갇힐수도 있습니다."/>
 	<Localize id="DOOR_DESC_DESERT_2" kr="노예는 평생 구경할 기회도 없는 문입니다. 마음껏 열어보시죠."/>
-	<Localize id="DOOR_DESC_DESERT_3" kr="피라미드하면 돌문이 제 맛입니다. 색도 딱 알맞군요."/>
-	<Localize id="DOOR_DESC_SPACE_1" kr="푸싱푸싱!!"/>
-	<Localize id="DOOR_DESC_SPACE_2" kr="주우우우우우우우앙!!!!"/>
-	<Localize id="DOOR_DESC_SPACE_3" kr="철컹철컹!!"/>
+	<Localize id="DOOR_DESC_DESERT_3" kr="피라미드하면 돌문이 제 맛입니다. 깔맞춤 제대로입니다. 멋진 문닫는 사운드까지!"/>
+	<Localize id="DOOR_DESC_SPACE_1" kr="낡아서 파리가 날아와도 문이 열려버리는군요!"/>
+	<Localize id="DOOR_DESC_SPACE_2" kr="파리는 파리라고 인식을 하는 군요. 많이 발전했네요! "/>
+	<Localize id="DOOR_DESC_SPACE_3" kr="열리면 광선검을 듣 제따이가 나올 것 같군요!"/>
 	<Localize id="DOOR_DESC_APART_1" kr="20년이상 오래된 문. 녹물이 떨어지는 군요."/>
 	<Localize id="DOOR_DESC_APART_2" kr="녹슨 문에 주황색 페인트를 칠했습니다. 몇년은 버티겠는데요?"/>
 	<Localize id="DOOR_DESC_APART_3" kr="오! 열쇠가 아니라 비번으로 여는군요? 비번은 자주 바꾸세요."/>
@@ -125,17 +125,17 @@
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
 	<Localize id="CHAR_MSG_4" kr="팔에 힘이 빠진다.."/>
 	<Localize id="CHAR_MSG_5" kr="더이상은!!"/>
-	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 x싸는 건 당연한거지.왈왈!"/>
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 X싸는 건 당연한거지.왈왈!"/>
 	<Localize id="NOTE_ENDING_DESC_2_1" kr="노예여. 너도 나처럼 무덤 아니 x을 지키고 있는가?"/>
 	<Localize id="NOTE_ENDING_DESC_3_1" kr="호호호..노예여. 짐이 이런 향기를 좋아하는지 어떻게 알았는가?"/>
 	<Localize id="NOTE_ENDING_DESC_4_1" kr="(우드득,우드득)혼이 좀 나야겠군. 제군?"/>
 	<Localize id="NOTE_ENDING_DESC_5_1" kr="모든대원은 대청소를 시작하라!"/>
-	<Localize id="NOTE_ENDING_DESC_6_1" kr="오마이갓! 크레이지맨!"/>
-	<Localize id="NOTE_ENDING_DESC_7_1" kr="하하. 우주복을 입어서 냄새가 안나."/>
+	<Localize id="NOTE_ENDING_DESC_6_1" kr="오마이갓! 크레이지맨! 유 데드!"/>
+	<Localize id="NOTE_ENDING_DESC_7_1" kr="억! 이 내..냄새는 우..주복을 통과하네? "/>
 	<Localize id="NOTE_ENDING_DESC_8_1" kr="끼이륵!케케켁!쿨럭쿨럭!"/>
 	<Localize id="NOTE_ENDING_DESC_9_1" kr="내 광선검 맛을 봐야겠구나?"/>
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
-	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 형 게임집중하는데 방해할래?"/>
+	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 형 게임하는데 방해할래?"/>
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익! 너..너 뭐야?"/>
 	<Localize id="ENDING_OPEN_TITLE" kr="{0}가 열렸습니다!"/>
 	<Localize id="END_TITLE_1" kr="피라미드의 비밀-1"/>
