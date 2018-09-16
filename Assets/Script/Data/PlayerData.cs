@@ -242,6 +242,12 @@ public class PlayerData
         return HaveItem_LevelCount[id];
     }
 
+    public void SetItemLevel(int id, int level)
+    {
+        HaveItem_LevelCount[id] = level;
+        SaveFile();
+    }
+
     public void PlusDDong(int count)
     {
         SetDDong(MyDDong + count);

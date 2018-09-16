@@ -20,7 +20,6 @@ public class PopupGameSetting : PopupUI
 
     public List<InputField> Test_1_1 = new List<InputField>();
     public List<InputField> Test_1_2 = new List<InputField>();
-    public List<InputField> Test_1_3 = new List<InputField>();
     public List<InputField> Test_2 = new List<InputField>();
     public InputField Test_3;
 
@@ -44,20 +43,13 @@ public class PopupGameSetting : PopupUI
         Test_2[2].text = string.Format("{0}", DataManager.Instance.ItemDataDic[3].create_probability);
         Test_2[3].text = string.Format("{0}", DataManager.Instance.ItemDataDic[4].create_probability);
 
-        Test_1_1[0].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[1].speed_default);
-        Test_1_1[1].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[2].speed_default);
-        Test_1_1[2].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[3].speed_default);
-        Test_1_1[3].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[4].speed_default);
+        Test_1_1[0].text = string.Format("{0}", PlayerData.Instance.GetSkinSlotLevel(CommonData.SKIN_TYPE.CHAR));
+        Test_1_1[1].text = string.Format("{0}", PlayerData.Instance.GetSkinSlotLevel(CommonData.SKIN_TYPE.DOOR));
+        Test_1_1[2].text = string.Format("{0}", PlayerData.Instance.GetSkinSlotLevel(CommonData.SKIN_TYPE.BACKGROUND));
 
-        Test_1_2[0].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[1].speed_interval);
-        Test_1_2[1].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[2].speed_interval);
-        Test_1_2[2].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[3].speed_interval);
-        Test_1_2[3].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[4].speed_interval);
-
-        Test_1_3[0].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[1].speed_up);
-        Test_1_3[1].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[2].speed_up);
-        Test_1_3[2].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[3].speed_up);
-        Test_1_3[3].text = string.Format("{0:F2}", DataManager.Instance.BackGroundDataDic[4].speed_up);
+        Test_1_2[0].text = string.Format("{0}", PlayerData.Instance.GetItemLevel(1));
+        Test_1_2[1].text = string.Format("{0}", PlayerData.Instance.GetItemLevel(2));
+        Test_1_2[2].text = string.Format("{0}", PlayerData.Instance.GetItemLevel(3));
 
         Test_3.text = string.Format("{0}", ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT);
     }
@@ -73,20 +65,13 @@ public class PopupGameSetting : PopupUI
 
         ConfigData.Instance.NOTE_ITEM_CREATE_PERCENT = float.Parse(Test_3.text);
 
-        DataManager.Instance.BackGroundDataDic[1].speed_default = float.Parse(Test_1_1[0].text);
-        DataManager.Instance.BackGroundDataDic[2].speed_default = float.Parse(Test_1_1[1].text);
-        DataManager.Instance.BackGroundDataDic[3].speed_default = float.Parse(Test_1_1[2].text);
-        DataManager.Instance.BackGroundDataDic[4].speed_default = float.Parse(Test_1_1[3].text);
+        PlayerData.Instance.SetSkinSlotLevel(CommonData.SKIN_TYPE.CHAR, int.Parse(Test_1_1[0].text));
+        PlayerData.Instance.SetSkinSlotLevel(CommonData.SKIN_TYPE.DOOR, int.Parse(Test_1_1[1].text));
+        PlayerData.Instance.SetSkinSlotLevel(CommonData.SKIN_TYPE.BACKGROUND, int.Parse(Test_1_1[2].text));
 
-        DataManager.Instance.BackGroundDataDic[1].speed_interval = float.Parse(Test_1_2[0].text);
-        DataManager.Instance.BackGroundDataDic[2].speed_interval = float.Parse(Test_1_2[1].text);
-        DataManager.Instance.BackGroundDataDic[3].speed_interval = float.Parse(Test_1_2[2].text);
-        DataManager.Instance.BackGroundDataDic[4].speed_interval = float.Parse(Test_1_2[3].text);
-
-        DataManager.Instance.BackGroundDataDic[1].speed_up = float.Parse(Test_1_3[0].text);
-        DataManager.Instance.BackGroundDataDic[2].speed_up = float.Parse(Test_1_3[1].text);
-        DataManager.Instance.BackGroundDataDic[3].speed_up = float.Parse(Test_1_3[2].text);
-        DataManager.Instance.BackGroundDataDic[4].speed_up = float.Parse(Test_1_3[3].text);
+        PlayerData.Instance.SetItemLevel(1, int.Parse(Test_1_2[0].text));
+        PlayerData.Instance.SetItemLevel(2, int.Parse(Test_1_2[1].text));
+        PlayerData.Instance.SetItemLevel(3, int.Parse(Test_1_2[2].text));
     }
 
     public void OnClickSoundSetting()
