@@ -20,10 +20,6 @@ public class PopupGameSetting : PopupUI
 
     public List<InputField> Test = new List<InputField>();
 
-    public static float speed_1 = 0f; // 기본
-    public static float speed_2 = 0f; // 증가 시간
-    public static float speed_3 = 0f; // 증가폭
-
     public void Awake()
     {
         SoundSettingButton.onClick.AddListener(OnClickSoundSetting);
@@ -39,26 +35,17 @@ public class PopupGameSetting : PopupUI
         VibrationSettingCheck.SetActive(PlayerData.Instance.VibrationSetting);
         AlarmSettingCheck.SetActive(PlayerData.Instance.AlarmSetting);
 
-        if(speed_1 == 0)
-            Test[0].text = string.Format("{0:F2}", ConfigData.Instance.DEFAULT_NOTE_SPEED + speed_1);
-        else
-            Test[0].text = string.Format("{0:F2}", speed_1);
-        if(speed_2 == 0)
-            Test[1].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP_INTERVAL + speed_2);
-        else
-            Test[1].text = string.Format("{0:F2}", speed_2);
-        if(speed_3 == 0)
-            Test[2].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP + speed_3);
-        else
-            Test[2].text = string.Format("{0:F2}", speed_3);
+        Test[0].text = string.Format("{0:F2}", ConfigData.Instance.DEFAULT_NOTE_SPEED);
+        Test[1].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP_INTERVAL);
+        Test[2].text = string.Format("{0:F2}", ConfigData.Instance.NOTE_SPEED_UP);
     }
 
     public override void DismissPopup()
     {
         base.DismissPopup();
-        speed_1 = float.Parse(Test[0].text);
-        speed_2 = float.Parse(Test[1].text);
-        speed_3 = float.Parse(Test[2].text);
+        ConfigData.Instance.DEFAULT_NOTE_SPEED = float.Parse(Test[0].text);
+        ConfigData.Instance.NOTE_SPEED_UP_INTERVAL = float.Parse(Test[1].text);
+        ConfigData.Instance.NOTE_SPEED_UP = float.Parse(Test[2].text);
     }
 
     public void OnClickSoundSetting()
