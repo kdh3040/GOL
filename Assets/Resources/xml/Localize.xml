@@ -115,7 +115,7 @@
 	<Localize id="ENDING_CONDITION_CHAR_SKIN" kr="{0} 캐릭터 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_DOOR_SKIN" kr="{0} 문 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_BG_SKIN" kr="{0} 배경 스킨 장착"/>
-	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}$"/>
+	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}원"/>
 	<Localize id="PURCHASE_SLOT_COST_DDONG" kr="{0}개"/>
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
 	<Localize id="PURCHASE_COIN_BUY_MSG" kr="코인을 구매 하시겠습니까?"/>
