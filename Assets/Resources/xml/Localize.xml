@@ -137,17 +137,17 @@
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
 	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 형 게임집중하는데 방해할래?"/>
 	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익! 너..너 뭐야?"/>
-	<Localize id="ENDING_OPEN_TITLE" kr="{0}이 열렸습니다!"/>
-	<Localize id="END_TITLE_1" kr="시크릿 카툰 1-1"/>
-	<Localize id="END_TITLE_2" kr="시크릿 카툰 1-2"/>
-	<Localize id="ENDING_NOTE_NAME_1" kr="시크릿 카툰 1-1 1편"/>
-	<Localize id="ENDING_NOTE_NAME_2" kr="시크릿 카툰 1-1 2편"/>
-	<Localize id="ENDING_NOTE_NAME_3" kr="시크릿 카툰 1-1 3편"/>
-	<Localize id="ENDING_NOTE_NAME_4" kr="시크릿 카툰 1-1 4편"/>
-	<Localize id="ENDING_NOTE_NAME_5" kr="시크릿 카툰 1-2 1편"/>
-	<Localize id="ENDING_NOTE_NAME_6" kr="시크릿 카툰 1-2 2편"/>
-	<Localize id="ENDING_NOTE_NAME_7" kr="시크릿 카툰 1-2 3편"/>
-	<Localize id="ENDING_NOTE_NAME_8" kr="시크릿 카툰 1-2 4편"/>
+	<Localize id="ENDING_OPEN_TITLE" kr="{0}가 열렸습니다!"/>
+	<Localize id="END_TITLE_1" kr="피라미드의 비밀-1"/>
+	<Localize id="END_TITLE_2" kr="피라미드의 비밀-2"/>
+	<Localize id="ENDING_NOTE_NAME_1" kr="피라미드의 비밀 1화"/>
+	<Localize id="ENDING_NOTE_NAME_2" kr="피라미드의 비밀 2화"/>
+	<Localize id="ENDING_NOTE_NAME_3" kr="피라미드의 비밀 3화"/>
+	<Localize id="ENDING_NOTE_NAME_4" kr="피라미드의 비밀 4화"/>
+	<Localize id="ENDING_NOTE_NAME_5" kr="피라미드의 비밀 5화"/>
+	<Localize id="ENDING_NOTE_NAME_6" kr="피라미드의 비밀 6화"/>
+	<Localize id="ENDING_NOTE_NAME_7" kr="피라미드의 비밀 7화"/>
+	<Localize id="ENDING_NOTE_NAME_8" kr="피라미드의 비밀 8화"/>
 	<Localize id="SKIN_SLOT_UPGRADE_TITLE" kr="슬롯 강화"/>
 	<Localize id="NORMAL_UPGRADE_TITLE" kr="강화"/>
 </Datas>

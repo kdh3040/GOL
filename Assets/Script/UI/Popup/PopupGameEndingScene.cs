@@ -41,6 +41,7 @@ public class PopupGameEndingScene : PopupUI
     private List<EndingData> EndingSceneList = new List<EndingData>();
     private int SelectIndex = 0;
     private UnityAction EndAction = null;
+    private bool NewOpenEnding = false;
 
     public void Awake()
     {
@@ -56,14 +57,10 @@ public class PopupGameEndingScene : PopupUI
         EndingGroupId = popupData.EndingGroupId;
         EndingId = popupData.EndingId;
         EndAction = popupData.EndAction;
+        NewOpenEnding = popupData.NewOpen;
         SelectIndex = 0;
 
         var groupData = DataManager.Instance.EndingGroupDataList[EndingGroupId];
-        if(popupData.NewOpen)
-            Title.text = LocalizeData.Instance.GetLocalizeString("ENDING_OPEN_TITLE", LocalizeData.Instance.GetLocalizeString(groupData.name));
-        else
-            Title.text = LocalizeData.Instance.GetLocalizeString(groupData.name);
-
         EndingSceneList.Clear();
         for (int i = 0; i < groupData.ending_list.Count; i++)
         {
@@ -104,6 +101,12 @@ public class PopupGameEndingScene : PopupUI
 
             Desc.text = EndingSceneList[SelectIndex].GetConditionDesc();
         }
+
+        var endingData = EndingSceneList[SelectIndex];
+        if (NewOpenEnding)
+            Title.text = LocalizeData.Instance.GetLocalizeString("ENDING_OPEN_TITLE", LocalizeData.Instance.GetLocalizeString(endingData.name));
+        else
+            Title.text = LocalizeData.Instance.GetLocalizeString(endingData.name);
 
         RefreshButtons();
     }
