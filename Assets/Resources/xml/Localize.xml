@@ -82,8 +82,8 @@
 	<Localize id="BG_DESC_SEA" kr="잠수함의 선원들을 막아야 합니다. 스트롱맨들입니다."/>
 	<Localize id="BG_DESC_DESERT" kr="고대 이집트의 왕과 부하들을 막아야합니다.저주를 받을지도 모릅니다."/>
 	<Localize id="BG_DESC_SPACE" kr="우주라고 해도 급하면 싸야됩니다. 우주인과 외계인들을 막으십시요."/>
-	<Localize id="DOOR_NAME_SEA_1" kr="복도 문"/>
-	<Localize id="DOOR_NAME_SEA_2" kr="식당 문"/>
+	<Localize id="DOOR_NAME_SEA_1" kr="식당 문"/>
+	<Localize id="DOOR_NAME_SEA_2" kr="함장실 문"/>
 	<Localize id="DOOR_NAME_SEA_3" kr="원자로 문"/>
 	<Localize id="DOOR_NAME_SPACE_1" kr="구식 우주선 문"/>
 	<Localize id="DOOR_NAME_SPACE_2" kr="22세기 우주선 문"/>
@@ -94,15 +94,15 @@
 	<Localize id="DOOR_NAME_DESERT_1" kr="철제창살 문"/>
 	<Localize id="DOOR_NAME_DESERT_2" kr="왕의 침실 문"/>
 	<Localize id="DOOR_NAME_DESERT_3" kr="피라미드 원조 문"/>
-	<Localize id="DOOR_DESC_SEA_1" kr="문이 무거워 보인다"/>
-	<Localize id="DOOR_DESC_SEA_2" kr="금고 문 같지만 잠수함 문이다!"/>
-	<Localize id="DOOR_DESC_SEA_3" kr="함장실 앞에서 죄송합니다."/>
+	<Localize id="DOOR_DESC_SEA_1" kr="잠수함 대원들이 식사하는 곳에서 실례를 해서 죄송합니다."/>
+	<Localize id="DOOR_DESC_SEA_2" kr="큰일났습니다. 함장문 앞에서도 실례를... 싸울 준비 되셨습니까?"/>
+	<Localize id="DOOR_DESC_SEA_3" kr="방사능보다 X냄새가 싫어하는 스트롱맨들이 원자로까지 쫓아오고 있습니다."/>
 	<Localize id="DOOR_DESC_DESERT_1" kr="노예를 가두는 문입니다. 잘못하면 갇힐수도 있습니다."/>
 	<Localize id="DOOR_DESC_DESERT_2" kr="노예는 평생 구경할 기회도 없는 문입니다. 마음껏 열어보시죠."/>
 	<Localize id="DOOR_DESC_DESERT_3" kr="피라미드하면 돌문이 제 맛입니다. 깔맞춤 제대로입니다. 멋진 문닫는 사운드까지!"/>
 	<Localize id="DOOR_DESC_SPACE_1" kr="낡아서 파리가 날아와도 문이 열려버리는군요!"/>
 	<Localize id="DOOR_DESC_SPACE_2" kr="파리는 파리라고 인식을 하는 군요. 많이 발전했네요! "/>
-	<Localize id="DOOR_DESC_SPACE_3" kr="열리면 광선검을 듣 제따이가 나올 것 같군요!"/>
+	<Localize id="DOOR_DESC_SPACE_3" kr="열리면 광선검을 든 제따이가 나올 것 같군요!"/>
 	<Localize id="DOOR_DESC_APART_1" kr="20년이상 오래된 문. 녹물이 떨어지는 군요."/>
 	<Localize id="DOOR_DESC_APART_2" kr="녹슨 문에 주황색 페인트를 칠했습니다. 몇년은 버티겠는데요?"/>
 	<Localize id="DOOR_DESC_APART_3" kr="오! 열쇠가 아니라 비번으로 여는군요? 비번은 자주 바꾸세요."/>
@@ -123,7 +123,7 @@
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
-	<Localize id="CHAR_MSG_4" kr="팔에 힘이 빠진다.."/>
+	<Localize id="CHAR_MSG_4" kr="신이시여.."/>
 	<Localize id="CHAR_MSG_5" kr="더이상은!!"/>
 	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 X싸는 건 당연한거지.왈왈!"/>
 	<Localize id="NOTE_ENDING_DESC_2_1" kr="노예여. 너도 나처럼 무덤 아니 x을 지키고 있는가?"/>
