@@ -135,7 +135,55 @@ public class GameCenterManager : MonoBehaviour {
 
     public void UnlockAchievement(int score)
     {
-        if (score >= 1000)
+        if (score >= 100000)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_100000, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_100000", 100f, null);
+#endif
+        }
+        else if (score >= 50000)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_50000, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_50000", 100f, null);
+#endif
+        }
+        else if (score >= 30000)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_30000, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_30000", 100f, null);
+#endif
+        }
+        else if (score >= 20000)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_20000, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_20000", 100f, null);
+#endif
+        }
+        else if (score >= 10000)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_10000, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_10000", 100f, null);
+#endif
+        }
+        else if (score >= 7500)
+        {
+#if UNITY_ANDROID
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_7500, 100f, null);
+#elif UNITY_IOS
+            Social.ReportProgress("Score_7500", 100f, null);
+#endif
+        }
+        else if (score >= 1000)
         {
 #if UNITY_ANDROID
             PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_1000, 100f, null);
