@@ -188,7 +188,14 @@ public class PopupGameReady : PopupUI
             var skinSkillData = SkillManager.Instance.GetSkillData(skinData.GetSkillName());
 
             StringBuilder desc = new StringBuilder();
-            desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SLOT_CURR_SKIN", skinData.GetLocalizeName()));
+            if(skinType == CommonData.SKIN_TYPE.BACKGROUND)
+            {
+                var bgData = skinData as BackgroundData;
+                desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SLOT_CURR_SKIN", bgData.GetLocalizeNameReady()));
+            }
+            else
+                desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SLOT_CURR_SKIN", skinData.GetLocalizeName()));
+
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SLOT_SKILL", slotSkillData.GetDesc()));

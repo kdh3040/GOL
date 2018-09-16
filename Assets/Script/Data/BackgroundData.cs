@@ -54,4 +54,9 @@ public class BackgroundData : SkinData
     {
         return LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_BG");
     }
+
+    public string GetLocalizeNameReady()
+    {
+        return LocalizeData.Instance.GetLocalizeString(string.Format("{0}_READY",name));
+    }
 }
