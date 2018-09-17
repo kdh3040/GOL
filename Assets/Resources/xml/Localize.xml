@@ -35,7 +35,7 @@
 	<Localize id="MSG_POPUP_TITLE_NORMAL" kr="안내"/>
 	<Localize id="SKIN_SLOT_HAS" kr="보유중"/>
 	<Localize id="SKIN_SLOT_EQUIP" kr="장착중"/>
-	<Localize id="GAME_END_POPUP_CONTINUE_COUNT" kr="광고 보기 ({0}/{1})"/>
+	<Localize id="GAME_END_POPUP_CONTINUE_COUNT" kr="부활({0}/{1})"/>
 	<Localize id="GAME_END_POPUP_NOT_CONTINUE" kr="부활 하기 횟수를 전부 소진 하였습니다."/>
 	<Localize id="POPUP_GAME_READY_DESC_NAME" kr="이름 : "/>
 	<Localize id="POPUP_GAME_READY_DESC_SLOT_CURR_SKIN" kr="스킨 : {0} "/>
