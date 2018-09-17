@@ -13,5 +13,5 @@
 	<CommonData id="NOTE_SPEED_UP" value="0.20"/>
 	<CommonData id="CHAR_MSG_VIEW_INTERVAL" value="3"/>
 	<CommonData id="CHAR_MSG_VIEW_PERCENT" value="50"/>
-	<CommonData id="CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT" value="30"/>
+	<CommonData id="CHAR_REVIVAL_NOTE_SPEED_DOWN_PERCENT" value="15"/>
 </Datas>
