@@ -125,6 +125,8 @@ public class PlayerData
     public bool AlarmSetting { get; private set; }
     public int BestScore { get; private set; }
 
+    public int test = 0;
+
     public void SaveFile()
     {
         MySaveData.Save();

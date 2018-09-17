@@ -45,6 +45,14 @@ public class PopupGameReady : PopupUI
     private List<UIToastMsg> ToastMsgList = new List<UIToastMsg>();
     private bool ShopPopupEnable = false;
 
+    public GameObject test_1;
+    public GameObject test_2;
+    public GameObject test_3;
+
+    public List<Transform> test_pos_1 = new List<Transform>();
+    public List<Transform> test_pos_2 = new List<Transform>();
+    public List<Transform> test_pos_3 = new List<Transform>();
+
     public void Awake()
     {
         UpgradeButton.onClick.AddListener(OnClickUpgrade);
@@ -54,6 +62,28 @@ public class PopupGameReady : PopupUI
 
     public override void ShowPopup(PopupUIData data)
     {
+
+        if (PlayerData.Instance.test == 0)
+        {
+            test_1.gameObject.transform.localPosition = test_pos_1[0].localPosition;
+            test_2.gameObject.transform.localPosition = test_pos_1[1].localPosition;
+            test_3.gameObject.transform.localPosition = test_pos_1[2].localPosition;
+        }
+        if (PlayerData.Instance.test == 1)
+        {
+            test_1.gameObject.transform.localPosition = test_pos_2[0].localPosition;
+            test_2.gameObject.transform.localPosition = test_pos_2[1].localPosition;
+            test_3.gameObject.transform.localPosition = test_pos_2[2].localPosition;
+        }
+        if (PlayerData.Instance.test == 2)
+        {
+            test_1.gameObject.transform.localPosition = test_pos_3[0].localPosition;
+            test_2.gameObject.transform.localPosition = test_pos_3[1].localPosition;
+            test_3.gameObject.transform.localPosition = test_pos_3[2].localPosition;
+        }
+
+
+
         SetBackGroundImg();
         var popupData = data as PopupData;
         if (popupData != null)
