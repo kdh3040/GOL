@@ -23,19 +23,11 @@ public class PopupGameSetting : PopupUI
     public List<InputField> Test_2 = new List<InputField>();
     public InputField Test_3;
 
-    public Button Test_4_1;
-    public Button Test_4_2;
-    public Button Test_4_3;
-
     public void Awake()
     {
         SoundSettingButton.onClick.AddListener(OnClickSoundSetting);
         VibrationSettingButton.onClick.AddListener(OnClickVibrationSetting);
         AlarmSettingButton.onClick.AddListener(OnClickAlarmSetting);
-
-        Test_4_1.onClick.AddListener(() => { PlayerData.Instance.test = 0; });
-        Test_4_2.onClick.AddListener(() => { PlayerData.Instance.test = 1; });
-        Test_4_3.onClick.AddListener(() => { PlayerData.Instance.test = 2; });
     }
 
     public override void ShowPopup(PopupUIData data)
