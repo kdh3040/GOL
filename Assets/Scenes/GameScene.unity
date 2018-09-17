@@ -2880,9 +2880,9 @@ MonoBehaviour:
   mAudio: {fileID: 519420030}
   mClip:
   - {fileID: 8300000, guid: 3d9c0d42839014f48be08a3e63a4c63b, type: 3}
-  - {fileID: 8300000, guid: bc31c73c47ae9ac429779fba8b93c75b, type: 3}
+  - {fileID: 8300000, guid: 68d25af416abab640a8c30d4256a0cce, type: 3}
   - {fileID: 8300000, guid: df302b259e62ec440820f89556ff2d53, type: 3}
-  - {fileID: 8300000, guid: 139023c512c4eb64b833de41486d06e6, type: 3}
+  - {fileID: 8300000, guid: 62dfd32c8288b65478794a1bc68fe54d, type: 3}
 --- !u!4 &1317227602
 Transform:
   m_ObjectHideFlags: 0

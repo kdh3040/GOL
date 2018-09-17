@@ -412,7 +412,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d607340884db224b88bf023721dae3c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d67b32b7f10c61240a882a5321d24bf4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -597,7 +597,7 @@ MonoBehaviour:
   Img_BackGround: {fileID: 35168947}
   Anim_Char: {fileID: 2102498689}
   mBGM: {fileID: 649674983}
-  mClip: {fileID: 8300000, guid: 2d607340884db224b88bf023721dae3c, type: 3}
+  mClip: {fileID: 8300000, guid: d67b32b7f10c61240a882a5321d24bf4, type: 3}
 --- !u!114 &694190008
 MonoBehaviour:
   m_ObjectHideFlags: 0
