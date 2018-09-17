@@ -141,8 +141,18 @@ public class GamePlayManager : MonoBehaviour
         StartType = startType;
         ResetGame();
         //InGameEffect_Start.SetActive(true);
-        Animator ani = InGameEffect_Start.GetComponent<Animator>();
-        ani.SetTrigger("Start");
+        if(startType == START_TYPE.FIRST)
+        {
+            Animator ani = InGameEffect_Start.GetComponent<Animator>();
+            ani.SetTrigger("Start");
+        }
+        else
+        {
+            Animator ani = InGameEffect_Start.GetComponent<Animator>();
+            ani.Rebind();
+            InGameEffect_Start.SetActive(false);
+        }
+        
 
         SkillManager.Instance.UseSkinSlotSkill();
         mGameUIPage.RefreshShieldItemUI();
