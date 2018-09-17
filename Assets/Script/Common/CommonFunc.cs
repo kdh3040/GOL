@@ -71,7 +71,14 @@ public class CommonFunc
                     PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE, new PopupGamePurchase.PopupData(CommonData.POINT_TYPE.DDONG));
                 };
 
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG"), null, null, chargeAction));
+                var time = PlayerData.Instance.GetNextDDongRefileTime();
+
+                string remainTime = "";
+                if (time.Minutes > 0)
+                    remainTime = string.Format("{0} {1}", LocalizeData.Instance.GetLocalizeString("TIME_VIEW_MIN", time.Minutes), LocalizeData.Instance.GetLocalizeString("TIME_VIEW_SEC", time.Seconds));
+                else
+                    remainTime = string.Format("{0}", LocalizeData.Instance.GetLocalizeString("TIME_VIEW_SEC", time.Seconds));
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG", remainTime), null, null, chargeAction));
             }
             return false;
         }
