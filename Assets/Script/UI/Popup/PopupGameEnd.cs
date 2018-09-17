@@ -187,7 +187,7 @@ public class PopupGameEnd : PopupUI {
             for (int index_2 = 0; index_2 < endingList.Count; index_2++)
             {
                 var endingData = DataManager.Instance.EndingDataList[endingList[index_2]];
-                if (endingData.IsOpenEnding(CoinValue, ScoreValue) && PlayerData.Instance.HasEnding(endingData.id) == false)
+                if (endingData.IsOpenEnding(CoinValue + PlusCoinValue, ScoreValue + PlusScoreValue) && PlayerData.Instance.HasEnding(endingData.id) == false)
                     EndingSceneId = endingData.id;
             }
         }
