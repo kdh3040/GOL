@@ -1794,6 +1794,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 212620257450903790, guid: c960690b080196f4aa85954b08edb8e7,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e53db278cb8e744888b736b4b4ae3df,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c960690b080196f4aa85954b08edb8e7, type: 2}
   m_IsPrefabAsset: 0
@@ -2404,7 +2410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -865}
+  m_AnchoredPosition: {x: 0, y: -850}
   m_SizeDelta: {x: 1080, y: 138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179429069
