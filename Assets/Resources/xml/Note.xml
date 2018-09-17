@@ -6,9 +6,9 @@
 	<Note id="4" score="68" img="Renewal/Note/sea_note1" probability="50" end_desc="NOTE_ENDING_DESC_4_1"/>
 	<Note id="5" score="130" img="Renewal/Note/sea_note2" probability="30" end_desc="NOTE_ENDING_DESC_5_1"/>
 	<Note id="6" score="220" img="Renewal/Note/sea_note3" probability="20" end_desc="NOTE_ENDING_DESC_6_1"/>
-	<Note id="7" score="108" img="Renewal/Note/space_note1" probability="50" end_desc="NOTE_ENDING_DESC_7_1"/>
-	<Note id="8" score="207" img="Renewal/Note/space_note2" probability="30" end_desc="NOTE_ENDING_DESC_8_1"/>
-	<Note id="9" score="348" img="Renewal/Note/space_note3" probability="20" end_desc="NOTE_ENDING_DESC_9_1"/>
+	<Note id="7" score="135" img="Renewal/Note/space_note1" probability="50" end_desc="NOTE_ENDING_DESC_7_1"/>
+	<Note id="8" score="260" img="Renewal/Note/space_note2" probability="30" end_desc="NOTE_ENDING_DESC_8_1"/>
+	<Note id="9" score="435" img="Renewal/Note/space_note3" probability="20" end_desc="NOTE_ENDING_DESC_9_1"/>
 	<Note id="10" score="40" img="Renewal/Note/apart_note1" probability="50" end_desc="NOTE_ENDING_DESC_10_1"/>
 	<Note id="11" score="75" img="Renewal/Note/apart_note2" probability="30" end_desc="NOTE_ENDING_DESC_11_1"/>
 	<Note id="12" score="125" img="Renewal/Note/apart_note3" probability="20" end_desc="NOTE_ENDING_DESC_12_1"/>	
