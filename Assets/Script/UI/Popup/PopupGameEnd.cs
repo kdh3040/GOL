@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -27,7 +28,6 @@ public class PopupGameEnd : PopupUI {
     public Image NewRecord;
     public Text Coin;
     public Button GameRestartButton;
-    public UIPointValue GameRestartCost;
     public Button GameRevivalButton;
     public Text GameRevivalText;
     public Button GameExitButton;
@@ -57,7 +57,6 @@ public class PopupGameEnd : PopupUI {
         PlusCoinValue = 0;
         TopBar.Initialize(false);
         NewRecord.gameObject.SetActive(false);
-        GameRestartCost.SetValue(1);
         GameRevivalText.text = LocalizeData.Instance.GetLocalizeString("GAME_END_POPUP_CONTINUE_COUNT", GamePlayManager.Instance.ContinueCount, CommonData.GAME_CONTINUE_MAX_COUNT);
 
         // 스킬로 추가 획득
@@ -244,15 +243,21 @@ public class PopupGameEnd : PopupUI {
 
         if (GamePlayManager.Instance.ContinueCount > 0)
         {
+            UnityAction yesAction = () =>
+            {
 #if UNITY_EDITOR
-            GamePlayManager.Instance.ContinueCount--;
-            GamePlayManager.Instance.GameRevival();
-            PopupManager.Instance.DismissPopup();
+                GamePlayManager.Instance.ContinueCount--;
+                GamePlayManager.Instance.GameRevival();
+                PopupManager.Instance.DismissPopup();
 #elif UNITY_ANDROID
             AdManager.Instance.ShowRewardVideo();
 #elif UNITY_IPHONE
             AdManager.Instance.ShowRewardVideo();
 #endif
+            };
+
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_ADS"), yesAction);
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
         {
