@@ -228,7 +228,7 @@ public class PopupGameEnd : PopupUI {
         if (PlayerData.Instance.IsPlayEnable())
         {
             SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.GAME_PLAY);
-            GamePlayManager.Instance.GameStart();
+            GamePlayManager.Instance.GameStart(GamePlayManager.START_TYPE.RESTART);
             PopupManager.Instance.DismissPopup();
         }
     }

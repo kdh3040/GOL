@@ -19,18 +19,12 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    public class GamePlayItem
+    public enum START_TYPE
     {
-        public bool IngameGet;
-        public int ItemId;
-
-        public GamePlayItem(bool ingameGet, int itemId)
-        {
-            IngameGet = ingameGet;
-            ItemId = itemId;
-        }
+        NONE,
+        FIRST,
+        RESTART
     }
-
     public int Score
     {
         get;
@@ -58,7 +52,7 @@ public class GamePlayManager : MonoBehaviour
     private GameObject InGameEffect_Revive;
     
     private GameObject InGameEffect_Start;
-    private bool FirstStart = true;
+    private START_TYPE StartType = START_TYPE.NONE;
 
     private bool Click = false;
     private CommonData.NOTE_LINE ClickLine = CommonData.NOTE_LINE.INDEX_1;
@@ -141,10 +135,10 @@ public class GamePlayManager : MonoBehaviour
         mNoteSystem.GameExit();
         mDoorSystem.GameExit();
     }
-    public void GameStart()
+    public void GameStart(START_TYPE startType)
     {        
         ContinueCount = CommonData.GAME_CONTINUE_MAX_COUNT;
-        FirstStart = true;
+        StartType = startType;
         ResetGame();
         //InGameEffect_Start.SetActive(true);
         Animator ani = InGameEffect_Start.GetComponent<Animator>();
@@ -266,12 +260,17 @@ public class GamePlayManager : MonoBehaviour
     {
         while(true)
         {
-            if (FirstStart)
+            if (StartType == START_TYPE.FIRST)
             {
-                yield return new WaitForSecondsRealtime(3.5f);                
-                FirstStart = false;
-                //InGameEffect_Start.SetActive(false);
+                yield return new WaitForSecondsRealtime(3.5f);
+                StartType = START_TYPE.NONE;
             }
+            else if(StartType == START_TYPE.RESTART)
+            {
+                //yield return new WaitForSecondsRealtime(1f);
+                StartType = START_TYPE.NONE;
+            }
+
             if (IsGamePause)
             {
                 yield return null;
@@ -319,7 +318,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void ClickDoor(Door door)
     {
-        if (FirstStart)
+        if (StartType != START_TYPE.NONE)
             return;
 
         if (IsGamePause)
@@ -615,7 +614,7 @@ public class GamePlayManager : MonoBehaviour
         if (InGame == false)
             return;
 
-        if (FirstStart)
+        if (StartType != START_TYPE.NONE)
             return;
 
         if (IsGamePause)
@@ -634,7 +633,7 @@ public class GamePlayManager : MonoBehaviour
         if (InGame == false)
             return;
 
-        if (FirstStart)
+        if (StartType != START_TYPE.NONE)
             return;
 
         

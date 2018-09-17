@@ -37,7 +37,7 @@ public class PlayScene : MonoBehaviour
         // 데이터 할당
         GamePlayManager.Instance.Initialize(this);
         // 게임시작
-        GamePlayManager.Instance.GameStart();
+        GamePlayManager.Instance.GameStart(GamePlayManager.START_TYPE.FIRST);
 
         PlayBGM();
     }
