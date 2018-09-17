@@ -19,6 +19,7 @@ public class PopupMsg : PopupUI
         public MSG_POPUP_TYPE MsgPopupType = MSG_POPUP_TYPE.OK;
         public UnityAction YesAction = null;
         public UnityAction NoAction = null;
+        public UnityAction ChargeAction = null;
         public PopupData(string desc)
         {
             Title = string.Empty;
@@ -26,13 +27,17 @@ public class PopupMsg : PopupUI
             MsgPopupType = MSG_POPUP_TYPE.OK;
         }
 
-        public PopupData(string desc, UnityAction yesAction, UnityAction noAction = null)
+        public PopupData(string desc, UnityAction yesAction, UnityAction noAction = null, UnityAction chargeAction = null)
         {
             Title = string.Empty;
             Desc = desc;
-            MsgPopupType = MSG_POPUP_TYPE.YES_NO;
+            if(chargeAction != null)
+                MsgPopupType = MSG_POPUP_TYPE.YES_CHARGE;
+            else
+                MsgPopupType = MSG_POPUP_TYPE.YES_NO;
             YesAction = yesAction;
             NoAction = noAction;
+            ChargeAction = chargeAction;
         }
         public PopupData(string title, string desc)
         {
@@ -41,13 +46,17 @@ public class PopupMsg : PopupUI
             MsgPopupType = MSG_POPUP_TYPE.OK;
         }
 
-        public PopupData(string title, string desc, UnityAction yesAction, UnityAction noAction = null)
+        public PopupData(string title, string desc, UnityAction yesAction, UnityAction noAction = null, UnityAction chargeAction = null)
         {
             Title = title;
             Desc = desc;
-            MsgPopupType = MSG_POPUP_TYPE.YES_NO;
+            if (chargeAction != null)
+                MsgPopupType = MSG_POPUP_TYPE.YES_CHARGE;
+            else
+                MsgPopupType = MSG_POPUP_TYPE.YES_NO;
             YesAction = yesAction;
             NoAction = noAction;
+            ChargeAction = chargeAction;
         }
     }
 
@@ -55,11 +64,13 @@ public class PopupMsg : PopupUI
     {
         OK,
         YES_NO,
+        YES_CHARGE
     }
 
 
     public Button YesButton;
     public Button NoButton;
+    public Button ChargeButton;
     public Text Title;
     public Text Desc;
     private PopupData mPopupData;
@@ -68,6 +79,7 @@ public class PopupMsg : PopupUI
     {
         YesButton.onClick.AddListener(OnClickYes);
         NoButton.onClick.AddListener(OnClickNo);
+        ChargeButton.onClick.AddListener(OnClickCharge);
     }
 
     public override void ShowPopup(PopupUIData data)
@@ -81,6 +93,7 @@ public class PopupMsg : PopupUI
 
         YesButton.gameObject.SetActive(true);
         NoButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
+        ChargeButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.YES_CHARGE);
     }
 
     private void OnClickYes()
@@ -95,5 +108,12 @@ public class PopupMsg : PopupUI
         if (mPopupData.NoAction != null)
             mPopupData.NoAction();
     }
-    
+
+    private void OnClickCharge()
+    {
+        PopupManager.Instance.DismissPopup();
+        if (mPopupData.ChargeAction != null)
+            mPopupData.ChargeAction();
+    }
+
 }

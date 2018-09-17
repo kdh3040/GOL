@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CommonFunc
@@ -31,9 +32,14 @@ public class CommonFunc
 
         if (myCoin < coin)
         {
-            if(showPopup)
+            if (showPopup)
             {
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_COIN")));
+                UnityAction chargeAction = () =>
+                {
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE, new PopupGamePurchase.PopupData(CommonData.POINT_TYPE.COIN));
+                };
+
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_COIN"), null, null, chargeAction));
             }
             return false;
         }
@@ -60,7 +66,12 @@ public class CommonFunc
         {
             if (showPopup)
             {
-                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG")));
+                UnityAction chargeAction = () =>
+                {
+                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PURCHASE, new PopupGamePurchase.PopupData(CommonData.POINT_TYPE.DDONG));
+                };
+
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("GAME_PLAY_LACK_DDONG"), null, null, chargeAction));
             }
             return false;
         }

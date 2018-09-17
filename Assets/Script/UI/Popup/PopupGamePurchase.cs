@@ -13,9 +13,9 @@ public class PopupGamePurchase : PopupUI
     public class PopupData : PopupUIData
     {
         public CommonData.POINT_TYPE BuyType;
-        public PopupData(CommonData.POINT_TYPE type = CommonData.POINT_TYPE.DDONG)
+        public PopupData(CommonData.POINT_TYPE buyType = CommonData.POINT_TYPE.DDONG)
         {
-            BuyType = type;
+            BuyType = buyType;
         }
     }
 
