@@ -277,7 +277,13 @@ public class GamePlayManager : MonoBehaviour
             }
             else if(StartType == START_TYPE.RESTART)
             {
-                //yield return new WaitForSecondsRealtime(1f);
+                InGameEffect_Start.SetActive(true);
+
+                Animator ani = InGameEffect_Start.GetComponent<Animator>();
+                ani.SetTrigger("Start");
+
+                yield return new WaitForSecondsRealtime(1.8f);
+          
                 StartType = START_TYPE.NONE;
             }
 
