@@ -230,7 +230,11 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         Debug.Log("ProcessPurchase: PASS. Product: '{0}'" + args.purchasedProduct.definition.id);
         
         Debug.Log("mPurchaseSlot.Reward " + mPurchaseSlot.Reward);
-        PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
+        if(mPurchaseSlot.RewardType == CommonData.POINT_TYPE.COIN)
+            PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
+        else if(mPurchaseSlot.RewardType == CommonData.POINT_TYPE.DDONG)
+            PlayerData.Instance.PlusDDong(mPurchaseSlot.Reward);
+
 
         /*
         switch (args.purchasedProduct.definition.id)
@@ -256,7 +260,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
                 break;
         }
         */
-        
+
         return PurchaseProcessingResult.Complete;
     }
 
