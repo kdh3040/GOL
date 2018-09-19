@@ -129,8 +129,8 @@ public class AdManager : MonoBehaviour {
 #if UNITY_EDITOR
         string adGameUnitId = "unused";
 #elif UNITY_ANDROID
-        string adGameUnitId = adGameAppID_Android;
-        MobileAds.Initialize(adGameAppID_Android);
+        string adGameUnitId = adGameVideo_Android;
+        MobileAds.Initialize(adGameVideo_Android);
 #elif UNITY_IPHONE
         string adGameUnitId = adGameVideo_Ios;
         MobileAds.Initialize(adGameVideo_Ios);
@@ -148,8 +148,8 @@ public class AdManager : MonoBehaviour {
 #if UNITY_EDITOR
         string adDDongUnitId = "unused";
 #elif UNITY_ANDROID
-        string adDDongUnitId = adDDongAppID_Android;
-        MobileAds.Initialize(adDDongAppID_Android);
+        string adDDongUnitId = adDDongVideo_Android;
+        MobileAds.Initialize(adDDongVideo_Android);
 #elif UNITY_IPHONE
         string adDDongUnitId = adDDongVideo_Ios;
         MobileAds.Initialize(adDDongVideo_Ios);
