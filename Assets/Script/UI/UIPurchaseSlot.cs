@@ -75,10 +75,10 @@ public class UIPurchaseSlot : MonoBehaviour
             switch (type)
             {
                 case CommonData.POINT_TYPE.DDONG:
-                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_DDONG", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ff0000>({0}% 보너스)</color>", BonusPercent);
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_DDONG", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ffff00>({0}% 보너스)</color>", BonusPercent);
                     break;
                 case CommonData.POINT_TYPE.COIN:
-                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_COIN", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ff0000>({0}% 보너스)</color>", BonusPercent);
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_COIN", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ffff00>({0}% 보너스)</color>", BonusPercent);
                     break;
                 case CommonData.POINT_TYPE.CASH:
                     uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_CASH", CommonFunc.ConvertNumber(value));
