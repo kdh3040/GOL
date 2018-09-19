@@ -42,6 +42,11 @@ public class AdManager : MonoBehaviour {
     private static string adGameVideo_Ios = "ca-app-pub-4020702622451243/2207843982";
     private static RewardBasedVideoAd gameBasedVideo;
 
+
+    private static string adDDongVideo_Android = "ca-app-pub-4020702622451243/9016794912";
+    private static string adDDongVideo_Ios = "ca-app-pub-4020702622451243/4858058054";
+    private static RewardBasedVideoAd DDongBasedVideo;
+
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
@@ -139,6 +144,25 @@ public class AdManager : MonoBehaviour {
         AdRequest requestGame = new AdRequest.Builder().Build();
         gameBasedVideo.LoadAd(requestGame, adGameUnitId);
 
+
+#if UNITY_EDITOR
+        string adDDongUnitId = "unused";
+#elif UNITY_ANDROID
+        string adDDongUnitId = adDDongAppID_Android;
+        MobileAds.Initialize(adDDongAppID_Android);
+#elif UNITY_IPHONE
+        string adDDongUnitId = adDDongVideo_Ios;
+        MobileAds.Initialize(adDDongVideo_Ios);
+#else
+        string adGameUnitId = "unexpected_platform";
+#endif
+
+
+        DDongBasedVideo = RewardBasedVideoAd.Instance;
+
+        AdRequest requestDDong = new AdRequest.Builder().Build();
+        DDongBasedVideo.LoadAd(requestDDong, adDDongUnitId);
+
     }
 
     public void ShowRewardVideo()
@@ -154,6 +178,17 @@ public class AdManager : MonoBehaviour {
         {
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("동영상 준비중입니다"));
         }
+    }
+    private void HandleRewardBasedVideoRewarded(object sender, Reward e)
+    {
+        Debug.Log("!!!!!! NotHandleRewardBasedVideoRewarded");
+        StartCoroutine(GameRevival());
+    }
+    IEnumerator GameRevival()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        GamePlayManager.Instance.GameRevival(false);
+        PopupManager.Instance.DismissPopup();
     }
 
     public void ShowGameOverVideo()
@@ -174,17 +209,23 @@ public class AdManager : MonoBehaviour {
         }        
     }
 
-    private void HandleRewardBasedVideoRewarded(object sender, Reward e)
+    public void ShowFreeDDongVideo()
+    {
+        if (!DDongBasedVideo.IsLoaded())
+        {
+            DDongBasedVideo.OnAdRewarded += HandleDDongBasedVideoRewarded;
+            DDongBasedVideo.Show();
+            return;
+        }
+        else
+        {
+            DDongBasedVideo.Show();
+        }
+    }
+
+    private void HandleDDongBasedVideoRewarded(object sender, Reward e)
     {
         Debug.Log("!!!!!! NotHandleRewardBasedVideoRewarded");
-        StartCoroutine(GameRevival());
+        PlayerData.Instance.PlusDDong(1);
     }
-
-    IEnumerator GameRevival()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-        GamePlayManager.Instance.GameRevival(false);
-        PopupManager.Instance.DismissPopup();
-    }
-
 }
