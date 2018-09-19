@@ -122,16 +122,27 @@ public class PopupManager : MonoBehaviour {
                 if (GamePlayManager.Instance.InGame)
                     return;
 
-                if (mShowPopup == null)
+                if (GManager.Instance.GetVideoStatus() == false )
                 {
-                    UnityAction yesAction = () =>
+                    if (mShowPopup == null)
                     {
-                        Application.Quit();
-                    };
-                    var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
-                    ShowPopup(POPUP_TYPE.MSG_POPUP, msgPopupData);
-                    return;
+                        UnityAction yesAction = () =>
+                        {
+                            Application.Quit();
+                        };
+                        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END"), yesAction);
+                        ShowPopup(POPUP_TYPE.MSG_POPUP, msgPopupData);
+                        return;
+                    }
                 }
+                else if (GManager.Instance.GetVideoStatus() == true)
+                {
+                    Destroy(GManager.Instance.webViewObject);
+                    PlayerData.Instance.SetSoundSetting(PlayerData.Instance.SoundSetting);
+                    GManager.Instance.SetVideoStatus(false);
+                }
+              
+                
 
                 DismissPopup();
             }

@@ -24,6 +24,9 @@ public class GManager : MonoBehaviour
     // 게임의 전체를 관리하는 매니저
     public PlayerData mPlayerData = new PlayerData();
 
+    private bool bViewVideo = false;
+    public WebViewObject webViewObject;
+
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -33,24 +36,12 @@ public class GManager : MonoBehaviour
 
         Screen.SetResolution(Screen.width, (Screen.width * 16) / 9, false);
 
-   
-
         PlayerData.Instance.Initialize();
       //  PurchaseManager.Instance.InitializePurchasing();
 
-        
-
-        
-     
-
-
         StartCoroutine(UpdateGame());
     }
-
-
-
-   
-
+    
     IEnumerator UpdateGame()
     {
         while (true)
@@ -59,5 +50,14 @@ public class GManager : MonoBehaviour
             PlayerData.Instance.UpdatePlayerData(time);
             yield return null;
         }
+    }
+
+    public void SetVideoStatus(bool ViewVideo)
+    {
+        bViewVideo = ViewVideo;
+    }
+    public bool GetVideoStatus()
+    {
+        return bViewVideo;
     }
 }
