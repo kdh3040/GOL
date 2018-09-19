@@ -4,11 +4,11 @@
 	<Skin level = "2" skill="DOOR_SLOT_SKILL_LV2" cost="100"/>
 	<Skin level = "3" skill="DOOR_SLOT_SKILL_LV3" cost="200"/>
 	<Skin level = "4" skill="DOOR_SLOT_SKILL_LV4" cost="300"/>
-	<Skin level = "5" skill="DOOR_SLOT_SKILL_LV5" cost="400"/>
-	<Skin level = "6" skill="DOOR_SLOT_SKILL_LV6" cost="500"/>
-	<Skin level = "7" skill="DOOR_SLOT_SKILL_LV7" cost="600"/>
-	<Skin level = "8" skill="DOOR_SLOT_SKILL_LV8" cost="700"/>
-	<Skin level = "9" skill="DOOR_SLOT_SKILL_LV9" cost="800"/>
-	<Skin level = "10" skill="DOOR_SLOT_SKILL_LV10" cost="900"/>
-	<Skin level = "11" skill="DOOR_SLOT_SKILL_LV11" cost="1000"/>
+	<Skin level = "5" skill="DOOR_SLOT_SKILL_LV5" cost="500"/>
+	<Skin level = "6" skill="DOOR_SLOT_SKILL_LV6" cost="700"/>
+	<Skin level = "7" skill="DOOR_SLOT_SKILL_LV7" cost="900"/>
+	<Skin level = "8" skill="DOOR_SLOT_SKILL_LV8" cost="1200"/>
+	<Skin level = "9" skill="DOOR_SLOT_SKILL_LV9" cost="1500"/>
+	<Skin level = "10" skill="DOOR_SLOT_SKILL_LV10" cost="1800"/>
+	<Skin level = "11" skill="DOOR_SLOT_SKILL_LV11" cost="2100"/>
 </Datas>
