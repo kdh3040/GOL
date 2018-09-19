@@ -200,7 +200,6 @@ public class AdManager : MonoBehaviour {
             if (!gameBasedVideo.IsLoaded())
             {
                 RequestRewardBasedVideo();
-                return;
             }
             else
             {
@@ -213,12 +212,11 @@ public class AdManager : MonoBehaviour {
     {
         if (!DDongBasedVideo.IsLoaded())
         {
-            DDongBasedVideo.OnAdRewarded += HandleDDongBasedVideoRewarded;
-            DDongBasedVideo.Show();
-            return;
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("동영상 준비중입니다"));
         }
         else
         {
+            DDongBasedVideo.OnAdRewarded += HandleDDongBasedVideoRewarded;
             DDongBasedVideo.Show();
         }
     }
