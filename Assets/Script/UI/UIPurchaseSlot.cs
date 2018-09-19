@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UIPurchaseSlot : MonoBehaviour
 {
     public Button SlotButton;
-    public Image CostIcon;
+    public Text FreeAdsSlot;
+    public GameObject PurchaseSlot;
     public Text CostCount;
     public Image RewardIcon;
     public Text RewardCount;
@@ -19,20 +20,31 @@ public class UIPurchaseSlot : MonoBehaviour
     public CommonData.POINT_TYPE RewardType;
     [System.NonSerialized]
     public int Reward;
+    [System.NonSerialized]
+    public bool AdsSlot;
 
     public string PurchaseID;
+    public void SetPurchaseFreeSlot()
+    {
+        FreeAdsSlot.gameObject.SetActive(true);
+        PurchaseSlot.gameObject.SetActive(false);
+        AdsSlot = true;
+        PurchaseID = "";
+    }
 
     public void SetPurchaseSlot(CommonData.POINT_TYPE costType, int cost, CommonData.POINT_TYPE rewardType, int reward, string purchaseID = "")
     {
+        FreeAdsSlot.gameObject.SetActive(false);
+        PurchaseSlot.gameObject.SetActive(true);
         CostType = costType;
         Cost = cost;
         RewardType = rewardType;
         Reward = reward;
-        SetIcon(costType, ref CostIcon);
         SetValue(costType, ref CostCount, cost);
         SetIcon(rewardType, ref RewardIcon);
         SetValue(rewardType, ref RewardCount, reward);
         PurchaseID = purchaseID;
+        AdsSlot = false;
     }
 
     private void SetIcon(CommonData.POINT_TYPE type, ref Image icon)
