@@ -15,9 +15,6 @@ public class PageMainUI : MonoBehaviour
     public Button GameSetting;
     public Button GameBook;
 
-    public Button VideoLInk_1;
-    public Button VideoLInk_2;
-
     public Image Img_BackGround;
     public Animator Anim_Char;
 
@@ -32,8 +29,6 @@ public class PageMainUI : MonoBehaviour
         GameSetting.onClick.AddListener(OnClickGameSetting);
         GameBook.onClick.AddListener(OnClickGameBook);
 
-        VideoLInk_1.onClick.AddListener(OnClickVideo_1);
-        VideoLInk_2.onClick.AddListener(OnClickVideo_2);
     }
 
     void Start()
@@ -64,41 +59,6 @@ public class PageMainUI : MonoBehaviour
     public void OnClickGameBook()
     {
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_BOOK);
-    }
-    public void OnClickVideo_1()
-    {
-        AudioListener.pause = true;
-        GManager.Instance.SetVideoStatus(true);
-
-        string strUrl = "https://www.youtube.com/watch?v=4mLGWjx6CS0";
-
-        GManager.Instance.webViewObject =
-            (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
-        GManager.Instance.webViewObject.Init((msg) => {
-            Debug.Log(string.Format("CallFromJS[{0}]", msg));
-        });
-
-        GManager.Instance.webViewObject.LoadURL(strUrl);
-        GManager.Instance.webViewObject.SetVisibility(true);
-        GManager.Instance.webViewObject.SetMargins(0, 0, 0, 0);
-    }
-
-    public void OnClickVideo_2()
-    {
-        AudioListener.pause = true;
-        GManager.Instance.SetVideoStatus(true);
-
-        string strUrl = "https://www.youtube.com/watch?v=c1TwgBJCMR8";
-
-        GManager.Instance.webViewObject =
-            (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
-        GManager.Instance.webViewObject.Init((msg) => {
-            Debug.Log(string.Format("CallFromJS[{0}]", msg));
-        });
-
-        GManager.Instance.webViewObject.LoadURL(strUrl);
-        GManager.Instance.webViewObject.SetVisibility(true);
-        GManager.Instance.webViewObject.SetMargins(0, 0, 0, 0);
     }
 
     private void Refresh()
