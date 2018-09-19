@@ -21,6 +21,9 @@ public class PopupGamePurchase : PopupUI
 
     public UITopBar TopBar;
     public List<UIPurchaseSlot> SlotList = new List<UIPurchaseSlot>();
+    public GameObject ToastPos;
+
+    private List<UIToastMsg> ToastMsgList = new List<UIToastMsg>();
 
     public override void ShowPopup(PopupUIData data)
     {
@@ -96,6 +99,24 @@ public class PopupGamePurchase : PopupUI
             SlotList[7].SlotButton.onClick.RemoveAllListeners();
             SlotList[7].SlotButton.onClick.AddListener(() => { OnClickPurchase(7); });
         }
+
+        for (int i = 0; i < ToastMsgList.Count; i++)
+        {
+            DestroyImmediate(ToastMsgList[i].gameObject);
+        }
+        ToastMsgList.Clear();
+
+        if (ToastMsgList.Count <= 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                var obj = Instantiate(Resources.Load("Prefab/UIToastMsg"), gameObject.transform) as GameObject;
+                var slot = obj.GetComponent<UIToastMsg>();
+                slot.gameObject.transform.localPosition = ToastPos.transform.localPosition;
+                slot.gameObject.SetActive(false);
+                ToastMsgList.Add(slot);
+            }
+        }
     }
 
     public void OnClickPurchase(int index)
@@ -128,6 +149,20 @@ public class PopupGamePurchase : PopupUI
             }
         }
         
+    }
+
+    public void ShowToastMsg(string msg)
+    {
+        for (int i = 0; i < ToastMsgList.Count; i++)
+        {
+            if (ToastMsgList[i].Empty)
+            {
+                ToastMsgList[i].gameObject.SetActive(true);
+                ToastMsgList[i].gameObject.transform.localPosition = ToastPos.transform.localPosition;
+                ToastMsgList[i].SetMsg(msg);
+                break;
+            }
+        }
     }
 
 }

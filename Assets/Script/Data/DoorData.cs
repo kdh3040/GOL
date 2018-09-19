@@ -9,7 +9,7 @@ public class DoorData : SkinData
     public string halfopen_img;
     public string open_img;
     public string close_sound;
-    public string bg;
+    public string buy_bg;
 
     public DoorData(XmlNode node)
     {
@@ -23,7 +23,7 @@ public class DoorData : SkinData
         open_img = node.Attributes.GetNamedItem("open_img").Value;
         skill = node.Attributes.GetNamedItem("skill").Value;
         close_sound = node.Attributes.GetNamedItem("close_sound").Value;
-        bg = node.Attributes.GetNamedItem("bg").Value;
+        buy_bg = node.Attributes.GetNamedItem("buy_bg").Value;
     }
 
     public override string GetIcon()

@@ -201,13 +201,31 @@ public class PlayerData
 
     public void UpdatePlayerData(float time)
     {
+        if (ConfigData.Instance.DDONG_REFIL_TIME == 0)
+            return;
+
         if (NextDDongRefilTime <= DateTime.MinValue)
             return;
 
         if (NextDDongRefilTime <= CommonFunc.GetCurrentTime())
         {
-            NextDDongRefilTime = DateTime.MinValue;
-            PlusDDong(1);
+            var span = CommonFunc.GetCurrentTime() - NextDDongRefilTime;
+            var totalSec = span.TotalSeconds;
+            var count = (int)(totalSec / ConfigData.Instance.DDONG_REFIL_TIME) + 1;
+ 
+            if(Myddong + count >= CommonData.MAX_DDONG_COUNT)
+            {
+                NextDDongRefilTime = DateTime.MinValue;
+                PlusDDong(CommonData.MAX_DDONG_COUNT - Myddong);
+            }
+            else
+            {
+                if(count == 1)
+                    NextDDongRefilTime = DateTime.MinValue;
+                else
+                    NextDDongRefilTime = DateTime.Now.AddSeconds(totalSec % ConfigData.Instance.DDONG_REFIL_TIME);
+                PlusDDong(count);
+            } 
         }
     }
 

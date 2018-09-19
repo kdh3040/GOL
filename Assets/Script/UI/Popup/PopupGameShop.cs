@@ -190,9 +190,20 @@ public class PopupGameShop : PopupUI
             if(SelectSkinType == CommonData.SKIN_TYPE.DOOR)
             {
                 var doorData = data as DoorData;
-                if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+                if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg) == false)
                 {
-                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg).GetLocalizeName());
+                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg).GetLocalizeName());
+                    desc.AppendFormat(str);
+                }
+                else
+                    desc.AppendFormat(data.GetLocalizeDesc());
+            }
+            else if (SelectSkinType == CommonData.SKIN_TYPE.BACKGROUND)
+            {
+                var bgData = data as BackgroundData;
+                if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg) == false)
+                {
+                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg).GetLocalizeName());
                     desc.AppendFormat(str);
                 }
                 else
@@ -352,9 +363,19 @@ public class PopupGameShop : PopupUI
         if (ShopSkinList[SelectSlotIndex].SkinType == CommonData.SKIN_TYPE.DOOR)
         {
             var doorData = skinData as DoorData;
-            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg) == false)
             {
-                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg).GetLocalizeName()));
+                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg).GetLocalizeName()));
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData_1);
+                return false;
+            }
+        }
+        else if (ShopSkinList[SelectSlotIndex].SkinType == CommonData.SKIN_TYPE.BACKGROUND)
+        {
+            var bgData = skinData as BackgroundData;
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg) == false)
+            {
+                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg).GetLocalizeName()));
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData_1);
                 return false;
             }
