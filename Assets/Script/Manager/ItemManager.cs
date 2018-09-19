@@ -63,4 +63,15 @@ public class ItemManager
             PlayerData.Instance.PlusItem_Level(id);
         }
     }
+
+    public int GetNextItemLevelUpCost(int id)
+    {
+        if (IsItemLevelUp(id))
+        {
+            var itemdata = GetItemData(id);
+            return DataManager.Instance.ItemLevelUpCostDataList[string.Format("{0}_LV{1}", itemdata.name, PlayerData.Instance.GetItemLevel(id) + 1)].cost;
+        }
+        else
+            return 0;
+    }
 }

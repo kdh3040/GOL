@@ -28,6 +28,7 @@ public class DataManager {
     public Dictionary<int, EndingData> EndingDataList = new Dictionary<int, EndingData>();
     public Dictionary<int, EndingGroupData> EndingGroupDataList = new Dictionary<int, EndingGroupData>();
     public Dictionary<int, CharMsgData> CharMsgDataList = new Dictionary<int, CharMsgData>();
+    public Dictionary<string, ItemLevelUpCostData> ItemLevelUpCostDataList = new Dictionary<string, ItemLevelUpCostData>();
     public Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>> SkinSlotLevelDataList = new Dictionary<CommonData.SKIN_TYPE, List<SkinSlotLevelData>>();
 
     private List<KeyValuePair<string, string>> LoadingDataXmlList = new List<KeyValuePair<string, string>>();
@@ -50,6 +51,7 @@ public class DataManager {
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("BGSkinSlotLevel", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("DoorSkinSlotLevel", "Datas"));
             LoadingDataXmlList.Add(new KeyValuePair<string, string>("CharMsg", "Datas"));
+            LoadingDataXmlList.Add(new KeyValuePair<string, string>("ItemLevelUpCost", "Datas"));
 
         }
 
@@ -245,6 +247,21 @@ public class DataManager {
                     }
                 }
             }
+
+            else if (xmlName == "ItemLevelUpCost")
+            {
+                foreach (XmlNode node in list)
+                {
+                    foreach (XmlNode child in node.ChildNodes)
+                    {
+                        var data = new ItemLevelUpCostData(child);
+                        ItemLevelUpCostDataList.Add(data.name, data);
+                    }
+                }
+            }
+
+
+            
 
             loadingSlider.value = (i + 1) / (float)LoadingDataXmlList.Count;
             yield return null;

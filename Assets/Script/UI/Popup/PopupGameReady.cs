@@ -214,7 +214,7 @@ public class PopupGameReady : PopupUI
             if (ItemManager.Instance.IsItemLevelUp(itemId))
             {
                 UpgradeButton.gameObject.SetActive(true);
-                UpgradeCost.SetValue(itemData.levelup_cost);
+                UpgradeCost.SetValue(ItemManager.Instance.GetNextItemLevelUpCost(itemId));
                 UpgradeTitle.text = LocalizeData.Instance.GetLocalizeString("NORMAL_UPGRADE_TITLE");
             }
             else
@@ -270,7 +270,8 @@ public class PopupGameReady : PopupUI
 
             UnityAction yesAction = () =>
             {
-                if (CommonFunc.UseCoin(itemData.levelup_cost))
+                var cost = ItemManager.Instance.GetNextItemLevelUpCost(itemId);
+                if (CommonFunc.UseCoin(cost))
                 {
                     SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
                     ItemManager.Instance.ItemLevelUp(itemId);

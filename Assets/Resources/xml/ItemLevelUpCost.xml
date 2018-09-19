@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Datas>
+	<levelup name = "INVINCIBILITY_ITEM_LV1" cost="0"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV2" cost="200"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV3" cost="400"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV4" cost="600"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV5" cost="900"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV6" cost="1200"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV7" cost="1500"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV8" cost="1900"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV9" cost="2300"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV10" cost="2700"/>
+	<levelup name = "INVINCIBILITY_ITEM_LV11" cost="3100"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV1" cost="0"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV2" cost="100"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV3" cost="200"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV4" cost="300"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV5" cost="500"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV6" cost="700"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV7" cost="900"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV8" cost="1200"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV9" cost="1500"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV10" cost="1800"/>
+	<levelup name = "NOTE_SPEED_DOWN_LV11" cost="2100"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV1" cost="0"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV2" cost="100"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV3" cost="200"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV4" cost="300"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV5" cost="500"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV6" cost="700"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV7" cost="900"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV8" cost="1200"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV9" cost="1500"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV10" cost="1800"/>
+	<levelup name = "SCORE_DOUBLE_ITEM_LV11" cost="2100"/>
+</Datas>
