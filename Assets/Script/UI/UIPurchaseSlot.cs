@@ -21,6 +21,8 @@ public class UIPurchaseSlot : MonoBehaviour
     [System.NonSerialized]
     public int Reward;
     [System.NonSerialized]
+    public int BonusPercent;
+    [System.NonSerialized]
     public bool AdsSlot;
 
     public string PurchaseID;
@@ -32,7 +34,7 @@ public class UIPurchaseSlot : MonoBehaviour
         PurchaseID = "";
     }
 
-    public void SetPurchaseSlot(CommonData.POINT_TYPE costType, int cost, CommonData.POINT_TYPE rewardType, int reward, string purchaseID = "")
+    public void SetPurchaseSlot(CommonData.POINT_TYPE costType, int cost, CommonData.POINT_TYPE rewardType, int reward, int bonusPercent, string purchaseID = "")
     {
         FreeAdsSlot.gameObject.SetActive(false);
         PurchaseSlot.gameObject.SetActive(true);
@@ -40,6 +42,7 @@ public class UIPurchaseSlot : MonoBehaviour
         Cost = cost;
         RewardType = rewardType;
         Reward = reward;
+        BonusPercent = bonusPercent;
         SetValue(costType, ref CostCount, cost);
         SetIcon(rewardType, ref RewardIcon);
         SetValue(rewardType, ref RewardCount, reward);
@@ -66,17 +69,37 @@ public class UIPurchaseSlot : MonoBehaviour
 
     private void SetValue(CommonData.POINT_TYPE type, ref Text uiText, int value)
     {
-        switch (type)
+        // <Localize id="PURCHASE_SLOT_BONUS_COST_CASH" kr="{0}원&#10;<color=#ff0000>({1}% 보너스)</color>"/>
+        if (BonusPercent > 0)
         {
-            case CommonData.POINT_TYPE.DDONG:
-                uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_DDONG", value);
-                break;
-            case CommonData.POINT_TYPE.COIN:
-                uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_COIN", CommonFunc.ConvertNumber(value));
-                break;
-            case CommonData.POINT_TYPE.CASH:
-                uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_CASH", CommonFunc.ConvertNumber(value));
-                break;
+            switch (type)
+            {
+                case CommonData.POINT_TYPE.DDONG:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_DDONG", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ff0000>({0}% 보너스)</color>", BonusPercent);
+                    break;
+                case CommonData.POINT_TYPE.COIN:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_COIN", CommonFunc.ConvertNumber(value)) + string.Format("\n<color=#ff0000>({0}% 보너스)</color>", BonusPercent);
+                    break;
+                case CommonData.POINT_TYPE.CASH:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_CASH", CommonFunc.ConvertNumber(value));
+                    break;
+            }
         }
+        else
+        {
+            switch (type)
+            {
+                case CommonData.POINT_TYPE.DDONG:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_DDONG", CommonFunc.ConvertNumber(value));
+                    break;
+                case CommonData.POINT_TYPE.COIN:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_COIN", CommonFunc.ConvertNumber(value));
+                    break;
+                case CommonData.POINT_TYPE.CASH:
+                    uiText.text = LocalizeData.Instance.GetLocalizeString("PURCHASE_SLOT_COST_CASH", CommonFunc.ConvertNumber(value));
+                    break;
+            }
+        }
+        
     }
 }
