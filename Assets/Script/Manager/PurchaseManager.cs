@@ -101,12 +101,6 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             { CommonData.PURCHASE_ID_ARRAY[6], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[6], GooglePlay.Name },
         });
-        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[7], ProductType.Consumable, new IDs
-        {
-            { CommonData.PURCHASE_ID_ARRAY[7], AppleAppStore.Name },
-            { CommonData.PURCHASE_ID_ARRAY[7], GooglePlay.Name },
-        });
-
 
         ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,11 +145,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             { CommonData.PURCHASE_DDONG_ARRAY[6], AppleAppStore.Name },
             { CommonData.PURCHASE_DDONG_ARRAY[6], GooglePlay.Name },
         });
-        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[7], ProductType.Consumable, new IDs
-        {
-            { CommonData.PURCHASE_DDONG_ARRAY[7], AppleAppStore.Name },
-            { CommonData.PURCHASE_DDONG_ARRAY[7], GooglePlay.Name },
-        });
+
         UnityPurchasing.Initialize(this, builder);
         
     }
