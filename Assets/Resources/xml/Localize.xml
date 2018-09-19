@@ -121,7 +121,7 @@
 	<Localize id="ENDING_CONDITION_GAME_SCORE" kr="획득 점수 {0}이상"/>
 	<Localize id="ENDING_CONDITION_HAVE_ENDING" kr="{0} 엔딩 획득"/>
 	<Localize id="ENDING_CONDITION_CHAR_SKIN" kr="{0} 캐릭터 스킨 장착"/>
-	<Localize id="ENDING_CONDITION_DOOR_SKIN" kr="{0} 문 스킨 장착"/>
+	<Localize id="ENDING_CONDITION_DOOR_SKIN" kr="{0} 스킨 장착"/>
 	<Localize id="ENDING_CONDITION_BG_SKIN" kr="{0} 배경 스킨 장착"/>
 	<Localize id="PURCHASE_SLOT_COST_CASH" kr="{0}원"/>
 	<Localize id="PURCHASE_SLOT_COST_DDONG" kr="{0}개"/>
