@@ -68,7 +68,15 @@ public class UIShopSkinSlot : MonoBehaviour
         if (SkinType == CommonData.SKIN_TYPE.DOOR)
         {
             var doorData = DataManager.Instance.GetSkinData(SkinType, SkinId) as DoorData;
-            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg) == false)
+                Lock.gameObject.SetActive(true);
+            else
+                Lock.gameObject.SetActive(false);
+        }
+        else if(SkinType == CommonData.SKIN_TYPE.BACKGROUND)
+        {
+            var bgData = DataManager.Instance.GetSkinData(SkinType, SkinId) as BackgroundData;
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg) == false)
                 Lock.gameObject.SetActive(true);
             else
                 Lock.gameObject.SetActive(false);

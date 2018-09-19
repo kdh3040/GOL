@@ -13,6 +13,7 @@ public class BackgroundData : SkinData
     public float speed_default;
     public float speed_interval;
     public float speed_up;
+    public string buy_bg;
 
     public BackgroundData(XmlNode node)
     {
@@ -28,6 +29,7 @@ public class BackgroundData : SkinData
         speed_interval = float.Parse(node.Attributes.GetNamedItem("speed_interval").Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
         speed_up = float.Parse(node.Attributes.GetNamedItem("speed_up").Value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture);
         skill = node.Attributes.GetNamedItem("skill").Value;
+        buy_bg = node.Attributes.GetNamedItem("buy_bg").Value;
 
         var noteListString = node.Attributes.GetNamedItem("note_list").Value;
         var noteListStringArr = noteListString.Split(',');
