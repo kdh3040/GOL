@@ -85,7 +85,7 @@ public class PopupGamePurchase : PopupUI
 
     public void OnClickPurchase(int index)
     {
-        if(SlotList[index].FreeAdsSlot)
+        if(SlotList[index].AdsSlot)
         {
             UnityAction yesAction = () =>
             {
