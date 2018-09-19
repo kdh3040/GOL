@@ -12,9 +12,9 @@
 	<Skill id = "10009" name="CHAR_SLOT_SKILL_LV10" skilltype="RESURRECTION" time="0" count="0" percent="18"/>
 	<Skill id = "10010" name="CHAR_SLOT_SKILL_LV11" skilltype="RESURRECTION" time="0" count="0" percent="20"/>
 	<Skill id = "10100" name="CHAR_SKLL_1" skilltype="RESURRECTION" time="0" count="0" percent="0"/>
-	<Skill id = "10200" name="CHAR_SKLL_2" skilltype="RESURRECTION" time="0" count="1" percent="3"/>
+	<Skill id = "10200" name="CHAR_SKLL_2" skilltype="RESURRECTION" time="0" count="0" percent="3"/>
 	<Skill id = "10300" name="CHAR_SKLL_3" skilltype="RESURRECTION" time="0" count="0" percent="6"/>
-	<Skill id = "10400" name="CHAR_SKLL_4" skilltype="RESURRECTION" time="0" count="0" percent="10"/>
+	<Skill id = "10400" name="CHAR_SKLL_4" skilltype="RESURRECTION" time="0" count="0" percent="12"/>
 	
 	<Skill id = "20000" name="DOOR_SLOT_SKILL_LV1" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="0"/>
 	<Skill id = "20001" name="DOOR_SLOT_SKILL_LV2" skilltype="GAME_OVER_COIN_BONUS" time="0" count="0" percent="1"/>
@@ -55,7 +55,7 @@
 	<Skill id = "30100" name="BG_SKLL_1" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="0"/>
 	<Skill id = "30200" name="BG_SKLL_2" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="20"/>
 	<Skill id = "30300" name="BG_SKLL_3" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="40"/>
-	<Skill id = "30400" name="BG_SKLL_4" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="60"/>
+	<Skill id = "30400" name="BG_SKLL_4" skilltype="GAME_OVER_SCORE_BONUS" time="0" count="0" percent="100"/>
 
 	<Skill id = "100" name="DAMAGE_SHIELD_TIME_LV1" skilltype="DAMAGE_SHIELD_TIME" time="3" count="0" percent="0"/>
 	<Skill id = "101" name="DAMAGE_SHIELD_TIME_LV2" skilltype="DAMAGE_SHIELD_TIME" time="3.5" count="0" percent="0"/>
