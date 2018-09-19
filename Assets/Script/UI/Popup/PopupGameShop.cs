@@ -185,8 +185,24 @@ public class PopupGameShop : PopupUI
 
             var skinSkillName = data.GetSkillName();
             var skinSkillData = SkillManager.Instance.GetSkillData(skinSkillName);
+
             StringBuilder desc = new StringBuilder();
-            desc.AppendFormat(data.GetLocalizeDesc());
+            if(SelectSkinType == CommonData.SKIN_TYPE.DOOR)
+            {
+                var doorData = data as DoorData;
+                if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+                {
+                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg).GetLocalizeName());
+                    desc.AppendFormat(str);
+                }
+                else
+                    desc.AppendFormat(data.GetLocalizeDesc());
+            }
+            else
+            {
+                desc.AppendFormat(data.GetLocalizeDesc());
+            }
+
             desc.AppendLine();
             desc.AppendLine();
             desc.AppendFormat(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_DESC_SKIN_SKILL", skinSkillData.GetDesc()));
@@ -329,14 +345,35 @@ public class PopupGameShop : PopupUI
         RefreshSlot();
     }
 
+    public bool IsSkinBuy()
+    {
+        var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+        var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
+        if (ShopSkinList[SelectSlotIndex].SkinType == CommonData.SKIN_TYPE.DOOR)
+        {
+            var doorData = skinData as DoorData;
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+            {
+                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg).GetLocalizeName()));
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData_1);
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public void OnClickSkinBuy()
     {
+        if (IsSkinBuy() == false)
+            return;
+
         UnityAction yesAction = () =>
         {
             var skinId = ShopSkinList[SelectSlotIndex].SkinId;
             var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
-            if(CommonFunc.UseCoin(skinData.cost))
+
+            if (CommonFunc.UseCoin(skinData.cost))
             {
                 SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUY);
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);

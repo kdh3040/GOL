@@ -11,6 +11,7 @@ public class UIShopSkinSlot : MonoBehaviour
     public Image Icon;
     public UIPointValue Cost;
     public Text Desc;
+    public Image Lock;
 
     [System.NonSerialized]
     public CommonData.SKIN_TYPE SkinType;
@@ -62,5 +63,17 @@ public class UIShopSkinSlot : MonoBehaviour
             Cost.gameObject.SetActive(true);
             Cost.SetValue(data.cost);
         }
+
+
+        if (SkinType == CommonData.SKIN_TYPE.DOOR)
+        {
+            var doorData = DataManager.Instance.GetSkinData(SkinType, SkinId) as DoorData;
+            if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.bg) == false)
+                Lock.gameObject.SetActive(true);
+            else
+                Lock.gameObject.SetActive(false);
+        }
+        else
+            Lock.gameObject.SetActive(false);
     }
 }

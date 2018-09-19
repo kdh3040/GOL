@@ -300,4 +300,44 @@ public class DataManager {
 
         return skinData;
     }
+
+    public SkinData GetSkinData(CommonData.SKIN_TYPE type, string name)
+    {
+        switch (type)
+        {
+            case CommonData.SKIN_TYPE.CHAR:
+                {
+                    var skinEnumerator = CharDataDic.GetEnumerator();
+                    while (skinEnumerator.MoveNext())
+                    {
+                        if (skinEnumerator.Current.Value.name == name)
+                            return skinEnumerator.Current.Value;
+                    }
+                }
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                {
+                    var skinEnumerator = DoorDataDic.GetEnumerator();
+                    while (skinEnumerator.MoveNext())
+                    {
+                        if (skinEnumerator.Current.Value.name == name)
+                            return skinEnumerator.Current.Value;
+                    }
+                }
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                {
+                    var skinEnumerator = BackGroundDataDic.GetEnumerator();
+                    while (skinEnumerator.MoveNext())
+                    {
+                        if (skinEnumerator.Current.Value.name == name)
+                            return skinEnumerator.Current.Value;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        return null;
+    }
 }

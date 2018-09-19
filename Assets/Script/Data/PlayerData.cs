@@ -296,6 +296,54 @@ public class PlayerData
         return false;
     }
 
+    public bool HasSkinName(CommonData.SKIN_TYPE type, string name)
+    {
+        if (HaveSkin.ContainsKey(type) == false)
+            return false;
+        else
+        {
+            switch (type)
+            {
+                case CommonData.SKIN_TYPE.CHAR:
+                    {
+                        var skinEnumerator = DataManager.Instance.CharDataDic.GetEnumerator();
+                        while(skinEnumerator.MoveNext())
+                        {
+                            if (skinEnumerator.Current.Value.name == name &&
+                                HasSkin(CommonData.SKIN_TYPE.CHAR, skinEnumerator.Current.Key))
+                                return true;
+                        }
+                    }
+                    break;
+                case CommonData.SKIN_TYPE.DOOR:
+                    {
+                        var skinEnumerator = DataManager.Instance.DoorDataDic.GetEnumerator();
+                        while (skinEnumerator.MoveNext())
+                        {
+                            if (skinEnumerator.Current.Value.name == name &&
+                                HasSkin(CommonData.SKIN_TYPE.DOOR, skinEnumerator.Current.Key))
+                                return true;
+                        }
+                    }
+                    break;
+                case CommonData.SKIN_TYPE.BACKGROUND:
+                    {
+                        var skinEnumerator = DataManager.Instance.BackGroundDataDic.GetEnumerator();
+                        while (skinEnumerator.MoveNext())
+                        {
+                            if (skinEnumerator.Current.Value.name == name &&
+                                HasSkin(CommonData.SKIN_TYPE.BACKGROUND, skinEnumerator.Current.Key))
+                                return true;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return false;
+    }
+
     public void SetUseSkin(CommonData.SKIN_TYPE type, int id)
     {
         UseSkin[type] = id;

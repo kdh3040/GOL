@@ -27,6 +27,7 @@
 	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템"/>
 	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문"/>
 	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경"/>
+	<Localize id="POPUP_SHOP_BUY_DOOR_BACKGROUND" kr="{0}을(를) 구매하셔야 합니다."/>
 	<Localize id="POPUP_ENDING_BOOK_TITLE" kr="만화"/>
 	<Localize id="POPUP_ENDING_SLOT_BG" kr="배경:"/>
 	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료"/>
