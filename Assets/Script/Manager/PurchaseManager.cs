@@ -90,7 +90,72 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             { CommonData.PURCHASE_ID_ARRAY[4], AppleAppStore.Name },
             { CommonData.PURCHASE_ID_ARRAY[4], GooglePlay.Name },
         });
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[5], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_ID_ARRAY[5], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[5], GooglePlay.Name },
+        });
 
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[6], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_ID_ARRAY[6], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[6], GooglePlay.Name },
+        });
+        builder.AddProduct(CommonData.PURCHASE_ID_ARRAY[7], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_ID_ARRAY[7], AppleAppStore.Name },
+            { CommonData.PURCHASE_ID_ARRAY[7], GooglePlay.Name },
+        });
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[0], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[0], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[0], GooglePlay.Name },
+        });
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[1], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[1], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[1], GooglePlay.Name }, }
+        );
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[2], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[2], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[2], GooglePlay.Name },
+        });
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[3], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[3], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[3], GooglePlay.Name },
+        });
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[4], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[4], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[4], GooglePlay.Name },
+        });
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[5], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[5], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[5], GooglePlay.Name },
+        });
+
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[6], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[6], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[6], GooglePlay.Name },
+        });
+        builder.AddProduct(CommonData.PURCHASE_DDONG_ARRAY[7], ProductType.Consumable, new IDs
+        {
+            { CommonData.PURCHASE_DDONG_ARRAY[7], AppleAppStore.Name },
+            { CommonData.PURCHASE_DDONG_ARRAY[7], GooglePlay.Name },
+        });
         UnityPurchasing.Initialize(this, builder);
         
     }
