@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Datas>
 	<Ending id = "1" name="ENDING_NOTE_NAME_1" img="Renewal/ending/space1" cost="0" condition_type1="BG_SKIN" condition_value1="1" condition_type2="GAME_SCORE" condition_value2="10000" condition_type3="" condition_value3=""/>
-	<Ending id = "2" name="ENDING_NOTE_NAME_2" img="Renewal/ending/space2" cost="2000" condition_type1="HAVE_ENDING" condition_value1="1" condition_type2="DOOR_SKIN" condition_value2="2" condition_type3="CHAR_SLOT_LEVEL" condition_value3="3"/>
-	<Ending id = "3" name="ENDING_NOTE_NAME_3" img="Renewal/ending/space3" cost="5000" condition_type1="HAVE_ENDING" condition_value1="2" condition_type2="DOOR_SKIN" condition_value2="5" condition_type3="DOOR_SLOT_LEVEL" condition_value3="3"/>
+	<Ending id = "2" name="ENDING_NOTE_NAME_2" img="Renewal/ending/space2" cost="3000" condition_type1="HAVE_ENDING" condition_value1="1" condition_type2="DOOR_SKIN" condition_value2="2" condition_type3="CHAR_SLOT_LEVEL" condition_value3="3"/>
+	<Ending id = "3" name="ENDING_NOTE_NAME_3" img="Renewal/ending/space3" cost="7000" condition_type1="HAVE_ENDING" condition_value1="2" condition_type2="DOOR_SKIN" condition_value2="5" condition_type3="DOOR_SLOT_LEVEL" condition_value3="3"/>
 	<Ending id = "4" name="ENDING_NOTE_NAME_4" img="Renewal/ending/space4" cost="8000" condition_type1="HAVE_ENDING" condition_value1="3" condition_type2="CHAR_SKIN" condition_value2="2" condition_type3="BG_SLOT_LEVEL" condition_value3="3"/>
 	<Ending id = "5" name="ENDING_NOTE_NAME_5" img="Renewal/ending/space5" cost="10000" condition_type1="HAVE_ENDING" condition_value1="4" condition_type2="BG_SKIN" condition_value2="3" condition_type3="GAME_SCORE" condition_value3="20000"/>
-	<Ending id = "6" name="ENDING_NOTE_NAME_6" img="Renewal/ending/space6" cost="9000" condition_type1="HAVE_ENDING" condition_value1="5" condition_type2="DOOR_SKIN" condition_value2="8" condition_type3="CHAR_SLOT_LEVEL" condition_value3="6"/>
-	<Ending id = "7" name="ENDING_NOTE_NAME_7" img="Renewal/ending/space7" cost="11000" condition_type1="HAVE_ENDING" condition_value1="6" condition_type2="DOOR_SKIN" condition_value2="11" condition_type3="DOOR_SLOT_LEVEL" condition_value3="6"/>
+	<Ending id = "6" name="ENDING_NOTE_NAME_6" img="Renewal/ending/space6" cost="13000" condition_type1="HAVE_ENDING" condition_value1="5" condition_type2="DOOR_SKIN" condition_value2="8" condition_type3="CHAR_SLOT_LEVEL" condition_value3="6"/>
+	<Ending id = "7" name="ENDING_NOTE_NAME_7" img="Renewal/ending/space7" cost="18000" condition_type1="HAVE_ENDING" condition_value1="6" condition_type2="DOOR_SKIN" condition_value2="11" condition_type3="DOOR_SLOT_LEVEL" condition_value3="6"/>
 	<Ending id = "8" name="ENDING_NOTE_NAME_8" img="Renewal/ending/space8" cost="16000" condition_type1="HAVE_ENDING" condition_value1="7" condition_type2="CHAR_SKIN" condition_value2="4" condition_type3="BG_SLOT_LEVEL" condition_value3="6"/>
 </Datas>
