@@ -164,10 +164,8 @@ public class PlayerData
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.BACKGROUND, 1);
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
-
-            //MyCoin = 100000000;
-            MyCoin = 2000000;
-            MyDDong = CommonData.MAX_DDONG_COUNT;
+            MyCoin = 1000;
+            MyDDong = 30;// CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MinValue;
             SoundSetting = true;
             VibrationSetting = true;

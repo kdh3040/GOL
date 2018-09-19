@@ -5,7 +5,7 @@
 	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초"/>
 	<Localize id="TIME_VIEW_MIN" kr="{0}분"/>
 	<Localize id="TIME_VIEW_SEC" kr="{0}초"/>
-	<Localize id="GAME_PLAY_LACK_DDONG" kr="X이 부족합니다.&#10;(남은시간 : {0})"/>
+	<Localize id="GAME_PLAY_LACK_DDONG" kr="떵이 부족합니다.&#10;(남은시간 : {0})"/>
 	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
 	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?&#10;다음효과 {0}"/>
@@ -74,7 +74,7 @@
 	<Localize id="CHAR_NAME_BG" kr="바깡"/>
 	<Localize id="CHAR_NAME_DG" kr="대꿍"/>
 	<Localize id="CHAR_NAME_HP" kr="호팔"/>
-	<Localize id="CHAR_DESC_DT" kr="급X오브레전드의 메인캐릭터, 엄마 생각을 하면 X이 마렵습니다. 평소에 강한 압박을 받는 모양입니다."/>
+	<Localize id="CHAR_DESC_DT" kr="급떵오브레전드의 메인캐릭터, 엄마 생각을 하면 떵이 마렵습니다. 평소에 강한 압박을 받는 모양입니다."/>
 	<Localize id="CHAR_DESC_BG" kr="아무리 먹어도 살이 찌지 않습니다. 오이를 못먹습니다. 오이 냄새조차 싫어하는군요."/>
 	<Localize id="CHAR_DESC_DG" kr="잠만 잡니다. 밤에 뭐하는지? "/>
 	<Localize id="CHAR_DESC_HP" kr="작가의 캐릭터입니다 운동도 잘하고 공부도 잘하고..(퍽퍽)"/>
@@ -86,7 +86,7 @@
 	<Localize id="BG_NAME_DESERT_READY" kr="피라미드&#10;(난이도 : 보통)"/>
 	<Localize id="BG_NAME_SEA_READY" kr="잠수함&#10;(난이도 : 어려움)"/>
 	<Localize id="BG_NAME_SPACE_READY" kr="우주선&#10;(난이도 : 매우 어려움)"/>
-	<Localize id="BG_DESC_APART" kr="급x오브레전드의 오리지널 배경. 아파트 주민들을 막아야합니다."/>
+	<Localize id="BG_DESC_APART" kr="급떵오브레전드의 오리지널 배경. 아파트 주민들을 막아야합니다."/>
 	<Localize id="BG_DESC_DESERT" kr="고대 이집트의 왕과 부하들을 막아야합니다.저주를 받을지도 모릅니다."/>
 	<Localize id="BG_DESC_SEA" kr="잠수함의 선원들을 막아야 합니다. 스트롱맨들입니다."/>
 	<Localize id="BG_DESC_SPACE" kr="우주라고 해도 급하면 싸야됩니다. 우주인과 외계인들을 막으십시요."/>
@@ -104,7 +104,7 @@
 	<Localize id="DOOR_NAME_DESERT_3" kr="5천년 전통 원조 피라미드 문"/>
 	<Localize id="DOOR_DESC_SEA_1" kr="잠수함 대원들이 식사하는 곳에서 실례를 해서 죄송합니다."/>
 	<Localize id="DOOR_DESC_SEA_2" kr="큰일났습니다. 함장실 앞에서도 실례를... 싸울 준비 되셨습니까?"/>
-	<Localize id="DOOR_DESC_SEA_3" kr="방사능보다 X냄새를 싫어하는 스트롱맨들이 원자로까지 쫓아오고 있습니다."/>
+	<Localize id="DOOR_DESC_SEA_3" kr="방사능보다 떵냄새를 싫어하는 스트롱맨들이 원자로까지 쫓아오고 있습니다."/>
 	<Localize id="DOOR_DESC_DESERT_1" kr="노예를 가두는 문입니다. 피라미드에서 실례를 했으니 철창 신세인가요?"/>
 	<Localize id="DOOR_DESC_DESERT_2" kr="노예는 평생 구경할 기회도 없는 문입니다. 마음껏 열어보시죠."/>
 	<Localize id="DOOR_DESC_DESERT_3" kr="피라미드하면 돌문이 제 맛입니다. 깔맞춤에다가 멋진 문닫는 사운드까지!"/>
@@ -128,22 +128,22 @@
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
 	<Localize id="PURCHASE_SLOT_COST_BONUS" kr="({0}% 보너스)"/>
 	<Localize id="PURCHASE_COIN_BUY_MSG" kr="{0}코인을 구매 하시겠습니까?"/>
-	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 {0}개 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="떵을 {0}개 구매 하시겠습니까?"/>
 	<Localize id="PURCHASE_COIN_BUY_TOAST" kr="{0}코인을 구매 했습니다."/>
-	<Localize id="PURCHASE_DDONG_BUY_TOAST" kr="X을 {0}개 구매 했습니다."/>
-	<Localize id="PURCHASE_ADS_BUY_DDONG" kr="광고를 보고 X을 충전 하시겠습니까?"/>
+	<Localize id="PURCHASE_DDONG_BUY_TOAST" kr="떵을 {0}개 구매 했습니다."/>
+	<Localize id="PURCHASE_ADS_BUY_DDONG" kr="광고를 보고 떵을 충전 하시겠습니까?"/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
 	<Localize id="CHAR_MSG_4" kr="신이시여.."/>
 	<Localize id="CHAR_MSG_5" kr="더이상은!!"/>
-	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 X싸는 건 당연한거지.왈왈!"/>
-	<Localize id="NOTE_ENDING_DESC_2_1" kr="노예여. 너도 나처럼 무덤 아니 x을 지키고 있는가?"/>
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 떵싸는 건 당연한거지.왈왈!"/>
+	<Localize id="NOTE_ENDING_DESC_2_1" kr="노예여. 너도 나처럼 무덤 아니 떵을 지키고 있는가?"/>
 	<Localize id="NOTE_ENDING_DESC_3_1" kr="호호호..노예여. 짐이 이런 향기를 좋아하는지 어떻게 알았는가?"/>
 	<Localize id="NOTE_ENDING_DESC_4_1" kr="(우드득,우드득)혼이 좀 나야겠군. 제군?"/>
 	<Localize id="NOTE_ENDING_DESC_5_1" kr="모든대원은 대청소를 시작하라!"/>
 	<Localize id="NOTE_ENDING_DESC_6_1" kr="오마이갓! 크레이지맨! 유 데드!"/>
-	<Localize id="NOTE_ENDING_DESC_7_1" kr="악! 우주복을 입어도 X냄새가 나다니! "/>
+	<Localize id="NOTE_ENDING_DESC_7_1" kr="악! 우주복을 입어도 떵냄새가 나다니! "/>
 	<Localize id="NOTE_ENDING_DESC_8_1" kr="끼이륵!케케켁!쿨럭쿨럭!"/>
 	<Localize id="NOTE_ENDING_DESC_9_1" kr="내 광선검 맛을 봐야겠구나?"/>
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
