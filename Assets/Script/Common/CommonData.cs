@@ -63,7 +63,8 @@ public class CommonData : MonoBehaviour {
     public static float NOTE_GROUP_INTERVAL = 3.0f;
     public static int MAX_DDONG_COUNT = 10;
     public static float DDONG_VIEW_INTERVAL = 5f;
-    public static string[] PURCHASE_ID_ARRAY = { "coin_1", "coin_2", "coin_3", "coin_4", "coin_5" };
+    public static string[] PURCHASE_ID_ARRAY = { "coin_1", "coin_2", "coin_3", "coin_4", "coin_5", "coin_6", "coin_7" };
+    public static string[] PURCHASE_DDONG_ARRAY = { "ddong_1", "ddong_2", "ddong_3", "ddong_4", "ddong_5", "ddong_6", "ddong_7" };
     public static string[] NOTE_DELETE_MSG = { "Renewal/UI/text_door", "Renewal/UI/text_smell", "Renewal/UI/text_what", "Renewal/UI/text_who" };
     public static int GAME_CONTINUE_MAX_COUNT = 3;
 }
