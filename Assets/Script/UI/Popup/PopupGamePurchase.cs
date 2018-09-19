@@ -34,31 +34,31 @@ public class PopupGamePurchase : PopupUI
 
         if(popupData.BuyType == CommonData.POINT_TYPE.COIN)
         {
-            SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1100, CommonData.POINT_TYPE.COIN, 1500, 0, CommonData.PURCHASE_ID_ARRAY[0]);
+            SlotList[0].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1100, CommonData.POINT_TYPE.COIN, 1500, 50, CommonData.PURCHASE_ID_ARRAY[0]);
             SlotList[0].SlotButton.onClick.RemoveAllListeners();
             SlotList[0].SlotButton.onClick.AddListener(() => { OnClickPurchase(0); });
 
-            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 3300, CommonData.POINT_TYPE.COIN, 4500, 0, CommonData.PURCHASE_ID_ARRAY[1]);
+            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 3300, CommonData.POINT_TYPE.COIN, 4500, 50, CommonData.PURCHASE_ID_ARRAY[1]);
             SlotList[1].SlotButton.onClick.RemoveAllListeners();
             SlotList[1].SlotButton.onClick.AddListener(() => { OnClickPurchase(1); });
 
-            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5500, CommonData.POINT_TYPE.COIN, 7500, 0, CommonData.PURCHASE_ID_ARRAY[2]);
+            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5500, CommonData.POINT_TYPE.COIN, 7500, 50, CommonData.PURCHASE_ID_ARRAY[2]);
             SlotList[2].SlotButton.onClick.RemoveAllListeners();
             SlotList[2].SlotButton.onClick.AddListener(() => { OnClickPurchase(2); });
 
-            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 11000, CommonData.POINT_TYPE.COIN, 16000, 6, CommonData.PURCHASE_ID_ARRAY[3]);
+            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 11000, CommonData.POINT_TYPE.COIN, 16000, 60, CommonData.PURCHASE_ID_ARRAY[3]);
             SlotList[3].SlotButton.onClick.RemoveAllListeners();
             SlotList[3].SlotButton.onClick.AddListener(() => { OnClickPurchase(3); });
 
-            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 33000, CommonData.POINT_TYPE.COIN, 51000, 13, CommonData.PURCHASE_ID_ARRAY[4]);
+            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 33000, CommonData.POINT_TYPE.COIN, 51000, 70, CommonData.PURCHASE_ID_ARRAY[4]);
             SlotList[4].SlotButton.onClick.RemoveAllListeners();
             SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
 
-            SlotList[5].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 55000, CommonData.POINT_TYPE.COIN, 90000, 20, CommonData.PURCHASE_ID_ARRAY[5]);
+            SlotList[5].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 55000, CommonData.POINT_TYPE.COIN, 90000, 80, CommonData.PURCHASE_ID_ARRAY[5]);
             SlotList[5].SlotButton.onClick.RemoveAllListeners();
             SlotList[5].SlotButton.onClick.AddListener(() => { OnClickPurchase(5); });
 
-            SlotList[6].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 110000, CommonData.POINT_TYPE.COIN, 200000, 25, CommonData.PURCHASE_ID_ARRAY[6]);
+            SlotList[6].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 110000, CommonData.POINT_TYPE.COIN, 200000, 100, CommonData.PURCHASE_ID_ARRAY[6]);
             SlotList[6].SlotButton.onClick.RemoveAllListeners();
             SlotList[6].SlotButton.onClick.AddListener(() => { OnClickPurchase(6); });
 
@@ -70,32 +70,32 @@ public class PopupGamePurchase : PopupUI
             SlotList[0].SlotButton.onClick.RemoveAllListeners();
             SlotList[0].SlotButton.onClick.AddListener(() => { OnClickPurchase(0); });
 
-            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1100, CommonData.POINT_TYPE.DDONG, 20, 0,CommonData.PURCHASE_DDONG_ARRAY[0]);
+            SlotList[1].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 1100, CommonData.POINT_TYPE.DDONG, 20, 33,CommonData.PURCHASE_DDONG_ARRAY[0]);
             SlotList[1].SlotButton.onClick.RemoveAllListeners();
             SlotList[1].SlotButton.onClick.AddListener(() => { OnClickPurchase(1); });
 
-            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 3300, CommonData.POINT_TYPE.DDONG, 60, 0, CommonData.PURCHASE_DDONG_ARRAY[1]);
+            SlotList[2].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 3300, CommonData.POINT_TYPE.DDONG, 60, 33, CommonData.PURCHASE_DDONG_ARRAY[1]);
             SlotList[2].SlotButton.onClick.RemoveAllListeners();
             SlotList[2].SlotButton.onClick.AddListener(() => { OnClickPurchase(2); });
 
-            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5500, CommonData.POINT_TYPE.DDONG, 105, 5, CommonData.PURCHASE_DDONG_ARRAY[2]);
+            SlotList[3].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 5500, CommonData.POINT_TYPE.DDONG, 105, 40, CommonData.PURCHASE_DDONG_ARRAY[2]);
             SlotList[3].SlotButton.onClick.RemoveAllListeners();
             SlotList[3].SlotButton.onClick.AddListener(() => { OnClickPurchase(3); });
 
-            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 11000, CommonData.POINT_TYPE.DDONG, 220, 10, CommonData.PURCHASE_DDONG_ARRAY[3]);
+            SlotList[4].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 11000, CommonData.POINT_TYPE.DDONG, 220, 47, CommonData.PURCHASE_DDONG_ARRAY[3]);
             SlotList[4].SlotButton.onClick.RemoveAllListeners();
             SlotList[4].SlotButton.onClick.AddListener(() => { OnClickPurchase(4); });
 
-            SlotList[5].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 33000, CommonData.POINT_TYPE.DDONG, 650, 12, CommonData.PURCHASE_DDONG_ARRAY[4]);
+            SlotList[5].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 33000, CommonData.POINT_TYPE.DDONG, 675, 50, CommonData.PURCHASE_DDONG_ARRAY[4]);
             SlotList[5].SlotButton.onClick.RemoveAllListeners();
             SlotList[5].SlotButton.onClick.AddListener(() => { OnClickPurchase(5); });
 
-            SlotList[6].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 55000, CommonData.POINT_TYPE.DDONG, 1200, 20, CommonData.PURCHASE_DDONG_ARRAY[5]);
+            SlotList[6].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 55000, CommonData.POINT_TYPE.DDONG, 1200, 60, CommonData.PURCHASE_DDONG_ARRAY[5]);
             SlotList[6].SlotButton.onClick.RemoveAllListeners();
             SlotList[6].SlotButton.onClick.AddListener(() => { OnClickPurchase(6); });
 
             SlotList[7].gameObject.SetActive(true);
-            SlotList[7].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 110000, CommonData.POINT_TYPE.DDONG, 2500, 25, CommonData.PURCHASE_DDONG_ARRAY[6]);
+            SlotList[7].SetPurchaseSlot(CommonData.POINT_TYPE.CASH, 110000, CommonData.POINT_TYPE.DDONG, 2500, 67, CommonData.PURCHASE_DDONG_ARRAY[6]);
             SlotList[7].SlotButton.onClick.RemoveAllListeners();
             SlotList[7].SlotButton.onClick.AddListener(() => { OnClickPurchase(7); });
         }
