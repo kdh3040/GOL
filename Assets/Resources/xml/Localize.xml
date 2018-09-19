@@ -128,6 +128,8 @@
 	<Localize id="PURCHASE_SLOT_COST_COIN" kr="{0}코인"/>
 	<Localize id="PURCHASE_COIN_BUY_MSG" kr="{0}코인을 구매 하시겠습니까?"/>
 	<Localize id="PURCHASE_DDONG_BUY_MSG" kr="X을 {0}개 구매 하시겠습니까?"/>
+	<Localize id="PURCHASE_COIN_BUY_TOAST" kr="{0}코인을 구매 했습니다."/>
+	<Localize id="PURCHASE_DDONG_BUY_TOAST" kr="X을 {0}개 구매 했습니다."/>
 	<Localize id="PURCHASE_ADS_BUY_DDONG" kr="광고를 보고 X을 충전 하시겠습니까?"/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>

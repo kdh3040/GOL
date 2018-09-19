@@ -231,9 +231,20 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         
         Debug.Log("mPurchaseSlot.Reward " + mPurchaseSlot.Reward);
         if(mPurchaseSlot.RewardType == CommonData.POINT_TYPE.COIN)
+        {
             PlayerData.Instance.PlusCoin(mPurchaseSlot.Reward);
+            var popup = PopupManager.Instance.GetCurrentPopup() as PopupGamePurchase;
+            if (popup != null)
+                popup.ShowToastMsg(LocalizeData.Instance.GetLocalizeString("PURCHASE_COIN_BUY_TOAST", CommonFunc.ConvertNumber(mPurchaseSlot.Reward)));
+        }
         else if(mPurchaseSlot.RewardType == CommonData.POINT_TYPE.DDONG)
+        {
             PlayerData.Instance.PlusDDong(mPurchaseSlot.Reward);
+            var popup = PopupManager.Instance.GetCurrentPopup() as PopupGamePurchase;
+            if (popup != null)
+                popup.ShowToastMsg(LocalizeData.Instance.GetLocalizeString("PURCHASE_DDONG_BUY_TOAST", CommonFunc.ConvertNumber(mPurchaseSlot.Reward)));
+        }
+            
 
 
         /*
