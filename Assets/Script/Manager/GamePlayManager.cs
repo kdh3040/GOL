@@ -255,7 +255,6 @@ public class GamePlayManager : MonoBehaviour
         {
             Handheld.Vibrate();
         }
-        //AdManager.Instance.ShowGameOverVideo();
     
         StartCoroutine(Co_GameOver(note));
     }
@@ -263,7 +262,9 @@ public class GamePlayManager : MonoBehaviour
     public IEnumerator Co_GameOver(Note note)
     {
         yield return new WaitForSecondsRealtime(1f);
-        AdManager.Instance.ShowInterstitialAd();
+        
+        // 1차 업데이트에 유져 수 보고 추가 결정
+        //AdManager.Instance.ShowInterstitialAd();
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }
