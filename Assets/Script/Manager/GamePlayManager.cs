@@ -256,13 +256,14 @@ public class GamePlayManager : MonoBehaviour
             Handheld.Vibrate();
         }
         //AdManager.Instance.ShowGameOverVideo();
-        AdManager.Instance.ShowInterstitialAd();
+    
         StartCoroutine(Co_GameOver(note));
     }
 
     public IEnumerator Co_GameOver(Note note)
     {
         yield return new WaitForSecondsRealtime(1f);
+        AdManager.Instance.ShowInterstitialAd();
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }
