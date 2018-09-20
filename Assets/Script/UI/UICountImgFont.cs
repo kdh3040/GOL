@@ -87,7 +87,23 @@ public class UICountImgFont : MonoBehaviour
 
         if(range == IMG_RANGE.CENTER)
         {
-            if(countLength > 1)
+            if(countLength == 2)
+            {
+                for (int i = 0; i < countLength; i++)
+                {
+                    Image currImg = ImgFontList[i];
+                    Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
+
+                    currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2, 0);
+                    currImg.gameObject.transform.localPosition = currImgLocalPosition;
+                }
+            }
+            else if(countLength == 1)
+            {
+                Image currImg = ImgFontList[0];
+                currImg.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            }
+            else
             {
                 for (int i = 0; i < countLength; i++)
                 {
@@ -97,11 +113,6 @@ public class UICountImgFont : MonoBehaviour
                     currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
                     currImg.gameObject.transform.localPosition = currImgLocalPosition;
                 }
-            }
-            else if(countLength == 1)
-            {
-                Image currImg = ImgFontList[0];
-                currImg.gameObject.transform.localPosition = new Vector3(0, 0, 0);
             }
             
         }
