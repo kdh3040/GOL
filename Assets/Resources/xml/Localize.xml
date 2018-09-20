@@ -5,7 +5,7 @@
 	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초"/>
 	<Localize id="TIME_VIEW_MIN" kr="{0}분"/>
 	<Localize id="TIME_VIEW_SEC" kr="{0}초"/>
-	<Localize id="GAME_PLAY_LACK_DDONG" kr="떵이 부족합니다.&#10;(남은시간 : {0})"/>
+	<Localize id="GAME_PLAY_LACK_DDONG" kr="5분마다 똥이 하나씩 자동충전됩니다.&#10;현재 남은 시간({0})"/>
 	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
 	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?&#10;다음효과 {0}"/>
