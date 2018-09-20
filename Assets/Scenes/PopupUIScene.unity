@@ -6950,6 +6950,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114941120794401090, guid: 7c5a5d92a2ce3054dadd48729b05f4f5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 07c79f3cc82e1f040bd8164298847b4b,
+        type: 3}
+    - target: {fileID: 224782479099432530, guid: 7c5a5d92a2ce3054dadd48729b05f4f5,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224782479099432530, guid: 7c5a5d92a2ce3054dadd48729b05f4f5,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5a5d92a2ce3054dadd48729b05f4f5, type: 2}
   m_IsPrefabAsset: 0
@@ -13412,6 +13428,12 @@ Prefab:
       propertyPath: m_Text
       value: "\uBB38 \uC2AC\uB86F"
       objectReference: {fileID: 0}
+    - target: {fileID: 114941120794401090, guid: 7c5a5d92a2ce3054dadd48729b05f4f5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37593cf7013c94f4195749f895cc9df2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5a5d92a2ce3054dadd48729b05f4f5, type: 2}
   m_IsPrefabAsset: 0
@@ -17153,7 +17175,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 37593cf7013c94f4195749f895cc9df2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e004961b6761dd748967214e617902b3, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17917,6 +17939,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114941120794401090, guid: 7c5a5d92a2ce3054dadd48729b05f4f5,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 07c79f3cc82e1f040bd8164298847b4b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5a5d92a2ce3054dadd48729b05f4f5, type: 2}
   m_IsPrefabAsset: 0
