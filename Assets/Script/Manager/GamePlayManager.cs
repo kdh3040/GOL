@@ -520,14 +520,14 @@ public class GamePlayManager : MonoBehaviour
             if (DDongViewList.Count < 5)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
-                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -8.25f), -8.5f);
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -9f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 obj.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewList.Add(obj);
             }
             else
             {
-                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -8.25f), -8.5f);
+                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -9f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 DDongViewList[DDongViewPosChangeIndex].transform.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewPosChangeIndex++;
