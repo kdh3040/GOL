@@ -26,7 +26,7 @@ public class AdManager : MonoBehaviour {
     private static RewardBasedVideoAd rewardBasedVideo;
 
 
-    private static int PROB_SELECT_ADVIEW = 3;
+    private static int PROB_SELECT_ADVIEW = 0;
     private static int PROB_MAX_ADVIEW = 10;
 
     private static string adAppID_Android = "ca-app-pub-4020702622451243~9202373650";
@@ -51,6 +51,7 @@ public class AdManager : MonoBehaviour {
     void Start () {
         DontDestroyOnLoad(this);
         RequestRewardBasedVideo();
+        RequestInterstitialAd();
     }
 	
 	// Update is called once per frame

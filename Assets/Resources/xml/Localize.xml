@@ -5,7 +5,7 @@
 	<Localize id="SKILL_CHECK_TYPE_TIME_REMAIN" kr="{0:f2}초"/>
 	<Localize id="TIME_VIEW_MIN" kr="{0}분"/>
 	<Localize id="TIME_VIEW_SEC" kr="{0}초"/>
-	<Localize id="GAME_PLAY_LACK_DDONG" kr="떵이 부족합니다.&#10;(남은시간 : {0})"/>
+	<Localize id="GAME_PLAY_LACK_DDONG" kr="5분마다 똥이 하나씩 자동충전됩니다.&#10;현재 남은 시간({0})"/>
 	<Localize id="GAME_PLAY_LACK_COIN" kr="코인이 부족합니다."/>
 	<Localize id="BUY_ITEM_TITLE" kr="아이템을 구매하시겠습니까?"/>
 	<Localize id="UPGRADE_ITEM_TITLE" kr="아이템을 강화하시겠습니까?&#10;다음효과 {0}"/>
@@ -27,7 +27,7 @@
 	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템"/>
 	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문"/>
 	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경"/>
-	<Localize id="POPUP_SHOP_BUY_DOOR_BACKGROUND" kr="{0}을(를) 구매하셔야 합니다."/>
+	<Localize id="POPUP_SHOP_BUY_DOOR_BACKGROUND" kr="{0}배경을 구매하셔야 합니다."/>
 	<Localize id="POPUP_ENDING_BOOK_TITLE" kr="만화"/>
 	<Localize id="POPUP_ENDING_SLOT_BG" kr="배경:"/>
 	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료"/>
@@ -82,6 +82,10 @@
 	<Localize id="BG_NAME_DESERT" kr="피라미드 (난이도 : 보통)"/>
 	<Localize id="BG_NAME_SEA" kr="잠수함 (난이도 : 어려움)"/>
 	<Localize id="BG_NAME_SPACE" kr="우주선 (난이도 : 매우 어려움)"/>
+	<Localize id="BG_NAME_APART_SHOT" kr="아파트"/>
+	<Localize id="BG_NAME_DESERT_SHOT" kr="피라미드"/>
+	<Localize id="BG_NAME_SEA_SHOT" kr="잠수함"/>
+	<Localize id="BG_NAME_SPACE_SHOT" kr="우주선"/>
 	<Localize id="BG_NAME_APART_READY" kr="아파트&#10;(난이도 : 쉬움)"/>
 	<Localize id="BG_NAME_DESERT_READY" kr="피라미드&#10;(난이도 : 보통)"/>
 	<Localize id="BG_NAME_SEA_READY" kr="잠수함&#10;(난이도 : 어려움)"/>
@@ -137,18 +141,18 @@
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>
 	<Localize id="CHAR_MSG_4" kr="신이시여.."/>
 	<Localize id="CHAR_MSG_5" kr="더이상은!!"/>
-	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈!밖에서 떵싸는 건 당연한거지.왈왈!"/>
+	<Localize id="NOTE_ENDING_DESC_1_1" kr="왈왈! 밖에서 떵싸는 건 당연한거지.왈왈!"/>
 	<Localize id="NOTE_ENDING_DESC_2_1" kr="노예여. 너도 나처럼 무덤 아니 떵을 지키고 있는가?"/>
-	<Localize id="NOTE_ENDING_DESC_3_1" kr="호호호..노예여. 짐이 이런 향기를 좋아하는지 어떻게 알았는가?"/>
+	<Localize id="NOTE_ENDING_DESC_3_1" kr="호호호..노예여. 짐이 떵향기를 좋아하는지 어떻게 알았는가?"/>
 	<Localize id="NOTE_ENDING_DESC_4_1" kr="(우드득,우드득)혼이 좀 나야겠군. 제군?"/>
-	<Localize id="NOTE_ENDING_DESC_5_1" kr="모든대원은 대청소를 시작하라!"/>
+	<Localize id="NOTE_ENDING_DESC_5_1" kr="모든 대원은 떵청소를 시작하라!"/>
 	<Localize id="NOTE_ENDING_DESC_6_1" kr="오마이갓! 크레이지맨! 유 데드!"/>
 	<Localize id="NOTE_ENDING_DESC_7_1" kr="악! 우주복을 입어도 떵냄새가 나다니! "/>
 	<Localize id="NOTE_ENDING_DESC_8_1" kr="끼이륵!케케켁!쿨럭쿨럭!"/>
 	<Localize id="NOTE_ENDING_DESC_9_1" kr="내 광선검 맛을 봐야겠구나?"/>
 	<Localize id="NOTE_ENDING_DESC_10_1" kr="어머! 이게 무슨 냄새야?"/>
 	<Localize id="NOTE_ENDING_DESC_11_1" kr="야! 형 게임하는데 방해할래?"/>
-	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익! 너..너 뭐야?"/>
+	<Localize id="NOTE_ENDING_DESC_12_1" kr="삐익!삐익! 너..지금 뭐하는 거냐?"/>
 	<Localize id="ENDING_OPEN_TITLE" kr="{0}가 열렸습니다!"/>
 	<Localize id="END_TITLE_1" kr="피라미드의 비밀 상편"/>
 	<Localize id="END_TITLE_2" kr="피라미드의 비밀 하편"/>

@@ -254,14 +254,17 @@ public class GamePlayManager : MonoBehaviour
         if(PlayerData.Instance.GetVibrationSetting())
         {
             Handheld.Vibrate();
-        }        
-        AdManager.Instance.ShowGameOverVideo();
+        }
+    
         StartCoroutine(Co_GameOver(note));
     }
 
     public IEnumerator Co_GameOver(Note note)
     {
         yield return new WaitForSecondsRealtime(1f);
+        
+        // 1차 업데이트에 유져 수 보고 추가 결정
+        //AdManager.Instance.ShowInterstitialAd();
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }
@@ -520,14 +523,14 @@ public class GamePlayManager : MonoBehaviour
             if (DDongViewList.Count < 5)
             {
                 var obj = Instantiate(Resources.Load("Prefab/IngameDDongIcon"), DDongViewObj.transform) as GameObject;
-                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6.5f, -7.5f), -8.5f);
+                obj.gameObject.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -9f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 obj.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewList.Add(obj);
             }
             else
             {
-                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-6.5f, -7.5f), -8.5f);
+                DDongViewList[DDongViewPosChangeIndex].transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-7.25f, -9f), -8.5f);
                 var scale = Random.Range(DDongMinScale, DDongMaxScale);
                 DDongViewList[DDongViewPosChangeIndex].transform.gameObject.transform.localScale = new Vector3(scale, scale, -8.5f);
                 DDongViewPosChangeIndex++;
