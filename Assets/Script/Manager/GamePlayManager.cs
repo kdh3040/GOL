@@ -254,8 +254,9 @@ public class GamePlayManager : MonoBehaviour
         if(PlayerData.Instance.GetVibrationSetting())
         {
             Handheld.Vibrate();
-        }        
-        AdManager.Instance.ShowGameOverVideo();
+        }
+        //AdManager.Instance.ShowGameOverVideo();
+        AdManager.Instance.ShowInterstitialAd();
         StartCoroutine(Co_GameOver(note));
     }
 
