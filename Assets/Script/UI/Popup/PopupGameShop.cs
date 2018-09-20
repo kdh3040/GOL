@@ -192,7 +192,7 @@ public class PopupGameShop : PopupUI
                 var doorData = data as DoorData;
                 if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg) == false)
                 {
-                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg).GetLocalizeName());
+                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", LocalizeData.Instance.GetLocalizeString(string.Format("{0}_SHOT", doorData.buy_bg)));
                     desc.AppendFormat(str);
                 }
                 else
@@ -203,7 +203,7 @@ public class PopupGameShop : PopupUI
                 var bgData = data as BackgroundData;
                 if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg) == false)
                 {
-                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg).GetLocalizeName());
+                    var str = LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", LocalizeData.Instance.GetLocalizeString(string.Format("{0}_SHOT", bgData.buy_bg)));
                     desc.AppendFormat(str);
                 }
                 else
@@ -365,7 +365,7 @@ public class PopupGameShop : PopupUI
             var doorData = skinData as DoorData;
             if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg) == false)
             {
-                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, doorData.buy_bg).GetLocalizeName()));
+                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", LocalizeData.Instance.GetLocalizeString(string.Format("{0}_SHOT", doorData.buy_bg))));
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData_1);
                 return false;
             }
@@ -375,7 +375,7 @@ public class PopupGameShop : PopupUI
             var bgData = skinData as BackgroundData;
             if (PlayerData.Instance.HasSkinName(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg) == false)
             {
-                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", DataManager.Instance.GetSkinData(CommonData.SKIN_TYPE.BACKGROUND, bgData.buy_bg).GetLocalizeName()));
+                var msgPopupData_1 = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_SHOP_BUY_DOOR_BACKGROUND", LocalizeData.Instance.GetLocalizeString(string.Format("{0}_SHOT", bgData.buy_bg))));
                 PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData_1);
                 return false;
             }

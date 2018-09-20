@@ -27,7 +27,7 @@
 	<Localize id="POPUP_SHOP_TAB_ITEM" kr="아이템"/>
 	<Localize id="POPUP_SHOP_TAB_DOOR" kr="문"/>
 	<Localize id="POPUP_SHOP_TAB_BACKGROUND" kr="배경"/>
-	<Localize id="POPUP_SHOP_BUY_DOOR_BACKGROUND" kr="{0}을(를) 구매하셔야 합니다."/>
+	<Localize id="POPUP_SHOP_BUY_DOOR_BACKGROUND" kr="{0}배경을 구매하셔야 합니다."/>
 	<Localize id="POPUP_ENDING_BOOK_TITLE" kr="만화"/>
 	<Localize id="POPUP_ENDING_SLOT_BG" kr="배경:"/>
 	<Localize id="POPUP_ENDING_SLOT_ALL_HAVE" kr="획득완료"/>
@@ -82,6 +82,10 @@
 	<Localize id="BG_NAME_DESERT" kr="피라미드 (난이도 : 보통)"/>
 	<Localize id="BG_NAME_SEA" kr="잠수함 (난이도 : 어려움)"/>
 	<Localize id="BG_NAME_SPACE" kr="우주선 (난이도 : 매우 어려움)"/>
+	<Localize id="BG_NAME_APART_SHOT" kr="아파트"/>
+	<Localize id="BG_NAME_DESERT_SHOT" kr="피라미드"/>
+	<Localize id="BG_NAME_SEA_SHOT" kr="잠수함"/>
+	<Localize id="BG_NAME_SPACE_SHOT" kr="우주선"/>
 	<Localize id="BG_NAME_APART_READY" kr="아파트&#10;(난이도 : 쉬움)"/>
 	<Localize id="BG_NAME_DESERT_READY" kr="피라미드&#10;(난이도 : 보통)"/>
 	<Localize id="BG_NAME_SEA_READY" kr="잠수함&#10;(난이도 : 어려움)"/>
