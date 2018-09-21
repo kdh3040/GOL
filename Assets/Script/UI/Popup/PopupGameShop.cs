@@ -388,12 +388,10 @@ public class PopupGameShop : PopupUI
     {
         if (IsSkinBuy() == false)
             return;
-
+        var skinId = ShopSkinList[SelectSlotIndex].SkinId;
+        var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
         UnityAction yesAction = () =>
         {
-            var skinId = ShopSkinList[SelectSlotIndex].SkinId;
-            var skinData = DataManager.Instance.GetSkinData(SelectSkinType, skinId);
-
             if (CommonFunc.UseCoin(skinData.cost))
             {
                 SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUY);
@@ -404,7 +402,13 @@ public class PopupGameShop : PopupUI
                 SetBackGroundImg();
             }
         };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"), yesAction);
+
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_SKIN_TITLE"),
+            LocalizeData.Instance.GetLocalizeString("COMMON_BUY"),
+            PopupMsg.MSG_POPUP_TYPE.BUY_NO,
+            CommonData.POINT_TYPE.COIN,
+            skinData.cost,
+            yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 
@@ -440,7 +444,12 @@ public class PopupGameShop : PopupUI
         };
 
         var skillData = SkillManager.Instance.GetSkillData(levelUpdata.skill);
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()), yesAction);
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()),
+            LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_UPGRADE_TITLE"),
+            PopupMsg.MSG_POPUP_TYPE.UPGRADE_NO,
+            CommonData.POINT_TYPE.COIN,
+            data.cost,
+            yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
 

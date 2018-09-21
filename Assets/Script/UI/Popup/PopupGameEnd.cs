@@ -252,7 +252,12 @@ public class PopupGameEnd : PopupUI {
                     PopupManager.Instance.DismissPopup();
                 }
             };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_REVIVAL"), yesAction, CommonData.POINT_TYPE.COIN, ConfigData.Instance.REVIVAL_COST);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_REVIVAL"), 
+                LocalizeData.Instance.GetLocalizeString("COMMON_REVIVAL"), 
+                PopupMsg.MSG_POPUP_TYPE.BUY_NO,
+                CommonData.POINT_TYPE.COIN,
+                ConfigData.Instance.REVIVAL_COST,
+                yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
 
 

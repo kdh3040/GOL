@@ -260,17 +260,21 @@ public class PopupGameReady : PopupUI
             };
 
             var skillData = SkillManager.Instance.GetSkillData(levelUpdata.skill);
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()), yesAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_SKIN_TITLE", skillData.GetDesc()),
+                LocalizeData.Instance.GetLocalizeString("SKIN_SLOT_UPGRADE_TITLE"),
+                PopupMsg.MSG_POPUP_TYPE.UPGRADE_NO,
+                CommonData.POINT_TYPE.COIN,
+                data.cost,
+                yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
         {
             var itemId = ItemSlotList[SelectSlotIndex].ItemId;
             var itemData = DataManager.Instance.ItemDataDic[itemId];
-
+            var cost = ItemManager.Instance.GetNextItemLevelUpCost(itemId);
             UnityAction yesAction = () =>
             {
-                var cost = ItemManager.Instance.GetNextItemLevelUpCost(itemId);
                 if (CommonFunc.UseCoin(cost))
                 {
                     SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.LEVEL);
@@ -287,7 +291,12 @@ public class PopupGameReady : PopupUI
 
             var skillData = SkillManager.Instance.GetSkillData(nextSkill);
 
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE", skillData.GetDesc()), yesAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("UPGRADE_ITEM_TITLE", skillData.GetDesc()),
+                LocalizeData.Instance.GetLocalizeString("COMMON_UPGRADE"),
+                PopupMsg.MSG_POPUP_TYPE.UPGRADE_NO,
+                CommonData.POINT_TYPE.COIN,
+                cost,
+                yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }
