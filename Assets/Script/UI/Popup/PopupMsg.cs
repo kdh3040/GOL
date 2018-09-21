@@ -83,6 +83,7 @@ public class PopupMsg : PopupUI
         YesButton.onClick.AddListener(OnClickYes);
         NoButton.onClick.AddListener(OnClickNo);
         ChargeButton.onClick.AddListener(OnClickCharge);
+        CostButton.onClick.AddListener(OnClickYes);
     }
 
     public override void ShowPopup(PopupUIData data)
