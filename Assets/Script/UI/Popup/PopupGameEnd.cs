@@ -245,19 +245,34 @@ public class PopupGameEnd : PopupUI {
         {
             UnityAction yesAction = () =>
             {
-#if UNITY_EDITOR
-                GamePlayManager.Instance.ContinueCount--;
-                GamePlayManager.Instance.GameRevival();
-                PopupManager.Instance.DismissPopup();
-#elif UNITY_ANDROID
-            AdManager.Instance.ShowRewardVideo();
-#elif UNITY_IPHONE
-            AdManager.Instance.ShowRewardVideo();
-#endif
+                if(CommonFunc.UseCoin(ConfigData.Instance.REVIVAL_COST))
+                {
+                    GamePlayManager.Instance.ContinueCount--;
+                    GamePlayManager.Instance.GameRevival();
+                    PopupManager.Instance.DismissPopup();
+                }
             };
-
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_ADS"), yesAction);
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_REVIVAL"), yesAction, CommonData.POINT_TYPE.COIN, ConfigData.Instance.REVIVAL_COST);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+
+
+
+
+//            UnityAction yesAction = () =>
+//            {
+//#if UNITY_EDITOR
+//                GamePlayManager.Instance.ContinueCount--;
+//                GamePlayManager.Instance.GameRevival();
+//                PopupManager.Instance.DismissPopup();
+//#elif UNITY_ANDROID
+//            AdManager.Instance.ShowRewardVideo();
+//#elif UNITY_IPHONE
+//            AdManager.Instance.ShowRewardVideo();
+//#endif
+//            };
+
+//            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_END_ADS"), yesAction);
+//            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
         else
         {

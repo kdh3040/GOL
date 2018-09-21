@@ -20,6 +20,9 @@ public class PopupMsg : PopupUI
         public UnityAction YesAction = null;
         public UnityAction NoAction = null;
         public UnityAction ChargeAction = null;
+        public CommonData.POINT_TYPE PointType = CommonData.POINT_TYPE.COIN;
+        public int PointValue = 0;
+
         public PopupData(string desc)
         {
             Title = string.Empty;
@@ -39,24 +42,15 @@ public class PopupMsg : PopupUI
             NoAction = noAction;
             ChargeAction = chargeAction;
         }
-        public PopupData(string title, string desc)
-        {
-            Title = title;
-            Desc = desc;
-            MsgPopupType = MSG_POPUP_TYPE.OK;
-        }
 
-        public PopupData(string title, string desc, UnityAction yesAction, UnityAction noAction = null, UnityAction chargeAction = null)
+        public PopupData(string desc, UnityAction yesAction, CommonData.POINT_TYPE pointType, int value)
         {
-            Title = title;
+            Title = string.Empty;
             Desc = desc;
-            if (chargeAction != null)
-                MsgPopupType = MSG_POPUP_TYPE.YES_CHARGE;
-            else
-                MsgPopupType = MSG_POPUP_TYPE.YES_NO;
+            MsgPopupType = MSG_POPUP_TYPE.YES_NO;
+            PointType = pointType;
+            PointValue = value;
             YesAction = yesAction;
-            NoAction = noAction;
-            ChargeAction = chargeAction;
         }
     }
 
@@ -73,6 +67,10 @@ public class PopupMsg : PopupUI
     public Button ChargeButton;
     public Text Title;
     public Text Desc;
+    public GameObject PointObj;
+    public Text PointDesc;
+    public UIPointValue PointValue;
+    public Image PointIcon;
     private PopupData mPopupData;
 
     void Awake()
@@ -89,7 +87,30 @@ public class PopupMsg : PopupUI
             Title.text = LocalizeData.Instance.GetLocalizeString("MSG_POPUP_TITLE_NORMAL");
         else
             Title.text = LocalizeData.Instance.GetLocalizeString(mPopupData.Title);
-        Desc.text = mPopupData.Desc;
+
+        if(mPopupData.PointValue == 0)
+        {
+            Desc.gameObject.SetActive(true);
+            PointObj.gameObject.SetActive(false);
+            Desc.text = mPopupData.Desc;
+        }
+        else
+        {
+            Desc.gameObject.SetActive(false);
+            PointObj.gameObject.SetActive(true);
+            PointValue.SetValue(mPopupData.PointValue);
+
+            switch (mPopupData.PointType)
+            {
+                case CommonData.POINT_TYPE.DDONG:
+                    CommonFunc.SetImageFile("Renewal/UI/icon_ddong", ref PointIcon);
+                    break;
+                case CommonData.POINT_TYPE.COIN:
+                    CommonFunc.SetImageFile("Renewal/UI/icon_gold", ref PointIcon);
+                    break;
+            }
+            PointDesc.text = mPopupData.Desc;
+        }
 
         YesButton.gameObject.SetActive(true);
         NoButton.gameObject.SetActive(mPopupData.MsgPopupType == MSG_POPUP_TYPE.YES_NO);
