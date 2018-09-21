@@ -289,8 +289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -101.45, y: 0}
-  m_SizeDelta: {x: -202.91, y: 0}
+  m_AnchoredPosition: {x: -96.6, y: 0}
+  m_SizeDelta: {x: -207.7, y: -22.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29771832
 MonoBehaviour:
@@ -315,7 +315,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 423c04ab3385cc64fae58c72b2be736f, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
     m_MaxSize: 40
     m_Alignment: 4
@@ -324,7 +324,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAD6C\uB9E4"
+  m_Text: "\uC2AC\uB86F \uAC15\uD654"
 --- !u!222 &29771833
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5239,7 +5239,7 @@ Prefab:
     - target: {fileID: 224948287454783122, guid: f20a494d3a11bb5479347c39a4a29324,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 59.77
+      value: 72.5
       objectReference: {fileID: 0}
     - target: {fileID: 224948287454783122, guid: f20a494d3a11bb5479347c39a4a29324,
         type: 2}
@@ -5249,7 +5249,7 @@ Prefab:
     - target: {fileID: 224948287454783122, guid: f20a494d3a11bb5479347c39a4a29324,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 208.45
+      value: 184
       objectReference: {fileID: 0}
     - target: {fileID: 224948287454783122, guid: f20a494d3a11bb5479347c39a4a29324,
         type: 2}
