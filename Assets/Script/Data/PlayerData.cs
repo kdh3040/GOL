@@ -125,6 +125,8 @@ public class PlayerData
     public bool AlarmSetting { get; private set; }
     public int BestScore { get; private set; }
 
+    public bool FirstSetup = false;
+
     public void SaveFile()
     {
         MySaveData.Save();
@@ -145,7 +147,7 @@ public class PlayerData
             FileStream stream = new FileStream(path, FileMode.Open);
             MySaveData = (SaveData)formatter.Deserialize(stream);
             stream.Close();
-
+            FirstSetup = false;
             MySaveData.Load();
         }
         else
@@ -172,6 +174,7 @@ public class PlayerData
             VibrationSetting = true;
             AlarmSetting = true;
             BestScore = 0;
+            FirstSetup = true;
             SaveFile();
         }
     }

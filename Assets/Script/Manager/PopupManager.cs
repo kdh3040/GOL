@@ -50,6 +50,14 @@ public class PopupManager : MonoBehaviour {
         page.gameObject.SetActive(false);
     }
 
+    public bool IsLoadPopup(POPUP_TYPE type)
+    {
+        if (mPopupUIList.ContainsKey(type))
+            return true;
+
+        return false;
+    }
+
     public void ShowPopup(POPUP_TYPE type, PopupUIData data = null)
     {
 //        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
