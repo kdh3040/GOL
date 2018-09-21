@@ -71,6 +71,8 @@
 	<Localize id="POPUP_GAME_END" kr="게임을 종료 하시겠습니까?"/>
 	<Localize id="POPUP_GAME_END_ADS" kr="광고를 보시고 부활 하시겠습니까?"/>
 	<Localize id="POPUP_GAME_END_REVIVAL" kr="부활 하시겠습니까?"/>
+	<Localize id="COMMON_REVIVAL" kr="부활"/>	
+	<Localize id="COMMON_UPGRADE" kr="강화"/>
 	<Localize id="CHAR_NAME_DT" kr="동털"/>
 	<Localize id="CHAR_NAME_BG" kr="바깡"/>
 	<Localize id="CHAR_NAME_DG" kr="대꿍"/>
@@ -167,4 +169,5 @@
 	<Localize id="ENDING_NOTE_NAME_8" kr="피라미드의 비밀 8화"/>
 	<Localize id="SKIN_SLOT_UPGRADE_TITLE" kr="슬롯 강화"/>
 	<Localize id="NORMAL_UPGRADE_TITLE" kr="강화"/>
+	<Localize id="FIRST_SETUP_MSG" kr="첫 출시 기념 떵20개 추가!"/>
 </Datas>

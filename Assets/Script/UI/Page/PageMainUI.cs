@@ -28,7 +28,6 @@ public class PageMainUI : MonoBehaviour
         GameRank.onClick.AddListener(OnClickGameRank);
         GameSetting.onClick.AddListener(OnClickGameSetting);
         GameBook.onClick.AddListener(OnClickGameBook);
-
     }
 
     void Start()
@@ -36,7 +35,25 @@ public class PageMainUI : MonoBehaviour
         PopupManager.Instance.AllDismissPopup();
         TopBar.Initialize(false);
         PlayBGM();
-        Refresh(); 
+        Refresh();
+
+        if(PlayerData.Instance.FirstSetup == true)
+            StartCoroutine(FirstMsgPopup());
+    }
+
+    IEnumerator FirstMsgPopup()
+    {
+        while(true)
+        {
+            if (PopupManager.Instance.IsLoadPopup(PopupManager.POPUP_TYPE.MSG_POPUP))
+            {
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("FIRST_SETUP_MSG")));
+                PlayerData.Instance.FirstSetup = false;
+                break;
+            }
+            else
+                yield return null;
+        }
     }
 
     public void OnClickGamePlay()
@@ -85,6 +102,6 @@ public class PageMainUI : MonoBehaviour
     
     public void PlayBGM()
     {
-            mBGM.Play();
+        mBGM.Play();
     }
 }

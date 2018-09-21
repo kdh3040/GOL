@@ -125,6 +125,8 @@ public class PlayerData
     public bool AlarmSetting { get; private set; }
     public int BestScore { get; private set; }
 
+    public bool FirstSetup = false;
+
     public void SaveFile()
     {
         MySaveData.Save();
@@ -145,7 +147,7 @@ public class PlayerData
             FileStream stream = new FileStream(path, FileMode.Open);
             MySaveData = (SaveData)formatter.Deserialize(stream);
             stream.Close();
-
+            FirstSetup = false;
             MySaveData.Load();
         }
         else
@@ -165,13 +167,14 @@ public class PlayerData
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.CHAR, 1);
             SkinSlotLevel.Add(CommonData.SKIN_TYPE.DOOR, 1);
             //MyCoin = 1000;
-            MyCoin = 100;
+            MyCoin = 2000000;
             MyDDong = 30;// CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MinValue;
             SoundSetting = true;
             VibrationSetting = true;
             AlarmSetting = true;
             BestScore = 0;
+            FirstSetup = true;
             SaveFile();
         }
     }
