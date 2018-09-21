@@ -19,7 +19,7 @@ public class UICountImgFont : MonoBehaviour
     public enum IMG_TYPE
     {
         YELLOW,
-        GREEN,
+        WHITE,
     }
 
     public void SetValue(string count, IMG_RANGE range, IMG_TYPE imgType)
@@ -40,7 +40,7 @@ public class UICountImgFont : MonoBehaviour
             case IMG_TYPE.YELLOW:
                 formString = "Renewal/UI/icon_number_1_{0}";
                 break;
-            case IMG_TYPE.GREEN:
+            case IMG_TYPE.WHITE:
                 formString = "Renewal/UI/icon_number_2_{0}";
                 break;
             default:
@@ -87,18 +87,7 @@ public class UICountImgFont : MonoBehaviour
 
         if(range == IMG_RANGE.CENTER)
         {
-            if(countLength == 2)
-            {
-                for (int i = 0; i < countLength; i++)
-                {
-                    Image currImg = ImgFontList[i];
-                    Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
-
-                    currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2, 0);
-                    currImg.gameObject.transform.localPosition = currImgLocalPosition;
-                }
-            }
-            else if(countLength == 1)
+            if(countLength == 1)
             {
                 Image currImg = ImgFontList[0];
                 currImg.gameObject.transform.localPosition = new Vector3(0, 0, 0);
@@ -110,7 +99,7 @@ public class UICountImgFont : MonoBehaviour
                     Image currImg = ImgFontList[i];
                     Vector3 currImgLocalPosition = currImg.gameObject.transform.localPosition;
 
-                    currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2 + ImgFontList[0].sprite.rect.size.x / 2, 0);
+                    currImgLocalPosition = new Vector3(currImgLocalPosition.x - allWidthSize / 2, 0);
                     currImg.gameObject.transform.localPosition = currImgLocalPosition;
                 }
             }

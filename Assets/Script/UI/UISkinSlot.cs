@@ -40,7 +40,7 @@ public class UISkinSlot : MonoBehaviour
         {
             LevelBg.gameObject.SetActive(true);
             Level.gameObject.SetActive(true);
-            Level.SetValue(string.Format("+{0}", level - 1), UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.GREEN);
+            Level.SetValue(string.Format("+{0}", level - 1), UICountImgFont.IMG_RANGE.CENTER, UICountImgFont.IMG_TYPE.WHITE);
         }
         SkinData skinData = PlayerData.Instance.GetUseSkinData(SkinType);
         CommonFunc.SetImageFile(skinData.GetIcon(), ref SkinIcon, false);
