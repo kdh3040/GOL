@@ -177,7 +177,7 @@ public class AdManager : MonoBehaviour {
         }
         else
         {
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("동영상 준비중입니다"));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("잠시 후에 다시 시도해주세요"));
         }
     }
     private void HandleRewardBasedVideoRewarded(object sender, Reward e)
@@ -213,7 +213,7 @@ public class AdManager : MonoBehaviour {
     {
         if (!DDongBasedVideo.IsLoaded())
         {
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("동영상 준비중입니다"));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, new PopupMsg.PopupData("잠시 후에 다시 시도해주세요"));
         }
         else
         {
