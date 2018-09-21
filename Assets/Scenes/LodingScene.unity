@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40929c85e7986ab4eabe9158731b11a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webViewObject: {fileID: 0}
 --- !u!4 &499155206
 Transform:
   m_ObjectHideFlags: 0
@@ -278,10 +279,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a202fbc91613c7645a8829b777603758, type: 3}
   - {fileID: 8300000, guid: cb9c93fe4cf1936419740b89baf85497, type: 3}
   - {fileID: 8300000, guid: f4fcd024ad850354db771d330cb489ab, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: ee56a64391265ef4f924b6aaedb71409, type: 3}
+  - {fileID: 8300000, guid: 5fd3c8d20367eff4ba3e831c5a227e2a, type: 3}
+  - {fileID: 8300000, guid: a2f42ecff7da483449fff8ce1c959b7f, type: 3}
+  - {fileID: 8300000, guid: 09f61b4499277744db4a6f39ad748780, type: 3}
+  - {fileID: 8300000, guid: 622aa78851853e540a7991372a79b368, type: 3}
 --- !u!4 &693667829
 Transform:
   m_ObjectHideFlags: 0

@@ -85,9 +85,9 @@ public class Door : MonoBehaviour
     public void PlaySound()
     {
         SkinData mSkin = PlayerData.Instance.GetUseSkinData(CommonData.SKIN_TYPE.DOOR);
-        var doorData = mSkin as DoorData;
-        AudioClip mSound = Resources.Load<AudioClip>(doorData.close_sound);
-        SoundManager.Instance.PlayFXSound(mSound);
+        var doorData = mSkin as DoorData;      
+
+        SoundManager.Instance.PlayFXSound((CommonData.SOUND_TYPE)doorData.close_sound);        
     }
 
     public void PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE type)

@@ -8,7 +8,7 @@ public class DoorData : SkinData
     public string close_img;
     public string halfopen_img;
     public string open_img;
-    public string close_sound;
+    public int close_sound;
     public string buy_bg;
 
     public DoorData(XmlNode node)
@@ -22,7 +22,7 @@ public class DoorData : SkinData
         halfopen_img = node.Attributes.GetNamedItem("halfopen_img").Value;
         open_img = node.Attributes.GetNamedItem("open_img").Value;
         skill = node.Attributes.GetNamedItem("skill").Value;
-        close_sound = node.Attributes.GetNamedItem("close_sound").Value;
+        close_sound = int.Parse(node.Attributes.GetNamedItem("close_sound").Value);
         buy_bg = node.Attributes.GetNamedItem("buy_bg").Value;
     }
 
