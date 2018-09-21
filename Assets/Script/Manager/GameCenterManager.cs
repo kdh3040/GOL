@@ -35,13 +35,13 @@ public class GameCenterManager : MonoBehaviour {
         GPGSIds.achievement_1000 };
     
     private string[] Achievement_door_list =
-        { GPGSIds.achievement_door_1, GPGSIds.achievement_door_2,
-        GPGSIds.achievement_door_3, GPGSIds.achievement_door_4, GPGSIds.achievement_door_5,
-        GPGSIds.achievement_door_6, GPGSIds.achievement_door_7, GPGSIds.achievement_door_8,
-        GPGSIds.achievement_door_9, GPGSIds.achievement_door_10, GPGSIds.achievement_door_11};
+        { GPGSIds.achievement_apart_door_1_open, GPGSIds.achievement_apart_door_2_open,
+        GPGSIds.achievement_pyramid_door_1_open, GPGSIds.achievement_pyramid_door_2_open, GPGSIds.achievement_pyramid_door_3_open,
+        GPGSIds.achievement_submarine_door_1_open, GPGSIds.achievement_submarine_door_2_open, GPGSIds.achievement_submarine_door_3_open,
+        GPGSIds.achievement_spaceship_door_1_open, GPGSIds.achievement_spaceship_door_2_open, GPGSIds.achievement_spaceship_door_3_open};
 
-    private string[] Achievement_char_list = { GPGSIds.achievement_char_2, GPGSIds.achievement_char_3, GPGSIds.achievement_char_4 };
-    private string[] Achievement_map_list = { GPGSIds.achievement_pyramid, GPGSIds.achievement_sea, GPGSIds.achievement_space };
+    private string[] Achievement_char_list = { GPGSIds.achievement_character_open, GPGSIds.achievement_character_open_2, GPGSIds.achievement_character_open_3 };
+    private string[] Achievement_map_list = { GPGSIds.achievement_pyramid, GPGSIds.achievement_submarine, GPGSIds.achievement_spaceship };
 
 
     // Use this for initialization
