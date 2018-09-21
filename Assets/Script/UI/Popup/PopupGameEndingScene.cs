@@ -156,7 +156,13 @@ public class PopupGameEndingScene : PopupUI
                     EndAction();
             }
         };
-        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ENDING_TITLE"), yesAction);
+
+        var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("BUY_ENDING_TITLE"),
+            LocalizeData.Instance.GetLocalizeString("COMMON_BUY"),
+            PopupMsg.MSG_POPUP_TYPE.BUY_NO,
+            CommonData.POINT_TYPE.COIN,
+            EndingSceneList[SelectIndex].cost,
+            yesAction);
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
     }
    
