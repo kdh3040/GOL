@@ -400,6 +400,7 @@ public class PopupGameShop : PopupUI
                 PlayerData.Instance.AddSkin(SelectSkinType, skinId);
                 ShowToastMsg(LocalizeData.Instance.GetLocalizeString("POPUP_GAME_READY_EQUIP_ITEM", skinData.GetLocalizeName()));
                 PlayerData.Instance.SetUseSkin(SelectSkinType, skinId);
+                GameCenterManager.Instance.UnlockAchievement_Item(SelectSkinType, skinId);
                 RefreshUI();
                 SetBackGroundImg();
             }

@@ -24,14 +24,34 @@
 
 public static class GPGSIds
 {
-        public const string leaderboard_score = "CgkImqGu0fgUEAIQCg"; // <GPGSID>
         public const string achievement_20000 = "CgkImqGu0fgUEAIQAw"; // <GPGSID>
-        public const string achievement_100000 = "CgkImqGu0fgUEAIQCA"; // <GPGSID>
-        public const string achievement_7500 = "CgkImqGu0fgUEAIQBA"; // <GPGSID>
         public const string achievement_50000 = "CgkImqGu0fgUEAIQBg"; // <GPGSID>
-        public const string achievement_30000 = "CgkImqGu0fgUEAIQBw"; // <GPGSID>
-        public const string achievement_1000 = "CgkImqGu0fgUEAIQAg"; // <GPGSID>
+        public const string achievement_500000 = "CgkImqGu0fgUEAIQDQ"; // <GPGSID>
+        public const string achievement_door_1 = "CgkImqGu0fgUEAIQFQ"; // <GPGSID>
+        public const string achievement_door_2 = "CgkImqGu0fgUEAIQFg"; // <GPGSID>
+        public const string achievement_door_3 = "CgkImqGu0fgUEAIQFw"; // <GPGSID>
+        public const string achievement_door_4 = "CgkImqGu0fgUEAIQGA"; // <GPGSID>
+        public const string achievement_door_5 = "CgkImqGu0fgUEAIQGQ"; // <GPGSID>
+        public const string achievement_door_6 = "CgkImqGu0fgUEAIQGg"; // <GPGSID>
+        public const string achievement_door_7 = "CgkImqGu0fgUEAIQGw"; // <GPGSID>
+        public const string achievement_door_8 = "CgkImqGu0fgUEAIQHA"; // <GPGSID>
+        public const string achievement_door_9 = "CgkImqGu0fgUEAIQHQ"; // <GPGSID>
+        public const string achievement_char_2 = "CgkImqGu0fgUEAIQEg"; // <GPGSID>
+        public const string achievement_char_3 = "CgkImqGu0fgUEAIQEw"; // <GPGSID>
+        public const string achievement_char_4 = "CgkImqGu0fgUEAIQFA"; // <GPGSID>
         public const string achievement_10000 = "CgkImqGu0fgUEAIQBQ"; // <GPGSID>
+        public const string achievement_1000 = "CgkImqGu0fgUEAIQAg"; // <GPGSID>
+        public const string achievement_sea = "CgkImqGu0fgUEAIQEA"; // <GPGSID>
+        public const string achievement_space = "CgkImqGu0fgUEAIQEQ"; // <GPGSID>
+        public const string achievement_300000 = "CgkImqGu0fgUEAIQDA"; // <GPGSID>
+        public const string leaderboard_score = "CgkImqGu0fgUEAIQCg"; // <GPGSID>
+        public const string achievement_door_10 = "CgkImqGu0fgUEAIQHg"; // <GPGSID>
+        public const string achievement_door_11 = "CgkImqGu0fgUEAIQHw"; // <GPGSID>
+        public const string achievement_30000 = "CgkImqGu0fgUEAIQBw"; // <GPGSID>
+        public const string achievement_pyramid = "CgkImqGu0fgUEAIQDw"; // <GPGSID>
+        public const string achievement_7500 = "CgkImqGu0fgUEAIQBA"; // <GPGSID>
+        public const string achievement_1000000 = "CgkImqGu0fgUEAIQDg"; // <GPGSID>
+        public const string achievement_100000 = "CgkImqGu0fgUEAIQCA"; // <GPGSID>
 
 }
 

@@ -25,6 +25,25 @@ public class GameCenterManager : MonoBehaviour {
     {
     }
 
+
+
+    private int[] Achievement_score = { 1000000, 500000, 300000, 100000, 50000, 30000, 20000, 10000, 7500, 1000 };
+    private string[] Achievement_score_list = {
+        GPGSIds.achievement_1000000, GPGSIds.achievement_500000, GPGSIds.achievement_300000,
+        GPGSIds.achievement_100000, GPGSIds.achievement_50000, GPGSIds.achievement_30000,
+        GPGSIds.achievement_20000, GPGSIds.achievement_10000, GPGSIds.achievement_7500,
+        GPGSIds.achievement_1000 };
+    
+    private string[] Achievement_door_list =
+        { GPGSIds.achievement_door_1, GPGSIds.achievement_door_2,
+        GPGSIds.achievement_door_3, GPGSIds.achievement_door_4, GPGSIds.achievement_door_5,
+        GPGSIds.achievement_door_6, GPGSIds.achievement_door_7, GPGSIds.achievement_door_8,
+        GPGSIds.achievement_door_9, GPGSIds.achievement_door_10, GPGSIds.achievement_door_11};
+
+    private string[] Achievement_char_list = { GPGSIds.achievement_char_2, GPGSIds.achievement_char_3, GPGSIds.achievement_char_4 };
+    private string[] Achievement_map_list = { GPGSIds.achievement_pyramid, GPGSIds.achievement_sea, GPGSIds.achievement_space };
+
+
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
@@ -39,6 +58,7 @@ public class GameCenterManager : MonoBehaviour {
 
     public void Init()
     {
+        
 
 #if UNITY_ANDROID
 
@@ -133,64 +153,72 @@ public class GameCenterManager : MonoBehaviour {
        
     }
 
-    public void UnlockAchievement(int score)
+    public void UnlockAchievement_score(int score)
     {
-        if (score >= 100000)
+
+        for(int i=0; i< Achievement_score.Length; i++)
         {
+            if ( score >= Achievement_score[i])
+            {
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_100000, 100f, null);
+                PlayGamesPlatform.Instance.ReportProgress(Achievement_score_list[i], 100f, null);
 #elif UNITY_IOS
-            Social.ReportProgress("Score_100000", 100f, null);
+            Social.ReportProgress(Achievement_score_list[i], 100f, null);
 #endif
+
+                break;
+            }
         }
-        else if (score >= 50000)
+    }
+
+    public void UnlockAchievement_Item(CommonData.SKIN_TYPE type, int Idx)
+    {
+        switch (type)
         {
-#if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_50000, 100f, null);
-#elif UNITY_IOS
-            Social.ReportProgress("Score_50000", 100f, null);
-#endif
+            case CommonData.SKIN_TYPE.CHAR:
+                UnlockAchievement_Char(Idx - 2);
+                break;
+            case CommonData.SKIN_TYPE.DOOR:
+                UnlockAchievement_Door(Idx - 2);
+                break;
+            case CommonData.SKIN_TYPE.BACKGROUND:
+                UnlockAchievement_BackGround(Idx - 2);
+                break;
+            default:
+                break;
+
         }
-        else if (score >= 30000)
-        {
+    }
+
+    private void UnlockAchievement_Door(int Idx)
+    {
+
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_30000, 100f, null);
+        PlayGamesPlatform.Instance.ReportProgress(Achievement_door_list[Idx], 100f, null);
 #elif UNITY_IOS
-            Social.ReportProgress("Score_30000", 100f, null);
+            Social.ReportProgress(Achievement_door_list[Idx], 100f, null);
 #endif
-        }
-        else if (score >= 20000)
-        {
+    }
+
+
+    private void UnlockAchievement_BackGround(int Idx)
+    {
+
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_20000, 100f, null);
+        PlayGamesPlatform.Instance.ReportProgress(Achievement_map_list[Idx], 100f, null);
 #elif UNITY_IOS
-            Social.ReportProgress("Score_20000", 100f, null);
+            Social.ReportProgress(Achievement_map_list[Idx], 100f, null);
 #endif
-        }
-        else if (score >= 10000)
-        {
+    }
+
+    private void UnlockAchievement_Char(int Idx)
+    {
+
 #if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_10000, 100f, null);
+        PlayGamesPlatform.Instance.ReportProgress(Achievement_char_list[Idx], 100f, null);
 #elif UNITY_IOS
-            Social.ReportProgress("Score_10000", 100f, null);
+            Social.ReportProgress(Achievement_char_list[Idx], 100f, null);
 #endif
-        }
-        else if (score >= 7500)
-        {
-#if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_7500, 100f, null);
-#elif UNITY_IOS
-            Social.ReportProgress("Score_7500", 100f, null);
-#endif
-        }
-        else if (score >= 1000)
-        {
-#if UNITY_ANDROID
-            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_1000, 100f, null);
-#elif UNITY_IOS
-            Social.ReportProgress("Score_100", 100f, null);
-#endif
-        }
     }
 
     public void ShowAchievementUI()
