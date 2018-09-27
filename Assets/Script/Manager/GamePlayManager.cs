@@ -264,7 +264,7 @@ public class GamePlayManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         
         // 1차 업데이트에 유져 수 보고 추가 결정
-        AdManager.Instance.ShowInterstitialAd();
+        AdManager.Instance.ShowGameOverAds();
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }

@@ -32,6 +32,7 @@ public class AdManager : MonoBehaviour {
     private static string adAppID_Android = "ca-app-pub-4020702622451243~9202373650";
     private static string adAppID_Ios = "ca-app-pub-4020702622451243~6331311469";
 
+    /*
     private static string adInterstitial_Android = "ca-app-pub-4020702622451243/6018937389";
     private static string adInterstitial_Ios = "ca-app-pub-4020702622451243/5620865023";
 
@@ -47,7 +48,10 @@ public class AdManager : MonoBehaviour {
     private static string adDDongVideo_Ios = "ca-app-pub-4020702622451243/4858058054";
     private static RewardBasedVideoAd DDongBasedVideo;
 
-    public string android_banner_id = "ca-app-pub-4020702622451243/6018937389";
+    */
+
+
+    public string android_banner_id = "ca-app-pub-4020702622451243/2867388764";
     public string ios_banner_id = "ca-app-pub-4020702622451243/2490725064";
     private BannerView bannerView;
 
@@ -104,21 +108,7 @@ public class AdManager : MonoBehaviour {
 
     public void ShowBannerAd()
     {
-        string adUnitId = string.Empty;
-
-#if UNITY_ANDROID
-        adUnitId = test_adUnitId;
-        //adUnitId = android_banner_id;
-#elif UNITY_IOS
-        adUnitId = ios_banner_id;
-#endif
-
-        AdSize adSize = new AdSize(320, (int)(Screen.height * 0.016f));
-        bannerView = new BannerView(adUnitId, adSize, AdPosition.Top);
-        AdRequest request = new AdRequest.Builder().Build();
-
-        bannerView.LoadAd(request);
-        bannerView.Show();
+         bannerView.Show();
     }
 
     public void HideBannerAd()
@@ -127,6 +117,21 @@ public class AdManager : MonoBehaviour {
         Debug.Log("!@@@@@ HideBannerAd");
     }
 
+    public void ShowGameOverAds()
+    {
+
+        UnityEngine.Random.Range(0, PROB_MAX_ADVIEW);
+
+        Debug.Log("@@@@@@ ShowInterstitialAd  " + UnityEngine.Random.Range(0, PROB_MAX_ADVIEW));
+
+        if (UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
+        {
+
+            UnityAdsHelper.Instance.ShowGameOverAd();
+        }
+    }
+
+    /*
     public void RequestInterstitialAd()
     {
         string adUnitId = string.Empty;
@@ -156,19 +161,7 @@ public class AdManager : MonoBehaviour {
     }
 
 
-    public void ShowInterstitialAd()
-    {
-        
-        UnityEngine.Random.Range(0, PROB_MAX_ADVIEW);
-
-        Debug.Log("@@@@@@ ShowInterstitialAd  " + UnityEngine.Random.Range(0, PROB_MAX_ADVIEW));
-
-        if (UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
-        {
-            
-            UnityAdsHelper.Instance.ShowGameOverAd();
-        }       
-    }
+    
 
     public void RequestRewardBasedVideo()
     {
@@ -283,4 +276,6 @@ public class AdManager : MonoBehaviour {
         Debug.Log("!!!!!! NotHandleRewardBasedVideoRewarded");
         PlayerData.Instance.PlusDDong(1);
     }
+
+    */
 }
