@@ -36,8 +36,8 @@ public class PageMainUI : MonoBehaviour
         TopBar.Initialize(false);
         PlayBGM();
         Refresh();
-
-        if(PlayerData.Instance.FirstSetup == true)
+        AdManager.Instance.RequestBannerAd();
+        if (PlayerData.Instance.FirstSetup == true)
             StartCoroutine(FirstMsgPopup());
     }
 

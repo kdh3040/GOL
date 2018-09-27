@@ -264,7 +264,7 @@ public class GamePlayManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         
         // 1차 업데이트에 유져 수 보고 추가 결정
-        //AdManager.Instance.ShowInterstitialAd();
+        AdManager.Instance.ShowInterstitialAd();
 
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_END, new PopupGameEnd.PopupData(note.NoteId));
     }
@@ -660,26 +660,25 @@ public class GamePlayManager : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            //if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
-            if (Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
+            if (Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Home) || Input.GetKeyUp(KeyCode.Menu))
             {
-                SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);            
-                {
-                    if (IsGamePause)
-                        return;
-
-                    GamePause();
-                    PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
-                }
-            }
-            else if (Input.GetKeyUp(KeyCode.Escape))
-            {
-           
                 if (PopupManager.Instance.CurrentPopupType() == PopupManager.POPUP_TYPE.GAME_PAUSE && Input.GetKeyUp(KeyCode.Escape))
                 {
                     SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
                     GameResumeCountStart();
                     PopupManager.Instance.DismissPopup();
+                }
+                else
+                {
+
+                    SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
+                    {
+                        if (IsGamePause)
+                            return;
+
+                        GamePause();
+                        PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
+                    }
                 }
             }
         }

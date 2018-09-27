@@ -40,6 +40,7 @@ public class PlayScene : MonoBehaviour
         GamePlayManager.Instance.GameStart(GamePlayManager.START_TYPE.FIRST);
 
         PlayBGM();
+        AdManager.Instance.HideBannerAd();
     }
 
     public void PlayBGM()

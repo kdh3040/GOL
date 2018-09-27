@@ -126,7 +126,8 @@ public class PopupGamePurchase : PopupUI
             UnityAction yesAction = () =>
             {
                 //
-                AdManager.Instance.ShowFreeDDongVideo();
+                //AdManager.Instance.ShowFreeDDongVideo();
+                UnityAdsHelper.Instance.ShowRewardedAd();
             };
             var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_BUY_DDONG"), yesAction);
             PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);

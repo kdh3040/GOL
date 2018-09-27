@@ -26,7 +26,7 @@ public class AdManager : MonoBehaviour {
     private static RewardBasedVideoAd rewardBasedVideo;
 
 
-    private static int PROB_SELECT_ADVIEW = 0;
+    private static int PROB_SELECT_ADVIEW = 3;
     private static int PROB_MAX_ADVIEW = 10;
 
     private static string adAppID_Android = "ca-app-pub-4020702622451243~9202373650";
@@ -47,18 +47,67 @@ public class AdManager : MonoBehaviour {
     private static string adDDongVideo_Ios = "ca-app-pub-4020702622451243/4858058054";
     private static RewardBasedVideoAd DDongBasedVideo;
 
+    public string android_banner_id = "ca-app-pub-4020702622451243/6018937389";
+    public string ios_banner_id = "ca-app-pub-4020702622451243/2490725064";
+    private BannerView bannerView;
+
+    string test_adUnitId = "ca-app-pub-3940256099942544/6300978111";
+
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
+        InitializeAd();
         RequestRewardBasedVideo();
         RequestInterstitialAd();
-    }
+        RequestBannerAd();
+      }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    private void InitializeAd()
+    {
+#if UNITY_ANDROID
+                string appId = adAppID_Android;
+        //string appId = "ca-app-pub-3940256099942544~3347511713";
+#elif UNITY_IPHONE
+            string appId = adAppID_Ios;
+#else
+            string appId = "unexpected_platform";
+#endif
 
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(appId);
+    }
+
+    public void RequestBannerAd()
+    {
+        string adUnitId = string.Empty;
+
+#if UNITY_ANDROID
+        //adUnitId = test_adUnitId;
+        adUnitId = android_banner_id;
+#elif UNITY_IOS
+        adUnitId = ios_banner_id;
+#endif
+
+        AdSize adSize = new AdSize(320, (int)(Screen.height * 0.016f));
+        bannerView = new BannerView(adUnitId, adSize, AdPosition.Top);
+        AdRequest request = new AdRequest.Builder().Build();
+
+        bannerView.LoadAd(request);
+        ShowBannerAd();
+    }
+
+    public void ShowBannerAd()
+    {
+        bannerView.Show();        
+    }
+    public void HideBannerAd()
+    {
+        bannerView.Destroy();
+    }
     public void RequestInterstitialAd()
     {
         string adUnitId = string.Empty;
@@ -93,17 +142,12 @@ public class AdManager : MonoBehaviour {
         
         UnityEngine.Random.Range(0, PROB_MAX_ADVIEW);
 
-        if(UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
+        Debug.Log("@@@@@@ ShowInterstitialAd  " + UnityEngine.Random.Range(0, PROB_MAX_ADVIEW));
+
+        if (UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
         {
-            if (!interstitialAd.IsLoaded())
-            {
-                RequestInterstitialAd();
-                return;
-            }
-            else
-            {
-                interstitialAd.Show();
-            }
+            
+            UnityAdsHelper.Instance.ShowGameOverAd();
         }       
     }
 
@@ -198,14 +242,7 @@ public class AdManager : MonoBehaviour {
 
         if (UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
         {
-            if (!gameBasedVideo.IsLoaded())
-            {
-                RequestRewardBasedVideo();
-            }
-            else
-            {
-                gameBasedVideo.Show();
-            }
+            UnityAdsHelper.Instance.ShowGameOverAd();
         }        
     }
 
