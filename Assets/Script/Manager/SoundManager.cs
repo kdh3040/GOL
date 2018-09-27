@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour {
 
     public void PlayFXSound(CommonData.SOUND_TYPE type)
     {
-        if (PlayerData.Instance.GetSoundSetting() == true)
+        if (PlayerData.Instance.GetEffectSoundSetting() == true)
         {
             mFxAudio.clip = mFxSound[(int)type];
             mFxAudio.Play();
@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour {
 
     public void PlayFXSound(AudioClip clip)
     {
-        if (PlayerData.Instance.GetSoundSetting() == true)
+        if (PlayerData.Instance.GetEffectSoundSetting() == true)
         {
             mFxAudio.clip = clip;
             mFxAudio.Play();

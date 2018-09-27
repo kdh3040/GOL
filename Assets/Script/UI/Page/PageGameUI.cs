@@ -146,7 +146,7 @@ public class PageGameUI : MonoBehaviour
 
     public void OnClickPause()
     {
-        PlayFXSound();
+        SoundManager.Instance.PlayFXSound(CommonData.SOUND_TYPE.BUTTON);
         GamePlayManager.Instance.GamePause();
         PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.GAME_PAUSE);
     }

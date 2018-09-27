@@ -66,6 +66,8 @@ public class GamePlayManager : MonoBehaviour
     public int NoteChainCount = 1;
     public bool SkinShopImmEquipMode = false;
 
+    public AudioSource mBGM;
+
     public float NoteSpeed
     {
         get
@@ -84,7 +86,8 @@ public class GamePlayManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        AudioListener.pause =! PlayerData.Instance.GetSoundSetting();
+        PlayMainBGM();
+        //AudioListener.pause =! PlayerData.Instance.GetSoundSetting();
     }
 
     public void Initialize(PlayScene scene)
@@ -103,10 +106,11 @@ public class GamePlayManager : MonoBehaviour
 
         InGameEffect_Start = scene.InGameEffect_Start;
 
+      
        // AdManager.Instance.RequestInterstitialAd();
        // AdManager.Instance.RequestRewardBasedVideo();
 
-      
+
     }
 
     public void ResetGame()
@@ -130,13 +134,15 @@ public class GamePlayManager : MonoBehaviour
     }
     public void GameExit()
     {
+        PlayMainBGM();
         ResetGame();
         InGame = false;
         mNoteSystem.GameExit();
         mDoorSystem.GameExit();
     }
     public void GameStart(START_TYPE startType)
-    {        
+    {
+        StopMainBGM();
         ContinueCount = CommonData.GAME_CONTINUE_MAX_COUNT;
         StartType = startType;
         ResetGame();
@@ -232,7 +238,7 @@ public class GamePlayManager : MonoBehaviour
                 
         }
 
-        return true;
+        return false;
     }
 
     public bool IsAutoPlay()
@@ -404,12 +410,23 @@ public class GamePlayManager : MonoBehaviour
     public void ViewInGameEffect(GameSkill skill)
     {
         if (skill.mSkillType == SkillManager.SKILL_TYPE.SPEED_DOWN)
-        {
+        {       
             InGameEffect_Slow.SetActive(true);
+            AudioSource audio = InGameEffect_Slow.GetComponent<AudioSource>();
+            if (PlayerData.Instance.GetEffectSoundSetting())
+            {
+                audio.Play();
+            }
         }
         else if (skill.mSkillType == SkillManager.SKILL_TYPE.SCORE_UP)
         {
+          
             InGameEffect_Double.SetActive(true);
+            AudioSource audio = InGameEffect_Double.GetComponent<AudioSource>();
+            if (PlayerData.Instance.GetEffectSoundSetting())
+            {
+                audio.Play();
+            }
         }
     }
 
@@ -432,7 +449,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void PlayDoorSound(CommonData.NOTE_LINE line)
     {
-        if (PlayerData.Instance.GetSoundSetting())
+        if (PlayerData.Instance.GetEffectSoundSetting())
         {
             mDoorSystem.PlaySound(line);
         }
@@ -443,6 +460,13 @@ public class GamePlayManager : MonoBehaviour
         var obj = Instantiate(Resources.Load("Prefab/NoteDeleteAni"), NoteDeleteObj.transform) as GameObject;
         SpriteRenderer sprite = obj.GetComponent<SpriteRenderer>();
         //sprite.gameObject.transform.SetParent(NoteDeleteObj.transform);
+
+        AudioSource audio = obj.GetComponent<AudioSource>();
+        if (PlayerData.Instance.GetEffectSoundSetting())
+        {
+            audio.Play();
+        }
+        
         obj.gameObject.transform.localPosition = new Vector3(note.transform.position.x, note.transform.position.y, 0);
 
         switch (note.NoteType)
@@ -541,7 +565,21 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-   
+
+    public void PlayMainBGM()
+    {
+        if (PlayerData.Instance.GetSoundSetting() == true)
+        {
+            mBGM.Play();
+        }
+    }
+
+    public void StopMainBGM()
+    {
+        mBGM.Pause();
+    }
+
+
     private void GetUserTouchEvent()
     {
         //if (Input.GetMouseButtonDown(0))

@@ -18,8 +18,6 @@ public class PageMainUI : MonoBehaviour
     public Image Img_BackGround;
     public Animator Anim_Char;
 
-    public AudioSource mBGM;
-    public AudioClip mClip;
     
     void Awake()
     {
@@ -33,8 +31,7 @@ public class PageMainUI : MonoBehaviour
     void Start()
     {
         PopupManager.Instance.AllDismissPopup();
-        TopBar.Initialize(false);
-        PlayBGM();
+        TopBar.Initialize(false);        
         Refresh();
         AdManager.Instance.RequestBannerAd();
         if (PlayerData.Instance.FirstSetup == true)
@@ -99,9 +96,5 @@ public class PageMainUI : MonoBehaviour
         Anim_Char.Rebind();
         Anim_Char.SetTrigger(charData.shopani_trigger);
     }
-    
-    public void PlayBGM()
-    {
-        mBGM.Play();
-    }
+   
 }

@@ -12,9 +12,11 @@ public class PopupGameSetting : PopupUI
 
     public UITopBar Topbar;
     public Button SoundSettingButton;
+    public Button EffectSoundSettingButton;
     public Button VibrationSettingButton;
     public Button AlarmSettingButton;
     public GameObject SoundSettingCheck;
+    public GameObject EffectSoundSettingCheck;
     public GameObject VibrationSettingCheck;
     public GameObject AlarmSettingCheck;
 
@@ -26,8 +28,10 @@ public class PopupGameSetting : PopupUI
     public void Awake()
     {
         SoundSettingButton.onClick.AddListener(OnClickSoundSetting);
+        EffectSoundSettingButton.onClick.AddListener(OnClickEffectSoundSetting);
         VibrationSettingButton.onClick.AddListener(OnClickVibrationSetting);
         AlarmSettingButton.onClick.AddListener(OnClickAlarmSetting);
+        
     }
 
     public override void ShowPopup(PopupUIData data)
@@ -35,6 +39,7 @@ public class PopupGameSetting : PopupUI
         this.SetBackGroundImg();
         Topbar.Initialize(true);
         SoundSettingCheck.SetActive(PlayerData.Instance.SoundSetting);
+        EffectSoundSettingCheck.SetActive(PlayerData.Instance.EffectSoundSetting);
         VibrationSettingCheck.SetActive(PlayerData.Instance.VibrationSetting);
         AlarmSettingCheck.SetActive(PlayerData.Instance.AlarmSetting);
 
@@ -78,6 +83,13 @@ public class PopupGameSetting : PopupUI
     {
         PlayerData.Instance.SetSoundSetting(!PlayerData.Instance.SoundSetting);
         SoundSettingCheck.SetActive(PlayerData.Instance.SoundSetting);
+      
+    }
+
+    public void OnClickEffectSoundSetting()
+    {
+        PlayerData.Instance.SetEffectSoundSetting(!PlayerData.Instance.EffectSoundSetting);
+        EffectSoundSettingCheck.SetActive(PlayerData.Instance.EffectSoundSetting);
     }
 
     public void OnClickVibrationSetting()

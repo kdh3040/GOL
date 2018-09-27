@@ -92,9 +92,12 @@ public class Door : MonoBehaviour
 
     public void PlayEffectSound(CommonData.DOOR_EFFECT_SOUND_TYPE type)
     {
-        mAudio = GetComponent<AudioSource>();
-        mAudio.clip = mEffectAudio[(int)type];
-        mAudio.Play();
+        if (PlayerData.Instance.GetEffectSoundSetting() == true)
+        {
+            mAudio = GetComponent<AudioSource>();
+            mAudio.clip = mEffectAudio[(int)type];
+            mAudio.Play();
+        }        
     }
 
     public void StopEffectSound()

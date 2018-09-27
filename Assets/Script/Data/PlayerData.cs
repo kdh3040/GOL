@@ -38,6 +38,7 @@ public class PlayerData
         public int UseBackground;
 
         public bool SoundSetting = true;
+        public bool EffectSoundSetting = true;
         public bool VibrationSetting = true;
         public bool AlarmSetting = true;
 
@@ -54,6 +55,7 @@ public class PlayerData
             MyDDong = PlayerData.Instance.MyDDong;
             NextDDongRefilTime = PlayerData.Instance.NextDDongRefilTime.Ticks;
             SoundSetting = PlayerData.Instance.SoundSetting;
+            EffectSoundSetting = PlayerData.Instance.EffectSoundSetting;
             VibrationSetting = PlayerData.Instance.VibrationSetting;
             AlarmSetting = PlayerData.Instance.AlarmSetting;
             BestScore = PlayerData.Instance.BestScore;
@@ -98,6 +100,7 @@ public class PlayerData
             PlayerData.Instance.MyCoin = MyCoin;
             PlayerData.Instance.NextDDongRefilTime = new DateTime(NextDDongRefilTime);
             PlayerData.Instance.SoundSetting = SoundSetting;
+            PlayerData.Instance.EffectSoundSetting = EffectSoundSetting;
             PlayerData.Instance.VibrationSetting = VibrationSetting;
             PlayerData.Instance.AlarmSetting = AlarmSetting;
             PlayerData.Instance.BestScore = BestScore;
@@ -121,6 +124,7 @@ public class PlayerData
     private SaveData MySaveData = new SaveData();
 
     public bool SoundSetting { get; private set; }
+    public bool EffectSoundSetting { get; private set; }
     public bool VibrationSetting { get; private set; }
     public bool AlarmSetting { get; private set; }
     public int BestScore { get; private set; }
@@ -171,6 +175,7 @@ public class PlayerData
             MyDDong = 30;// CommonData.MAX_DDONG_COUNT;
             NextDDongRefilTime = DateTime.MinValue;
             SoundSetting = true;
+            EffectSoundSetting = true;
             VibrationSetting = true;
             AlarmSetting = true;
             BestScore = 0;
@@ -461,8 +466,21 @@ public class PlayerData
     {
         SoundSetting = enable;
 
-        AudioListener.pause =! enable;
-        
+        //AudioListener.pause =! enable;
+        if(enable)
+            GamePlayManager.Instance.PlayMainBGM();
+        else
+            GamePlayManager.Instance.StopMainBGM();
+
+        SaveFile();
+    }
+
+    public void SetEffectSoundSetting(bool enable)
+    {
+        EffectSoundSetting = enable;
+
+       // AudioListener.pause = !enable;
+
         SaveFile();
     }
 
@@ -481,6 +499,11 @@ public class PlayerData
     public bool GetSoundSetting()
     {
         return SoundSetting;
+    }
+
+    public bool GetEffectSoundSetting()
+    {
+        return EffectSoundSetting;
     }
 
     public bool GetVibrationSetting()
