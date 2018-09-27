@@ -74,8 +74,8 @@ public class AdManager : MonoBehaviour {
     private void InitializeAd()
     {
 #if UNITY_ANDROID
-            string appId = adAppID_Android;
-//        string appId = "ca-app-pub-3940256099942544~3347511713";
+//            string appId = adAppID_Android;
+        string appId = "ca-app-pub-3940256099942544~3347511713";
 #elif UNITY_IPHONE
             string appId = adAppID_Ios;
 #else
@@ -92,8 +92,8 @@ public class AdManager : MonoBehaviour {
         string adUnitId = string.Empty;
 
 #if UNITY_ANDROID
-        //adUnitId = test_adUnitId;
-        adUnitId = android_banner_id;
+        adUnitId = test_adUnitId;
+        //adUnitId = android_banner_id;
 #elif UNITY_IOS
         adUnitId = ios_banner_id;
 #endif
