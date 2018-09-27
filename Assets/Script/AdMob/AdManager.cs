@@ -53,24 +53,25 @@ public class AdManager : MonoBehaviour {
 
     string test_adUnitId = "ca-app-pub-3940256099942544/6300978111";
 
+    public bool bBannerShow = true;
+
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
         InitializeAd();
-        RequestRewardBasedVideo();
-        RequestInterstitialAd();
+        //RequestRewardBasedVideo();
+        //RequestInterstitialAd();
         RequestBannerAd();
       }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
     private void InitializeAd()
     {
 #if UNITY_ANDROID
-                string appId = adAppID_Android;
-        //string appId = "ca-app-pub-3940256099942544~3347511713";
+            string appId = adAppID_Android;
+//        string appId = "ca-app-pub-3940256099942544~3347511713";
 #elif UNITY_IPHONE
             string appId = adAppID_Ios;
 #else
@@ -83,6 +84,7 @@ public class AdManager : MonoBehaviour {
 
     public void RequestBannerAd()
     {
+        bBannerShow = true;
         string adUnitId = string.Empty;
 
 #if UNITY_ANDROID
@@ -95,19 +97,36 @@ public class AdManager : MonoBehaviour {
         AdSize adSize = new AdSize(320, (int)(Screen.height * 0.016f));
         bannerView = new BannerView(adUnitId, adSize, AdPosition.Top);
         AdRequest request = new AdRequest.Builder().Build();
-
+        
         bannerView.LoadAd(request);
-        ShowBannerAd();
+        bannerView.Show();        
     }
 
     public void ShowBannerAd()
     {
-        bannerView.Show();        
+        string adUnitId = string.Empty;
+
+#if UNITY_ANDROID
+        adUnitId = test_adUnitId;
+        //adUnitId = android_banner_id;
+#elif UNITY_IOS
+        adUnitId = ios_banner_id;
+#endif
+
+        AdSize adSize = new AdSize(320, (int)(Screen.height * 0.016f));
+        bannerView = new BannerView(adUnitId, adSize, AdPosition.Top);
+        AdRequest request = new AdRequest.Builder().Build();
+
+        bannerView.LoadAd(request);
+        bannerView.Show();
     }
+
     public void HideBannerAd()
     {
-        bannerView.Destroy();
+        bannerView.Hide();
+        Debug.Log("!@@@@@ HideBannerAd");
     }
+
     public void RequestInterstitialAd()
     {
         string adUnitId = string.Empty;
