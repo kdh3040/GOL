@@ -33,7 +33,7 @@ public class PageMainUI : MonoBehaviour
         PopupManager.Instance.AllDismissPopup();
         TopBar.Initialize(false);        
         Refresh();
-        AdManager.Instance.RequestBannerAd();
+      //  AdManager.Instance.RequestBannerAd();
         if (PlayerData.Instance.FirstSetup == true)
             StartCoroutine(FirstMsgPopup());
     }

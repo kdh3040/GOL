@@ -291,7 +291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: 780}
+  m_AnchoredPosition: {x: 470, y: 850}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &345196184
@@ -500,8 +500,6 @@ MonoBehaviour:
   GameBook: {fileID: 1174073795}
   Img_BackGround: {fileID: 35168947}
   Anim_Char: {fileID: 2102498689}
-  mBGM: {fileID: 0}
-  mClip: {fileID: 8300000, guid: d67b32b7f10c61240a882a5321d24bf4, type: 3}
 --- !u!114 &694190008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1199,7 @@ Prefab:
     - target: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 780
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 224589424032601494, guid: d7daf9bbb89a90c43a32f4a6cdacf538,
         type: 2}
