@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GoogleMobileAds.Api;
+using GoogleMobileAds.Android;
 
 public class AdManager : MonoBehaviour {
 
@@ -50,6 +51,8 @@ public class AdManager : MonoBehaviour {
 
     */
 
+    private static string adInterstitial_Android = "ca-app-pub-4020702622451243/6018937389";
+    private static string adInterstitial_Ios = "ca-app-pub-4020702622451243/5620865023";
 
     public string android_banner_id = "ca-app-pub-4020702622451243/2867388764";
     public string ios_banner_id = "ca-app-pub-4020702622451243/2490725064";
@@ -58,15 +61,18 @@ public class AdManager : MonoBehaviour {
     string test_adUnitId = "ca-app-pub-3940256099942544/6300978111";
 
     public bool bBannerShow = true;
+    private RewardBasedVideoAd mRewardedVideoAd;
 
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(this);
-      //  InitializeAd();
-        //RequestRewardBasedVideo();
-        //RequestInterstitialAd();
+        InitializeAd();
+        RequestInterstitialAd();
+      
+      //RequestRewardBasedVideo();
+      //RequestInterstitialAd();
       //  RequestBannerAd();
-      }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -126,14 +132,27 @@ public class AdManager : MonoBehaviour {
 
         if (UnityEngine.Random.Range(0, PROB_MAX_ADVIEW) < PROB_SELECT_ADVIEW)
         {
+            
+            if (interstitialAd.IsLoaded())
+            {
+                interstitialAd.Show();
+            }
+            else
+            {
+                RequestInterstitialAd();
+               // Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
+            
 
-            UnityAdsHelper.Instance.ShowGameOverAd();
+            // UnityAdsHelper.Instance.ShowGameOverAd();
         }
     }
 
-    /*
+    
     public void RequestInterstitialAd()
     {
+
+        
         string adUnitId = string.Empty;
 
 #if UNITY_ANDROID
@@ -147,7 +166,6 @@ public class AdManager : MonoBehaviour {
 
         
         interstitialAd.LoadAd(request);
-
         interstitialAd.OnAdClosed += HandleOnInterstitialAdClosed;
     }
 
@@ -159,7 +177,8 @@ public class AdManager : MonoBehaviour {
 
         RequestInterstitialAd();
     }
-
+    
+    /*
 
     
 
