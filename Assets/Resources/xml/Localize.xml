@@ -139,6 +139,9 @@
 	<Localize id="PURCHASE_COIN_BUY_TOAST" kr="{0}코인을 구매 했습니다."/>
 	<Localize id="PURCHASE_DDONG_BUY_TOAST" kr="떵을 {0}개 구매 했습니다."/>
 	<Localize id="PURCHASE_ADS_BUY_DDONG" kr="광고를 보고 떵을 충전 하시겠습니까?"/>
+  <Localize id="PURCHASE_ADS_MY_DDONG" kr="보유 떵이 10개 미만일때 가능합니다"/>
+  <Localize id="PURCHASE_ADS_COUNT" kr="일일 광고 보기 횟수가 초과하였습니다"/>
+  <Localize id="PURCHASE_ADS_GET_DDONG" kr="떵을 1개 획득하였습니다."/>
 	<Localize id="CHAR_MSG_1" kr="뿌지직!!"/>
 	<Localize id="CHAR_MSG_2" kr="부끄러워지고 있다!"/>
 	<Localize id="CHAR_MSG_3" kr="다리가 풀려간다.."/>

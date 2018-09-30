@@ -123,14 +123,23 @@ public class PopupGamePurchase : PopupUI
     {
         if(SlotList[index].AdsSlot)
         {
-            UnityAction yesAction = () =>
+            if (PlayerData.Instance.MyDDong >= 10)
             {
-                //
-                //AdManager.Instance.ShowFreeDDongVideo();
-                UnityAdsHelper.Instance.ShowRewardedAd();
-            };
-            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_BUY_DDONG"), yesAction);
-            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_MY_DDONG"));
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+            }
+            else
+            {
+                UnityAction yesAction = () =>
+                {
+                    //
+                    //AdManager.Instance.ShowFreeDDongVideo();
+                    UnityAdsHelper.Instance.ShowRewardedAd();
+                };
+                var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_BUY_DDONG"), yesAction);
+                PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+            }
+       
         }
         else
         {

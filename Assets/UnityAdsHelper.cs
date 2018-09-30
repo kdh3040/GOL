@@ -62,6 +62,11 @@ public class UnityAdsHelper : MonoBehaviour {
 
             Advertisement.Show(rewarded_video_id, options);
         }
+        else
+        {
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_COUNT"));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
+        }
     }
 
     private void HandleShowResult(ShowResult result)
@@ -73,6 +78,8 @@ public class UnityAdsHelper : MonoBehaviour {
                     Debug.Log("The ad was successfully shown.");
 
                     PlayerData.Instance.PlusDDong(1);
+                    var popup = PopupManager.Instance.GetCurrentPopup() as PopupGamePurchase;
+                    popup.ShowToastMsg(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_GET_DDONG"));
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
 
@@ -106,6 +113,11 @@ public class UnityAdsHelper : MonoBehaviour {
         {
             var options = new ShowOptions { resultCallback = HandleReviveShowResult };
             Advertisement.Show(rewarded_video_id, options);
+        }
+        else
+        {
+            var msgPopupData = new PopupMsg.PopupData(LocalizeData.Instance.GetLocalizeString("PURCHASE_ADS_COUNT"));
+            PopupManager.Instance.ShowPopup(PopupManager.POPUP_TYPE.MSG_POPUP, msgPopupData);
         }
     }
 
